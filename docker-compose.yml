@@ -1,0 +1,43 @@
+version: "3.4"
+
+
+# NOTE: This _has _to start with `x-`
+x-logging: &default-logging
+  options:
+    max-size: "20k"
+    max-file: "10"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    command: gunicorn wsgi:application -b :8000 -b :80 --reload
+    environment:
+      - DATABASE_URL=postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
+    env_file: .env
+    volumes:
+      # We don't want to include ALL of our directories in the volume, so just take
+      # src/ and manage.py
+      - ./src:/app
+      - ./manage.py:/app/manage.py
+    ports:
+      - 8000:8000
+      - 80:80
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+    logging: *default-logging
+
+  db:
+    image: postgres:10.6-alpine
+    env_file: .env
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - 5432:5432
+    volumes:
+      - ./var/postgres:/var/lib/postgresql/data:delegated
+    logging: *default-logging
