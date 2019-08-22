@@ -84,21 +84,6 @@ SERVER_EMAIL = 'Do Not Reply <donotreply@blank.com>'
 
 LOGIN_REDIRECT_URL = '/'
 
-# AUTH_USER_MODEL = 'profiles.User'
-
-
-# =============================================================================
-# Authentication
-# =============================================================================
-# AUTHENTICATION_BACKENDS = (
-#     'social_core.backends.github.GithubOAuth2',
-#     'utils.oauth_backends.ChahubOAuth2',
-#     'django.contrib.auth.backends.ModelBackend',
-# )
-
-# User Models
-# AUTH_USER_MODEL = 'profiles.User'
-# SOCIAL_AUTH_USER_MODEL = 'profiles.User'
 
 # =============================================================================
 # Debugging
