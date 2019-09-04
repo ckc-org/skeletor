@@ -1,6 +1,5 @@
 import os
 import sys
-from datetime import timedelta
 
 import dj_database_url
 
@@ -41,7 +40,6 @@ MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    # 'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -63,7 +61,6 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # 'utils.context_processors.common_settings',
             ],
         },
     },
@@ -106,7 +103,7 @@ else:
             'USER': os.environ.get('DB_USERNAME', 'postgres'),
             'PASSWORD': os.environ.get('DB_PASSWORD', 'postgres'),
             'HOST': os.environ.get('DB_HOST', 'db'),
-            'PORT': 5432
+            'PORT': 5432,
         }
     }
 
@@ -120,31 +117,6 @@ else:
 #     # Allows us to use with django-oauth-toolkit on localhost sans https
 #     SESSION_COOKIE_SECURE = False
 
-# # =========================================================================
-# # RabbitMQ
-# # =========================================================================
-# RABBITMQ_DEFAULT_USER = os.environ.get('RABBITMQ_DEFAULT_USER', 'guest')
-# RABBITMQ_DEFAULT_PASS = os.environ.get('RABBITMQ_DEFAULT_PASS', 'guest')
-# RABBITMQ_HOST = os.environ.get('RABBITMQ_HOST', 'rabbit')
-# RABBITMQ_PORT = os.environ.get('RABBITMQ_PORT', '5672')
-# RABBITMQ_MANAGEMENT_PORT = os.environ.get('RABBITMQ_MANAGEMENT_PORT', '15672')
-
-
-# # ============================================================================
-# # Celery
-# # ============================================================================
-# CELERY_BROKER_URL = os.environ.get("CLOUDAMQP_URL") or os.environ.get('BROKER_URL')
-# if not CELERY_BROKER_URL:
-#     CELERY_BROKER_URL = f'pyamqp://{RABBITMQ_DEFAULT_USER}:{RABBITMQ_DEFAULT_PASS}@{RABBITMQ_HOST}:{RABBITMQ_PORT}//'
-# CELERY_TASK_SERIALIZER = 'json'
-# CELERY_ACCEPT_CONTENT = ('json',)
-# CELERY_BEAT_SCHEDULE = {
-#     'do_phase_migrations': {
-#         'task': 'src.apps.competitions.tasks.do_phase_migrations',
-#         'schedule': timedelta(seconds=300),
-#     },
-# }
-# CELERY_TIMEZONE = 'UTC'
 
 # =============================================================================
 # DRF
@@ -168,8 +140,8 @@ REST_FRAMEWORK = {
 # =============================================================================
 CORS_ORIGIN_ALLOW_ALL = True
 
-if not DEBUG and CORS_ORIGIN_ALLOW_ALL:
-    raise Exception("Disable CORS_ORIGIN_ALLOW_ALL if we're not in DEBUG mode")
+if not DEBUG:
+    assert not CORS_ORIGIN_ALLOW_ALL, "Disable CORS_ORIGIN_ALLOW_ALL if we're not in DEBUG mode"
 
 
 # =============================================================================
@@ -194,10 +166,10 @@ MEDIA_URL = '/media/'
 # =============================================================================
 if DEBUG:
     INSTALLED_APPS += ('debug_toolbar',)
-    MIDDLEWARE = ('debug_toolbar.middleware.DebugToolbarMiddleware',
-                  'querycount.middleware.QueryCountMiddleware',
-                  ) + MIDDLEWARE  # we want Debug Middleware at the top
-    # tricks to have debug toolbar when developing with docker
+    MIDDLEWARE = (
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+        'querycount.middleware.QueryCountMiddleware',
+    ) + MIDDLEWARE  # we want Debug Middleware at the top
 
     INTERNAL_IPS = ['127.0.0.1']
 
