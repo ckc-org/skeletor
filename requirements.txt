@@ -11,3 +11,4 @@ psycopg2==2.8.3
 
 # Storage
 whitenoise==3.3.0
+wagtail==2.6.2

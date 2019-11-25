@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 # =============================================================================
-# Django
+# # Django
 # =============================================================================
 ALLOWED_HOSTS = ['*']
 USE_X_FORWARDED_HOST = True
@@ -28,6 +28,21 @@ THIRD_PARTY_APPS = (
     'django.contrib.postgres',
 
     'whitenoise',
+
+    ## Wagtail
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail.core',
+    'modelcluster',
+    'taggit', ##
 )
 OUR_APPS = (
 )
@@ -42,6 +57,8 @@ MIDDLEWARE = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'wagtail.core.middleware.SiteMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -81,6 +98,10 @@ SERVER_EMAIL = 'Do Not Reply <donotreply@blank.com>'
 
 LOGIN_REDIRECT_URL = '/'
 
+# =============================================================================
+# # Wagtail
+# =============================================================================
+WAGTAIL_SITE_NAME = 'Monsta Dex'
 
 # =============================================================================
 # Debugging
