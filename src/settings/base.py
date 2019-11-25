@@ -26,7 +26,6 @@ THIRD_PARTY_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
-
     'whitenoise',
 
     ## Wagtail
@@ -42,9 +41,14 @@ THIRD_PARTY_APPS = (
     'wagtail.admin',
     'wagtail.core',
     'modelcluster',
-    'taggit', ##
+    'taggit',
+
+    ## Sorl Thumbnail'
+    'sorl.thumbnail',
+
 )
 OUR_APPS = (
+    'monsters',
 )
 INSTALLED_APPS = THIRD_PARTY_APPS + OUR_APPS
 

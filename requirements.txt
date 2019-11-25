@@ -1,5 +1,7 @@
 Django==2.2.4
 gunicorn==19.9.0
+wagtail==2.6.2
+sorl-thumbnail==12.5.0
 
 # Heroku staging debug tools
 django-debug-toolbar==1.11
@@ -11,4 +13,5 @@ psycopg2==2.8.3
 
 # Storage
 whitenoise==3.3.0
-wagtail==2.6.2
+
+

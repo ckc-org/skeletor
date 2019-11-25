@@ -1,0 +1,17 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load static from staticfiles %}
+
+Welcome to your new page!
+
+This is pretty blank, so we're going to have to add some functionality and styling!
+
+<br>
+MONSTERS:
+{% for mon in page.monsters.all %}
+     <br>{{ mon.monsterName }}
+    <!-- TODO: Fix sorl and images on wagtail -- maybe using cloudinary? -->
+    <!--<img src="{{mon.image.url}}">-->
+    <br>{{mon.family}}
+    <br>{{mon.element}}
+    <br>{{mon.description|richtext}}
+{% endfor %}
