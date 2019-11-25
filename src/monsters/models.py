@@ -39,11 +39,11 @@ class MonsterHomePage(Page):
 class Monster(Orderable):
     page = ParentalKey(MonsterHomePage, on_delete=models.SET_NULL, null=True, related_name='monsters')
 
-    monsterName = models.CharField(max_length=50, null=True)
-    family = models.CharField(choices=FAMILY, max_length=30, null=True)
-    element = models.CharField(choices=ELEMENT, max_length=30, null=True)
-    image = ThumbField(null=True)
-    description = RichTextField(default='', null=True)
+    monsterName = models.CharField(max_length=50, blank=True, null=True)
+    family = models.CharField(choices=FAMILY, max_length=30, blank=True, default=FAMILY[0])
+    element = models.CharField(choices=ELEMENT, max_length=30, blank=True, default=ELEMENT[0])
+    image = ThumbField(blank=True, null=True)
+    description = RichTextField(default='', blank=True)
 
     panels = [
         FieldPanel('monsterName'),
