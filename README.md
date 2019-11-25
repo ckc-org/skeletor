@@ -1,19 +1,10 @@
-# skeletor
+### MonstaDex
 
-To use this:
-
-```bash
-$ django-admin.py startproject something-wonderful --template=https://github.com/ReproKillbot/skeletor/archive/master.zip
-```
-
--------
-
-# {{ project_name }}
-
-# installation
+### installation
 
 ```bash
 $ cp .env_sample .env
 $ docker-compose up -d
+# you will need to migrate, then create a super user! 
 # can now view http://localhost or http://localhost:8000
 ```
