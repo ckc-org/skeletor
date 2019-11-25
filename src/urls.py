@@ -10,9 +10,9 @@ from wagtail.documents import urls as wagtaildocs_urls
 urlpatterns = [
     # Our URLS
     # todo..
-    path('^cms/', include(wagtailadmin_urls)),
-    path('^documents/', include(wagtaildocs_urls)),
-    path('^pages/', include(wagtail_urls)),
+    path('cms/', include(wagtailadmin_urls)),
+    path('documents/', include(wagtaildocs_urls)),
+    path('pages/', include(wagtail_urls)),
     # Django built in
     path('admin/', admin.site.urls),
 ]
