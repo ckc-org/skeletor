@@ -1,17 +1,45 @@
-### MonstaDex
+# MonstaDex
 
-### installation
-
+## installation
+#### PIP (PIP Installs Packages)
 ```bash
-$ cp .env_sample .env
-$ docker-compose up -d
-# you will need to migrate, then create a super user! 
-# can now view http://localhost or http://localhost:8000
+## We will need to install our project dependencies
+# for python with pip - so install that if it's not
+--
+pip install -r requirements.txt
+--
+
+```
+#### Set up Django!
+```bash
+## You will need to migrate
+--
+python manage.py migrate
+--
 ```
 
-```markdown
-The HTML file we will be modifying/editing will be found in 
-'src/templates/monsters/monster_home_page.html'
+```bash
+## then create a super user:
+--
+python manage.py createsuperuser
+--
+```
+```bash
+## Now serve the webpage up to your localhost
+--
+python manage.py runserver
+--
+ ```
+
+```html
+can now view http://localhost:8000
+```
+
+
+```html
+The HTML files we will be modifying/editing will be found in 
+'src/templates/'
+The 'base.html' file is where we will put our tags, and our header
 
 Once it is up and running, 
 we should go to localhost:8000/cms/ to edit our content!
