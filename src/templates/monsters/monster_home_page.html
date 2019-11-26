@@ -1,5 +1,5 @@
-{% load wagtailcore_tags wagtailimages_tags %}
-{% load static from staticfiles %}
+{% extends 'base.html' %}
+{% block content %}
 
 Welcome to your new page!
 
@@ -13,5 +13,9 @@ MONSTERS:
     <!--<img src="{{mon.image.url}}">-->
     <br>{{mon.family}}
     <br>{{mon.element}}
-    <br>{{mon.description|richtext}}
+    <br>{{mon.description}}
 {% endfor %}
+<monster_list></monster_list>
+<timer start=0></timer>
+
+{% endblock %}

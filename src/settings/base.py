@@ -27,6 +27,7 @@ THIRD_PARTY_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'whitenoise',
+    'rest_framework',
 
     ## Wagtail
     'wagtail.contrib.forms',
@@ -49,6 +50,7 @@ THIRD_PARTY_APPS = (
 )
 OUR_APPS = (
     'monsters',
+    'monster',
 )
 INSTALLED_APPS = THIRD_PARTY_APPS + OUR_APPS
 
@@ -123,12 +125,8 @@ if db_from_env:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.environ.get('DB_NAME', 'postgres'),
-            'USER': os.environ.get('DB_USERNAME', 'postgres'),
-            'PASSWORD': os.environ.get('DB_PASSWORD', 'postgres'),
-            'HOST': os.environ.get('DB_HOST', 'db'),
-            'PORT': 5432,
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'monstadex.db',
         }
     }
 
@@ -180,7 +178,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, '../src/static'),
 )
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'

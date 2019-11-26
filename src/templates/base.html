@@ -1,0 +1,37 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load static from staticfiles %}
+{% block header %}
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Jquery and RiotJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/3.13.2/riot+compiler.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
+
+    <!-- Our stylesheets here  -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/monstadex_custom.css' %}">
+
+    <!-- Our API Wrapper -->
+    <script src="{% static 'js/client.js'%}" type="text/javascript"></script>
+
+    <!-- Our Tags Here  -->
+    <script src="{% static 'tags/timer.tag.html' %}" type="riot/tag"></script>
+    <script src="{% static 'tags/monster_list.tag' %}" type="riot/tag"></script>
+
+
+
+</head>
+<script>
+    $(document).ready(function() {
+        // This mounts all of our tags we've created!
+        riot.mount('*');
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}

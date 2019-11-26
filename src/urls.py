@@ -7,10 +7,12 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
+
 urlpatterns = [
     # Wagtail Admin and Docs
     path('cms/', include(wagtailadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
+    path('api/', include('api.urls')),
 
     # Django built in
     path('admin/', admin.site.urls),
