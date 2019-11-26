@@ -7,15 +7,19 @@ This is pretty blank, so we're going to have to add some functionality and styli
 
 <br>
 MONSTERS:
-{% for mon in page.monsters.all %}
-     <br>{{ mon.monsterName }}
-    <!-- TODO: Fix sorl and images on wagtail -- maybe using cloudinary? -->
-    <!--<img src="{{mon.image.url}}">-->
-    <br>{{mon.family}}
-    <br>{{mon.element}}
-    <br>{{mon.description}}
-{% endfor %}
-<monster_list></monster_list>
-<timer start=0></timer>
+<!--{% for mon in page.monsters.all %}-->
+     <!--<br>{{ mon.monsterName }}-->
+    <!--&lt;!&ndash; TODO: Fix sorl and images on wagtail &#45;&#45; maybe using cloudinary? &ndash;&gt;-->
+    <!--&lt;!&ndash;<img src="{{mon.image.url}}">&ndash;&gt;-->
+    <!--<br>{{mon.family}}-->
+    <!--<br>{{mon.element}}-->
+    <!--<br>{{mon.description}}-->
+<!--{% endfor %}-->
+
+
+<monsters_list></monsters_list>
+
+
+
 
 {% endblock %}

@@ -1,11 +1,7 @@
-<monster_list>
+<monsters_list>
 
-    <div each="{monster in monsters}">
-        <h1>{monster.monsterName}</h1>
-        <p>{monster.family}</p>
-        <p>{monster.element}</p>
-        <p>{monster.description}</p>
-    </div>
+    <monster each="{monster in monsters}" mon="{monster}"></monster>
+
 
     <script>
         var self = this;
@@ -28,6 +24,4 @@
                 })
         }
     </script>
-
-
-</monster_list>
+</monsters_list>
