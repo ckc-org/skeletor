@@ -1,16 +1,6 @@
 # MonstaDex
 
 ## installation
-####NPM (Node Package Manager)
-```bash
-## install npm on our computer
-# then we can run the command 
---
-npm install
---
-## which will install all our packages and dependencies 
-# listed in the package.json file
-```
 #### PIP (PIP Installs Packages)
 ```bash
 ## We will need to install our project dependencies
