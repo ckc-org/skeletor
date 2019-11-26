@@ -1,0 +1,72 @@
+[
+  {
+    "model": "monster.Monsta",
+    "pk": 1,
+    "fields": {
+      "monsterName": "Slagpole",
+      "family": "Dragon",
+      "element": "Fire",
+      "description": "When its internal temperature drops too low, enters a form that is harder than diamond to preserve its life."
+    }
+  },
+  {
+    "model": "monster.Monsta",
+    "pk": 2,
+    "fields": {
+      "monsterName": "Lambchop",
+      "family": "Normal",
+      "element": "Air",
+      "description": "Constantly training to help itself and any in need. Responsible, loyal, and serious to a fault."
+    }
+  },
+    {
+    "model": "monster.Monsta",
+    "pk": 3,
+    "fields": {
+      "monsterName": "Gilpsy",
+      "family": "Reptilian",
+      "element": "Arcane",
+      "description": "Rotund and pleasant, the friendliest monster due to its lack of natural predators. Powerful enough to affect Magi."
+    }
+  },
+    {
+    "model": "monster.Monsta",
+    "pk": 4,
+    "fields": {
+      "monsterName": "Shrimpow",
+      "family": "Aquatic",
+      "element": "Water",
+      "description": "Powerful of build and small in size, don't let your first impression fool you! Quite dangerous!"
+    }
+  },
+    {
+    "model": "monster.Monsta",
+    "pk": 5,
+    "fields": {
+      "monsterName": "Soltis",
+      "family": "Bug",
+      "element": "Light",
+      "description": "Brave and graceful, Soltis is pure in heart and mind. Great kungfu partner, terrible gambler."
+    }
+  },
+    {
+    "model": "monster.Monsta",
+    "pk": 6,
+    "fields": {
+      "monsterName": "Ripawste",
+      "family": "Fairy",
+      "element": "Earth",
+      "description": "A playful and quick-witted creature, almost always care-free. Extremely lucky."
+    }
+  },
+    {
+    "model": "monster.Monsta",
+    "pk": 7,
+    "fields": {
+      "monsterName": "Darad",
+      "family": "Undead",
+      "element": "Dark",
+      "description": "A somber, silent monster.  Sees past and future in glimpses through the Giant's Eye it possesses."
+    }
+  }
+]
