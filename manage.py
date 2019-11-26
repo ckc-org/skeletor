@@ -3,6 +3,7 @@ import sys
 import os
 import subprocess
 
+
 if __name__ == "__main__":
     sys.path.append('src')
     settings_module = os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings.base')
