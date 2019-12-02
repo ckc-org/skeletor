@@ -1,6 +1,7 @@
 <monsters_list>
-
+ <div class="card-group">
     <monster each="{monster in monsters}" mon="{monster}"></monster>
+  </div>
 
 
     <script>
