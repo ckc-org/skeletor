@@ -1,5 +1,14 @@
 # MonstaDex
 
+## if set up prior
+
+```bash
+# always make sure your virtualenv is activated
+--       WINDOWS                           MAC
+venv\Source\Activate.bat        source venv/bin/activate
+--
+```
+
 ## installation
 #### PIP (PIP Installs Packages)
 ```bash
