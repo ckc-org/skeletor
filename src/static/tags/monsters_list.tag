@@ -1,6 +1,7 @@
 <monsters_list>
-
+ <div class="card-group">
     <monster each="{monster in monsters}" mon="{monster}"></monster>
+  </div>
 
 
     <script>
@@ -13,11 +14,11 @@
         var get_monsters = function(){
             CLIENT.api.get_monsters()
                 .done(function(monsters){
-                    console.log(monsters)
+                    console.log("Monsters == " + monsters)
                     self.monsters = monsters
                 })
                 .fail(function(error){
-                    console.log(error)
+                    console.log("Errors == " + error)
                 })
                 .always(function(){
                     self.update()
