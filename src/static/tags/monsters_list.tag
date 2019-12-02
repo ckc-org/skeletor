@@ -1,5 +1,5 @@
 <monsters_list>
- <div class="card-group">
+ <div class="card-deck">
     <monster each="{monster in monsters}" mon="{monster}"></monster>
   </div>
 
