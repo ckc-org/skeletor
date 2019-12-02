@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+from wagtail.project_template.project_name.settings.base import BASE_URL
 
 FAMILY = (
     ('Normal', 'Normal'),
@@ -27,3 +28,17 @@ class Monsta(models.Model):
     family = models.CharField(choices=FAMILY, max_length=30, blank=True, default=FAMILY[0])
     element = models.CharField(choices=ELEMENT, max_length=30, blank=True, default=ELEMENT[0])
     description = models.CharField(max_length=510, default='', blank=True)
+    image = models.CharField(null=True, blank=True, max_length=300)
+
+    def __str__(self):
+        return self.monsterName
+
+    @property
+    def element_logo(self):
+        return BASE_URL + "/static/images/elements/" + self.element + ".png"
+
+    def save(self, *args, **kwargs):
+        if self.image is None:
+            self.image = BASE_URL + "/static/images/monsters/" + self.monsterName + "_ink.png"
+        return super(Monsta, self).save(*args, **kwargs)
+
