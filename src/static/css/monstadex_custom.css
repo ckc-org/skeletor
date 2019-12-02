@@ -212,7 +212,13 @@ header {
   }
 
   .monster-card {
-    height: 250px;
+    height: 500px;
+    margin-top: 1em;
+  }
+
+  .card-img-top {
+    height: 200px;
+    margin-bottom?: 2em;
   }
 
 /* =Media Queries
