@@ -7,7 +7,7 @@
     <div class="card monster-card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">{mon.monsterName}</h5>
-        <img class="card-img-top " src="#" alt="Card image cap">
+        <img class="card-img-top " src="{mon.image}" alt="Card image cap">
             <p class="card-text">{mon.description}</p>
         <div class="card-footer text-muted">
           <div class="row text-center">

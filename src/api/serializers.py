@@ -32,4 +32,6 @@ class MonstaSerializer(serializers.ModelSerializer):
             'family',
             'element',
             'description',
+            'image',
+            'element_logo',
         ]
