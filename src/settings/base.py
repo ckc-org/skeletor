@@ -46,6 +46,7 @@ THIRD_PARTY_APPS = (
 
     ## Sorl Thumbnail'
     'sorl.thumbnail',
+    'django_extensions',
 
 )
 OUR_APPS = (

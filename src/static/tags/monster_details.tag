@@ -23,7 +23,6 @@
     <script>
         var self = this;
         this.mon = this.opts.mon
-        console.log("Mounted")
 
     </script>
 
