@@ -52,6 +52,9 @@ THIRD_PARTY_APPS = (
 OUR_APPS = (
     'monsters',
     'monster',
+    'attacks',
+    'bindings',
+    'players',
 )
 INSTALLED_APPS = THIRD_PARTY_APPS + OUR_APPS
 
