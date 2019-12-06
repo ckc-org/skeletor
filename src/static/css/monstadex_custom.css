@@ -211,10 +211,6 @@ header {
    border-left:1px solid black;
   }
 
-  .monster-card {
-    height: 500px;
-    margin-top: 1em;
-  }
 
   .card-img-top {
     height: 200px;
