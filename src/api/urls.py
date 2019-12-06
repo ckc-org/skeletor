@@ -3,9 +3,12 @@ from rest_framework import routers
 from src.api import views
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
-router.register(r'monstas', views.MonstaViewSet)
+router.register('users', views.UserViewSet)
+router.register('groups', views.GroupViewSet)
+router.register('monstas', views.MonstaViewSet)
+router.register('players', views.PlayerViewSet)
+router.register('attacks', views.AttackViewSet)
+router.register('bindings', views.BindingViewSet)
 
 
 # Wire up our API using automatic URL routing.

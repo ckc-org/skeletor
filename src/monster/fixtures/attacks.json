@@ -1,0 +1,852 @@
+[
+  {
+    "model": "attacks.attack",
+    "pk": 1,
+    "fields": {
+      "name": "Grenade",
+      "description": "Burn with a big explosion",
+      "image": "",
+      "element": "Fire"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 2,
+    "fields": {
+      "name": "Amnesia",
+      "description": "Leave a weak-willed foe confused by attacking their mind!",
+      "image": "/static/images/elements/Arcane.png",
+      "element": "Arcane"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 3,
+    "fields": {
+      "name": "Ash Cloud",
+      "description": "Fill the air with blinding ashes.",
+      "image": "/static/images/elements/Fire.png",
+      "element": "Fire"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 4,
+    "fields": {
+      "name": "Astral Blast",
+      "description": "A blast of mental energy that never misses.",
+      "image": "/static/images/elements/Arcane.png",
+      "element": "Arcane"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 5,
+    "fields": {
+      "name": "Aura Strike",
+      "description": "",
+      "image": "/static/images/elements/Arcane.png",
+      "element": "Arcane"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 6,
+    "fields": {
+      "name": "Basscannon",
+      "description": "This is what the long dick of the law feels like.",
+      "image": "/static/images/elements/Dark.png",
+      "element": "Dark"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 7,
+    "fields": {
+      "name": "Blazing Lunge",
+      "description": "",
+      "image": "/static/images/elements/Fire.png",
+      "element": "Fire"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 8,
+    "fields": {
+      "name": "Blink",
+      "description": "Gain speed through teleportation!",
+      "image": "/static/images/elements/Arcane.png",
+      "element": "Arcane"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 9,
+    "fields": {
+      "name": "Bomb Seed",
+      "description": "",
+      "image": "/static/images/elements/Earth.png",
+      "element": "Earth"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 10,
+    "fields": {
+      "name": "Breeze Blade",
+      "description": "",
+      "image": "/static/images/elements/Air.png",
+      "element": "Air"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 11,
+    "fields": {
+      "name": "Brilliant Strike",
+      "description": "Storing up light and releasing it right before attacking, this attack may blind.",
+      "image": "/static/images/elements/Light.png",
+      "element": "Light"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 12,
+    "fields": {
+      "name": "Burn",
+      "description": "A glowing ember that burns the enemy without fail.",
+      "image": "/static/images/elements/Fire.png",
+      "element": "Fire"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 13,
+    "fields": {
+      "name": "Burning Blade",
+      "description": "This fiery attack has a chance to keep burning after the strike.",
+      "image": "/static/images/elements/Fire.png",
+      "element": "Fire"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 14,
+    "fields": {
+      "name": "Concuss",
+      "description": "",
+      "image": "/static/images/elements/Normal.png",
+      "element": "Normal"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 15,
+    "fields": {
+      "name": "Counterattack",
+      "description": "",
+      "image": "/static/images/elements/Dark.png",
+      "element": "Dark"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 16,
+    "fields": {
+      "name": "Cracked Earth",
+      "description": "",
+      "image": "/static/images/elements/Earth.png",
+      "element": "Earth"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 17,
+    "fields": {
+      "name": "Cyclone",
+      "description": "A heavy attack of wailing wind.",
+      "image": "/static/images/elements/Air.png",
+      "element": "Air"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 18,
+    "fields": {
+      "name": "Divine Fury",
+      "description": "",
+      "image": "/static/images/elements/Light.png",
+      "element": "Light"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 19,
+    "fields": {
+      "name": "Dream Thief",
+      "description": "Attack a sleeping foe for high damage!",
+      "image": "/static/images/elements/Arcane.png",
+      "element": "Arcane"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 20,
+    "fields": {
+      "name": "Effigy",
+      "description": "",
+      "image": "/static/images/elements/Dark.png",
+      "element": "Dark"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 21,
+    "fields": {
+      "name": "EngulfingGlow",
+      "description": "",
+      "image": "/static/images/elements/Light.png",
+      "element": "Light"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 22,
+    "fields": {
+      "name": "Evil Eye",
+      "description": "",
+      "image": "/static/images/elements/Dark.png",
+      "element": "Dark"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 23,
+    "fields": {
+      "name": "Featherweight",
+      "description": "Greatly weakens your foe, but increase their speed a little.",
+      "image": "/static/images/elements/Air.png",
+      "element": "Air"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 24,
+    "fields": {
+      "name": "Feint",
+      "description": "Fake the opponent out to raise your evasion.",
+      "image": "/static/images/elements/Dark.png",
+      "element": "Dark"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 25,
+    "fields": {
+      "name": "Fire Bolt",
+      "description": "Launches a orb of flame at your foe!",
+      "image": "/static/images/elements/Fire.png",
+      "element": "Fire"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 26,
+    "fields": {
+      "name": "Fire Swipe",
+      "description": "",
+      "image": "/static/images/elements/Fire.png",
+      "element": "Fire"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 27,
+    "fields": {
+      "name": "Flurry of Blows",
+      "description": "2-5 quick punches.",
+      "image": "/static/images/elements/Normal.png",
+      "element": "Normal"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 28,
+    "fields": {
+      "name": "Fog",
+      "description": "",
+      "image": "/static/images/elements/Water.png",
+      "element": "Water"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 29,
+    "fields": {
+      "name": "Gale",
+      "description": "",
+      "image": "/static/images/elements/Air.png",
+      "element": "Air"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 30,
+    "fields": {
+      "name": "Glade Blade",
+      "description": "Use a honed grassblade to inflict bleeding!",
+      "image": "/static/images/elements/Earth.png",
+      "element": "Earth"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 31,
+    "fields": {
+      "name": "Glare Shard",
+      "description": "",
+      "image": "/static/images/elements/Light.png",
+      "element": "Light"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 32,
+    "fields": {
+      "name": "Gleaming Ray",
+      "description": "Beams of light pierce the enemy!",
+      "image": "/static/images/elements/Light.png",
+      "element": "Light"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 33,
+    "fields": {
+      "name": "Gloom Ray",
+      "description": "Overwhelm the target with a ray of despair!",
+      "image": "/static/images/elements/Dark.png",
+      "element": "Dark"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 34,
+    "fields": {
+      "name": "Glory",
+      "description": "",
+      "image": "/static/images/elements/Light.png",
+      "element": "Light"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 35,
+    "fields": {
+      "name": "Gravelshot",
+      "description": "Throw a fistful of stones for 2-5 hits!",
+      "image": "/static/images/elements/Earth.png",
+      "element": "Earth"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 36,
+    "fields": {
+      "name": "Grenade",
+      "description": "An explosive attack that hurts the enemy and you!",
+      "image": "/static/images/elements/Fire.png",
+      "element": "Fire"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 37,
+    "fields": {
+      "name": "Gust Thrust",
+      "description": "",
+      "image": "/static/images/elements/Air.png",
+      "element": "Air"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 38,
+    "fields": {
+      "name": "Hailstorm",
+      "description": "",
+      "image": "/static/images/elements/Air.png",
+      "element": "Air"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 39,
+    "fields": {
+      "name": "Haunt",
+      "description": "",
+      "image": "/static/images/elements/Dark.png",
+      "element": "Dark"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 40,
+    "fields": {
+      "name": "Hexing Strike",
+      "description": "",
+      "image": "/static/images/elements/Dark.png",
+      "element": "Dark"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 41,
+    "fields": {
+      "name": "HighTide",
+      "description": "",
+      "image": "/static/images/elements/Water.png",
+      "element": "Water"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 42,
+    "fields": {
+      "name": "Hypnosis",
+      "description": "Mesmerize the enemy into a deep slumber.",
+      "image": "/static/images/elements/Arcane.png",
+      "element": "Arcane"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 43,
+    "fields": {
+      "name": "Icicle",
+      "description": "",
+      "image": "/static/images/elements/Water.png",
+      "element": "Water"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 44,
+    "fields": {
+      "name": "Jab",
+      "description": "",
+      "image": "/static/images/elements/Normal.png",
+      "element": "Normal"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 45,
+    "fields": {
+      "name": "Keelhaul",
+      "description": "A devestating attack that leaves the enemy soaked.",
+      "image": "/static/images/elements/Water.png",
+      "element": "Water"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 46,
+    "fields": {
+      "name": "Ki Barrage",
+      "description": "Attack with 2-5 consecutive blasts!",
+      "image": "/static/images/elements/Normal.png",
+      "element": "Normal"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 47,
+    "fields": {
+      "name": "Ki Blast",
+      "description": "",
+      "image": "/static/images/elements/Normal.png",
+      "element": "Normal"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 48,
+    "fields": {
+      "name": "Ki Hit",
+      "description": "",
+      "image": "/static/images/elements/Normal.png",
+      "element": "Normal"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 49,
+    "fields": {
+      "name": "Latern Toss",
+      "description": "",
+      "image": "/static/images/elements/Light.png",
+      "element": "Light"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 50,
+    "fields": {
+      "name": "Lumina",
+      "description": "Cloak yourself in brilliant light before attacking!",
+      "image": "/static/images/elements/Light.png",
+      "element": "Light"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 51,
+    "fields": {
+      "name": "Magic Missile",
+      "description": "",
+      "image": "/static/images/elements/Arcane.png",
+      "element": "Arcane"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 52,
+    "fields": {
+      "name": "MagicFang",
+      "description": "",
+      "image": "/static/images/elements/Arcane.png",
+      "element": "Arcane"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 53,
+    "fields": {
+      "name": "Midnight Blade",
+      "description": "",
+      "image": "/static/images/elements/Dark.png",
+      "element": "Dark"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 54,
+    "fields": {
+      "name": "Mindbite",
+      "description": "",
+      "image": "/static/images/elements/Arcane.png",
+      "element": "Arcane"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 55,
+    "fields": {
+      "name": "Mudball",
+      "description": "",
+      "image": "/static/images/elements/Earth.png",
+      "element": "Earth"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 56,
+    "fields": {
+      "name": "Nightshade",
+      "description": "Poisons the mind, the monster is forced to relive its past mistakes!",
+      "image": "/static/images/elements/Dark.png",
+      "element": "Dark"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 57,
+    "fields": {
+      "name": "Psyblade",
+      "description": "",
+      "image": "/static/images/elements/Arcane.png",
+      "element": "Arcane"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 58,
+    "fields": {
+      "name": "Psychic",
+      "description": "Sets the monster to sleep by counteracting its brainwaves.",
+      "image": "/static/images/elements/Arcane.png",
+      "element": "Arcane"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 59,
+    "fields": {
+      "name": "Radiant Flare",
+      "description": "A ball of light staggers your foe before blinding them!",
+      "image": "/static/images/elements/Light.png",
+      "element": "Light"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 60,
+    "fields": {
+      "name": "Rain of Cinders",
+      "description": "",
+      "image": "/static/images/elements/Fire.png",
+      "element": "Fire"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 61,
+    "fields": {
+      "name": "Reef Wreck",
+      "description": "",
+      "image": "/static/images/elements/Water.png",
+      "element": "Water"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 62,
+    "fields": {
+      "name": "Riptide",
+      "description": "2-5 Fearsome Waterjets tear at the enemy.",
+      "image": "/static/images/elements/Water.png",
+      "element": "Water"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 63,
+    "fields": {
+      "name": "Shove",
+      "description": "",
+      "image": "/static/images/elements/Normal.png",
+      "element": "Normal"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 64,
+    "fields": {
+      "name": "Simmer",
+      "description": "Attack with three flames at once!",
+      "image": "/static/images/elements/Fire.png",
+      "element": "Fire"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 65,
+    "fields": {
+      "name": "Siphon",
+      "description": "Steal health from the enemy!",
+      "image": "/static/images/elements/Dark.png",
+      "element": "Dark"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 66,
+    "fields": {
+      "name": "Siren's Call",
+      "description": "",
+      "image": "/static/images/elements/Water.png",
+      "element": "Water"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 67,
+    "fields": {
+      "name": "Slash",
+      "description": "",
+      "image": "/static/images/elements/Normal.png",
+      "element": "Normal"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 68,
+    "fields": {
+      "name": "Slumber Bloom",
+      "description": "",
+      "image": "/static/images/elements/Earth.png",
+      "element": "Earth"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 69,
+    "fields": {
+      "name": "Solar Blade",
+      "description": "",
+      "image": "/static/images/elements/Light.png",
+      "element": "Light"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 70,
+    "fields": {
+      "name": "Splash Jet",
+      "description": "",
+      "image": "/static/images/elements/Water.png",
+      "element": "Water"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 71,
+    "fields": {
+      "name": "Stab",
+      "description": "",
+      "image": "/static/images/elements/Normal.png",
+      "element": "Normal"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 72,
+    "fields": {
+      "name": "Static Strike",
+      "description": "A medium attack that crackles with paralyzing lightning.",
+      "image": "/static/images/elements/Air.png",
+      "element": "Air"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 73,
+    "fields": {
+      "name": "Stone Fist",
+      "description": "Stagger the foe with rock-hard fists!",
+      "image": "/static/images/elements/Earth.png",
+      "element": "Earth"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 74,
+    "fields": {
+      "name": "Strike",
+      "description": "",
+      "image": "/static/images/elements/Normal.png",
+      "element": "Normal"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 75,
+    "fields": {
+      "name": "Stunning Roots",
+      "description": "",
+      "image": "/static/images/elements/Earth.png",
+      "element": "Earth"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 76,
+    "fields": {
+      "name": "Tackle",
+      "description": "",
+      "image": "/static/images/elements/Normal.png",
+      "element": "Normal"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 77,
+    "fields": {
+      "name": "Tear",
+      "description": "Rend your foe with blazing claws!",
+      "image": "/static/images/elements/Normal.png",
+      "element": "Normal"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 78,
+    "fields": {
+      "name": "Thunder Clap",
+      "description": "",
+      "image": "/static/images/elements/Air.png",
+      "element": "Air"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 79,
+    "fields": {
+      "name": "Timber",
+      "description": "",
+      "image": "/static/images/elements/Earth.png",
+      "element": "Earth"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 80,
+    "fields": {
+      "name": "Urchin Punch",
+      "description": "Punch the foe with poisoned quills.",
+      "image": "/static/images/elements/Water.png",
+      "element": "Water"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 81,
+    "fields": {
+      "name": "Vertigo",
+      "description": "",
+      "image": "/static/images/elements/Air.png",
+      "element": "Air"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 82,
+    "fields": {
+      "name": "Vine Lash",
+      "description": "",
+      "image": "/static/images/elements/Earth.png",
+      "element": "Earth"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 83,
+    "fields": {
+      "name": "VoidSlash",
+      "description": "",
+      "image": "/static/images/elements/Dark.png",
+      "element": "Dark"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 84,
+    "fields": {
+      "name": "Whirlpool",
+      "description": "",
+      "image": "/static/images/elements/Water.png",
+      "element": "Water"
+    }
+  },
+  {
+    "model": "attacks.attack",
+    "pk": 85,
+    "fields": {
+      "name": "Wing Smack",
+      "description": "",
+      "image": "/static/images/elements/Air.png",
+      "element": "Air"
+    }
+  }
+]
