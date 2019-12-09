@@ -31,12 +31,6 @@ class MonstaViewSet(viewsets.ModelViewSet):
     queryset = Monsta.objects.all()
     serializer_class = MonstaSerializer
 
-    @action(detail=False, methods=['get'])
-    def get_monsters(self, request):
-        monsters = Monsta.objects.all()
-        serializer = MonstaSerializer(monsters, many=True, context={'request': request})
-        return Response(serializer.data)
-
 
 class PlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all()
@@ -51,3 +45,9 @@ class AttackViewSet(viewsets.ModelViewSet):
 class BindingViewSet(viewsets.ModelViewSet):
     queryset = Binding.objects.all()
     serializer_class = BindingSerializer
+
+    @action(detail=False, methods=['get'])
+    def get_monsters(self, request):
+        monsters = Binding.objects.all().filter(player=self.request.user.player)
+        serializer = BindingSerializer(monsters, many=True, context={'request': request})
+        return Response(serializer.data)

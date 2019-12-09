@@ -19,7 +19,7 @@ CLIENT.api = {
     },
 /*            Monsters                             */
     get_monsters: function(){
-        return CLIENT.api.request('GET', '/api/monstas/')
+        return CLIENT.api.request('GET', '/api/bindings/')
     },
 }
 

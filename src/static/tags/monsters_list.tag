@@ -15,6 +15,9 @@
             CLIENT.api.get_monsters()
                 .done(function(monsters){
                     console.log("Monsters == " + monsters)
+                    for(var i = 0; i < monsters.length; i++){
+                        console.log(monsters[i])
+                    }
                     self.monsters = monsters
                 })
                 .fail(function(error){

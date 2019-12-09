@@ -48,10 +48,8 @@ class Player(models.Model):
                     new_bind.save()
                     self.save()
         for mon in self.binding.all():
-            print(mon.monsterName)
-            # while mon.attacks.count() < 4:
-            #     attack_list = Attack.objects.all()
-            #     random_atk = random.choice(attack_list)
-            #     mon.attacks.add(random_atk)
-            #     print(random_atk)
+            while mon.attacks.count() < 4:
+                attack_list = Attack.objects.all()
+                random_atk = random.choice(attack_list)
+                mon.attacks.add(random_atk)
         return super(Player, self).save(*args, **kwargs)

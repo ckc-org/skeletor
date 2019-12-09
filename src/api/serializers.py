@@ -61,6 +61,7 @@ class BindingSerializer(serializers.ModelSerializer):
     element = serializers.ReadOnlyField(source='monster.element')
     image = serializers.ReadOnlyField(source='monster.image')
     picked = serializers.ReadOnlyField()
+    element_logo = serializers.ReadOnlyField(source='monster.element_logo')
 
     class Meta:
         model = Binding
@@ -76,6 +77,7 @@ class BindingSerializer(serializers.ModelSerializer):
             'description',
             'element',
             'killed',
+            'element_logo',
         )
 
 
