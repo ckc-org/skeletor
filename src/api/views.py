@@ -27,22 +27,22 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
 
 
-class MonstaViewSet(viewsets.ModelViewSet):
+class APIMonstaViewSet(viewsets.ModelViewSet):
     queryset = Monsta.objects.all()
     serializer_class = MonstaSerializer
 
 
-class PlayerViewSet(viewsets.ModelViewSet):
+class APIPlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
 
 
-class AttackViewSet(viewsets.ModelViewSet):
+class APIAttackViewSet(viewsets.ModelViewSet):
     queryset = Attack.objects.all().order_by('-name')
     serializer_class = AttackSerializer
 
 
-class BindingViewSet(viewsets.ModelViewSet):
+class APIBindingViewSet(viewsets.ModelViewSet):
     queryset = Binding.objects.all()
     serializer_class = BindingSerializer
 
