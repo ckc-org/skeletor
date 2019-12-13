@@ -11,6 +11,7 @@
 
         self.on('mount', function(){
             get_monsters();
+            console.log(Object.keys(document));
         })
 
         var get_monsters = function(){

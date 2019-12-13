@@ -21,6 +21,9 @@ CLIENT.api = {
     get_monsters: function(){
         return CLIENT.api.request('GET', '/api/bindings/')
     },
+    get_monattacks: function(pk){
+      return CLIENT.api.request('GET', '/api/bindings/' + pk + '/')
+    }
 }
 
 function getCookie(name) {
