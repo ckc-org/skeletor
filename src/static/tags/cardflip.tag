@@ -1,6 +1,6 @@
 <cardflip>
 
-  <%-- <div class="container">
+  <div class="container">
   		<div class="row">
   			<div class="col-sm-6 col-lg-4">
           		<!-- Card Flip -->
@@ -33,7 +33,7 @@
           		<!-- End Card Flip -->
   			</div>
   		</div>
-  	</div> --%>
+  	</div>
 
 <script>
 

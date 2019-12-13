@@ -46,11 +46,11 @@ can now view http://localhost:8000
 
 
 ```html
-The HTML files we will be modifying/editing will be found in 
+The HTML files we will be modifying/editing will be found in
 'src/templates/'
 The 'base.html' file is where we will put our tags, and our header
 
-Once it is up and running, 
+Once it is up and running,
 we should go to localhost:8000/cms/ to edit our content!
 
 ```

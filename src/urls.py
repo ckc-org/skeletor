@@ -12,7 +12,7 @@ from bindings.models import Binding
 from monster.models import Monsta
 from players.models import Player
 
-admin.site.register(Monsta)
+# admin.site.register(Monsta)
 admin.site.register(Player)
 admin.site.register(Binding)
 admin.site.register(Attack)

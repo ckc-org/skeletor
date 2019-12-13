@@ -9,6 +9,7 @@
         self.monsters = {}
         self.on('mount', function(){
             get_monsters();
+            console.log(Object.keys(document));
         })
 
         var get_monsters = function(){
@@ -16,7 +17,7 @@
                 .done(function(monsters){
                     console.log("Monsters == " + monsters)
                     for(var i = 0; i < monsters.length; i++){
-                        console.log(monsters[i])
+                        console.log(monsters[i].attacks)
                     }
                     self.monsters = monsters
                 })

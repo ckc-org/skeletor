@@ -6,7 +6,7 @@ router = routers.DefaultRouter()
 router.register('users', views.UserViewSet)
 router.register('groups', views.GroupViewSet)
 router.register('monstas', views.MonstaViewSet)
-router.register('players', views.PlayerViewSet)
+# router.register('players', views.PlayerViewSet)
 router.register('attacks', views.AttackViewSet)
 router.register('bindings', views.BindingViewSet)
 

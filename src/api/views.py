@@ -51,3 +51,9 @@ class BindingViewSet(viewsets.ModelViewSet):
         monsters = Binding.objects.all().filter(player=self.request.user.player)
         serializer = BindingSerializer(monsters, many=True, context={'request': request})
         return Response(serializer.data)
+
+    @action(detail=True, methods=['get'])
+    def get_monattacks(self, request, pk):
+        print(self)
+        print(request)
+        print(pk)

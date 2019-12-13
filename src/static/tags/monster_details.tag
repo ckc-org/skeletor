@@ -21,7 +21,7 @@
 
 
                           <div class="card-footer text-muted">
-                            <div class="row text-center">
+                            <div class="row text-center align-middle">
                                <div class="col">{mon.family}</div>
                                <div class="col-xs-2 v-divider"></div>
                                <div class="col">{mon.element}<img class="logo" src="{mon.element_logo}"></div>
@@ -35,11 +35,25 @@
                 <div class="back">
                    <div class="card monster-card">
                      <div class="card-body">
-                       <h1>Attack</h1>
-                     </div>
+
+                          <div each={atk in mon.attacks}>
+                            <div class="row back-row">
+                               <div class="col card-title text-center">{atk.name}</div>
+                               <div class="col-xs-2 v-divider"></div>
+                               <div class="col"><img src="{atk.image}"></div>
+                            </div>
+                            <div class="col">{atk.description}</div>
+
+
+                          </div>
+
+
+
+
+
+
                    </div>
                   <!-- back content -->
-
                 </div>
             </div>
                 <!-- End Card Flip -->
@@ -49,15 +63,17 @@
 
     <script>
         var self = this;
-        this.mon = this.opts.mon
+        self.mon = self.opts.mon
 
         self.flipped = false;
 
           self.flipme = function(){
-            console.log("hey i've been clicked, wahoo")
+            console.log(self.mon.attack)
              self.flipped = !self.flipped
              console.log(self.flipped)
           }
+
+
 
     </script>
 <style>
@@ -72,8 +88,20 @@
     left: 5px;
   }
 
-  .card-flip {
+  .card-body {
+    background-color: rgba(0,0,0,.03)
+  }
 
+  .h-divider{
+    margin-top:5px;
+    margin-bottom:10px;
+    height:1px;
+    width:100%;
+    border-top:1px solid #000000;
+}
+
+
+  .back-row {
 
   }
 
