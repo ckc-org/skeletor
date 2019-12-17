@@ -21,9 +21,12 @@ CLIENT.api = {
     get_monsters: function(){
         return CLIENT.api.request('GET', '/api/bindings/')
     },
-    get_monattacks: function(pk){
-      return CLIENT.api.request('GET', '/api/bindings/' + pk + '/')
-    }
+    get_player: function(pk){
+        return CLIENT.api.request('GET', '/api/players/' + pk + '/get_player/')
+    },
+    pick_monster: function(pk){
+      return CLIENT.api.request("PUT", "/api/bindings/" + pk + "/pick_monster/")
+    },
 }
 
 function getCookie(name) {

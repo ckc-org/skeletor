@@ -66,6 +66,7 @@ class BindingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Binding
         fields = (
+            'id',
             'assigned',
             'full_party',
             'level',

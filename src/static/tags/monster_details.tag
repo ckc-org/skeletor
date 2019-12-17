@@ -8,17 +8,29 @@
         <div class="row">
             <div class="col-sm-6 col-lg-4">
                 <!-- Card Flip -->
-                <div class="card-flip {monster-flip: flipped}" onclick={flipme} >
+                <div class="card-flip {monster-flip: flipped}" onclick={flip_me} >
                     <div class="front">
                         <!-- front content -->
                         <div class="card monster-card">
                             <div class="card-body">
 
-                                <h5 class="card-title text-center">{mon.monsterName}</h5>
+                                <h5 class="card-title text-center">{mon.monsterName} = {picked}</h5>
                                 <img class="card-img-top " src="{mon.image}" alt="Card image cap">
                                 <p class="card-text">{mon.description}</p>
                             </div>
 
+                            <div class="row button-row">
+                               <div class="col">
+
+                               </div>
+                                  <div class="col">
+                                    <button type="button" class="btn btn-secondary" if={!picked} onclick={pick_monster}>Pick me!</button>
+                                    <button type="button" class="btn btn-secondary" if={picked} onclick={pick_monster}>Unpick</button>
+                                  </div>
+                                  <div class="col">
+
+                                  </div>
+                                </div>
 
                             <div class="card-footer text-muted">
                                 <div class="row text-center align-middle">
@@ -63,13 +75,31 @@
     <script>
         var self = this;
         self.mon = self.opts.mon
-
+        console.log(self.mon)
+        self.picked = self.mon.picked
+        console.log(self.picked)
         self.flipped = false;
 
         self.flipme = function(){
             console.log(self.mon.attack)
             self.flipped = !self.flipped
             console.log(self.flipped)
+        }
+
+        self.pick_monster = function(){
+          CLIENT.api.pick_monster(self.mon.id)
+          .done(function(mon){
+            console.log(mon)
+            self.picked = mon.picked
+          })
+          .fail(function(error){
+            console.log(error)
+            alert(error.responseJSON)
+          })
+          .always(function(){
+            self.update()
+          })
+
         }
 
 
@@ -90,6 +120,17 @@
         .card-body {
             background-color: rgba(0,0,0,.03);
         }
+
+        .button-row{
+            background-color: rgba(0,0,0,.03);
+            width: 100%;
+            margin-left: 0px;
+        }
+
+
+
+
+
 
         .h-divider{
             margin-top:5px;
@@ -143,13 +184,45 @@
         }
 
         .Arcane {
-            background-color: red
+            background-color: edb0fc;
+        }
+
+        .Light {
+            background-color: f9fccf;
+        }
+
+        .Air {
+            background-color: b3fcef;
+        }
+
+        .Water{
+            background-color: aadaff;
+        }
+
+        .Fire{
+            background-color: ffcfbc;
+        }
+
+        .Dark{
+           background-color: a8a8a8;
+        }
+
+        .Earth{
+            background-color: b6ffaf;
+        }
+
+        .Normal{
+           background-color: ffaacb;
+        }
+
+        .text-center:first-child div{
+          border-radius: 3px 3px 0px 0px;
         }
 
         .attack-header{
             /*background-color: grey;*/
             display: block;
-            margin: 0px -22px 0px -22px;
+            margin: 0px -21px 0px -21px;
         }
 
         .row-center{
