@@ -23,6 +23,10 @@ CLIENT.api = {
     },
     get_monattacks: function(pk){
       return CLIENT.api.request('GET', '/api/bindings/' + pk + '/')
+    },
+
+    get_players_list: function(pk){
+      return CLIENT.api.request('GET', '/api/players/get_players_list/')
     }
 }
 
