@@ -96,4 +96,5 @@ class PlayerSerializer(serializers.ModelSerializer):
             'lifespan',
             'binding',
             'full_party',
+            'url',
         )
