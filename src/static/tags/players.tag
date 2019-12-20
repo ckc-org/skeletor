@@ -4,7 +4,7 @@
     <h1>Full Party:{player.full_party}</h1>
     <h1>Joined:{player.lifespan}</h1>
     <div class="card-deck">
-      <monster each="{mon in player.binding}" mon="{mon}"></monster>
+      <monster_detail each="{mon in player.binding}" mon="{mon}" full_party="{player.full_party}"></monster_detail>
     </div>
   </div>
 
@@ -24,7 +24,6 @@
         CLIENT.api.get_player(pk)
             .done(function(player){
                 self.player = player
-                console.log(player)
             })
             .fail(function(error){
                 console.log("Errors == " + error)
@@ -33,9 +32,8 @@
                 self.update()
             })
     }
-    CLIENT.events.on('monster_selected', function(){
-      console.log("Received event");
-        get_player(self.id);
+    CLIENT.events.on('pick_monster', function(){
+        get_player(self.id)
     })
 
     </script>

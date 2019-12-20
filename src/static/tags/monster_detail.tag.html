@@ -1,4 +1,4 @@
-<monster>
+<monster_detail>
     <!--    <h1>{mon.monsterName}</h1>
         <p>{mon.family}</p>
         <p>{mon.element}</p>
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-sm-6 col-lg-4">
                 <!-- Card Flip -->
-                <div class="card-flip {monster-flip: flipped}" onclick={flip_me} >
+                <div class="card-flip {monster-flip: flipped}" onclick={flipme} >
                     <div class="front">
                         <!-- front content -->
                         <div class="card monster-card">
@@ -20,17 +20,19 @@
                             </div>
 
                             <div class="row button-row">
-                               <div class="col">
+                                <div class="col">
 
-                               </div>
-                                  <div class="col">
-                                    <button type="button" class="btn btn-secondary" if={!picked} onclick={pick_monster}>Pick me!</button>
-                                    <button type="button" class="btn btn-secondary" if={picked} onclick={pick_monster}>Unpick</button>
-                                  </div>
-                                  <div class="col">
-
-                                  </div>
                                 </div>
+                                <div class="col">
+                                    <div if={!full_party}>
+                                        <button type="button" class="btn btn-secondary" if={!picked} onclick="{pick_monster}">Pick me!</button>
+                                    </div>
+                                    <button type="button" class="btn btn-secondary" if={picked} onclick="{pick_monster}">Unpick</button>
+                                </div>
+                                <div class="col">
+
+                                </div>
+                            </div>
 
                             <div class="card-footer text-muted">
                                 <div class="row text-center align-middle">
@@ -75,32 +77,32 @@
     <script>
         var self = this;
         self.mon = self.opts.mon
-        console.log(self.mon)
         self.picked = self.mon.picked
-        console.log(self.picked)
         self.flipped = false;
+        self.full_party = self.opts.full_party
 
         self.flipme = function(){
-            console.log(self.mon.attack)
             self.flipped = !self.flipped
-            console.log(self.flipped)
+        }
+        self.update_player = function(){
+            CLIENT.events.trigger("pick_monster")
         }
 
         self.pick_monster = function(){
-          CLIENT.api.pick_monster(self.mon.id)
-          .done(function(mon){
-            console.log(mon)
-            self.picked = mon.picked
-          })
-          .fail(function(error){
-            console.log(error)
-            alert(error.responseJSON)
-          })
-          .always(function(){
-            self.update()
-          })
-
+            self.flipme()
+            CLIENT.api.pick_monster(self.mon.id)
+                .done(function(mon){
+                    self.picked = mon.picked
+                })
+                .fail(function(error){
+                    alert(error.responseJSON)
+                })
+                .always(function(){
+                    self.update_player()
+                    self.update()
+                })
         }
+
 
 
 
@@ -126,11 +128,6 @@
             width: 100%;
             margin-left: 0px;
         }
-
-
-
-
-
 
         .h-divider{
             margin-top:5px;
@@ -199,12 +196,13 @@
             background-color: aadaff;
         }
 
-        .Fire{
+        .Fire
+        {
             background-color: ffcfbc;
         }
 
         .Dark{
-           background-color: a8a8a8;
+            background-color: a8a8a8;
         }
 
         .Earth{
@@ -212,15 +210,14 @@
         }
 
         .Normal{
-           background-color: ffaacb;
+            background-color: ffaacb;
         }
 
         .text-center:first-child div{
-          border-radius: 3px 3px 0px 0px;
+            border-radius: 3px 3px 0px 0px;
         }
 
         .attack-header{
-            /*background-color: grey;*/
             display: block;
             margin: 0px -21px 0px -21px;
         }
@@ -238,4 +235,4 @@
         }
     </style>
 
-</monster>
+</monster_detail>
