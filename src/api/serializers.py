@@ -66,6 +66,7 @@ class BindingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Binding
         fields = (
+            'id',
             'assigned',
             'full_party',
             'level',
@@ -95,4 +96,5 @@ class PlayerSerializer(serializers.ModelSerializer):
             'lifespan',
             'binding',
             'full_party',
+            'url',
         )
