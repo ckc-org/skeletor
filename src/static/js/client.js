@@ -21,6 +21,13 @@ CLIENT.api = {
     get_monsters: function(){
         return CLIENT.api.request('GET', '/api/bindings/')
     },
+    get_monattacks: function(pk){
+      return CLIENT.api.request('GET', '/api/bindings/' + pk + '/')
+    },
+
+    get_players_list: function(pk){
+      return CLIENT.api.request('GET', '/api/players/get_players_list/')
+    },
     get_player: function(pk){
         return CLIENT.api.request('GET', '/api/players/' + pk + '/get_player/')
     },

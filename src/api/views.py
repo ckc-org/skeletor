@@ -36,14 +36,19 @@ class APIPlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
 
+    @action(detail=False, methods=['get'])
+    def get_players_list(self, request):
+        players_list = Player.objects.all()
+        serializer = PlayerSerializer(players_list, many=True, context={'request': request})
+        return Response(serializer.data)
+
     @action(detail=True, methods=["get"])
     def get_player(self, request, pk):
         player = Player.objects.get(pk=pk)
         serializer = PlayerSerializer(player, many=False, context={"request": request})
         return Response(serializer.data)
 
-
-
+      
 class APIAttackViewSet(viewsets.ModelViewSet):
     queryset = Attack.objects.all().order_by('-name')
     serializer_class = AttackSerializer
