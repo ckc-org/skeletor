@@ -2,7 +2,7 @@ from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
+from rest_framework.exceptions import ValidationError
 from api.serializers import UserSerializer, GroupSerializer, MonstaSerializer, PlayerSerializer, AttackSerializer, \
     BindingSerializer
 from attacks.models import Attack
@@ -42,7 +42,13 @@ class APIPlayerViewSet(viewsets.ModelViewSet):
         serializer = PlayerSerializer(players_list, many=True, context={'request': request})
         return Response(serializer.data)
 
+    @action(detail=True, methods=["get"])
+    def get_player(self, request, pk):
+        player = Player.objects.get(pk=pk)
+        serializer = PlayerSerializer(player, many=False, context={"request": request})
+        return Response(serializer.data)
 
+      
 class APIAttackViewSet(viewsets.ModelViewSet):
     queryset = Attack.objects.all().order_by('-name')
     serializer_class = AttackSerializer
@@ -63,3 +69,14 @@ class APIBindingViewSet(viewsets.ModelViewSet):
         print(self)
         print(request)
         print(pk)
+
+    @action(detail=True, methods=['put'])
+    def pick_monster(self, request, pk):
+        monster = Binding.objects.get(pk=pk)
+        if monster.player.full_party and not monster.picked:
+            raise ValidationError("You already have 3 picked monsters!")
+        monster.picked = not monster.picked
+        monster.save()
+        monster.player.save()
+        serializer = BindingSerializer(monster, many=False, context={'request': request})
+        return Response(serializer.data)

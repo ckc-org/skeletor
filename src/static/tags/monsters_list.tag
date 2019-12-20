@@ -1,6 +1,6 @@
 <monsters_list>
  <div class="card-deck">
-    <monster each="{monster in monsters}" mon="{monster}"></monster>
+    <monster_detail each="{monster in monsters}" mon="{monster}"></monster_detail>
   </div>
 
 
@@ -8,10 +8,8 @@
         var self = this;
         self.monsters = {}
 
-
         self.on('mount', function(){
             get_monsters();
-            console.log(Object.keys(document));
         })
 
         var get_monsters = function(){

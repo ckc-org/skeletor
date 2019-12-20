@@ -27,7 +27,13 @@ CLIENT.api = {
 
     get_players_list: function(pk){
       return CLIENT.api.request('GET', '/api/players/get_players_list/')
-    }
+    },
+    get_player: function(pk){
+        return CLIENT.api.request('GET', '/api/players/' + pk + '/get_player/')
+    },
+    pick_monster: function(pk){
+      return CLIENT.api.request("PUT", "/api/bindings/" + pk + "/pick_monster/")
+    },
 }
 
 function getCookie(name) {
