@@ -3,6 +3,8 @@ from django.conf.urls import include
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
+from django.urls import path, include #
+from django.views.generic.base import TemplateView
 
 
 from attacks.models import Attack
@@ -31,6 +33,11 @@ urlpatterns = [
     path('', include('bindings.urls')),
     path('', include('monster.urls')),
     path('', include('attacks.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', TemplateView.as_view(template_name='home.html'), name='home'), # new
+
+
+
 ]
 
 

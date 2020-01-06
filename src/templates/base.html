@@ -26,6 +26,7 @@
     <script src="{% static 'tags/monster_detail.tag.html' %}" type="riot/tag"></script>
     <script src="{% static 'tags/players_list.tag' %}" type="riot/tag"></script>
     <script src="{% static 'tags/players.tag' %}" type="riot/tag"></script>
+    <script src="{% static 'tags/attacks.tag' %}" type="riot/tag"></script>
 
 
 
@@ -42,9 +43,10 @@
           MonstaDex
       </h1>
       <nav>
-          <a href="">Lorem</a>
-          <a href="">Ipsum</a>
-          <a href="">Dolor</a>
+          <a href="http://localhost:8000/">Monsters</a>
+          <a href="http://localhost:8000/players/">Players list</a>
+          <a href="http://localhost:8000/players/1/">Profile</a>
+          <a href="{% url 'logout' %}">Logout</a>
       </nav>
   </div>
 </header>
@@ -55,5 +57,6 @@
 {% endblock %}
 
 {% block content %}
+
 
 {% endblock %}

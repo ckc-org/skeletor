@@ -11,6 +11,18 @@ from monster.models import Monsta
 from players.models import Player
 
 
+ELEMENT = [
+    'arcane',
+    'light',
+    'air',
+    'water',
+    'fire',
+    'dark',
+    'earth',
+    'normal',
+]
+
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -48,10 +60,25 @@ class APIPlayerViewSet(viewsets.ModelViewSet):
         serializer = PlayerSerializer(player, many=False, context={"request": request})
         return Response(serializer.data)
 
-      
+
 class APIAttackViewSet(viewsets.ModelViewSet):
     queryset = Attack.objects.all().order_by('-name')
     serializer_class = AttackSerializer
+
+    @action(detail=False, methods=["get"])
+    def get_attacks(self, request):
+        attacks = Attack.objects.all()
+        serializer = AttackSerializer(attacks, many=True, context={'request': request})
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['PUT'])
+    def get_attacks_by_type(self, request):
+        data = request.data.lower()
+        if data not in ELEMENT:
+            raise ValidationError("That element doesn't exist!")
+        attacks = Attack.objects.filter(element=data.capitalize())
+        serializer = AttackSerializer(attacks, many=True, context={'request': request})
+        return Response(serializer.data)
 
 
 class APIBindingViewSet(viewsets.ModelViewSet):
@@ -71,7 +98,7 @@ class APIBindingViewSet(viewsets.ModelViewSet):
         print(pk)
 
     @action(detail=True, methods=['put'])
-    def pick_monster(self, request, pk):
+    def pick_monster(self, request, pk, *args, **kwargs):
         monster = Binding.objects.get(pk=pk)
         if monster.player.full_party and not monster.picked:
             raise ValidationError("You already have 3 picked monsters!")

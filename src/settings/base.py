@@ -60,6 +60,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
+
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -199,3 +200,6 @@ if DEBUG:
     DEBUG_TOOLBAR_CONFIG = {
         "SHOW_TOOLBAR_CALLBACK": lambda request: True
     }
+
+    LOGIN_REDIRECT_URL = 'home'
+    LOGOUT_REDIRECT_URL = 'http://localhost:8000/accounts/login/'
