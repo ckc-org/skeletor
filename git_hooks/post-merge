@@ -1,5 +1,4 @@
 #!/bin/sh
-echo "You are pulling or merging... checking for migrations..."
 migration_count="$(git diff HEAD@{1} HEAD --name-only | grep '.*/migrations/.*\.py$' -c)"
 if [ ${migration_count} -ne 0 ]
 then
