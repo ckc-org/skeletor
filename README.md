@@ -13,6 +13,7 @@ $ django-admin.py startproject something-wonderful --template=https://github.com
 # installation
 
 ```bash
+$ ./create_git_hooks.sh
 $ cp .env_sample .env
 $ docker-compose up -d
 # can now view http://localhost or http://localhost:8000
