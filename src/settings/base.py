@@ -103,18 +103,18 @@ DEBUG = os.environ.get('DEBUG', True)
 # =============================================================================
 # Database
 # =============================================================================
-DATABASES = {'default': {}}
-
-db_from_env = dj_database_url.config()
-if db_from_env:
-    DATABASES['default'].update(db_from_env)
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'monstadex.db',
-        }
-    }
+# DATABASES = {'default': {}}
+#
+# db_from_env = dj_database_url.config()
+# if db_from_env:
+#     DATABASES['default'].update(db_from_env)
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': 'monstadex.db',
+#         }
+#     }
 
 # # =============================================================================
 # # SSL
