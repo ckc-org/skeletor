@@ -1,1 +1,1 @@
-web: gunicorn monster.wsgi --log-file -
+web: gunicorn src.wsgi --log-file -
