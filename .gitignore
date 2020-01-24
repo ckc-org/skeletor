@@ -107,3 +107,4 @@ venv.bak/
 # Our project
 .env
 .idea/
+staticfiles/

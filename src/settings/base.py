@@ -103,7 +103,7 @@ DEBUG = os.environ.get('DEBUG', True)
 # =============================================================================
 # Database
 # =============================================================================
-# DATABASES = {'default': {}}
+DATABASES = {'default': {}}
 #
 # db_from_env = dj_database_url.config()
 # if db_from_env:
@@ -115,6 +115,8 @@ DEBUG = os.environ.get('DEBUG', True)
 #             'NAME': 'monstadex.db',
 #         }
 #     }
+
+DATABASES['default'] = dj_database_url.config()
 
 # # =============================================================================
 # # SSL
