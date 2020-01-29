@@ -34,7 +34,6 @@ CLIENT.api = {
     pick_monster: function(pk){
       return CLIENT.api.request("PUT", "/api/bindings/" + pk + "/pick_monster/")
     },
-
     get_attacks: function() {
       return CLIENT.api.request("GET", "/api/attacks/get_attacks/" )
     },

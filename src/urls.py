@@ -6,7 +6,6 @@ from django.urls import path
 from django.urls import path, include #
 from django.views.generic.base import TemplateView
 
-
 from attacks.models import Attack
 from bindings.models import Binding
 from monster.models import Monsta
@@ -17,6 +16,7 @@ admin.site.register(Monsta)
 admin.site.register(Player)
 admin.site.register(Binding)
 admin.site.register(Attack)
+
 
 urlpatterns = [
     # DRF API
@@ -34,10 +34,8 @@ urlpatterns = [
     path('', include('monster.urls')),
     path('', include('attacks.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'), # new
-
-
-
+    path('', TemplateView.as_view(template_name='home.html'), name='home'),  # new
+    # new
 ]
 
 

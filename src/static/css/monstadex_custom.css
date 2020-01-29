@@ -112,6 +112,15 @@ section {
     background-color: #3cb5f9;
     color: white; }
 
+  .login {
+     margin: .5em 0 0 5em;
+  }
+
+  .login-page {
+    background-color: #86d8d0;
+    padding: 20px!important;
+  }
+
 /* =Info Bar
 -------------------------------------------------------------- */
 #info-bar {

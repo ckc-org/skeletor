@@ -7,8 +7,6 @@
       <monster_detail each="{mon in player.binding}" mon="{mon}" full_party="{player.full_party}"></monster_detail>
     </div>
   </div>
-
-
     <script>
     var self = this;
     self.player = {}
@@ -37,19 +35,14 @@
     })
 
     </script>
-
-
 <style>
 .player-container {
   background-color: #86d8d0;
   padding: 15px 0 0 0;
+  margin-top:10em;
 }
-
 .player-container p {
   margin-top: 10px;
 }
-
 </style>
-
-
 </players>

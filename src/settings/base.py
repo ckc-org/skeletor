@@ -31,7 +31,7 @@ THIRD_PARTY_APPS = (
 
     ## Sorl Thumbnail'
     'sorl.thumbnail',
-     'django_extensions',
+    'django_extensions',
 
 )
 OUR_APPS = (
@@ -89,7 +89,7 @@ EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.conso
 DEFAULT_FROM_EMAIL = 'Do Not Reply <donotreply@blank.com>'
 SERVER_EMAIL = 'Do Not Reply <donotreply@blank.com>'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '{{user.player.url}}'
 
 # =============================================================================
 # # Wagtail
@@ -202,4 +202,4 @@ if DEBUG:
     }
 
     LOGIN_REDIRECT_URL = 'home'
-    LOGOUT_REDIRECT_URL = 'http://localhost:8000/accounts/login/'
+    LOGOUT_REDIRECT_URL = 'logout'

@@ -9,7 +9,8 @@
             <div class="col-sm-6 col-lg-4">
                 <!-- Card Flip -->
                 <div class="card-flip {monster-flip: flipped}" onclick={flipme} >
-                    <div class="front">
+<!--                    {monster-flip: flipped} onclick={flipme}-->
+                    <div class="front ">
                         <!-- front content -->
                         <div class="card monster-card">
                             <div class="card-body">
@@ -30,7 +31,6 @@
                                     <button type="button" class="btn btn-secondary" if={picked} onclick="{pick_monster}">Unpick</button>
                                 </div>
                                 <div class="col">
-
                                 </div>
                             </div>
 
@@ -41,10 +41,8 @@
                                     <div class="col">{mon.element}<img class="logo" src="{mon.element_logo}"></div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
 
                     <div class="back">
                         <div class="card monster-card">
@@ -56,19 +54,12 @@
                                         <div>{atk.element}<img class="attack-image" src="{atk.image}"></div>
                                     </div>
                                     <div class="row-center">{atk.description}</div>
-
-
                                 </div>
-
-
-
-
-
-
                             </div>
                             <!-- back content -->
                         </div>
                     </div>
+
                     <!-- End Card Flip -->
                 </div>
             </div>
@@ -83,7 +74,8 @@
 
         self.flipme = function(){
             self.flipped = !self.flipped
-        }
+        };
+
         self.update_player = function(){
             CLIENT.events.trigger("pick_monster")
         }
@@ -137,17 +129,27 @@
             border-top:1px solid #000000;
         }
 
+        .card-body {
+           backface-visibility: hidden;
+           height: 100%;
+        }
+
+        .card-flip {
+           transform-style: preserve-3d;
+           transition: transform .5s;
+        }
+
         .card-flip,
         .front,
         .back {
-            perspective: 1000px;
             width: 300px;
             height: 560px;
-            transition: 0.6s;
         }
 
         .monster-card {
-            height: 500px;
+            position: absolute;
+            width: 90%;
+            height: 90%;
             margin-top: 1em;
         }
 
@@ -155,29 +157,22 @@
             transform: rotateY(180deg);
             transform-style: preserve-3d;
             position: relative;
-
         }
-
 
         .front,
         .back {
-            backface-visibility: hidden;
-            position: absolute;
-            top: 0;
-            left: 0;
-
+           position: absolute;
         }
 
         .front {
             z-index: 2;
             transform: rotateY(0deg);
-
-
         }
 
         .back {
             transform: rotateY(180deg);
-
+            position: relative;
+            transition: transform .5s;
         }
 
         .Arcane {

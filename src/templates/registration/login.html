@@ -1,34 +1,14 @@
 
 {% extends 'base.html' %}
-
-{% block title %}Login{% endblock %}
-
+<title>
+  {% block title %}Login{% endblock %}
+</title>
 {% block content %}
-<br>
-
-<br>
-
-<br>
-
-<br>
-<div class="container login-page text-center">
-<form method="post">
+<div class="container login-page text-center" style="margin-top:10em;">
+<form method="post" action="">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit" class="login">Login</button>
 </form>
 </div>
-
-<style>
-  .login {
-     margin: .5em 0 0 5em;
-  }
-
-  .login-page {
-    background-color: #86d8d0;
-    padding: 20px!important;
-  }
-
-
-</style>
 {% endblock %}

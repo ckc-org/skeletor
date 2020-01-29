@@ -6,6 +6,8 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/retina.js/2.1.3/retina.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/card.min.css">
 
     <!-- Jquery and RiotJS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/3.13.2/riot+compiler.min.js"></script>
@@ -28,8 +30,6 @@
     <script src="{% static 'tags/players.tag' %}" type="riot/tag"></script>
     <script src="{% static 'tags/attacks.tag' %}" type="riot/tag"></script>
 
-
-
 </head>
 <script>
     $(document).ready(function() {
@@ -43,20 +43,17 @@
           MonstaDex
       </h1>
       <nav>
-          <a href="http://localhost:8000/">Monsters</a>
-          <a href="http://localhost:8000/players/">Players list</a>
-          <a href="http://localhost:8000/players/1/">Profile</a>
-          <a href="{% url 'logout' %}">Logout</a>
+          <a href="{% url 'home' %}">Monsters</a>
+          <a href="{% url 'player_list' %}">Players list</a>
+          <a href="{% url 'attack_list' %}">Attacks</a>
+          <a href="{% url 'login' %}">Logout</a>
       </nav>
   </div>
 </header>
 
-<br>
-<br>
-
 {% endblock %}
+<div style="margin-top:3em;">
+    {% block content %}
+    {% endblock %}
+</div>
 
-{% block content %}
-
-
-{% endblock %}
