@@ -31,14 +31,4 @@
         get_player(self.id)
     })
     </script>
-<style>
-.player-container {
-  background-color: #86d8d0;
-  padding: 15px 0 0 0;
-  margin-top:10em;
-}
-.player-container p {
-  margin-top: 10px;
-}
-</style>
 </players>
