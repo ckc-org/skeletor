@@ -88,8 +88,6 @@ EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.conso
 DEFAULT_FROM_EMAIL = 'Do Not Reply <donotreply@blank.com>'
 SERVER_EMAIL = 'Do Not Reply <donotreply@blank.com>'
 
-LOGIN_REDIRECT_URL = '{{user.player.url}}'
-
 # =============================================================================
 # # Wagtail
 # =============================================================================
@@ -143,7 +141,6 @@ REST_FRAMEWORK = {
     )
 }
 
-
 # =============================================================================
 # OAuth
 # =============================================================================
@@ -151,7 +148,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 if not DEBUG:
     assert not CORS_ORIGIN_ALLOW_ALL, "Disable CORS_ORIGIN_ALLOW_ALL if we're not in DEBUG mode"
-
 
 # =============================================================================
 # Storage
@@ -169,16 +165,15 @@ STATICFILES_DIRS = (
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
 
-
 # =============================================================================
 # Debug
 # =============================================================================
 if DEBUG:
     INSTALLED_APPS += ('debug_toolbar',)
     MIDDLEWARE = (
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
-        'querycount.middleware.QueryCountMiddleware',
-    ) + MIDDLEWARE  # we want Debug Middleware at the top
+                     'debug_toolbar.middleware.DebugToolbarMiddleware',
+                     'querycount.middleware.QueryCountMiddleware',
+                 ) + MIDDLEWARE  # we want Debug Middleware at the top
 
     INTERNAL_IPS = ['127.0.0.1']
 

@@ -21,6 +21,7 @@ ELEMENT = [
     'normal',
 ]
 
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -41,6 +42,7 @@ class APIMonstaViewSet(viewsets.ModelViewSet):
     queryset = Monsta.objects.all()
     serializer_class = MonstaSerializer
 
+
 class APIPlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
@@ -57,15 +59,6 @@ class APIPlayerViewSet(viewsets.ModelViewSet):
         serializer = PlayerSerializer(player, many=False, context={"request": request})
         return Response(serializer.data)
 
-    @action(detail=False, methods=['PUT'])
-    def get_attacks_by_type(self, request):
-        data = request.data.lower()
-        if data not in ELEMENT:
-            raise ValidationError("That element doesn't exist!")
-        attacks = Attack.objects.filter(element=data.capitalize())
-        serializer = AttackSerializer(attacks, many=True, context={'request': request})
-        return Response(serializer.data)
-
 
 class APIBindingViewSet(viewsets.ModelViewSet):
     queryset = Binding.objects.all()
@@ -76,9 +69,6 @@ class APIBindingViewSet(viewsets.ModelViewSet):
         monsters = Binding.objects.all().filter(player=self.request.user.player)
         serializer = BindingSerializer(monsters, many=True, context={'request': request})
         return Response(serializer.data)
-
-    @action(detail=True, methods=['get'])
-    def get_monattacks(self, request, pk)
 
     @action(detail=True, methods=['put'])
     def pick_monster(self, request, pk):
