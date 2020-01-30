@@ -2,8 +2,7 @@ from django.conf import settings
 from django.conf.urls import include
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
-from django.urls import path, include #
+from django.urls import path, include
 from django.views.generic.base import TemplateView
 
 from attacks.models import Attack
@@ -16,7 +15,6 @@ admin.site.register(Monsta)
 admin.site.register(Player)
 admin.site.register(Binding)
 admin.site.register(Attack)
-
 
 urlpatterns = [
     # DRF API
@@ -34,10 +32,8 @@ urlpatterns = [
     path('', include('monster.urls')),
     path('', include('attacks.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),  # new
-    # new
+    path('', TemplateView.as_view(template_name='home.html'), name='home')
 ]
-
 
 if settings.DEBUG:
     # Static files for local dev, so we don't have to collectstatic and such

@@ -11,12 +11,9 @@
     var self = this;
     self.player = {}
     self.id = self.opts.id
-
     self.on('mount', function(){
         get_player(self.id);
     })
-
-
     var get_player = function(pk){
         console.log(pk)
         CLIENT.api.get_player(pk)
@@ -33,7 +30,6 @@
     CLIENT.events.on('pick_monster', function(){
         get_player(self.id)
     })
-
     </script>
 <style>
 .player-container {

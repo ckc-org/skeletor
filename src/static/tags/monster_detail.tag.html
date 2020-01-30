@@ -1,18 +1,13 @@
 <monster_detail>
-    <!--    <h1>{mon.monsterName}</h1>
-        <p>{mon.family}</p>
-        <p>{mon.element}</p>
-        <p>{mon.description}</p>-->
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-lg-4">
                 <!-- Card Flip -->
                 <div class="card-flip {monster-flip: flipped}" onclick={flipme} >
-                    <div class="front ">
+                    <div class="front">
                         <!-- front content -->
                         <div class="card monster-card">
                             <div class="card-body">
-
                                 <h5 class="card-title text-center">{mon.monsterName} = {picked}</h5>
                                 <img class="card-img-top " src="{mon.image}" alt="Card image cap">
                                 <p class="card-text">{mon.description}</p>
@@ -41,7 +36,6 @@
                     <div class="back">
                         <div class="card monster-card">
                             <div class="card-body">
-
                                 <div class="text-center" each={atk in mon.attacks}>
                                     <div class="row attack-header row-center  {atk.element}">
                                         <div>{atk.name}</div>
@@ -67,7 +61,12 @@
 
         self.flipme = function(){
             self.flipped = !self.flipped
-        };
+        self.flipme = function(){
+            self.flipped = !self.flipped
+        }
+        self.update_player = function(){
+            CLIENT.events.trigger("pick_monster")
+        }
 
         self.update_player = function(){
             CLIENT.events.trigger("pick_monster")

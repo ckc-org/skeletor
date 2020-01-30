@@ -201,4 +201,4 @@ if DEBUG:
     }
 
     LOGIN_REDIRECT_URL = 'home'
-    LOGOUT_REDIRECT_URL = 'logout'
+    LOGOUT_REDIRECT_URL = 'home'

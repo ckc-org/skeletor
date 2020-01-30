@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User, Group
-from django.urls import reverse
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -10,8 +9,6 @@ from attacks.models import Attack
 from bindings.models import Binding
 from monster.models import Monsta
 from players.models import Player
-# from django.contrib.auth.views import LoginView
-
 
 ELEMENT = [
     'arcane',
@@ -23,7 +20,6 @@ ELEMENT = [
     'earth',
     'normal',
 ]
-
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -45,7 +41,6 @@ class APIMonstaViewSet(viewsets.ModelViewSet):
     queryset = Monsta.objects.all()
     serializer_class = MonstaSerializer
 
-
 class APIPlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
@@ -60,17 +55,6 @@ class APIPlayerViewSet(viewsets.ModelViewSet):
     def get_player(self, request, pk):
         player = Player.objects.get(pk=pk)
         serializer = PlayerSerializer(player, many=False, context={"request": request})
-        return Response(serializer.data)
-
-
-class APIAttackViewSet(viewsets.ModelViewSet):
-    queryset = Attack.objects.all().order_by('-name')
-    serializer_class = AttackSerializer
-
-    @action(detail=False, methods=["get"])
-    def get_attacks(self, request):
-        attacks = Attack.objects.all()
-        serializer = AttackSerializer(attacks, many=True, context={'request': request})
         return Response(serializer.data)
 
     @action(detail=False, methods=['PUT'])
@@ -94,10 +78,7 @@ class APIBindingViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     @action(detail=True, methods=['get'])
-    def get_monattacks(self, request, pk):
-        print(self)
-        print(request)
-        print(pk)
+    def get_monattacks(self, request, pk)
 
     @action(detail=True, methods=['put'])
     def pick_monster(self, request, pk):
@@ -109,7 +90,3 @@ class APIBindingViewSet(viewsets.ModelViewSet):
         monster.player.save()
         serializer = BindingSerializer(monster, many=False, context={'request': request})
         return Response(serializer.data)
-
-
-
-
