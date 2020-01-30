@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
-
 {% block content %}
 <body>
 <div class="container" style="margin-top:10em;">
@@ -12,7 +11,6 @@
 </div>
 </body>
 {% endblock %}
-
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
   <p><a href="{% url 'logout' %}">logout</a></p>

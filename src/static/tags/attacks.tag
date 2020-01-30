@@ -57,7 +57,6 @@
          self.attacks = attacks
      })
      .fail(function(error){
-         console.log("Errors == " + error)
          alert(error.responseJSON)
      })
      .always(function(){

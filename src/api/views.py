@@ -100,7 +100,7 @@ class APIBindingViewSet(viewsets.ModelViewSet):
         print(pk)
 
     @action(detail=True, methods=['put'])
-    def pick_monster(self, request, pk, *args, **kwargs):
+    def pick_monster(self, request, pk):
         monster = Binding.objects.get(pk=pk)
         if monster.player.full_party and not monster.picked:
             raise ValidationError("You already have 3 picked monsters!")

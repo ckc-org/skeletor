@@ -3,13 +3,11 @@
         <p>{mon.family}</p>
         <p>{mon.element}</p>
         <p>{mon.description}</p>-->
-
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-lg-4">
                 <!-- Card Flip -->
                 <div class="card-flip {monster-flip: flipped}" onclick={flipme} >
-<!--                    {monster-flip: flipped} onclick={flipme}-->
                     <div class="front ">
                         <!-- front content -->
                         <div class="card monster-card">
@@ -19,10 +17,8 @@
                                 <img class="card-img-top " src="{mon.image}" alt="Card image cap">
                                 <p class="card-text">{mon.description}</p>
                             </div>
-
                             <div class="row button-row">
                                 <div class="col">
-
                                 </div>
                                 <div class="col">
                                     <div if={!full_party}>
@@ -33,7 +29,6 @@
                                 <div class="col">
                                 </div>
                             </div>
-
                             <div class="card-footer text-muted">
                                 <div class="row text-center align-middle">
                                     <div class="col">{mon.family}</div>
@@ -43,7 +38,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="back">
                         <div class="card monster-card">
                             <div class="card-body">
@@ -59,7 +53,6 @@
                             <!-- back content -->
                         </div>
                     </div>
-
                     <!-- End Card Flip -->
                 </div>
             </div>
@@ -94,10 +87,6 @@
                     self.update()
                 })
         }
-
-
-
-
     </script>
     <style>
         .card-footer {
