@@ -6,7 +6,8 @@
     <div class="card-deck">
       <monster_detail each="{mon in player.binding}" mon="{mon}" full_party="{player.full_party}"></monster_detail>
     </div>
-  </div>
+      <a href='/accounts/login'><button type="submit" class="btn btn-secondary btn-lg login">Logout</button></a>
+    </div>
     <script>
     var self = this;
     self.player = {}

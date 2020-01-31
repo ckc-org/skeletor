@@ -54,12 +54,9 @@
         self.picked = self.mon.picked
         self.flipped = false;
         self.full_party = self.opts.full_party
-
         self.flipme = function(){
             self.flipped = !self.flipped
-        self.update_player = function(){
-            CLIENT.events.trigger("pick_monster")
-        }
+        };
         self.update_player = function(){
             CLIENT.events.trigger("pick_monster")
         }

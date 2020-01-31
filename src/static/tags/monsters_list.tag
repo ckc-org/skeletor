@@ -1,6 +1,6 @@
 <monsters_list>
  <div class="card-deck">
-    <monster_detail each="{monster in monsters}" mon="{monster}"></monster_detail>
+     <monster_detail each="{monster in monsters}" mon="{monster}"></monster_detail>
   </div>
     <script>
         var self = this;
