@@ -1,5 +1,5 @@
 <players_list>
- <div class="container">
+ <div class="container player_container">
    <table class="table text-center">
   <thead>
     <tr>
@@ -39,4 +39,9 @@
         })
       }
   </script>
+  <style>
+    .container {
+      margin-top: 11em!important;
+    }
+  </style>
 </players_list>
