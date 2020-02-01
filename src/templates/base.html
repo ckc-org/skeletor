@@ -41,6 +41,11 @@
       <nav>
           <a href="{% url 'home' %}">Monsters</a>
           <a href="/players/{{user.player.id}}">Profile</a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}">Logout</a>
+          {% else %}
+          <a href="{% url 'login'}">Login</a>
+          {% endif %}
       </nav>
   </div>
 </header>
