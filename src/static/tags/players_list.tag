@@ -39,9 +39,4 @@
         })
       }
   </script>
-  <style>
-    .container {
-      margin-top: 11em!important;
-    }
-  </style>
 </players_list>

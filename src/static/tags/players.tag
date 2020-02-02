@@ -38,10 +38,6 @@
         .player-container {
           background-color: #86d8d0;
           padding: 15px 0 0 0;
-          margin-top: 10em;
-        }
-        .text {
-          margin-bottom: 2em;
         }
     </style>
 </players>
