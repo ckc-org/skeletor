@@ -15,9 +15,9 @@
                                 </div>
                                 <div class="col">
                                     <div if={!full_party}>
-                                        <button type="button" class="btn btn-secondary" if={!picked} onclick="{pick_monster}">Pick me!</button>
+                                        <button type="button" class="btn btn-primary pick-button" if={!picked} onclick="{pick_monster}">Pick me!</button>
                                     </div>
-                                    <button type="button" class="btn btn-secondary" if={picked} onclick="{pick_monster}">Unpick</button>
+                                    <button type="button" class="btn btn-secondary pick-button" if={picked} onclick="{pick_monster}">Unpick</button>
                                 </div>
                                 <div class="col">
                                 </div>
@@ -76,6 +76,9 @@
         }
     </script>
     <style>
+        .pick-button {
+            width: 100px;
+        }
         .card-footer {
             position: relative;
             width: 100%;
