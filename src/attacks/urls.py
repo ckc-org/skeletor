@@ -12,7 +12,7 @@ attack_detail = SiteAttackView.as_view({
 })
 
 urlpatterns = [
-    path('attacks/', attack_list, name="attack_list"),
+    path('attacks/', attack_list, name="attacks_list"),
     path('attacks/<int:pk>/', attack_detail, name="attack_detail"),
 ]
 

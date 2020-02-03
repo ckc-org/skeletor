@@ -32,11 +32,7 @@ urlpatterns = [
     path('', include('monster.urls')),
     path('', include('attacks.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-<<<<<<< HEAD
-    path('', TemplateView.as_view(template_name='home_page.html'), name='home')
-=======
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
->>>>>>> fixed header with css without violating DRY
+    path('', TemplateView.as_view(template_name='home_page.html'), name='home'),
 ]
 
 if settings.DEBUG:
