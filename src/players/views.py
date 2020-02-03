@@ -17,7 +17,3 @@ class MyPlayerView(LoginRequiredMixin, viewsets.ModelViewSet):
     def retrieve(self, *args, **kwargs):
         player = Player.objects.get(pk=kwargs['pk'])
         return render(self.request, 'players/player_detail.html', context={'player': player})
-
-
-
-
