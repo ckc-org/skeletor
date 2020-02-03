@@ -10,6 +10,17 @@ from bindings.models import Binding
 from monster.models import Monsta
 from players.models import Player
 
+ELEMENT = [
+    'arcane',
+    'light',
+    'air',
+    'water',
+    'fire',
+    'dark',
+    'earth',
+    'normal',
+]
+
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -48,11 +59,6 @@ class APIPlayerViewSet(viewsets.ModelViewSet):
         serializer = PlayerSerializer(player, many=False, context={"request": request})
         return Response(serializer.data)
 
-      
-class APIAttackViewSet(viewsets.ModelViewSet):
-    queryset = Attack.objects.all().order_by('-name')
-    serializer_class = AttackSerializer
-
 
 class APIBindingViewSet(viewsets.ModelViewSet):
     queryset = Binding.objects.all()
@@ -63,12 +69,6 @@ class APIBindingViewSet(viewsets.ModelViewSet):
         monsters = Binding.objects.all().filter(player=self.request.user.player)
         serializer = BindingSerializer(monsters, many=True, context={'request': request})
         return Response(serializer.data)
-
-    @action(detail=True, methods=['get'])
-    def get_monattacks(self, request, pk):
-        print(self)
-        print(request)
-        print(pk)
 
     @action(detail=True, methods=['put'])
     def pick_monster(self, request, pk):

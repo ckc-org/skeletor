@@ -26,9 +26,6 @@
     <script src="{% static 'tags/monster_detail.tag.html' %}" type="riot/tag"></script>
     <script src="{% static 'tags/players_list.tag' %}" type="riot/tag"></script>
     <script src="{% static 'tags/players.tag' %}" type="riot/tag"></script>
-
-
-
 </head>
 <script>
     $(document).ready(function() {
@@ -42,18 +39,20 @@
           MonstaDex
       </h1>
       <nav>
-          <a href="">Lorem</a>
-          <a href="">Ipsum</a>
-          <a href="">Dolor</a>
+          <a href="{% url 'home' %}">Monsters</a>
+          <a href="/players/{{user.player.id}}">Profile</a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}">Logout</a>
+          {% else %}
+          <a href="{% url 'login'}">Login</a>
+          {% endif %}
       </nav>
   </div>
 </header>
 
-<br>
-<br>
-
 {% endblock %}
+<div>
+    {% block content %}
+    {% endblock %}
+</div>
 
-{% block content %}
-
-{% endblock %}

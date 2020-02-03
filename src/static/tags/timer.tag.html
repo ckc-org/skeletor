@@ -1,6 +1,5 @@
 <timer>
     <p>Seconds elapsed: {time}</p>
-
     <script>
         this.time = opts.start || 0;
 
@@ -11,11 +10,8 @@
         }).bind(this);
 
         var timer = setInterval(this.tick, 1000);
-
         this.on('unmount', function () {
             clearInterval(timer);
         });
-
     </script>
-
 </timer>

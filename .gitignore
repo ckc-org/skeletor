@@ -105,6 +105,4 @@ venv.bak/
 .mypy_cache/
 
 # Our project
-.env
-.idea/
 staticfiles/

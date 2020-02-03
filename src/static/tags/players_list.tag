@@ -7,7 +7,6 @@
       <th scope="col">Name</th>
       <th scope="col">Joined</th>
       <th scope="col">Monster count</th>
-
     </tr>
   </thead>
   <tbody>
@@ -16,23 +15,17 @@
       <td>{player.name}</td>
       <td>{player.lifespan}</td>
       <td>{player.binding.length}</td>
-
     </tr>
   </tbody>
   </table>
  </div>
-
-
   <script>
-
       var self = this;
       self.players = {}
-
       self.on('mount', function(){
         console.log('we both are nerds')
         get_players_list();
       })
-
       var get_players_list = function(){
         CLIENT.api.get_players_list()
         .done(function(players){
@@ -45,7 +38,5 @@
             self.update()
         })
       }
-
-
   </script>
 </players_list>

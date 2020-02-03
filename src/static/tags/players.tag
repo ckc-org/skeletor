@@ -6,19 +6,14 @@
     <div class="card-deck">
       <monster_detail each="{mon in player.binding}" mon="{mon}" full_party="{player.full_party}"></monster_detail>
     </div>
-  </div>
-
-
+    </div>
     <script>
     var self = this;
     self.player = {}
     self.id = self.opts.id
-
     self.on('mount', function(){
         get_player(self.id);
     })
-
-
     var get_player = function(pk){
         console.log(pk)
         CLIENT.api.get_player(pk)
@@ -35,21 +30,5 @@
     CLIENT.events.on('pick_monster', function(){
         get_player(self.id)
     })
-
     </script>
-
-
-<style>
-.player-container {
-  background-color: #86d8d0;
-  padding: 15px 0 0 0;
-}
-
-.player-container p {
-  margin-top: 10px;
-}
-
-</style>
-
-
 </players>

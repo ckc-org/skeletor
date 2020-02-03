@@ -2,8 +2,8 @@ from django.conf import settings
 from django.conf.urls import include
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
-
+from django.urls import path, include
+from django.views.generic.base import TemplateView
 
 from attacks.models import Attack
 from bindings.models import Binding
@@ -31,8 +31,9 @@ urlpatterns = [
     path('', include('bindings.urls')),
     path('', include('monster.urls')),
     path('', include('attacks.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', TemplateView.as_view(template_name='home_page.html'), name='home')
 ]
-
 
 if settings.DEBUG:
     # Static files for local dev, so we don't have to collectstatic and such
