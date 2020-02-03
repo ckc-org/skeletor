@@ -80,3 +80,23 @@ class APIBindingViewSet(viewsets.ModelViewSet):
         monster.player.save()
         serializer = BindingSerializer(monster, many=False, context={'request': request})
         return Response(serializer.data)
+
+
+class APIAttackViewSet(viewsets.ModelViewSet):
+    queryset = Attack.objects.all().order_by('-name')
+    serializer_class = AttackSerializer
+
+    @action(detail=False, methods=["get"])
+    def get_attacks(self, request):
+        attacks = Attack.objects.all()
+        serializer = AttackSerializer(attacks, many=True, context={'request': request})
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['PUT'])
+    def get_attacks_by_type(self, request):
+        data = request.data.lower()
+        if data not in ELEMENT:
+            raise ValidationError("That element doesn't exist!")
+        attacks = Attack.objects.filter(element=data.capitalize())
+        serializer = AttackSerializer(attacks, many=True, context={'request': request})
+        return Response(serializer.data)

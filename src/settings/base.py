@@ -101,20 +101,22 @@ DEBUG = os.environ.get('DEBUG', True)
 # =============================================================================
 # Database
 # =============================================================================
-DATABASES = {'default': {}}
-#
-# db_from_env = dj_database_url.config()
-# if db_from_env:
-#     DATABASES['default'].update(db_from_env)
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': 'monstadex.db',
-#         }
-#     }
 
-DATABASES['default'] = dj_database_url.config()
+DATABASES = {'default': {}}
+
+
+db_from_env = dj_database_url.config()
+if db_from_env:
+    DATABASES['default'].update(db_from_env)
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'monstadex.db',
+        }
+    }
+
+# DATABASES['default'] = d/j_database_url.config()
 
 # # =============================================================================
 # # SSL
@@ -197,5 +199,5 @@ if DEBUG:
         "SHOW_TOOLBAR_CALLBACK": lambda request: True
     }
 
-    LOGIN_REDIRECT_URL = 'home'
-    LOGOUT_REDIRECT_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'

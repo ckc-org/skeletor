@@ -7,6 +7,7 @@ router.register('users', views.UserViewSet)
 router.register('groups', views.GroupViewSet)
 router.register('monstas', views.APIMonstaViewSet)
 router.register('players', views.APIPlayerViewSet)
+router.register('attacks', views.APIAttackViewSet)
 router.register('bindings', views.APIBindingViewSet)
 
 
