@@ -1,0 +1,90 @@
+<modal>
+  <div class="container">
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title text-center">Choose what monster you want</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+          <div class="modal-body">
+            <div class="container">
+              <!--- replace options with an each statement --->
+              <!--- make api request for the list of monsters --->
+                        <select name="mon_list" id="mon_list">
+                            <option each="{monster in monsters}" id="mon_image" value="{monster.monsterName}">{monster.monsterName}</option>
+                        </select>
+                   </div>
+                   <div id="image_preview">
+                       <img id="mon_pic" src="{monster.url}">
+                   </div>
+           </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="{create_binding}">Save changes</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script>
+  var self = this;
+  self.monsters = {};
+  self.player = {};
+  self.on('mount', function(){
+      CLIENT.events.on("player-found", self.save_player)
+      self.base_mon()
+      var selectedMonster = $('#mon_list option:selected');
+      alert("You have selected the monster - " + selectedMonster);
+      console.log(selectedMonster)
+   })
+
+   self.create_binding = function(){
+     CLIENT.api.create_binding({monster:self.chosen_monster})
+   }
+
+   self.set_monster = function(){
+      self.chosen_monster = monster_pic
+<!--       modal should display the monster picture as you choose them, img src should be set to monster.url->
+   }
+
+   self.monster_pic = function(){
+         $("select[name=mon_list]").bind("change", function() {
+           $("#mon_list img").attr('src', $(this).val().toLowerCase() + ".png");
+        }).change();
+
+
+<!--      $(document).ready(function(){-->
+<!--        $('#mon_list').change(function(){-->
+<!--        $('#image_preview').html('<img src="'{monster.image}+$('#mon_list').val()+'"/>');-->
+<!--    });-->
+<!--  });-->
+
+<!--      var img = $("#mon_pic");-->
+<!--      $("#mon_list").onchange();-->
+<!--            img.src = this.value;-->
+<!--            return false;-->
+  }
+
+
+  self.base_mon = function(){
+     CLIENT.api.base_mon()
+       .done(function(monsters){
+          self.monsters = monsters
+          console.log(self.monsters)
+       })
+  }
+
+  self.save_player = function(player){
+     self.player = player
+  }
+  </script>
+</modal>

@@ -1,5 +1,9 @@
 <players>
   <div class="container player-container text-center">
+  <modal></modal>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Pick monster
+  </button>
     <div class="text">
         <h1>Name:{player.name}</h1>
         <h1>Full Party:{player.full_party}</h1>
@@ -9,6 +13,8 @@
           <monster_detail each="{mon in player.binding}" mon="{mon}" full_party="{player.full_party}"></monster_detail>
         </div>
     </div>
+    <div>
+    </div>
     <script>
         var self = this;
         self.player = {}
@@ -17,10 +23,10 @@
             get_player(self.id);
         })
         var get_player = function(pk){
-            console.log(pk)
             CLIENT.api.get_player(pk)
                 .done(function(player){
                     self.player = player
+                    CLIENT.events.trigger("player-found", self.player)
                 })
                 .fail(function(error){
                     console.log("Errors == " + error)
@@ -30,6 +36,9 @@
                 })
         }
         CLIENT.events.on('pick_monster', function(){
+            get_player(self.id)
+        })
+        CLIENT.events.on('save_mon', function(){
             get_player(self.id)
         })
     </script>

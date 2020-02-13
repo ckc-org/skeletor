@@ -81,6 +81,20 @@ class APIBindingViewSet(viewsets.ModelViewSet):
         serializer = BindingSerializer(monster, many=False, context={'request': request})
         return Response(serializer.data)
 
+    @action(detail=True, methods=['delete'])
+    def delete_binding(self, pk):
+        remove_mon = Binding.objects.get(pk=pk)
+        remove_mon.delete()
+        return Response(None)
+
+    @action(detail=False, methods=['post'])
+    def create_binding(self, request):
+        print(request.data)
+        monster = Monsta.objects.get(monsterName=request.data['monster'])
+        add_mon = Binding.objects.create(player=request.user.player, monster=monster)
+        serializer = BindingSerializer(add_mon, many=False, context={'request': request})
+        return Response(serializer.data)
+
 
 class APIAttackViewSet(viewsets.ModelViewSet):
     queryset = Attack.objects.all().order_by('-name')

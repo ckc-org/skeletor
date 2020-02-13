@@ -34,11 +34,23 @@ CLIENT.api = {
     pick_monster: function(pk){
       return CLIENT.api.request("PUT", "/api/bindings/" + pk + "/pick_monster/")
     },
+    delete_binding: function(pk){
+      return CLIENT.api.request("DELETE", "/api/bindings/" + pk)
+    },
+    save_mon: function(){
+      return CLIENT.api.request("POST", "/api/bindings/")
+    },
     get_attacks: function() {
       return CLIENT.api.request("GET", "/api/attacks/get_attacks/" )
     },
     get_attacks_by_type: function(element){
       return CLIENT.api.request('PUT', '/api/attacks/get_attacks_by_type/', element)
+    },
+    base_mon: function() {
+      return CLIENT.api.request('GET', '/api/monstas/')
+    },
+    create_binding: function(data) {
+      return CLIENT.api.request('POST', '/api/bindings/create_binding/', data)
     },
 }
 

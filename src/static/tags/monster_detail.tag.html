@@ -1,13 +1,13 @@
 <monster_detail>
-    <div class="container">
+    <div class="container" id="remove">
         <div class="row">
             <div class="col-sm-6 col-lg-4">
-                <div class="card-flip {monster-flip: flipped}" onclick={flipme} >
+                <div class="card-flip {monster-flip: flipped}" onclick={flipme}>
                     <div class="front">
                         <div class="card monster-card">
                             <div class="card-body">
                                 <h5 class="card-title text-center">{mon.monsterName} = {picked}</h5>
-                                <img class="card-img-top " src="{mon.image}" alt="Card image cap">
+                                <img class="card-img-top" src="{mon.image}" alt="Card image cap">
                                 <p class="card-text">{mon.description}</p>
                             </div>
                             <div class="row button-row">
@@ -43,23 +43,48 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                      </div>
+                  </div>
             </div>
         </div>
+        <div>
+        <button type="button" class="btn btn-secondary pick-button" onclick="{delete_binding}">Remove</button>
+    </div>
     </div>
     <script>
         var self = this;
         self.mon = self.opts.mon
         self.picked = self.mon.picked
+        self.delete = self.mon.delete
         self.flipped = false;
         self.full_party = self.opts.full_party
+
         self.flipme = function(){
             self.flipped = !self.flipped
         }
         self.update_player = function(){
             CLIENT.events.trigger("pick_monster")
         }
+
+        self.remove = function(){
+              $("#remove").remove();
+        }
+
+        self.delete_binding = function(){
+            self.remove()
+            console.log('the sun is out and its already Febraury too, next thing it will be 2021')
+            CLIENT.api.delete_binding(self.mon.id)
+              .done(function(mon){
+                    self.delete = mon.delete
+               })
+              .fail(function(error){
+                    alert(error.responseJSON)
+               })
+               .always(function(){
+                    self.update()
+               })
+        }
+
         self.pick_monster = function(){
             self.flipme()
             CLIENT.api.pick_monster(self.mon.id)

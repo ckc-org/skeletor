@@ -1,12 +1,12 @@
 <attacks_list>
   <div class="container">
-    <table class="table text-center">
     <div>
       <h1>Attacks</h1>
       <div class="md-form mt-0 search">
         <input class="monster_search form-control-sm ml-3 w-75" placeholder="Search by Element" type="text" value=''>
       </div>
     </div>
+    <table class="table text-center">
    <thead>
      <tr>
        <th scope="col">Id</th>
@@ -38,6 +38,7 @@
         get_attacks();
      });
   })
+
   var get_attacks = function(){
       CLIENT.api.get_attacks()
           .done(function(attacks){
