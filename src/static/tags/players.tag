@@ -1,6 +1,7 @@
 <players>
   <div class="container player-container text-center">
   <modal></modal>
+  <attacks_modal {{attacks}}></attacks_modal>
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
     Pick monster
   </button>

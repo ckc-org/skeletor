@@ -89,8 +89,8 @@ class APIBindingViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def create_binding(self, request):
-        print(request.data)
-        monster = Monsta.objects.get(monsterName=request.data['monster'])
+        monster = Monsta.objects.get(monsterName=request.data['monster']['monsterName'])
+        mon = request.data['monster']
         add_mon = Binding.objects.create(player=request.user.player, monster=monster)
         serializer = BindingSerializer(add_mon, many=False, context={'request': request})
         return Response(serializer.data)

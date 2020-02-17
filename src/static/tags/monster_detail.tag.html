@@ -49,6 +49,7 @@
         </div>
         <div>
         <button type="button" class="btn btn-secondary pick-button" onclick="{delete_binding}">Remove</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editAttacks">Edit Attacks</button>
     </div>
     </div>
     <script>
@@ -72,16 +73,9 @@
 
         self.delete_binding = function(){
             self.remove()
-            console.log('the sun is out and its already Febraury too, next thing it will be 2021')
             CLIENT.api.delete_binding(self.mon.id)
               .done(function(mon){
-                    self.delete = mon.delete
-               })
-              .fail(function(error){
-                    alert(error.responseJSON)
-               })
-               .always(function(){
-                    self.update()
+                  self.delete = self.mon.delete
                })
         }
 

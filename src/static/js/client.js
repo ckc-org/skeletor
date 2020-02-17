@@ -43,6 +43,9 @@ CLIENT.api = {
     get_attacks: function() {
       return CLIENT.api.request("GET", "/api/attacks/get_attacks/" )
     },
+    base_attacks: function() {
+      return CLIENT.api.request("GET", "/api/attacks/" )
+    },
     get_attacks_by_type: function(element){
       return CLIENT.api.request('PUT', '/api/attacks/get_attacks_by_type/', element)
     },
