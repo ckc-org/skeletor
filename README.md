@@ -3,9 +3,9 @@
 To use this:
 
 ```bash
-django-admin.py startproject something-wonderful \
+django-admin.py startproject something_wonderful \
     --template=https://github.com/ckcollab/skeletor/archive/master.zip \
-    --name bin/* app.json README.md
+    --name setup,app.json,README.md
 ```
 
 After cloning remove the above instructions!
