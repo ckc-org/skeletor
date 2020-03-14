@@ -3,8 +3,12 @@
 To use this:
 
 ```bash
-$ django-admin.py startproject something-wonderful --template=https://github.com/ckcollab/skeletor/archive/master.zip
+django-admin.py startproject something-wonderful \
+    --template=https://github.com/ckcollab/skeletor/archive/master.zip \
+    --name bin/* app.json README.md
 ```
+
+After cloning remove the above instructions!
 
 -------
 
