@@ -12,6 +12,9 @@ urlpatterns = [
 
     # Django built in
     path('admin/', admin.site.urls),
+
+    # Pass through to our SPA (this template is in /frontend/dist docker volume)
+    path('', TemplateView.as_view(template_name='index.html')),
 ]
 
 

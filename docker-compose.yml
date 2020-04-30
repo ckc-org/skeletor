@@ -19,6 +19,7 @@ services:
     env_file: .env
     volumes:
       - ./src/backend:/app
+      - ./src/frontend/build:/frontend:cached
     ports:
       - 8000:8000
       - 80:80
