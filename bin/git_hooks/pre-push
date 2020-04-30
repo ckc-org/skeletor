@@ -1,0 +1,10 @@
+#!/bin/sh
+red="\033[0;31m"
+color_off="\033[m"
+command=`cd src/backend && flake8`
+if [ ! -z "${command}" ]
+then
+    echo "${red} ***  There were style issues with your push, please fix before pushing!  *** ${color_off}"
+    echo "${command}"
+    exit 1
+fi

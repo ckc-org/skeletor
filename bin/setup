@@ -1,6 +1,0 @@
-#!/bin/bash
-set -x
-
-./manage.py migrate
-./manage.py generate_data
-./manage.py set_default_site --name={{ project_name }} --domain=$HEROKU_APP_NAME.herokuapp.com

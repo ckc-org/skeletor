@@ -14,11 +14,40 @@ After cloning remove the above instructions!
 
 # {{ project_name }}
 
-# installation
+
+## installation
 
 ```bash
-$ ./create_git_hooks.sh
 $ cp .env_sample .env
-$ docker-compose up -d
-# can now view http://localhost or http://localhost:8000
+$ make
+```
+
+can now view http://localhost or http://localhost:8000
+
+## development
+
+For local development (hot reloading, etc.):
+http://localhost:3000
+
+Reset local database:
+
+```bash
+$ make reset
+```
+
+Run tests:
+
+```bash
+$ make test
+```
+
+## deploy
+
+when we deploy we'll do the following.. 
+ * rebuild the containers (in case of `requirements.txt` or `package.json` changes)
+ * compile & collect static assets (vuejs)
+ * run migrations
+
+```bash
+$ make deploy
 ```

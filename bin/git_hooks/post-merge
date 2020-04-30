@@ -1,0 +1,14 @@
+#!/bin/sh
+red="\033[0;31m"
+color_off="\033[m"
+migration_count="$(git diff HEAD@{1} HEAD --name-only | grep '.*/migrations/.*\.py$' -c)"
+if [ ${migration_count} -ne 0 ]
+then
+    echo  "${red}  *** You should migrate! There are ${migration_count} new/changed migrations in this pull.  ***  ${color_off}"
+fi
+
+changed_requirements="$(git diff HEAD@{1} HEAD --name-only | grep 'requirements*.txt')"
+if [ ! -z "${changed_requirements}" ]
+then
+    echo  "${red}  *** You should run pip install -r requirements.txt, there is a new package to install.   ***   ${color_off}"
+fi
