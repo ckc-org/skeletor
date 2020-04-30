@@ -4,7 +4,8 @@ import sys
 import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# Also add ../../apps to python path
+# Also add src/backend/apps to python path so we don't have to do
+# "apps" in each import
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 # =============================================================================
@@ -27,16 +28,24 @@ THIRD_PARTY_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.postgres',
 
+    'rest_framework',
+    'rest_framework.authtoken',
+    'django_extensions',
+    'corsheaders',
     'whitenoise',
+    'dj_rest_auth',
 )
 OUR_APPS = (
+    'users',
+    'commands',
 )
 INSTALLED_APPS = THIRD_PARTY_APPS + OUR_APPS
 
 MIDDLEWARE = (
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -81,6 +90,8 @@ SERVER_EMAIL = 'Do Not Reply <donotreply@blank.com>'
 
 LOGIN_REDIRECT_URL = '/'
 
+AUTH_USER_MODEL = 'users.User'
+
 
 # =============================================================================
 # Debugging
@@ -123,6 +134,7 @@ else:
 # =============================================================================
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
@@ -159,6 +171,30 @@ STATICFILES_DIRS = (
 )
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
+
+
+# =============================================================================
+# Logging
+# =============================================================================
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+    },
+}
 
 
 # =============================================================================

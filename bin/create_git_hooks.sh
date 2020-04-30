@@ -1,6 +1,6 @@
 #!/bin/sh
 dir=$(pwd)
-hooks_dir=${dir}/git_hooks/
+hooks_dir=${dir}/bin/git_hooks/
 FILES=${hooks_dir}*
 for f in ${FILES}
     do
