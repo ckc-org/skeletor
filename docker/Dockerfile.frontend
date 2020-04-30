@@ -1,0 +1,10 @@
+FROM node:10
+
+RUN mkdir /app
+
+ADD ./src/frontend/package.json /app/.
+WORKDIR /app
+RUN npm install --verbose
+#ENV NODE_PATH=/install/node_modules
+
+WORKDIR /app

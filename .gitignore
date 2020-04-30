@@ -103,5 +103,12 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+# node/nuxt/vuejs
+node_modules
+
 # Our project
 .env
+src/backend/staticfiles
+src/backend/uploads
+src/frontend/build/*
+src/frontend/node_modules/*

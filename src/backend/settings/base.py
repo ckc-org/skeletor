@@ -31,6 +31,7 @@ THIRD_PARTY_APPS = (
     'django_extensions',
     'corsheaders',
     'whitenoise',
+    'dj_rest_auth',
 )
 OUR_APPS = (
     'commands',

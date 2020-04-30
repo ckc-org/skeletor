@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Only copy over .env_sample if .env doesn't exist
-cp -n .env_sample .env || echo ".env already exists\n"
+cp -n .env_sample .env || echo ".env already exists"
 
-printf "Make sure you add this hostname to ALLOWED_HOSTS in .env"
+echo "Make sure you add this hostname to ALLOWED_HOSTS in .env"
 
 # Create githooks in project, warns us about requirements/migrations changes
 ./bin/create_git_hooks.sh
@@ -18,3 +18,6 @@ docker-compose exec django ./manage.py set_default_site --name=$HOSTNAME --domai
 
 # generate data (creates default admin account)
 docker-compose exec django ./manage.py generate_data
+
+# Restart to make sure things are started properly (i.e. vuetify on first install)
+docker-compose restart

@@ -8,6 +8,8 @@ urlpatterns = [
     # Our URLS
     # todo..
 
+    path('api/auth/', include('dj_rest_auth.urls')),
+
     # Django built in
     path('admin/', admin.site.urls),
 ]

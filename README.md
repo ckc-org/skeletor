@@ -28,13 +28,16 @@ can now view http://localhost or http://localhost:8000
 For local development (hot reloading, etc.):
 http://localhost:3000
 
-Reset local database:
+To get to the django admin:
+http://localhost:8000/admin
+
+### reset local database
 
 ```bash
 $ make reset
 ```
 
-Run tests:
+### run tests
 
 ```bash
 $ make test
