@@ -4,7 +4,8 @@ import sys
 import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# Also add ../../apps to python path
+# Also add src/backend/apps to python path so we don't have to do
+# "apps" in each import
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 # =============================================================================
@@ -32,12 +33,13 @@ THIRD_PARTY_APPS = (
     'whitenoise',
 )
 OUR_APPS = (
+    'commands',
 )
 INSTALLED_APPS = THIRD_PARTY_APPS + OUR_APPS
 
 MIDDLEWARE = (
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

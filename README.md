@@ -18,7 +18,6 @@ After cloning remove the above instructions!
 ## installation
 
 ```bash
-$ cp .env_sample .env
 $ make
 ```
 
@@ -40,6 +39,12 @@ Run tests:
 ```bash
 $ make test
 ```
+
+## configuration
+
+if you are only doing local development you _shouldn't_ have to do any extra configuration.
+
+for a deployment you'll want to edit `.env` with your secrets.
 
 ## deploy
 

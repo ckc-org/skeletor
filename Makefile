@@ -8,4 +8,4 @@ deploy:
 	@./bin/deploy.sh
 
 test:
-	@echo "not implemented yet, soon!"
+	py.test
