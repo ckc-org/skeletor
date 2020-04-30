@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 from django.db import IntegrityError
-import random
+
 
 User = get_user_model()
 
