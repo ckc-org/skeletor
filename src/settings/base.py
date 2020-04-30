@@ -27,6 +27,8 @@ THIRD_PARTY_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.postgres',
 
+    'django_extensions',
+    'corsheaders',
     'whitenoise',
 )
 OUR_APPS = (
@@ -159,6 +161,30 @@ STATICFILES_DIRS = (
 )
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
+
+
+# =============================================================================
+# Logging
+# =============================================================================
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+    },
+}
 
 
 # =============================================================================
