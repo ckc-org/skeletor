@@ -1,6 +1,0 @@
-#!/bin/sh
-migration_count="$(git diff HEAD@{1} HEAD --name-only | grep '.*/migrations/.*\.py$' -c)"
-if [ ${migration_count} -ne 0 ]
-then
-    echo "\033[5;41;1;37m  *** You should migrate! There are ${migration_count} new/changed migrations in this pull.  ***  \033[0m"
-fi
