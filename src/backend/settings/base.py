@@ -28,12 +28,15 @@ THIRD_PARTY_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.postgres',
 
+    'rest_framework',
+    'rest_framework.authtoken',
     'django_extensions',
     'corsheaders',
     'whitenoise',
     'dj_rest_auth',
 )
 OUR_APPS = (
+    'users',
     'commands',
 )
 INSTALLED_APPS = THIRD_PARTY_APPS + OUR_APPS
@@ -42,6 +45,7 @@ MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -86,6 +90,8 @@ SERVER_EMAIL = 'Do Not Reply <donotreply@blank.com>'
 
 LOGIN_REDIRECT_URL = '/'
 
+AUTH_USER_MODEL = 'users.User'
+
 
 # =============================================================================
 # Debugging
@@ -128,6 +134,7 @@ else:
 # =============================================================================
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
