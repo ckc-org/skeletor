@@ -1,7 +1,3 @@
-# mock-up-caps
-
-> My prime Nuxt.js project
-
 ## Build Setup
 
 ``` bash

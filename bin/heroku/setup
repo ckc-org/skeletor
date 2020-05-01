@@ -2,4 +2,4 @@
 set -x
 
 ./manage.py generate_data
-./manage.py set_default_site --name=CAPS --domain=$HEROKU_APP_NAME.herokuapp.com
+./manage.py set_default_site --name={{ project_name }} --domain=$HEROKU_APP_NAME.herokuapp.com
