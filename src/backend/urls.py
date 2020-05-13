@@ -3,9 +3,16 @@ from django.conf.urls import include
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView
+# from rest_framework import routers
+
+
+# router = routers.DefaultRouter()
+# router.register('some_resource', SomeViewSet)
 
 urlpatterns = [
     # Our URLS
+    # path('api/', include(router.urls)),
     # todo..
 
     path('api/auth/', include('dj_rest_auth.urls')),
