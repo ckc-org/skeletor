@@ -5,6 +5,12 @@ HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME")
 DOMAIN = os.environ.get('DOMAIN', f'{HEROKU_APP_NAME}.herokuapp.com')
 
 # =============================================================================
+# SSL
+# =============================================================================
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+
+# =============================================================================
 # Cloudcube storage
 # =============================================================================
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
@@ -31,7 +37,7 @@ TEMPLATES[0]['DIRS'] = [
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, '../frontend/build/generated'),
 )
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.django.CompressedManifestStaticFilesStorage'
 # Turn this on to use S3 public static storage
 # class PublicStorage(S3Boto3Storage):
 #     default_acl = "public-read"

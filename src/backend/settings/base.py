@@ -97,7 +97,7 @@ AUTH_USER_MODEL = 'users.User'
 # =============================================================================
 # Debugging
 # =============================================================================
-DEBUG = os.environ.get('DEBUG', True)
+DEBUG = os.environ.get('DEBUG', False)
 
 # =============================================================================
 # Database
@@ -118,16 +118,6 @@ else:
             'PORT': 5432,
         }
     }
-
-# # =============================================================================
-# # SSL
-# # =============================================================================
-# if os.environ.get('USE_SSL'):
-#     SECURE_SSL_REDIRECT = True
-#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# else:
-#     # Allows us to use with django-oauth-toolkit on localhost sans https
-#     SESSION_COOKIE_SECURE = False
 
 
 # =============================================================================

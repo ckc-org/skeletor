@@ -1,8 +1,8 @@
 {
   "name": "{{ project_name }}",
   "scripts": {
-    "postdeploy": "bin/setup",
-    "pr-predestroy": "bin/teardown"
+    "postdeploy": "bin/heroku/setup",
+    "pr-predestroy": "bin/heroku/teardown"
   },
   "env": {
     "HEROKU_APP_NAME": {
@@ -11,7 +11,7 @@
     "DJANGO_SETTINGS_MODULE": {
       "required": true
     },
-    "NODE_ENV": "production",
+    "NODE_ENV": "production"
   },
   "formation": {
     "web": {
@@ -20,7 +20,8 @@
   },
   "addons": [
     "heroku-postgresql",
-    "sendgrid:starter"
+    "sendgrid:starter",
+    "cloudcube:free"
   ],
   "buildpacks": [
     {
