@@ -4,7 +4,7 @@ To use this:
 
 ```bash
 django-admin.py startproject new_project \
-    --template=https://github.com/ckcollab/skeletor/archive/master.zip \
+    --template=https://github.com/ckc-org/skeletor/archive/master.zip \
     --name bin/heroku/setup,app.json,README.md
 ```
 
