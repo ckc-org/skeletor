@@ -8,6 +8,14 @@ django-admin.py startproject new_project \
     --name bin/heroku/setup,app.json,README.md
 ```
 
+Then fix symlinks...
+```bash
+# -f to force symlink overwrites
+ln -sf src/backend/manage.py .
+ln -sf src/frontend/package.json . 
+ln -sf src/frontend/package-lock.json .
+```
+
 After cloning remove the above instructions!
 
 -------
