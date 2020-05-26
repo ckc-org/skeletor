@@ -108,6 +108,7 @@ node_modules
 
 # Our project
 .env
+src/backend/artifacts
 src/backend/staticfiles
 src/backend/uploads
 src/frontend/build/*

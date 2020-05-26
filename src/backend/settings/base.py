@@ -32,7 +32,6 @@ THIRD_PARTY_APPS = (
     'rest_framework.authtoken',
     'django_extensions',
     'corsheaders',
-    'whitenoise',
     'dj_rest_auth',
 )
 OUR_APPS = (

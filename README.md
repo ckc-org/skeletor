@@ -43,6 +43,9 @@ $ make reset
 
 ```bash
 $ make test
+
+# ..or with coverage:
+# docker-compose exec django py.test --cov-report html:artifacts/coverag
 ```
 
 ## configuration
