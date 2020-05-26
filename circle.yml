@@ -25,7 +25,6 @@ jobs:
 
       - run: cp .env_sample .env
 
-      # ! UNCOMMENT FOR SELENIUM !
       # Build our frontend assets, outside of container to save memory..
       - run:
           name: Install specific node version
@@ -50,7 +49,7 @@ jobs:
             #docker-compose -f docker-compose.yml -f docker-compose.selenium.yml --compatibility up -d --build django db selenium
             docker-compose --compatibility up -d --build django db
       - run:
-          name: collect static (for selenium)
+          name: collect static
           # ! UNCOMMENT FOR SELENIUM !
           # command: docker-compose -f docker-compose.yml -f docker-compose.selenium.yml --compatibility exec django ./manage.py collectstatic --noinput
           command: docker-compose --compatibility exec django ./manage.py collectstatic --noinput
