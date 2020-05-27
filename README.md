@@ -57,7 +57,7 @@ for a deployment you'll want to edit `.env` with your secrets.
 ## deploy
 
 when we deploy we'll do the following.. 
- * rebuild the containers (in case of `requirements.txt` or `package.json` changes)
+ * rebuild the containers (in case of `requirements.txt` or `package.json`/`yarn.lock` changes)
  * compile & collect static assets (vuejs)
  * run migrations
 

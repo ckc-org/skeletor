@@ -42,7 +42,7 @@ INSTALLED_APPS = THIRD_PARTY_APPS + OUR_APPS
 
 MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.storage.CompressedManifestStaticFilesStorage',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',

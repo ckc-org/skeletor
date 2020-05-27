@@ -14,4 +14,4 @@ dj-database-url==0.5.0
 psycopg2==2.8.5
 
 # Storage
-whitenoise==5.0.1
+whitenoise==5.1.0
