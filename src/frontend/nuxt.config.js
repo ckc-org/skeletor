@@ -36,7 +36,10 @@ export default {
     /*
     ** Plugins to load before mounting the App
     */
-    plugins: ['~/plugins/axios.js'],
+    plugins: [
+        '~/plugins/axios.js',
+        '~/plugins/lodash.js',
+    ],
     buildDir: "build/dist",
     generate: {
         dir: "build/generated"
@@ -62,7 +65,7 @@ export default {
     */
     axios: {
         baseURL: 'http://django:8000',
-        browserBaseURL: process.env.NODE_ENV === 'production' ? `https://${process.env.DOMAIN}` || `https://${process.env.HEROKU_APP_NAME}.herokuapp.com` : 'http://localhost:8000'    
+        browserBaseURL: process.env.NODE_ENV === 'production' ? `https://${process.env.DOMAIN}` || `https://${process.env.HEROKU_APP_NAME}.herokuapp.com` : 'http://localhost:8000'
     },
     auth: {
         fetchUserOnLogin: true,
