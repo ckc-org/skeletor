@@ -2,7 +2,8 @@ FROM node:10
 
 RUN mkdir /app
 
-# `yarn.lock` will be overridden when we volume things in later
-ADD ./src/frontend/yarn.lock /app/.
+# lockfile will be overridden when we volume things in later
+ADD ./src/frontend/package.json /app/.
+ADD ./src/frontend/package-lock.json /app/.
 WORKDIR /app
-RUN yarn
+RUN npm install
