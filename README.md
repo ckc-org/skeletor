@@ -23,9 +23,9 @@ $ make
 # (or make init)
 ```
 
-can now view http://localhost or http://localhost:8000
-
 ## development
+
+default login is "admin" password "admin"
 
 For local development (hot reloading, etc.):
 http://localhost:3000
