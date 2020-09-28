@@ -54,6 +54,19 @@ if you are only doing local development you _shouldn't_ have to do any extra con
 
 for a deployment you'll want to edit `.env` with your secrets.
 
+## generating ERD
+
+You can use [django-extensions](https://django-extensions.readthedocs.io/en/latest/graph_models.html)
+to generate a nice diagram of the current model structure.
+
+```bash
+# install requisite graph visualizer libs
+docker-compose exec django pip install pygraphviz
+
+# take the screenshot
+docker-compose exec django ./manage.py graph_models -a -g -o my_project_visualized.png
+```
+
 ## deploy
 
 when we deploy we'll do the following.. 
