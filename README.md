@@ -60,6 +60,10 @@ You can use [django-extensions](https://django-extensions.readthedocs.io/en/late
 to generate a nice diagram of the current model structure.
 
 ```bash
+# make sure graphviz installed
+#     mac: brew install graphviz
+#     linux: apt-get install graphviz-dev
+
 # install requisite graph visualizer libs
 docker-compose exec django pip install pygraphviz
 
