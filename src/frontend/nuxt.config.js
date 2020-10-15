@@ -104,7 +104,6 @@ export default {
         }
     },
     router: {
-        base: process.env.NODE_ENV === 'production' ? '/static/' : '/',
         mode: process.env.NODE_ENV === 'production' ? 'hash' : 'history',
         middleware: ['auth']
     },

@@ -35,7 +35,7 @@ TEMPLATES[0]['DIRS'] = [
     os.path.join(BASE_DIR, 'templates'),
 ]
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, '../frontend/build/generated'),
+    os.path.join(BASE_DIR, '../frontend/build/generated/static'),
     os.path.join(BASE_DIR, 'static'),
 )
 # Turn this on to use S3 public static storage
