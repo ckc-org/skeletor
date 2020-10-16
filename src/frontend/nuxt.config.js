@@ -116,6 +116,7 @@ export default {
         */
         extend(config, ctx) {
         },
+        publicPath: '/static/',
         plugins: [
             new webpack.ProvidePlugin({
                 '_': 'lodash'
