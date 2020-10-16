@@ -17,7 +17,7 @@
         "@nuxtjs/moment": "^1.6.0",
         "@nuxtjs/vuetify": "^1.0.0",
         "lodash": "^4.17.15",
-        "nuxt": "^2.0.0",
+        "nuxt": "^2.14.6",
         "stylus": "^0.54.7",
         "stylus-loader": "^3.0.2"
     }
