@@ -2,18 +2,13 @@ import colors from 'vuetify/es5/util/colors'
 import webpack from 'webpack'
 
 function getBrowserBaseURL() {
-    if(process.env.NODE_ENV === 'production') {
-        // Production
-        if(process.env.DOMAIN) {
-            return `https://${process.env.DOMAIN}`
-        } else if(process.env.HEROKU_APP_NAME) {
-            return `https://${process.env.HEROKU_APP_NAME}.herokuapp.com`
-        } else {
-            throw "Trying to launch in production without DOMAIN or HEROKU_APP_NAME defined!"
-        }
+    // Production
+    if(process.env.DOMAIN) {
+        return `https://${process.env.DOMAIN}`
+    } else if(process.env.HEROKU_APP_NAME) {
+        return `https://${process.env.HEROKU_APP_NAME}.herokuapp.com`
     } else {
-        // Local development
-        return 'http://localhost:8000'
+        throw "Trying to launch in production without DOMAIN or HEROKU_APP_NAME defined!"
     }
 }
 
