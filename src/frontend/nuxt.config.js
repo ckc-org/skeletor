@@ -4,7 +4,7 @@ import webpack from 'webpack'
 function getBrowserBaseURL() {
     // Production
     if(process.env.DOMAIN) {
-        return `https://${process.env.DOMAIN}`
+        return `${process.env.DOMAIN}`
     } else if(process.env.HEROKU_APP_NAME) {
         return `https://${process.env.HEROKU_APP_NAME}.herokuapp.com`
     } else {
