@@ -10,7 +10,7 @@ echo "Make sure you add this hostname to ALLOWED_HOSTS in .env"
 # Fix symlinks from potentially busted django-admin.py startproject
 ln -sf src/backend/manage.py .
 ln -sf src/frontend/package.json .
-ln -sf src/frontend/package-lock.json .
+ln -sf src/frontend/yarn-lock.json .
 
 # first deploy
 ./bin/deploy.sh
