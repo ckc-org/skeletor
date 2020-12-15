@@ -106,7 +106,7 @@ DATABASES = {'default': {}}
 db_from_env = dj_database_url.config()
 if db_from_env:
     DATABASES['default'].update(db_from_env)
-else:
+else:  # pragma: no cover
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -201,7 +201,7 @@ if DEBUG:
 
     try:
         INTERNAL_IPS.append(socket.gethostbyname(socket.gethostname())[:-1])
-    except socket.gaierror:
+    except socket.gaierror:  # pragma: no cover
         pass
 
     QUERYCOUNT = {
