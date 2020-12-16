@@ -36,7 +36,7 @@ export default {
     loading: {
         color: 'teal',
         height: '5px',
-        countinuous: true
+        continuous: true
     },
     /*
     ** Global CSS
