@@ -104,7 +104,7 @@ DEBUG = os.environ.get('DEBUG', False)
 DATABASES = {'default': {}}
 
 db_from_env = dj_database_url.config()
-if db_from_env:
+if db_from_env:  # pragma: no cover
     DATABASES['default'].update(db_from_env)
 else:  # pragma: no cover
     DATABASES = {
@@ -188,7 +188,7 @@ LOGGING = {
 # =============================================================================
 # Debug
 # =============================================================================
-if DEBUG:
+if DEBUG:  # pragma: no cover
     INSTALLED_APPS += ('debug_toolbar',)
     MIDDLEWARE = (
         'debug_toolbar.middleware.DebugToolbarMiddleware',
