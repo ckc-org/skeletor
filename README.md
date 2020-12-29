@@ -5,7 +5,7 @@ To use this:
 ```bash
 django-admin.py startproject new_project \
     --template=https://github.com/ckc-org/skeletor/archive/master.zip \
-    --name setup,app.json,README.md
+    --name index.md,setup,app.json,README.md
 ```
 
 After cloning remove the above instructions!
