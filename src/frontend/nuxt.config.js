@@ -8,7 +8,7 @@ function getBrowserBaseURL() {
     } else if(process.env.HEROKU_APP_NAME) {
         return `https://${process.env.HEROKU_APP_NAME}.herokuapp.com`
     } else {
-        throw "Trying to launch in production without DOMAIN or HEROKU_APP_NAME defined!"
+        throw "Trying to launch in production without SITE_DOMAIN or HEROKU_APP_NAME defined!"
     }
 }
 
