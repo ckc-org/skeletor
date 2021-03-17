@@ -2,7 +2,9 @@ from .base import *
 
 
 HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME")
-DOMAIN = os.environ.get('DOMAIN', f'{HEROKU_APP_NAME}.herokuapp.com')
+SITE_DOMAIN = os.environ.get('SITE_DOMAIN')
+
+assert SITE_DOMAIN or HEROKU_APP_NAME, "SITE_DOMAIN or at least HEROKU_APP_NAME must be defined"
 
 # =============================================================================
 # SSL
@@ -52,7 +54,7 @@ STATICFILES_DIRS = (
 # =============================================================================
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
-    f"https://{DOMAIN}",
+    f"https://{SITE_DOMAIN}",
 )
 
 

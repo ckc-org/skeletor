@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54e59b49-da78-4de3-b4bb-62e248ab116c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.env_sample" beforeDir="false" afterPath="$PROJECT_DIR$/.env_sample" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/nuxt.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/nuxt.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/settings/heroku.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/settings/heroku.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +76,7 @@
       <workItem from="1602878086649" duration="1000" />
       <workItem from="1602883974550" duration="1122000" />
       <workItem from="1603405904220" duration="323000" />
-      <workItem from="1616016138430" duration="52000" />
+      <workItem from="1616016138430" duration="297000" />
     </task>
     <servers />
   </component>
