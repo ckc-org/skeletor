@@ -39,7 +39,6 @@ jobs:
             # Each step uses the same `$BASH_ENV`, so need to modify it
             echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
             echo "[ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\"" >> $BASH_ENV
-            npm install -g yarn eslint
       - run: cd src/frontend && npm install . && npm run generate
       - run:
           name: building django, db, selenium
@@ -61,7 +60,7 @@ jobs:
           command: docker-compose --compatibility exec django py.test --create-db --cov=. --cov-report html:/artifacts/coverage --cov-report annotate:/artifacts/coverage_annotated tests/
       - run:
           name: eslint
-          command: cd src/frontend && eslint
+          command: cd src/frontend && yarn run eslint --ext js,jsx,vue .
       - run:
           name: flake8
           # ! UNCOMMENT FOR SELENIUM !

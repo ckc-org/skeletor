@@ -13,7 +13,11 @@ module.exports = {
     plugins: [
         'vue'
     ],
-    ignorePatterns: ['*.md'],
+    ignorePatterns: [
+        '*.md',
+        'node_modules/*',
+        'build/*'
+    ],
     rules: {
         // indent: ['off', 4],
         'func-call-spacing': ['error', 'never'],
