@@ -1,3 +1,4 @@
+import datetime
 import os
 import sys
 
@@ -82,14 +83,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 SECRET_KEY = os.environ.get("SECRET_KEY", '{{ secret_key }}')
-
-EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
-
-DEFAULT_FROM_EMAIL = 'Do Not Reply <donotreply@blank.com>'
-SERVER_EMAIL = 'Do Not Reply <donotreply@blank.com>'
-
 LOGIN_REDIRECT_URL = '/'
-
 AUTH_USER_MODEL = 'users.User'
 
 
@@ -160,6 +154,40 @@ STATICFILES_DIRS = (
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
 
+
+# =============================================================================
+# dj rest auth
+# =============================================================================
+REST_AUTH_SERIALIZERS = {
+    'PASSWORD_RESET_SERIALIZER': 'users.serializers.PasswordResetCustomEmailSerializer',
+}
+
+
+# =============================================================================
+# Email
+# =============================================================================
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@example.com')
+SERVER_EMAIL = os.environ.get('SERVER_EMAIL', DEFAULT_FROM_EMAIL)
+
+ANYMAIL = {
+    'MANDRILL_API_KEY': os.environ.get('MANDRILL_API_KEY', '123456'),
+}
+
+DEFAULT_EMAIL_CONTEXT = {
+    'CURRENT_YEAR': datetime.datetime.now().year,
+    'SITE_DOMAIN': SITE_DOMAIN,
+    'DEFAULT_FROM_EMAIL': DEFAULT_FROM_EMAIL,
+
+    # Keys prepended with IMAGE_ are replaced with InlineImages when generating emails
+    # then used like so in templates: <img src="{{ IMAGE_EXAMPLE }}">
+    # 'IMAGE_EXAMPLE': 'images/example.png',
+}
+
+TEMPLATED_EMAIL_EMAIL_MESSAGE_CLASS = 'anymail.message.AnymailMessage'
+TEMPLATED_EMAIL_EMAIL_MULTIALTERNATIVES_CLASS = 'anymail.message.AnymailMessage'
+TEMPLATED_EMAIL_TEMPLATE_DIR = 'emails/'
+TEMPLATED_EMAIL_FILE_EXTENSION = 'html'  # for nice highlighting, instead of .email ending
 
 # =============================================================================
 # Logging
