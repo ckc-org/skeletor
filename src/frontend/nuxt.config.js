@@ -3,12 +3,12 @@ import webpack from 'webpack'
 
 function getBrowserBaseURL() {
     // Production
-    if(process.env.DOMAIN) {
-        return `${process.env.DOMAIN}`
+    if(process.env.SITE_DOMAIN) {
+        return `${process.env.SITE_DOMAIN}`
     } else if(process.env.HEROKU_APP_NAME) {
         return `https://${process.env.HEROKU_APP_NAME}.herokuapp.com`
     } else {
-        throw "Trying to launch in production without DOMAIN or HEROKU_APP_NAME defined!"
+        throw "Trying to launch in production without SITE_DOMAIN or HEROKU_APP_NAME defined!"
     }
 }
 
