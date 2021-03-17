@@ -8,7 +8,6 @@ from templated_email import send_templated_mail, InlineImage
 
 from anymail.exceptions import AnymailRecipientsRefused
 
-from leads.models import Lead
 
 logger = logging.getLogger()
 User = get_user_model()

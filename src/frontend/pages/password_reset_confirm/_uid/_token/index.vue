@@ -25,17 +25,17 @@
                                     </v-alert>
 
                                     <v-text-field label="Password"
-                                                  :error="!!errors.new_password"
-                                                  :error-messages="errors.new_password"
+                                                  :error="!!errors.new_password1"
+                                                  :error-messages="errors.new_password1"
                                                   prepend-icon="lock"
-                                                  v-model='form.new_password'
+                                                  v-model='form.new_password1'
                                                   type="password"></v-text-field>
 
                                     <v-text-field label="Confirm password"
-                                                  :error="!!errors.re_new_password"
-                                                  :error-messages="errors.re_new_password"
+                                                  :error="!!errors.new_password2"
+                                                  :error-messages="errors.new_password2"
                                                   prepend-icon="lock"
-                                                  v-model='form.re_new_password'
+                                                  v-model='form.new_password2'
                                                   type="password"></v-text-field>
                                 </v-card-text>
 
@@ -58,8 +58,8 @@
         data() {
             return {
                 form: {
-                    new_password: '',
-                    re_new_password: '',
+                    new_password1: '',
+                    new_password2: '',
                 },
                 errors: {},
                 successful: false
@@ -72,7 +72,7 @@
                     token: this.$route.params.token,
                     ...this.form
                 }
-                this.$axios.post('/api/auth/users/reset_password_confirm/', payload)
+                this.$axios.post('/api/auth/password/reset/confirm/', payload)
                     .then(res => {
                         this.successful = true
                         this.errors = {}
