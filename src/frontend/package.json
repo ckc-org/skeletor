@@ -25,7 +25,7 @@
     "devDependencies": {
         "jest": "^26.6.3",
         "vue-jest": "^3.0.7",
-        "@testing-library/vue": "^5.6.1"
+        "@testing-library/vue": "^5.6.1",
         "@nuxt/types": "^2.15.3",
         "eslint": "^7.4.0",
         "eslint-config-standard": "^14.1.1",
