@@ -3,10 +3,10 @@ import webpack from 'webpack'
 
 function getBrowserBaseURL() {
     // Production
-    if(process.env.SITE_DOMAIN) {
-        return `${process.env.SITE_DOMAIN}`
-    } else if(process.env.HEROKU_APP_NAME) {
-        return `https://${process.env.HEROKU_APP_NAME}.herokuapp.com`
+    if (process.env.SITE_DOMAIN) {
+        return `${ process.env.SITE_DOMAIN }`
+    } else if (process.env.HEROKU_APP_NAME) {
+        return `https://${ process.env.HEROKU_APP_NAME }.herokuapp.com`
     } else {
         throw "Trying to launch in production without SITE_DOMAIN or HEROKU_APP_NAME defined!"
     }
@@ -21,13 +21,13 @@ export default {
         titleTemplate: '%s - ' + process.env.npm_package_name,
         title: process.env.npm_package_name || '',
         meta: [
-            {charset: 'utf-8'},
-            {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-            {hid: 'description', name: 'description', content: process.env.npm_package_description || ''}
+            { charset: 'utf-8' },
+            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+            { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
         ],
         link: [
-            {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
-            {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Material+Icons'}
+            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Material+Icons' }
         ]
     },
     /*
@@ -80,13 +80,13 @@ export default {
     },
     auth: {
         fetchUserOnLogin: true,
-        plugins: [{src: '~/plugins/auth.js', client: true}],
+        plugins: [{ src: '~/plugins/auth.js', client: true }],
         strategies: {
             local: {
                 endpoints: {
-                    login: {url: '/api/auth/login/', method: 'post', propertyName: 'key'},
-                    logout: {url: '/api/auth/logout/', method: 'post'},
-                    user: {url: '/api/auth/user/', propertyName: false},
+                    login: { url: '/api/auth/login/', method: 'post', propertyName: 'key' },
+                    logout: { url: '/api/auth/logout/', method: 'post' },
+                    user: { url: '/api/auth/user/', propertyName: false },
                 },
                 tokenType: 'Token',
                 tokenName: 'Authorization'
@@ -100,13 +100,25 @@ export default {
     },
     /*
     ** vuetify module configuration
+    ** https://vuetifyjs.com/en/features/theme/#customizing
     ** https://github.com/nuxt-community/vuetify-module
     */
     vuetify: {
+        customVariables: ['~/assets/variables.scss'],
+        treeShake: true,
+        options: {
+            customProperties: true, // Maps all theme colors to css variables (i.e. background: var(--v-primary-base);)
+        },
         theme: {
             themes: {
                 light: {
-                    primary: '#5b8c5a'
+                    primary: '#5b8c5a',
+                    secondary: '#424242',
+                    accent: '#82B1FF',
+                    error: '#ff2121',
+                    info: '#2196F3',
+                    success: '#4CAF50',
+                    warning: '#FFC107',
                 }
             }
         }
