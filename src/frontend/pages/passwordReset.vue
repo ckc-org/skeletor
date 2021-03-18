@@ -1,6 +1,6 @@
 <template>
-    <v-app>
-        <v-content>
+    <div>
+        <v-main>
             <v-container fluid fill-height>
                 <v-layout align-center justify-center>
                     <v-flex md4>
@@ -42,8 +42,8 @@
                     </v-flex>
                 </v-layout>
             </v-container>
-        </v-content>
-    </v-app>
+        </v-main>
+    </div>
 </template>
 
 <script>
