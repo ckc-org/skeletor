@@ -1,0 +1,32 @@
+{% extends "emails/base.html" %}
+
+{% block subject %}
+    Welcome!
+{% endblock %}
+
+{% block extra_head %}
+    {# Put <style></style> here #}
+{% endblock %}
+
+{% block content %}
+
+    <table style="margin-bottom: 15px;">
+        <tr>
+            <td class="title">
+                Welcome!
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="https://via.placeholder.com/624x381.png" alt="" width="100%">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel cursus ligula, eget convallis
+                tortor. Ut eget arcu ut mauris euismod tristique. Nulla facilisi. Proin lacinia vestibulum odio, ac
+                sodales magna. Mauris hendrerit ornare nunc, eu consequat arcu ultricies finibus.
+            </td>
+        </tr>
+    </table>
+{% endblock %}

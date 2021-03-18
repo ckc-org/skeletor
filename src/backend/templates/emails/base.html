@@ -1,0 +1,163 @@
+{% load static %}
+
+{% block html %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            {#@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');#}
+
+            @font-face {
+                font-family: 'Lato';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v11/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+            }
+
+            a.button {
+                display: inline-block;
+                background-color: #5a9eec;
+                padding: 25px;
+                margin: 10px 0;
+                color: #fff;
+                border: 0;
+                font-size: 26px;
+                font-weight: 600;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                text-decoration: none;
+                border-radius: 3px;
+            }
+
+            .title {
+                font-size: 52px;
+                font-family: 'Lato', 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
+            }
+            .sub-title {
+                font-size: 32px;
+                font-weight: 200;
+                font-family: 'Lato', 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
+                color: #929292;
+            }
+
+            .image-cropper {
+                width: 50px;
+                height: 50px;
+                position: relative;
+                overflow: hidden;
+                border-radius: 50%;
+            }
+
+            .image-cropper img {
+                display: inline;
+                margin: 0 auto;
+                height: 100%;
+                width: auto;
+            }
+
+            {# Mobile stuff #}
+            .mobile-only {
+                display: none;
+                {#height: 0;#}
+                {#width: 0;#}
+            }
+            .desktop-only {
+                display: block;
+            }
+            @media screen and (max-width: 600px) {
+                .mobile-only {
+                    display: block !important;
+                    {#height: inherit;#}
+                    {#width: inherit;#}
+                }
+                .desktop-only {
+                    display: none !important;
+                }
+            }
+        </style>
+
+        {% block extra_head %}
+        {% endblock %}
+    </head>
+    <body style="width: 100%; height: 100%; margin: 0;">
+    <div style="max-width: 700px; height: 100%; padding: 15px; background-color: rgb(245, 248, 250);">
+        <table>
+            <tr>
+                <td>
+                    <table style="width: 100%; height: 100%; background-color: #fff; padding: 15px;">
+                        <tr>
+                            <td>
+                                <img src="https://via.placeholder.com/216x58.png" width="216" style="margin-bottom: 25px;">
+
+                                {% block content %}
+                                {% endblock %}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table style="width: 100%; height: 100%;">
+                        <tr>
+                            <td>
+                                <table style="margin: auto;">
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td
+                                                            style="color: rgb(174, 179, 187); font-size: 17px;"
+                                                    >
+                                                        Copyright &#169; {{ CURRENT_YEAR }} Company. All Rights
+                                                        Reserved.
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table style="margin: auto;">
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <a
+                                                                href="mailto:{{ DEFAULT_FROM_EMAIL }}"
+                                                                target="_blank"
+                                                                style="text-decoration: none; color: rgb(105, 158, 230);"
+                                                        >
+                                                            {{ DEFAULT_FROM_EMAIL }}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table style="margin: auto;">
+                                    <tr>
+                                        <td>
+                                            FOOTER
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </body>
+    </html>
+{% endblock html %}

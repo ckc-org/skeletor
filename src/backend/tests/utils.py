@@ -1,5 +1,5 @@
-from rest_framework.test import APITransactionTestCase
+from rest_framework.test import APITestCase
 
 
-class CkcAPITestCase(APITransactionTestCase):
+class CkcAPITestCase(APITestCase):
     pass

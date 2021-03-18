@@ -62,6 +62,10 @@ jobs:
                   --cov-report html:/home/circleci/project/artifacts/coverage --cov-report
                   annotate:/home/circleci/project/artifacts/coverage_annotated tests/
 
+            - run:
+                name: eslint
+                command: cd src/frontend && yarn run eslint --ext js,jsx,vue .
+
             - store_artifacts:
                   path: artifacts/
     flake8:

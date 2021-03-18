@@ -28,7 +28,7 @@ more information is better.
 
 # Checklist
 - [ ] Code review by me 
-- [ ] Hand tested by me 
+- [ ] New code covered by automated tests
 - [ ] I'm proud of my work
 - [ ] Code review by reviewer
 - [ ] Hand tested by reviewer

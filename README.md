@@ -81,3 +81,11 @@ when we deploy we'll do the following..
 ```bash
 $ make deploy
 ```
+
+### testing emails locally
+
+eg sending a welcome email....
+
+```bash
+$ docker-compose exec django ./manage.py email welcome hello@ckcollab.com
+```
