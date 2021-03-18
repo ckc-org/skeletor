@@ -66,6 +66,10 @@ jobs:
                 name: eslint
                 command: cd src/frontend && yarn run eslint --ext js,jsx,vue .
 
+            - run:
+                name: frontend tests
+                command: cd src/frontend && yarn run test
+
             - store_artifacts:
                   path: artifacts/
     flake8:

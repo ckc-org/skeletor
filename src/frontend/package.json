@@ -9,19 +9,24 @@
         "build": "nuxt build",
         "start": "nuxt start",
         "generate": "nuxt generate",
-        "heroku-postbuild": "cd src/frontend && nuxt generate"
+        "heroku-postbuild": "cd src/frontend && nuxt generate",
+        "test": "jest"
     },
     "dependencies": {
         "@nuxtjs/auth": "^4.9.0",
         "@nuxtjs/axios": "^5.3.6",
         "@nuxtjs/moment": "^1.6.0",
         "@nuxtjs/vuetify": "^1.0.0",
+        "@vue/babel-preset-app": "^4.5.12",
         "lodash": "^4.17.15",
         "nuxt": "^2.14.6",
         "stylus": "^0.54.7",
         "stylus-loader": "^3.0.2"
     },
     "devDependencies": {
+        "jest": "^26.6.3",
+        "vue-jest": "^3.0.7",
+        "@testing-library/vue": "^5.6.1",
         "@nuxt/types": "^2.15.3",
         "eslint": "^7.4.0",
         "eslint-config-standard": "^14.1.1",
