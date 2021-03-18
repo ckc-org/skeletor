@@ -1,0 +1,74 @@
+version: 2
+
+jobs:
+  test:
+    machine:
+      # We need to specify an image here so we can use docker-compose version 3.4...!
+      image: circleci/classic:201808-01
+
+    steps:
+      - checkout
+      # ! UNCOMMENT FOR SELENIUM !
+      # - run:
+      #     # NOTE: To connect to this, use an SSH tunnel in front, like so..
+      #     #
+      #     #     In one terminal:
+      #     #         $ ssh -p PORT ubuntu@CIRCLE_IP_ADDRESS -L 5900:localhost:5900
+      #     #
+      #     #     In another terminal:
+      #     #         $ open vnc://0.0.0.0:5900
+      #     name: Download and start X for VNC viewing
+      #     command: |
+      #       sudo apt-get install -y x11vnc
+      #       sudo x11vnc -forever -nopw
+      #     background: true
+
+      - run: cp .env_sample .env
+
+      # Build our frontend assets, outside of container to save memory..
+      - run:
+          name: Install specific node version
+          command: |
+            set +e
+            curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
+            export NVM_DIR="/opt/circleci/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm install v10.15.1
+            nvm alias default v10.15.1
+
+            # Each step uses the same `$BASH_ENV`, so need to modify it
+            echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
+            echo "[ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\"" >> $BASH_ENV
+      - run: cd src/frontend && npm install . && npm run generate
+      - run:
+          name: building django, db, selenium
+          command: |
+            # ! UNCOMMENT FOR SELENIUM !
+            # Note we're specifying "django db selenium" containers, excluding "builder" because we run out of memory
+            #docker-compose -f docker-compose.yml -f docker-compose.selenium.yml --compatibility stop
+            #docker-compose -f docker-compose.yml -f docker-compose.selenium.yml --compatibility up -d --build django db selenium
+            docker-compose --compatibility up -d --build django db
+      - run:
+          name: collect static
+          # ! UNCOMMENT FOR SELENIUM !
+          # command: docker-compose -f docker-compose.yml -f docker-compose.selenium.yml --compatibility exec django ./manage.py collectstatic --noinput
+          command: docker-compose --compatibility exec django ./manage.py collectstatic --noinput
+      - run:
+          name: py.test
+          # ! UNCOMMENT FOR SELENIUM !
+          # command: docker-compose -f docker-compose.yml -f docker-compose.selenium.yml --compatibility exec django py.test --create-db --cov=. --cov-report html:/artifacts/coverage --cov-report annotate:/artifacts/coverage_annotated tests/
+          command: docker-compose --compatibility exec django py.test --create-db --cov=. --cov-report html:/artifacts/coverage --cov-report annotate:/artifacts/coverage_annotated tests/
+      - run:
+          name: flake8
+          # ! UNCOMMENT FOR SELENIUM !
+          # command: docker-compose -f docker-compose.yml -f docker-compose.selenium.yml --compatibility exec django flake8
+          command: docker-compose --compatibility exec django flake8
+
+      - store_artifacts:
+          path: artifacts/
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test
