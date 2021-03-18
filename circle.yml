@@ -59,6 +59,9 @@ jobs:
           # command: docker-compose -f docker-compose.yml -f docker-compose.selenium.yml --compatibility exec django py.test --create-db --cov=. --cov-report html:/artifacts/coverage --cov-report annotate:/artifacts/coverage_annotated tests/
           command: docker-compose --compatibility exec django py.test --create-db --cov=. --cov-report html:/artifacts/coverage --cov-report annotate:/artifacts/coverage_annotated tests/
       - run:
+          name: eslint
+          command: cd src/frontend && yarn run eslint --ext js,jsx,vue .
+      - run:
           name: flake8
           # ! UNCOMMENT FOR SELENIUM !
           # command: docker-compose -f docker-compose.yml -f docker-compose.selenium.yml --compatibility exec django flake8
