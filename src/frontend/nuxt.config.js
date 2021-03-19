@@ -105,10 +105,10 @@ export default {
     vuetify: {
         customVariables: ['~/assets/variables.scss'],
         treeShake: true,
-        options: {
-            customProperties: true, // Maps all theme colors to css variables (i.e. background: var(--v-primary-base);)
-        },
         theme: {
+            options: {
+                customProperties: true, // Maps all theme colors to css variables (i.e. background: var(--v-primary-base);)
+            },
             themes: {
                 light: {
                     primary: '#5b8c5a',
