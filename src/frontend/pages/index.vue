@@ -6,7 +6,6 @@
         <v-btn
             @click="$auth.logout()"
             outlined
-
         >
             Sign Out
             <v-icon>mdi-logout</v-icon>
