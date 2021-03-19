@@ -1,5 +1,6 @@
 ## Build Setup
 
+Yarn or NPM can be used
 ``` bash
 # install dependencies
 $ npm install
@@ -13,6 +14,9 @@ $ npm run start
 
 # generate static project
 $ npm run generate
+
+# test project
+$ npm run test
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

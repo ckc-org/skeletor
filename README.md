@@ -46,6 +46,9 @@ $ make test
 
 # ..or with coverage:
 # docker-compose exec django py.test --cov-report html:artifacts/coverag
+
+# run frontend tests
+# docker-compose exec builder yarn test
 ```
 
 ## configuration
