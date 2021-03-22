@@ -2,8 +2,8 @@
 
 docker-compose exec db bash -c "
 echo 'dropping database'
-dropdb --if-exists -U \$DB_USERNAME \$DB_NAME
-dropdb --if-exists -U \$DB_USERNAME test_\$DB_NAME
+dropdb --if-exists -U \$DB_USERNAME \$DB_NAME --force
+dropdb --if-exists -U \$DB_USERNAME test_\$DB_NAME --force
 echo \$DB_PASSWORD
 echo 'drop successful'
 echo 'creating db'
