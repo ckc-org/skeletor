@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+source ./bin/helpers.sh
+
 # Only copy over .env_sample if .env doesn't exist
 cp -n .env_sample .env || echo ".env already exists"
 
@@ -11,10 +14,7 @@ echo "Make sure you add this hostname to ALLOWED_HOSTS in .env"
 # django-admin startproject yadda yadda to spin this up
 SKELETOR_LOCATION="./SKELETOR_VERSION"
 if [ ! -f $SKELETOR_LOCATION ]; then
-    SKELETOR_VERSION=$(
-        curl -s 'https://api.github.com/repos/ckc-org/skeletor/git/trees/master' | \
-            python -c "import sys, json; print(json.load(sys.stdin)['sha'])"
-    )
+    SKELETOR_VERSION=$(get_skeletor_master_sha)
     echo "Writing ./SKELETOR_VERSION of ${SKELETOR_VERSION}"
     echo $SKELETOR_VERSION > $SKELETOR_LOCATION
 else
