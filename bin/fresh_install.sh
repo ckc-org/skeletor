@@ -7,6 +7,20 @@ echo "Make sure you add this hostname to ALLOWED_HOSTS in .env"
 # Create githooks in project, warns us about requirements/migrations changes
 ./bin/create_git_hooks.sh
 
+# Store a reference of our current skeletor version, assuming we just used
+# django-admin startproject yadda yadda to spin this up
+SKELETOR_LOCATION="./SKELETOR_VERSION"
+if [ ! -f $SKELETOR_LOCATION ]; then
+    SKELETOR_VERSION=$(
+        curl -s 'https://api.github.com/repos/ckc-org/skeletor/git/trees/master' | \
+            python -c "import sys, json; print(json.load(sys.stdin)['sha'])"
+    )
+    echo "Writing ./SKELETOR_VERSION of ${SKELETOR_VERSION}"
+    echo $SKELETOR_VERSION > $SKELETOR_LOCATION
+else
+    echo "SKELETOR_VERSION already exists"
+fi
+
 # Fix symlinks from potentially busted django-admin.py startproject
 ln -sf src/backend/manage.py .
 ln -sf src/frontend/package.json .
