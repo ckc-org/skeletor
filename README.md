@@ -1,7 +1,6 @@
-# skeletor [<img src="https://ckcollab.com/assets/images/badges/badge.svg" alt="CKC" height="20">](https://ckcollab.com)
-
-
 ![Skeletor](docs/skeletor_full.png)
+
+# skeletor [<img src="https://ckcollab.com/assets/images/badges/badge.svg" alt="CKC" height="20">](https://ckcollab.com)
 
 
 To use this:
