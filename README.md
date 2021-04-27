@@ -1,9 +1,26 @@
-![Skeletor](docs/skeletor_full.png)
+<img src="docs/skeletor_full.png" alt="CKC" width="420" align="left">
+
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
 
 # skeletor [<img src="https://ckcollab.com/assets/images/badges/badge.svg" alt="CKC" height="20">](https://ckcollab.com)
 
+This is the official [CKC](https://ckcollab.com) base project, we use this
+for most of our new clients. It gives us:
 
-To use this:
+ &nbsp;&nbsp; ❯ &nbsp;One command dev install: `make`
+ 
+ &nbsp;&nbsp; ❯ &nbsp;Heroku deploys for frontend and backend
+ 
+ 
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+
+
+To start a project...
 
 ```bash
 django-admin.py startproject new_project \
@@ -13,7 +30,10 @@ django-admin.py startproject new_project \
 
 After cloning remove the above instructions!
 
--------
+
+-----------------
+
+
 
 # {{ project_name }}
 
