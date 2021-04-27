@@ -1,4 +1,4 @@
-<img src="docs/skeletor_full.png" alt="CKC" width="512" align="left">
+<img src="docs/skeletor_full.png" alt="CKC" width="420" align="left">
 
 &nbsp;<br>
 &nbsp;<br>
@@ -14,13 +14,6 @@ for most of our new clients. It gives us:
  
  &nbsp;&nbsp; ❯ &nbsp; Heroku deployments for frontend and backend
 
-&nbsp;<br>
-&nbsp;<br>
-&nbsp;<br>
-&nbsp;<br>
-&nbsp;<br>
-&nbsp;<br>
-&nbsp;<br>
 
 To start a project...
 
