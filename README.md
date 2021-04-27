@@ -9,9 +9,9 @@
 This is the official [CKC](https://ckcollab.com) base project, we use this
 for most of our new clients. It gives us:
 
- &nbsp;&nbsp; ❯ &nbsp;A great one command dev install (`make` is all you have to do)
+ &nbsp;&nbsp; ❯ &nbsp;One command dev install: `make`
  
- &nbsp;&nbsp; ❯ &nbsp;Heroku deployments for frontend and backend
+ &nbsp;&nbsp; ❯ &nbsp;Heroku deploys for frontend and backend
  
  
 &nbsp;<br>
