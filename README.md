@@ -3,7 +3,6 @@
 &nbsp;<br>
 &nbsp;<br>
 &nbsp;<br>
-&nbsp;<br>
 
 # skeletor [<img src="https://ckcollab.com/assets/images/badges/badge.svg" alt="CKC" height="20">](https://ckcollab.com)
 
