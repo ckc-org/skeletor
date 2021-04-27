@@ -1,6 +1,7 @@
-![Skeletor](docs/skeletor_full.png)
+<img src="docs/skeletor_full.png" alt="CKC" width="512" align="left">
 
 # skeletor [<img src="https://ckcollab.com/assets/images/badges/badge.svg" alt="CKC" height="20">](https://ckcollab.com)
+
 
 
 To use this:
@@ -13,7 +14,18 @@ django-admin.py startproject new_project \
 
 After cloning remove the above instructions!
 
--------
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+
+
 
 # {{ project_name }}
 
