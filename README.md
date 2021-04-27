@@ -10,8 +10,9 @@
 This is the official [CKC](https://ckcollab.com) base project, we use this
 for most of our new clients. It gives us:
 
- - A great one command dev install (`make` is all you have to do)
- - Heroku deployments for frontend and backend
+ &nbsp;&nbsp; ❯ &nbsp; A great one command dev install (`make` is all you have to do)
+ 
+ &nbsp;&nbsp; ❯ &nbsp; Heroku deployments for frontend and backend
 
 &nbsp;<br>
 &nbsp;<br>
