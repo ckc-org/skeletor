@@ -20,16 +20,19 @@ for most of our new clients. It gives us:
 &nbsp;<br>
 
 
-To start a project...
+### Start a project..
 
-```bash
-django-admin.py startproject new_project \
-    --template=https://github.com/ckc-org/skeletor/archive/master.zip \
-    --name index.md,setup,app.json,README.md
-```
-
-After cloning remove the above instructions!
-
+1. 
+    ```bash
+    $ django-admin.py startproject new_project \
+        --template=https://github.com/ckc-org/skeletor/archive/master.zip \
+        --name index.md,setup,app.json,README.md
+    ```
+1. 
+    ```bash
+    $ cd new_project
+    ```
+3. remove this section from the README and continue below...
 
 -----------------
 
