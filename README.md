@@ -1,7 +1,6 @@
 <img src="docs/skeletor_full.png" alt="CKC" width="420" align="left">
 
 &nbsp;<br>
-&nbsp;<br>
 
 # skeletor [<img src="https://ckcollab.com/assets/images/badges/badge.svg" alt="CKC" height="20">](https://ckcollab.com)
 
