@@ -2,16 +2,17 @@
 
 &nbsp;<br>
 &nbsp;<br>
-&nbsp;<br>
 
 # skeletor [<img src="https://ckcollab.com/assets/images/badges/badge.svg" alt="CKC" height="20">](https://ckcollab.com)
 
 This is the official [CKC](https://ckcollab.com) base project, we use this
 for most of our new clients. It gives us:
 
- &nbsp;&nbsp; ❯ &nbsp;One command dev install: `make`
- 
- &nbsp;&nbsp; ❯ &nbsp;Heroku deploys for frontend and backend
+ &nbsp;&nbsp; ❯ &nbsp;One command dev install: `make`<br>
+ &nbsp;&nbsp; ❯ &nbsp;Heroku deploys for frontend and backend<br>
+ &nbsp;&nbsp; ❯ &nbsp;Email templates + helpers<br>
+ &nbsp;&nbsp; ❯ &nbsp;Fast tests w/coverage (pytest)<br>
+ &nbsp;&nbsp; ❯ &nbsp;Hot reloading for local dev<br>
  
  
 &nbsp;<br>
