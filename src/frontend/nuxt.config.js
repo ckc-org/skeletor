@@ -136,6 +136,11 @@ export default {
         extend(config, ctx) {
         },
         publicPath: '/static/',
+        babel: {
+            plugins: [
+                '@babel/plugin-proposal-optional-chaining'
+            ]
+        },
         plugins: [
             new webpack.ProvidePlugin({
                 '_': 'lodash'
