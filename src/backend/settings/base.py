@@ -13,6 +13,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 # Django
 # =============================================================================
 ALLOWED_HOSTS = ['*']
+ADMINS = os.environ.get("ADMINS")
 USE_X_FORWARDED_HOST = True
 
 SITE_ID = 1

@@ -69,3 +69,17 @@ SERVER_EMAIL = os.environ.get('SERVER_EMAIL', DEFAULT_FROM_EMAIL)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
+
+
+# =============================================================================
+# Logging
+# =============================================================================
+LOGGING['handlers']['mail_admins'] = {
+    'level': 'ERROR',
+    'class': 'django.utils.log.AdminEmailHandler',
+}
+LOGGING['django.request'] = {
+    'handlers': ['mail_admins'],
+    'level': 'ERROR',
+    'propagate': False,
+}
