@@ -13,7 +13,11 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 # Django
 # =============================================================================
 ALLOWED_HOSTS = ['*']
-ADMINS = os.environ.get("ADMINS")
+# Example admins env var (semi-colon separated entries with name and
+# email separated by comma)
+#
+#   Admin Name,admin@test.com; Admin Name 2,admin2@test.com
+ADMINS = [admin.split(",") for admin in os.environ.get("ADMINS", "").split(";")]
 USE_X_FORWARDED_HOST = True
 
 SITE_ID = 1
