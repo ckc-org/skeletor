@@ -1,7 +1,3 @@
-# Template
-This is a template. While not all sections are necessary, depending on the size and complexity of the PR,
-more information is better. 
-
 # @ mention of reviewers
 ...
 
