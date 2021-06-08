@@ -19,9 +19,7 @@
     }
   },
   "addons": [
-    "heroku-postgresql",
-    "sendgrid:starter",
-    "cloudcube:free"
+    "heroku-postgresql"
   ],
   "buildpacks": [
     {
