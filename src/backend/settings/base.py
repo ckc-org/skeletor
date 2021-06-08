@@ -34,6 +34,7 @@ THIRD_PARTY_APPS = (
     'django_extensions',
     'corsheaders',
     'dj_rest_auth',
+    'ckc',
 )
 OUR_APPS = (
     'users',
