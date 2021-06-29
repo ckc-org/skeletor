@@ -31,6 +31,14 @@ if cloudcube_url:
     AWS_DEFAULT_ACL = os.environ.get('AWS_DEFAULT_ACL', 'private')
     AWS_QUERYSTRING_AUTH = False
 
+    
+# =============================================================================
+# Monitoring/analyzing process
+# =============================================================================
+INSTALLED_APPS += ("scout_apm.django",)
+SCOUT_NAME = f"{DOMAIN}"
+
+    
 # =============================================================================
 # Fix static files/paths
 # =============================================================================

@@ -20,3 +20,6 @@ whitenoise==5.1.0
 # Email
 django-anymail==8.1
 django-templated-email==2.3.0
+
+# Monitoring
+scout-apm==2.19.0
