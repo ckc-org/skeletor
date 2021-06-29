@@ -7,7 +7,7 @@ SITE_DOMAIN = os.environ.get('SITE_DOMAIN', f'https://{HEROKU_APP_NAME}.herokuap
 assert SITE_DOMAIN or HEROKU_APP_NAME, "SITE_DOMAIN or at least HEROKU_APP_NAME must be defined"
 
 # Remove protocol from domain, if given
-DOMAIN = DOMAIN.replace('http://', '').replace('https://', '').replace("/", "")
+DOMAIN = SITE_DOMAIN.replace('http://', '').replace('https://', '').replace("/", "")
 SITE_NAME = DOMAIN
 
 SESSION_COOKIE_DOMAIN = DOMAIN
