@@ -1,5 +1,7 @@
 FROM python:3.8.2
 
+# gcc, build-essential, python-setuptools for python installation help
+# graphviz, libgraphviz-dev for making diagrams from models
 RUN apt-get update && apt-get install -yy gcc build-essential python-setuptools graphviz libgraphviz-dev
 
 ENV PYTHONUNBUFFERED 1
@@ -7,9 +9,6 @@ ENV PYTHONUNBUFFERED 1
 ADD requirements.dev.txt .
 ADD requirements.txt .
 RUN pip install -r requirements.dev.txt
-
-# Install inotify for gunicorn to nicely reload things..
-RUN apt-get update && apt-get install -y inotify-tools
 
 WORKDIR /app
 

@@ -10,7 +10,12 @@ assert SITE_DOMAIN or HEROKU_APP_NAME, "SITE_DOMAIN or at least HEROKU_APP_NAME 
 DOMAIN = SITE_DOMAIN.replace('http://', '').replace('https://', '').replace("/", "")
 SITE_NAME = DOMAIN
 
+# =============================================================================
+# Cookies/auth
+# =============================================================================
 SESSION_COOKIE_DOMAIN = DOMAIN
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = 'Strict'
 
 # =============================================================================
 # SSL
@@ -37,14 +42,14 @@ if cloudcube_url:
     AWS_DEFAULT_ACL = os.environ.get('AWS_DEFAULT_ACL', 'private')
     AWS_QUERYSTRING_AUTH = False
 
-    
+
 # =============================================================================
 # Monitoring/analyzing process
 # =============================================================================
 INSTALLED_APPS += ("scout_apm.django",)
 SCOUT_NAME = f"{DOMAIN}"
 
-    
+
 # =============================================================================
 # Fix static files/paths
 # =============================================================================

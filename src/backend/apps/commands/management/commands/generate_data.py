@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 from django.db import IntegrityError
@@ -14,7 +15,7 @@ class Command(BaseCommand):
         # Create stuff here!
 
         try:
-            User.objects.create_superuser('admin', 'admin@admin.com', 'admin')
+            User.objects.create_superuser('admin@admin.com', 'admin')
             print('Made admin user.')
         except IntegrityError:
             print('Admin user already exists!')

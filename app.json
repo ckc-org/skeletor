@@ -1,5 +1,5 @@
 {
-  "name": "{{ project_name }}",
+  "name": "new_project",
   "scripts": {
     "postdeploy": "bin/heroku/setup",
     "pr-predestroy": "bin/heroku/teardown"
@@ -20,7 +20,8 @@
   },
   "addons": [
     "heroku-postgresql",
-    "scout:free"
+    "heroku-redis",
+    "scout:free",
   ],
   "buildpacks": [
     {

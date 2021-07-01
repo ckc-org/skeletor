@@ -17,11 +17,11 @@
                                         {{ errors.detail }}
                                     </v-alert>
 
-                                    <v-text-field v-model="form.username"
-                                                  label="Username"
-                                                  name="username"
-                                                  :error="!!errors.username"
-                                                  :error-messages="errors.username"
+                                    <v-text-field v-model="form.email"
+                                                  label="Email"
+                                                  name="email"
+                                                  :error="!!errors.email"
+                                                  :error-messages="errors.email"
                                                   prepend-icon="person"
                                                   type="text"></v-text-field>
                                     <v-text-field v-model="form.password"
@@ -36,7 +36,7 @@
                                 </v-card-text>
 
                                 <v-card-actions>
-                                    <nuxt-link to="/passwordReset">Forgot username/password?</nuxt-link>
+                                    <nuxt-link to="/passwordReset">Forgot password?</nuxt-link>
                                     <v-spacer></v-spacer>
                                     <v-btn type="submit">Login</v-btn>
                                 </v-card-actions>
@@ -54,7 +54,7 @@
             return {
                 errors: {},
                 form: {
-                    username: '',
+                    email: '',
                     password: ''
                 },
                 remember_me: true
@@ -70,9 +70,17 @@
                     // IMPORTANT! Do our initializing! (from our auth plugin)
                     this.$auth.ctx.app.project_initialize()
 
+                    // TODO: We need to make a good client side initialization spot...
+                    // Connect to websocket and start receiving store commits from backend
+                    this.$store.dispatch('realtime/start_listening')
+
                     this.errors = {}
                 } catch (e) {
-                    this.errors = e.response.data
+                    if(e.response) {
+                        this.errors = e.response.data
+                    } else {
+                        console.error(e)
+                    }
 
                     // focus on in the input to easily re-enter password
                     this.$refs.password.focus()

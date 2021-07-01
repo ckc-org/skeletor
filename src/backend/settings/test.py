@@ -19,3 +19,10 @@ WHITENOISE_AUTOREFRESH = False
 
 # Make password hashing faster
 PASSWORD_HASHERS = ('django.contrib.auth.hashers.MD5PasswordHasher',)
+
+# Don't actually hit Redis layers..
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
