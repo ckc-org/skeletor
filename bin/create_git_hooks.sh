@@ -1,10 +1,10 @@
 #!/bin/sh
-dir=$(pwd)
-hooks_dir=${dir}/bin/git_hooks/
-FILES=${hooks_dir}*
-for f in ${FILES}
-    do
+
+# This is executed from the root repo dir usually
+
+for f in ./bin/git_hooks/*
+do
     mkdir -p .git/hooks/
-    ln -sf "${hooks_dir}${f##*/}" "${dir}/.git/hooks/${f##*/}"
-    echo "Creating symlink for hook(s): ${f##*/}"
+    echo "making git hook -> ${f} into .git/hooks/${f##*/}"
+    ln -sf "${f}" ".git/hooks/${f##*/}"
 done
