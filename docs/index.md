@@ -1,4 +1,4 @@
-# General documentation for {{ project_name }}
+# General documentation for new_project
 
 ## CircleCI testing script
 `circle.yml` in the base directory of this project is, by default, built for speed. It does the least possible to get the job of testing done. It is

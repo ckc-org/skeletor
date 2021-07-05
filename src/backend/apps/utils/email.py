@@ -30,8 +30,8 @@ def _send_mail(template_name, to_emails, from_email=None, **kwargs):
 
     _send_mail('welcome', [test@test.com], IMAGES={"new_image": "images/test.jpg"}
 
-    {# and then in our template.. #}
-    <img src="{{ IMAGES.new_image }}"/>
+    
+    <img src=""/>
 
     :param template_name:
     :param to_emails:

@@ -12,7 +12,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.backend
-    command: gunicorn wsgi:application -b :8000 -b :80 --reload
+    command: uvicorn asgi:application --host 0.0.0.0 --port 8000 --reload
     environment:
       # To make things play nice with dj-database-url
       - DATABASE_URL=postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
@@ -22,7 +22,6 @@ services:
       - ./src/frontend/build:/frontend:cached
     ports:
       - 8000:8000
-      - 80:80
     depends_on:
       - db
     stdin_open: true
@@ -59,3 +58,16 @@ services:
     depends_on:
       - django
     logging: *default-logging
+
+  redis:
+    image: redis
+    env_file: .env
+    ports:
+        - 6379:6379
+    logging: *default-logging
+    volumes:
+        - ./var/redis:/data
+        - ./docker/redis.conf:/redis.conf
+        - ./docker/sysctl.conf:/etc/sysctl.conf
+    restart: unless-stopped
+    command: redis-server /redis.conf --bind 0.0.0.0

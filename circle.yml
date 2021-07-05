@@ -59,7 +59,7 @@ jobs:
                         timeout 60 ./wait_for_db.sh;
 
             - run: cd src/backend; py.test --create-db --cov=.
-                  --cov-report html:/home/circleci/project/artifacts/coverage --cov-report
+                  --cov-report html:/home/circleci/project/artifacts/coverage --cov-report --cov-fail-under=100
                   annotate:/home/circleci/project/artifacts/coverage_annotated tests/
 
             - run:

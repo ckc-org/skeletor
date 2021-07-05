@@ -40,6 +40,7 @@ THIRD_PARTY_APPS = (
     'corsheaders',
     'dj_rest_auth',
     'ckc',
+    'channels',
 )
 OUR_APPS = (
     'users',
@@ -82,15 +83,16 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'wsgi.application'
+ASGI_APPLICATION = 'asgi.application'
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-SECRET_KEY = os.environ.get("SECRET_KEY", '{{ secret_key }}')
+SECRET_KEY = os.environ.get("SECRET_KEY", '5p&8i^z@#%nxkp&z)o%=m$51-hz&u7q^^ldtdh9ywcl(@@6ds+')
 LOGIN_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'users.User'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
 # =============================================================================
@@ -124,7 +126,6 @@ else:  # pragma: no cover
 # =============================================================================
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
@@ -138,9 +139,12 @@ REST_FRAMEWORK = {
 
 
 # =============================================================================
-# OAuth
+# Security/cookies
 # =============================================================================
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = ('http://localhost:3000',)
+CORS_ALLOW_CREDENTIALS = True
+
+SESSION_COOKIE_HTTPONLY = True
 
 
 # =============================================================================
@@ -165,6 +169,7 @@ MEDIA_URL = '/media/'
 # dj rest auth
 # =============================================================================
 REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'users.serializers.CustomUserDetailsSerializer',
     'PASSWORD_RESET_SERIALIZER': 'users.serializers.PasswordResetCustomEmailSerializer',
 }
 
@@ -186,7 +191,7 @@ DEFAULT_EMAIL_CONTEXT = {
     'DEFAULT_FROM_EMAIL': DEFAULT_FROM_EMAIL,
 
     # Keys prepended with IMAGE_ are replaced with InlineImages when generating emails
-    # then used like so in templates: <img src="{{ IMAGE_EXAMPLE }}">
+    # then used like so in templates: <img src="">
     # 'IMAGE_EXAMPLE': 'images/example.png',
 }
 
@@ -194,6 +199,20 @@ TEMPLATED_EMAIL_EMAIL_MESSAGE_CLASS = 'anymail.message.AnymailMessage'
 TEMPLATED_EMAIL_EMAIL_MULTIALTERNATIVES_CLASS = 'anymail.message.AnymailMessage'
 TEMPLATED_EMAIL_TEMPLATE_DIR = 'emails/'
 TEMPLATED_EMAIL_FILE_EXTENSION = 'html'  # for nice highlighting, instead of .email ending
+
+
+# ============================================================================
+# Channels
+# ============================================================================
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [os.environ.get('REDIS_URL', 'redis://redis:6379')],
+        },
+    },
+}
+
 
 # =============================================================================
 # Logging

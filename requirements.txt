@@ -1,5 +1,4 @@
-Django==3.1.8
-gunicorn==20.0.4
+Django==3.2.4
 django-cors-headers==3.7.0
 django-extensions==2.2.9
 dj-rest-auth==2.1.7
@@ -23,3 +22,10 @@ django-templated-email==2.3.0
 
 # Monitoring
 scout-apm==2.19.0
+
+# realtime
+channels==3.0.3
+uvicorn[standard]==0.14.0
+Twisted==20.3.0
+channels_redis==3.2.0
+service-identity==21.1.0

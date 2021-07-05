@@ -40,7 +40,7 @@ Finally, remove this section from the README and continue below!
 
 
 
-# {{ project_name }}
+# new_project
 
 
 ## installation

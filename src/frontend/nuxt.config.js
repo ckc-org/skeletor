@@ -83,13 +83,14 @@ export default {
         strategies: {
             local: {
                 endpoints: {
-                    login: { url: '/api/auth/login/', method: 'post', propertyName: 'key' },
+                    login: { url: '/api/auth/login/', method: 'post' },
                     logout: { url: '/api/auth/logout/', method: 'post' },
                     user: { url: '/api/auth/user/', propertyName: false },
                 },
-                tokenType: 'Token',
-                tokenName: 'Authorization'
             }
+        },
+        cookie: {
+            maxAge: 60 * 60 * 24  // one day
         },
         redirect: {
             login: '/login',
