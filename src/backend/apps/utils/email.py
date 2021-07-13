@@ -25,13 +25,14 @@ def _send_mail(template_name, to_emails, from_email=None, **kwargs):
     """
     Sends an email using a template (leveraging django-templated-email)
 
-    If you need to attach extra images to the email, add them to the IMAGES dictionary
-    in context, like...
-
-    _send_mail('welcome', [test@test.com], IMAGES={"new_image": "images/test.jpg"}
-
+    If you need to attach extra images to the email, add them to kwargs
+    prefixed with `IMAGE_`, like...
     
-    <img src=""/>
+        _send_mail('welcome', [test@test.com], IMAGE_TEST="images/test.jpg"}
+        
+        {# and then in our template.. #}
+        
+        <img src="{{ IMAGE_TEST }}"/>
 
     :param template_name:
     :param to_emails:
