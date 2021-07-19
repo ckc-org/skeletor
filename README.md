@@ -53,7 +53,7 @@ $ make
 
 ## development
 
-default login is "admin" password "admin"
+default login is "admin@admin.com" password "admin"
 
 For local development (hot reloading, etc.):
 http://localhost:3000
