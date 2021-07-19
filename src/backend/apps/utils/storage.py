@@ -10,3 +10,5 @@ class PublicStorage(Storage):
     
 class PrivateStorage(Storage):
     default_acl = "private"
+    secure_urls = True
+    querystring_auth = True
