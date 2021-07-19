@@ -41,6 +41,7 @@ if cloudcube_url:
     AWS_STORAGE_BUCKET_NAME = cloudcube_bucket
     AWS_DEFAULT_ACL = os.environ.get('AWS_DEFAULT_ACL', 'private')
     AWS_QUERYSTRING_AUTH = False
+    AWS_S3_SIGNATURE_VERSION = "s3v4"
 
 
 # =============================================================================
