@@ -7,23 +7,26 @@ module.exports = {
         'plugin:vue/essential',
     ],
     parserOptions: {
-        ecmaVersion: 11,
+        ecmaVersion: 2020,
         sourceType: 'module'
     },
     plugins: [
         'vue'
     ],
-    ignorePatterns: [
-        '*.md',
-        'node_modules/*',
-        'build/*'
-    ],
+    ignorePatterns: ['*.md'],
     rules: {
-        // indent: ['off', 4],
+        indent: ['off', 2],
+        'no-unused-vars': ['warn'],
         'func-call-spacing': ['error', 'never'],
-        'vue/script-indent': ['error', 4, {baseIndent: 0}],
-        'vue/valid-v-for': ['off'],
-        'vue/no-use-v-if-with-v-for': ['off'],
-        'vue/require-v-for-key': ['off'],
+        'vue/script-indent': ['error', 2, {baseIndent: 1}],
+        'vue/valid-v-for': ['warn'],
+        'vue/no-use-v-if-with-v-for': ['warn'],
+        'vue/require-v-for-key': ['error'],
+        'vue/no-arrow-functions-in-watch': ['error'],
+        'vue/no-async-in-computed-properties': ['error'],
+        'vue/no-dupe-keys': ['warn'],
+        'vue/no-dupe-v-else-if': ['warn'],
+        'vue/require-prop-types': ['warn'],
+        'vue/prop-name-casing': ['warn', 'snake_case']
     },
 }
