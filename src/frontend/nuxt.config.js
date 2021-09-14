@@ -1,5 +1,6 @@
 import webpack from 'webpack'
 import head_config from './head.config'
+import vuetify_config from './vuetify.config'
 
 export const getBrowserBaseURL = () => {
   // Production
@@ -91,26 +92,7 @@ export default {
   ** https://vuetifyjs.com/en/features/theme/#customizing
   ** https://github.com/nuxt-community/vuetify-module
   */
-  vuetify: {
-    customVariables: ['~/assets/variables.scss'],
-    treeShake: true,
-    theme: {
-      options: {
-        customProperties: true, // Maps all theme colors to css variables (i.e. background: var(--v-primary-base);)
-      },
-      themes: {
-        light: {
-          primary: '#5b8c5a',
-          secondary: '#424242',
-          accent: '#82B1FF',
-          error: '#ff2121',
-          info: '#2196F3',
-          success: '#4CAF50',
-          warning: '#FFC107',
-        }
-      }
-    }
-  },
+  vuetify: vuetify_config,
   router: {
     mode: process.env.NODE_ENV === 'production' ? 'hash' : 'history',
     middleware: ['auth']
