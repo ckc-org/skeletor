@@ -20,7 +20,7 @@ module.exports = {
     indent: ['warn', 2],
     'no-unused-vars': ['warn'],
     'func-call-spacing': ['error', 'never'],
-    'object-curly-spacing': ['warn', 'always', { "objectsInObjects": false }],
+    'object-curly-spacing': ['warn', 'always', { "objectsInObjects": false, "arraysInObjects": false }],
     "prefer-destructuring": ["error", {
       "array": true,
       "object": true
