@@ -1,10 +1,17 @@
 #!/bin/sh
 red="\033[0;31m"
+green="\033[0;32m"
 color_off="\033[m"
-command=`docker-compose exec django flake8`
-if [ ! -z "${command}" ]
+
+printf "\n==================== Running flake8 ====================\n"
+flake8=`docker run --rm -v $(pwd)/src/backend:/app trailhead_django /usr/local/bin/flake8`
+
+if [ ! -z "${flake8}" ]
 then
-    echo "${red} ***  There were style issues with your push, please fix before pushing!  *** ${color_off}"
-    echo "${command}"
+    echo "${red} ***  There were style issues on the backend. Please fix before pushing!  *** ${color_off}"
+    echo "${flake8}"
     exit 1
 fi
+
+echo "${green} ✅ Passed flake8 check ${color_off}"
+

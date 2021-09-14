@@ -10,7 +10,10 @@
         "start": "nuxt start",
         "generate": "nuxt generate",
         "heroku-postbuild": "cd src/frontend && nuxt generate",
-        "test": "jest"
+        "test": "jest",
+        "lint": "eslint . --ext .js,.vue",
+        "lint-errors-only": "eslint . --quiet --ext .js,.vue",
+        "lint-fix": "./node_modules/.bin/eslint . --fix --ext .js,.vue"
     },
     "dependencies": {
         "@nuxtjs/auth": "^4.9.1",
@@ -28,11 +31,6 @@
         "@nuxt/types": "^2.15.3",
         "@testing-library/vue": "^5.6.1",
         "eslint": "^7.22.0",
-        "eslint-config-standard": "^16.0.2",
-        "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-node": "^11.1.0",
-        "eslint-plugin-promise": "^4.3.1",
-        "eslint-plugin-standard": "^4.1.0",
         "eslint-plugin-vue": "^7.7.0",
         "jest": "^26.6.3",
         "sass-loader": "^10.1.1",

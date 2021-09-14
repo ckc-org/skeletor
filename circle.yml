@@ -52,6 +52,11 @@ jobs:
                       - /home/circleci/.nvm
                       - src/frontend/build/generated
                       - src/frontend/node_modules
+
+            - run:
+                  name: eslint
+                  command: cd src/frontend && eslint . --ext .js,.vue
+
             - run:
                   name: Wait for db
                   command: echo 'while ! nc -z localhost 5432; do sleep 1 && echo hi; done;' > wait_for_db.sh;
