@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="this.$auth.loggedIn">
-      you are logged in!
+      You are logged in!
     </div>
     <v-btn
       @click="$auth.logout()"
