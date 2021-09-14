@@ -20,12 +20,13 @@ module.exports = {
     indent: ['warn', 2],
     'no-unused-vars': ['warn'],
     'func-call-spacing': ['error', 'never'],
-    // "prefer-destructuring": ["error", {
-    //   "array": true,
-    //   "object": true
-    // }, {
-    //   "enforceForRenamedProperties": false
-    // }],
+    'object-curly-spacing': ['warn', 'always', { "objectsInObjects": false }],
+    "prefer-destructuring": ["error", {
+      "array": true,
+      "object": true
+    }, {
+      "enforceForRenamedProperties": false
+    }],
 
     //Vue
     'vue/script-indent': ['error', 2, { baseIndent: 0 }],

@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     submit() {
-      this.$axios.post('/api/auth/users/reset_password/', {email: this.email})
+      this.$axios.post('/api/auth/users/reset_password/', { email: this.email })
         .then(() => {
           this.successful = true
           this.errors = {}

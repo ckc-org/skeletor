@@ -6,7 +6,7 @@ export const state = () => ({
 })
 
 export const actions = {
-  start_listening({commit, state}) {
+  start_listening({ commit, state }) {
     if(state.initiated) {
       console.warn("Realtime listening already initiated!")
       return
