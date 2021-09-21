@@ -7,7 +7,7 @@ Storage = get_storage_class()
 class PublicStorage(Storage):
     default_acl = "public-read"
 
-    
+
 class PrivateStorage(Storage):
     default_acl = "private"
     secure_urls = True
