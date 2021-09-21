@@ -22,24 +22,24 @@ def password_reset(to: User, uid, token):
 
 
 def _send_mail(template_name, to_emails, from_email=None, **kwargs):
-    """
-    Sends an email using a template (leveraging django-templated-email)
-
-    If you need to attach extra images to the email, add them to kwargs
-    prefixed with `IMAGE_`, like...
-    
-        _send_mail('welcome', [test@test.com], IMAGE_TEST="images/test.jpg"}
-        
-        {# and then in our template.. #}
-        
-        <img src="{{ IMAGE_TEST }}"/>
-
-    :param template_name:
-    :param to_emails:
-    :param from_email:
-    :param kwargs: additional context to insert into email template
-    :return: email result
-    """
+    # """
+    # Sends an email using a template (leveraging django-templated-email)
+    #
+    # If you need to attach extra images to the email, add them to kwargs
+    # prefixed with `IMAGE_`, like...
+    #
+    #     _send_mail('welcome', [test@test.com], IMAGE_TEST="images/test.jpg"}
+    #
+    #     {# and then in our template.. #}
+    #
+    #     <img src="{{ IMAGE_TEST }}"/>
+    #
+    # :param template_name:
+    # :param to_emails:
+    # :param from_email:
+    # :param kwargs: additional context to insert into email template
+    # :return: email result
+    # """
     context = dict(**settings.DEFAULT_EMAIL_CONTEXT)
     if kwargs:  # pragma: no cover
         context.update(kwargs)
