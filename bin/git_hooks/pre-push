@@ -4,7 +4,7 @@ green="\033[0;32m"
 color_off="\033[m"
 
 printf "\n==================== Running flake8 ====================\n"
-flake8=`docker run --rm -v $(pwd)/src/backend:/app trailhead_django /usr/local/bin/flake8`
+flake8=`docker run --rm -v $(pwd)/src/backend:/app $(basename $(pwd))_django /usr/local/bin/flake8`
 
 if [ ! -z "${flake8}" ]
 then
