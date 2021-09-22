@@ -1,4 +1,4 @@
-Django==3.2.4
+Django==3.2.5
 django-cors-headers==3.7.0
 django-extensions==2.2.9
 dj-rest-auth==2.1.7
