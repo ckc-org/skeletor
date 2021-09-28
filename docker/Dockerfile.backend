@@ -5,6 +5,7 @@ FROM python:3.8.2
 RUN apt-get update && apt-get install -yy gcc build-essential python-setuptools graphviz libgraphviz-dev
 
 ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
 
 ADD requirements.dev.txt .
 ADD requirements.txt .
