@@ -14,6 +14,7 @@ export const getBrowserBaseURL = () => {
 }
 
 export default {
+  ssr: false,
   /*
   ** Headers of the page
   */
