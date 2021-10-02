@@ -20,8 +20,7 @@
   },
   "addons": [
     "heroku-postgresql",
-    "heroku-redis",
-    "scout:free",
+    "heroku-redis"
   ],
   "buildpacks": [
     {
