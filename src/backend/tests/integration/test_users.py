@@ -38,5 +38,26 @@ class UserAndLoginTests(CkcAPITestCase):
 
     def test_login_view_works(self):
         UserFactory(email="test@test.com", password="test")
+
+        resp = self.client.post(reverse("rest_login"), {"email": "test@test.com", "password": "wrong password"})
+        assert resp.status_code == 400
+
         resp = self.client.post(reverse("rest_login"), {"email": "test@test.com", "password": "test"})
         assert resp.status_code == 200
+        
+    def test_user_login_and_remember_me_sets_expiry_properly(self):
+        user = UserFactory(email="test@test.com", password="test")
+        data = {
+            'email': user.email,
+            'password': 'test',
+            'remember_me': True,
+        }
+        resp = self.client.post(reverse("rest_login"), data=data)
+        assert resp.status_code == 200
+        assert resp.cookies['sessionid']['max-age'] == 1209600
+
+        data['remember_me'] = False
+        resp = self.client.post(reverse("rest_login"), data=data)
+        assert resp.status_code == 200
+        assert resp.cookies['sessionid']['max-age'] == ''
+
