@@ -29,6 +29,7 @@ module.exports = {
     }],
 
     //Vue
+    'vue/no-v-html': ['error'],
     'vue/script-indent': ['error', 2, { baseIndent: 0 }],
     'vue/html-indent': ['error', 2, { baseIndent: 1 }],
     'vue/valid-v-for': ['warn'],
