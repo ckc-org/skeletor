@@ -12,7 +12,7 @@ User = get_user_model()
 class PasswordResetFormCustomEmail(PasswordResetForm):
 
     def send_mail(self, subject_template_name, email_template_name, context, from_email, to_email, **kwargs):
-        email.password_reset(to_email, context['uid'], context['token'])
+        email.password_reset(to_email, context['uid'], context['token'])  # pragma: no cover
 
 
 class PasswordResetCustomEmailSerializer(PasswordResetSerializer):
