@@ -36,7 +36,6 @@ module.exports = {
     "space-in-parens": ["error", "never"],
     "template-curly-spacing": ["error", "always"],
 
-
     // Vue
     'vue/script-indent': ['error', 2, { baseIndent: 0 }],
     'vue/html-indent': ['error', 2, { baseIndent: 1 }],
@@ -49,6 +48,7 @@ module.exports = {
     'vue/no-dupe-v-else-if': ['warn'],
     'vue/require-prop-types': ['warn'],
     'vue/prop-name-casing': ['warn', 'snake_case'],
-    'vue/valid-v-slot': ['off']
+    'vue/valid-v-slot': ['off'],
+    'vue/no-v-html': ['error'],
   }
 }
