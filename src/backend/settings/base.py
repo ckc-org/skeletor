@@ -22,7 +22,7 @@ USE_X_FORWARDED_HOST = True
 
 SITE_ID = 1
 
-SITE_DOMAIN = os.environ.get('SITE_DOMAIN', 'http://localhost')
+SITE_DOMAIN = os.environ.get('SITE_DOMAIN', 'http://localhost:8000')
 
 THIRD_PARTY_APPS = (
     'django.contrib.sites',
