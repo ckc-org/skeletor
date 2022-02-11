@@ -26,6 +26,6 @@ scout-apm==2.19.0
 # realtime
 channels==3.0.3
 uvicorn[standard]==0.14.0
-Twisted==20.3.0
+Twisted==22.1.0
 channels_redis==3.2.0
 service-identity==21.1.0
