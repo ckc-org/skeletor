@@ -1,7 +1,7 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from rest_framework import views, status
 from rest_framework.exceptions import ValidationError
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from users.serializers import LoginSerializer
@@ -34,3 +34,11 @@ class LoginView(views.APIView):
             return Response(status=status.HTTP_200_OK)
         else:
             raise ValidationError({"non_field_errors": ["Incorrect login information."]})
+
+
+class LogoutView(views.APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, format=None):
+        logout(request)
+        return Response(status=status.HTTP_200_OK)

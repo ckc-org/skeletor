@@ -6,7 +6,7 @@ from django.urls import path
 from django.views.generic import TemplateView
 # from rest_framework import routers
 
-from users.views import LoginView
+from users.views import LoginView, LogoutView
 
 
 # router = routers.DefaultRouter()
@@ -19,6 +19,7 @@ urlpatterns = [
     # TODO: Add to api docs ??
     # We're overriding dj-rest-auth login endpoint to set our own cookie with its own expiry
     path('api/auth/login/', LoginView.as_view(), name="rest_login"),
+    path('api/auth/logout/', LogoutView.as_view(), name="rest_logout"),
 
     path('api/auth/', include('dj_rest_auth.urls')),
 
