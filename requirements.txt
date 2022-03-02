@@ -29,3 +29,7 @@ uvicorn[standard]==0.14.0
 Twisted==20.3.0
 channels_redis==3.2.0
 service-identity==21.1.0
+
+# Logging
+colorlog==6.6.0
+slack-logger==0.3.1

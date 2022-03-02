@@ -220,9 +220,16 @@ CHANNEL_LAYERS = {
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'colored': {
+            '()': 'colorlog.ColoredFormatter',
+            'format': "%(log_color)s%(levelname)-8s%(reset)s %(white)s%(message)s",
+        }
+    },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
+            'formatter': 'colored',
         },
     },
     'loggers': {
@@ -233,10 +240,30 @@ LOGGING = {
         'django': {
             'handlers': ['console'],
             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': False,
+        },
+        'django.server': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': False,
+        },
+        'uvicorn': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': False,
         },
     },
 }
 
+SLACK_WEBHOOK_URL = os.getenv('SLACK_WEBHOOK_URL', '')
+if SLACK_WEBHOOK_URL:
+    LOGGING['handlers']['slack'] = {
+        'class': 'utils.logging.CustomSlackHandler',
+        'level': os.getenv('DJANGO_SLACK_LOG_LEVEL', 'ERROR'),
+    }
+
+    LOGGING['loggers']['django']['handlers'] = ['console', 'slack']
+    LOGGING['loggers']['']['handlers'] = ['console', 'slack']
 
 # =============================================================================
 # Debug
