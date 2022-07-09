@@ -1,13 +1,12 @@
 -r requirements.txt
 
-bpython==0.21
-factory-boy==3.2.0
-flake8==3.8.4
-responses==0.12.1
+bpython==0.22.1
+factory-boy==3.2.1
+flake8==4.0.1
+responses==0.21.0
 
-pytest==6.2.2
-pytest-cov==2.10.1
-pytest-django==4.1.0
-pytest-pythonpath==0.7.3
+pytest==7.1.2
+pytest-cov==3.0.0
+pytest-django==4.5.2
 pytest-sugar==0.9.4
-pytest-xdist==2.2.1
+pytest-xdist==2.5.0

@@ -1,4 +1,4 @@
-FROM python:3.8.2
+FROM python:3.10.5
 
 # gcc, build-essential, python-setuptools for python installation help
 # graphviz, libgraphviz-dev for making diagrams from models

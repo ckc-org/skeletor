@@ -1,33 +1,33 @@
-Django==3.2.14
-django-cors-headers==3.7.0
-django-extensions==2.2.9
-dj-rest-auth==2.1.7
-djangorestframework==3.12.4
-django-ckc==0.0.5
+Django==4.0.6
+django-cors-headers==3.13.0
+django-extensions==3.1.5
+dj-rest-auth==2.2.4
+djangorestframework==3.13.1
+django-ckc==0.0.7
 
 # Heroku staging debug tools
-django-debug-toolbar==3.2.1
+django-debug-toolbar==3.5.0
 django-querycount==0.7.0
 
 # Database
 dj-database-url==0.5.0
-psycopg2-binary==2.8.6
+psycopg2-binary==2.9.3
 
 # Storage
-whitenoise[brotli]==5.2.0
+whitenoise[brotli]==6.2.0
 
 # Email
-django-anymail==8.1
-django-templated-email==2.3.0
+django-anymail==8.6
+django-templated-email==3.0.0
 
 # Monitoring
-scout-apm==2.19.0
+scout-apm==2.25.1
 
 # realtime
-channels==3.0.3
-uvicorn[standard]==0.14.0
-Twisted==20.3.0
-channels_redis==3.2.0
+channels==3.0.5
+uvicorn[standard]==0.18.2
+Twisted==22.4.0
+channels_redis==3.4.0
 service-identity==21.1.0
 
 # Logging

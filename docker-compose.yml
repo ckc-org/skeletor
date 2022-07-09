@@ -19,7 +19,7 @@ services:
     env_file: .env
     volumes:
       - ./src/backend:/app
-      - ./src/frontend/build:/frontend:cached
+      - ./src/frontend/build:/frontend:delegated
     ports:
       - 8000:8000
     depends_on:

@@ -1,6 +1,5 @@
 init:
 	@./bin/fresh_install.sh
-	@./bin/create_git_hooks.sh
 
 reset:
 	@./bin/reset_db.sh
