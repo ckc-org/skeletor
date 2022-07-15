@@ -1,18 +1,17 @@
 import os
-from logging.handlers import HTTPHandler
-from urllib.parse import urlparse
+from logging import LogRecord
 
 from slack_logger import SlackHandler
 
 
 class CustomSlackHandler(SlackHandler):
-    def __init__(self, username=None, icon_url=None, icon_emoji=None, channel=None, mention=None):
+    """
+    Override the default handler to insert our own URL
+    """
+    def __init__(self, **kwargs):
         url = os.getenv('SLACK_WEBHOOK_URL')
-        o = urlparse(url)
-        is_secure = o.scheme == 'https'
-        HTTPHandler.__init__(self, o.netloc, o.path, method="POST", secure=is_secure)
-        self.username = username
-        self.icon_url = icon_url
-        self.icon_emoji = icon_emoji
-        self.channel = channel
-        self.mention = mention and mention.lstrip('@')
+        super().__init__(url, **kwargs)
+
+    def format(self, record: LogRecord) -> str:
+        """Surround our log message in a "code block" for styling."""
+        return f"```{super().format(record)}```"
