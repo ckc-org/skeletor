@@ -1,6 +1,6 @@
 import os
 
-from django.conf.urls import url
+from django.urls import path
 from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
 
@@ -17,7 +17,7 @@ application = ProtocolTypeRouter({
 
     "websocket": AuthMiddlewareStack(
         URLRouter([
-            url(r"^ws/$", RealtimeConsumer.as_asgi()),
+            path("ws/", RealtimeConsumer.as_asgi()),
         ])
     ),
 })
