@@ -4,13 +4,13 @@
 # Script overview:
 #     take input PROJECT_NAME if not provided to shell script already
 #
-#     take input PREFERRED_FRONTEND, default = 1
-#       PREFERRED_FRONTEND_WEB_VUEJS=1
-#       PREFERRED_FRONTEND_WEB_VUEJS_MOBILE_REACT_NATIVE=2
+#     take input FRONTEND, default = 1
+#       FRONTEND_WEB_VUEJS=1
+#       FRONTEND_WEB_VUEJS_MOBILE_REACT_NATIVE=2
 #
 #     git clone master into PROJECT_NAME
 #
-#     remove mobile dir if PREFERRED_FRONTEND_WEB_VUEJS
+#     remove mobile dir if FRONTEND_WEB_VUEJS
 #
 #     replace {{ project_name }} with PROJECT_NAME
 #
@@ -80,6 +80,7 @@ if [[ -z "$PROJECT_NAME" ]]; then
     exit 1
 fi
 
+# Choose a frontend
 cat << EOF
 
 Available frontends:
@@ -88,21 +89,23 @@ Available frontends:
 
 EOF
 
-PREFERRED_FRONTEND_WEB_VUEJS=1
-PREFERRED_FRONTEND_WEB_VUEJS_MOBILE_REACT_NATIVE=2
+FRONTEND_WEB_VUEJS=1
+FRONTEND_WEB_VUEJS_MOBILE_REACT_NATIVE=2
 
-read -p "Please enter your preferred frontend: ${green}" PREFERRED_FRONTEND
+read -p "Please enter your preferred frontend: ${green}" FRONTEND
 echo "${reset}"
 
 # Set default to 1 if no input given
-PREFERRED_FRONTEND=${PREFERRED_FRONTEND:-1}
+FRONTEND=${FRONTEND:-1}
 
-if [[ $PREFERRED_FRONTEND -gt 2 ]]; then
-    echo -e "\n${red}${bold}ERROR: Invalid PREFERRED_FRONTEND choice... must be 1 or 2!${reset}"
+if [[ $FRONTEND -gt 2 ]]; then
+    echo -e "\n${red}${bold}ERROR: Invalid FRONTEND choice... must be 1 or 2!${reset}"
     exit 2
 fi
 
-echo "Git cloning into directory ${green}'$PROJECT_NAME'${reset} with frontend choice ${green}#$PREFERRED_FRONTEND${reset}"
+
+# Clone repo
+echo "Git cloning into directory ${green}'$PROJECT_NAME'${reset} with frontend choice ${green}#$FRONTEND${reset}"
 
 git clone -b 73-install-script https://github.com/ckc-org/skeletor.git $PROJECT_NAME &> /dev/null
 if [ $? -ne 0 ]; then
@@ -110,17 +113,21 @@ if [ $? -ne 0 ]; then
     exit 3
 fi
 
-cd $PROJECT_NAME
+
+# Go to project directory OR exit if fail
+cd $PROJECT_NAME || exit 3
+
 
 # Remove opening of README, before "-------------" line
 cat README.md | sed '1,/^-----------------$/d' > README.md
+
 
 # Replace "{{ new_project }}" with $PROJECT_NAME
 grep -rl "{{ new_project }}" . | xargs sed -i "" -e "s@{{ new_project }}@$PROJECT_NAME@g"
 
 
 # Remove mobile dir if we don't need it
-if [[ $PREFERRED_FRONTEND == $PREFERRED_FRONTEND_WEB_VUEJS ]]; then
+if [[ $FRONTEND == "$FRONTEND_WEB_VUEJS" ]]; then
     rm -rf src/mobile
 fi
 
