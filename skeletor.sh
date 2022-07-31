@@ -72,15 +72,6 @@ $(echo $fancy_print_command) << EOF
 EOF
 
 
-
-#cat << EOF
-#
-#
-#Please provide a folder/project name:
-#
-#
-#EOF
-
 read -p "Please provide a folder/project name: ${green}" PROJECT_NAME
 echo "${reset}"
 
@@ -111,27 +102,29 @@ if [[ $PREFERRED_FRONTEND -gt 2 ]]; then
     exit 2
 fi
 
-if [[ $PREFERRED_FRONTEND == 2 ]]; then
-    echo -e "\n${red}${bold}ERROR: Fake out, we don't support React Native in skeletor yet ...!${reset}"
-    exit 2
-fi
-
 echo "Git cloning into directory ${green}'$PROJECT_NAME'${reset} with frontend choice ${green}#$PREFERRED_FRONTEND${reset}"
 
-git clone https://github.com/ckc-org/skeletor.git $PROJECT_NAME &> /dev/null
+git clone -b 73-install-script https://github.com/ckc-org/skeletor.git $PROJECT_NAME &> /dev/null
 if [ $? -ne 0 ]; then
     echo -e "\n${red}${bold}ERROR: Failed to clone git repo into ${PROJECT_NAME}${reset}"
     exit 3
 fi
 
-# remove mobile dir if PREFERRED_FRONTEND_WEB_VUEJS
+cd $PROJECT_NAME
 
-# replace {{ project_name }} shit
+# Remove opening of README, before "-------------" line
+cat README.md | sed '1,/^-----------------$/d' > README.md
 
-# remove readme top section
-
-# go into folder and run make
-
-# make should do all the stuff necessary for react, react native
+# Replace "{{ new_project }}" with $PROJECT_NAME
+grep -rl "{{ new_project }}" . | xargs sed -i "" -e "s@{{ new_project }}@$PROJECT_NAME@g"
 
 
+# Remove mobile dir if we don't need it
+if [[ $PREFERRED_FRONTEND == $PREFERRED_FRONTEND_WEB_VUEJS ]]; then
+    rm -rf src/mobile
+fi
+
+
+# Run Make
+echo -e "\n\n${green}${bold}Running Skeletor make...${reset}\n\n"
+make

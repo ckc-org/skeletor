@@ -39,8 +39,7 @@ Finally, remove this section from the README and continue below!
 -----------------
 
 
-
-# new_project
+# {{ new_project }}
 
 
 ## installation
