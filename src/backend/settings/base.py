@@ -258,7 +258,7 @@ LOGGING = {
 SLACK_WEBHOOK_URL = os.getenv('SLACK_WEBHOOK_URL', '')
 if SLACK_WEBHOOK_URL:
     LOGGING['handlers']['slack'] = {
-        'class': 'utils.logging.CustomSlackHandler',
+        'class': 'ckc.logging.CkcSlackHandler',
         'level': os.getenv('DJANGO_SLACK_LOG_LEVEL', 'ERROR'),
     }
 
