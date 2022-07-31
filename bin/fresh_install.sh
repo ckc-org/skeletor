@@ -12,14 +12,18 @@ ln -sf src/backend/manage.py .
 ln -sf src/frontend/package.json .
 ln -sf src/frontend/yarn.lock .
 
+# Make frontend build dir so we can volume it immediately (doesn't exist otherwise)
+mkdir -p src/frontend/build/
+
 # first deploy
 ./bin/deploy.sh
 
 # set django site url and such (useful for password reset emails, typically!)
-printf "\n\n * - * - * - * - * - * - * - * - *\n\n"
-printf "What is the hostname? (i.e. example.com or localhost)\n > "
-read HOSTNAME
-docker-compose exec django ./manage.py set_default_site --name=$HOSTNAME --domain=$HOSTNAME
+# TODO: Keep this? we always put localhost here and never use this for deployments
+#printf "\n\n * - * - * - * - * - * - * - * - *\n\n"
+#printf "What is the hostname? (i.e. example.com or localhost)\n > "
+#read HOSTNAME
+docker-compose exec django ./manage.py set_default_site --name=localhost --domain=localhost
 
 # generate data (creates default admin account)
 docker-compose exec django ./manage.py generate_data

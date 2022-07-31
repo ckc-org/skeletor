@@ -1,10 +1,60 @@
 #!/bin/sh
 red="\033[0;31m"
+green="\033[0;32m"
+yellow="\033[33m"
 color_off="\033[m"
-command=`docker-compose exec django flake8`
-if [ ! -z "${command}" ]
+
+printf "\n==================== Running pre-push checks ====================\n"
+
+# ----------------------------------------------------------------------------
+# Flake8
+# ----------------------------------------------------------------------------
+flake8=`docker run --rm -v $(pwd)/src/backend:/app $(basename $(pwd))_django /usr/local/bin/flake8`
+
+if [ ! -z "${flake8}" ]
 then
-    echo "${red} ***  There were style issues with your push, please fix before pushing!  *** ${color_off}"
-    echo "${command}"
+    echo "${red} ***  There were style issues on the backend. Please fix before pushing!  *** ${color_off}"
+    echo "${flake8}"
     exit 1
+fi
+
+echo "${green} ✅ Passed flake8 check ${color_off}"
+
+# ----------------------------------------------------------------------------
+# Migrations
+# ----------------------------------------------------------------------------
+# Get all the migration path names, up to the NNNN (i.e. in 0001_initial),
+# excluding everything after the number
+#
+# Example output from below command:
+#   apps/bookings/migrations/0048
+ADDED_MIGRATIONS="$(git diff origin/develop --name-only | grep "apps/.*/migrations/\d\d\d\d" -o)"
+#echo "ADDED_MIGRATIONS:\n${ADDED_MIGRATIONS}\n\n"
+
+# Get all of the migration filenames from develop
+#
+# Example output
+#  apps/users/migrations/0001
+EXISTING_MIGRATIONS="$(git ls-tree -r origin/develop | grep "apps/.*/migrations/\d\d\d\d" -o)"
+
+COMBINED_MIGRATIONS="${ADDED_MIGRATIONS}\n${EXISTING_MIGRATIONS}"
+
+#echo "ALL SEEN MIGRATIONS:$COMBINED_MIGRATIONS\n\n"
+
+# If there is a count > 2 of any item, this will fail (because it returns a non-empty string, this
+# expects an empty string)
+DUPLICATE_MIGRATIONS="$(
+                        echo "${COMBINED_MIGRATIONS}" |          # read in all migrations
+                        sort |                                   # sort 'em
+                        uniq -c |                                # count 'em
+                        grep -v '^ *1 ' |                        # get only those > 1
+                        grep "apps/.*/migrations/\d\d\d\d" -o |  # remove the count in front
+                        sed -e "s/^/\t/"                         # put a tab in front of each
+                      )"
+if [[ $(echo $DUPLICATE_MIGRATIONS) ]]; then
+    echo "${yellow} ⚠️  WARNING: There were migration issues. Please fix before merging to develop!"
+    echo " Duplicate migrations found:\n${DUPLICATE_MIGRATIONS}${color_off}"
+else
+    echo ""
+    echo "${green} ✅ Passed migration check ${color_off}\n"
 fi

@@ -169,9 +169,9 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-      "^.+\\.js$": "babel-jest",
-      ".*\\.(vue)$": "vue-jest"
-    }
+    "^.+\\.js$": "babel-jest",
+    ".*\\.(vue)$": "vue-jest"
+  }
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [

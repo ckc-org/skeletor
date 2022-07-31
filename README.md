@@ -25,7 +25,7 @@ for most of our new clients. It gives us:
 Use [`django-admin startproject`](https://docs.djangoproject.com/en/3.2/ref/django-admin/#startproject) to clone skeletor
 
 ```bash
-$ django-admin.py startproject new_project \
+$ django-admin startproject new_project \
     --template=https://github.com/ckc-org/skeletor/archive/master.zip \
     --name index.md,setup,app.json,README.md
 ```
