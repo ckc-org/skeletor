@@ -22,19 +22,11 @@ for most of our new clients. It gives us:
 
 ### Start a project..
 
-Use [`django-admin startproject`](https://docs.djangoproject.com/en/3.2/ref/django-admin/#startproject) to clone skeletor
-
 ```bash
-$ django-admin startproject new_project \
-    --template=https://github.com/ckc-org/skeletor/archive/master.zip \
-    --name index.md,setup,app.json,README.md
+$ bash <(curl -s https://raw.githubusercontent.com/ckc-org/skeletor/skeletor.sh)
 ```
 
-```bash
-$ cd new_project
-```
 
-Finally, remove this section from the README and continue below!
 
 -----------------
 

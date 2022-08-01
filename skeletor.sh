@@ -119,8 +119,7 @@ cd $PROJECT_NAME || exit 3
 
 
 # Remove opening of README, before "-------------" line
-cat README.md | sed '1,/^-----------------$/d' > README.md
-
+sed -i '' '1,/^-----------------$/d' README.md
 
 # Replace "{{ new_project }}" with $PROJECT_NAME
 grep -rl "{{ new_project }}" . | xargs sed -i "" -e "s@{{ new_project }}@$PROJECT_NAME@g"
