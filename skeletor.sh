@@ -107,7 +107,7 @@ fi
 # Clone repo
 echo "Git cloning into directory ${green}'$PROJECT_NAME'${reset} with frontend choice ${green}#$FRONTEND${reset}"
 
-git clone -b 73-install-script https://github.com/ckc-org/skeletor.git $PROJECT_NAME &> /dev/null
+git clone https://github.com/ckc-org/skeletor.git $PROJECT_NAME &> /dev/null
 if [ $? -ne 0 ]; then
     echo -e "\n${red}${bold}ERROR: Failed to clone git repo into ${PROJECT_NAME}${reset}"
     exit 3

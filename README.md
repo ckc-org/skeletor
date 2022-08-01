@@ -23,7 +23,7 @@ for most of our new clients. It gives us:
 ### Start a project..
 
 ```bash
-$ bash <(curl -s https://raw.githubusercontent.com/ckc-org/skeletor/skeletor.sh)
+$ bash <(curl -fsSL https://skeletor.ckcollab.com)
 ```
 
 
