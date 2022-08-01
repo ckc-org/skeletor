@@ -132,6 +132,12 @@ if [[ $FRONTEND == "$FRONTEND_WEB_VUEJS" ]]; then
 fi
 
 
+# Remove Skeletor dir specific stuff
+rm -rf .git
+rm -rf docs
+rm skeletor.sh
+
+
 # Run Make
 echo -e "\n\n${green}${bold}Running Skeletor make...${reset}\n\n"
 make
