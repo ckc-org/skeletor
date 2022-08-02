@@ -26,8 +26,7 @@ for most of our new clients. It gives us:
 $ bash <(curl -fsSL https://skeletor.ckcollab.com)
 ```
 
-
-<video src="docs/skeletor_creation.mov" style="width: 100%; height: 100%;"></video>
+![Skeletor Installation](docs/skeletor_creation.gif)
 
 
 -----------------
