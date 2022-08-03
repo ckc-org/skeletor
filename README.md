@@ -1,4 +1,4 @@
-<img src="docs/skeletor_full.png" alt="CKC" width="420" align="left">
+<img src="docs/skeletor_full.png" alt="Skeletor" width="420" align="left">
 
 &nbsp;<br>
 
@@ -22,25 +22,18 @@ for most of our new clients. It gives us:
 
 ### Start a project..
 
-Use [`django-admin startproject`](https://docs.djangoproject.com/en/3.2/ref/django-admin/#startproject) to clone skeletor
-
 ```bash
-$ django-admin startproject new_project \
-    --template=https://github.com/ckc-org/skeletor/archive/master.zip \
-    --name index.md,setup,app.json,README.md
+$ bash <(curl -fsSL https://skeletor.ckcollab.com)
 ```
 
-```bash
-$ cd new_project
-```
+<img src="docs/skeletor_creation.gif" width="100%" alt="Skeletor installation">
 
-Finally, remove this section from the README and continue below!
+
 
 -----------------
 
 
-
-# new_project
+# {{ new_project }}
 
 
 ## installation

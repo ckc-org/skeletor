@@ -15,8 +15,16 @@ ln -sf src/frontend/yarn.lock .
 # Make frontend build dir so we can volume it immediately (doesn't exist otherwise)
 mkdir -p src/frontend/build/
 
-# first deploy
+# first deploy (build nuxt and stuff .. old, should be deprecated as we never use
+# this to deploy)
 ./bin/deploy.sh
+
+# setup React Native, if it's around
+if [ -d "src/mobile" ]; then
+    cd src/mobile
+    yarn
+    cd ../../
+fi
 
 # set django site url and such (useful for password reset emails, typically!)
 # TODO: Keep this? we always put localhost here and never use this for deployments
