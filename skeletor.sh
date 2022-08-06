@@ -43,6 +43,7 @@ bold=`tput bold`
 dim=`tput dim`
 reset_standout=`tput rmso`
 white_bg=`tput setab 7`
+underline=`tput smul`
 
 reset=`tput sgr0`
 
@@ -82,8 +83,7 @@ fi
 
 # Choose a frontend
 cat << EOF
-
-Available frontends:
+${underline}Available frontends:${reset}
     ${green}${bold}1. Vue (web only) [recommended/default]${reset}
     2. Vue (web) + React Native (mobile)
 
@@ -92,7 +92,7 @@ EOF
 FRONTEND_WEB_VUEJS=1
 FRONTEND_WEB_VUEJS_MOBILE_REACT_NATIVE=2
 
-read -p "Please enter your preferred frontend: ${green}" FRONTEND
+read -p "Please select your preferred frontend: ${green}" FRONTEND
 echo "${reset}"
 
 # Set default to 1 if no input given
@@ -105,11 +105,11 @@ fi
 
 
 # Clone repo
-echo "Git cloning into directory ${green}'$PROJECT_NAME'${reset} with frontend choice ${green}#$FRONTEND${reset}"
+echo -e "Git cloning into directory ${green}'$PROJECT_NAME'${reset} with frontend choice ${green}#$FRONTEND${reset}\n"
 
 git clone ~/src/skeletor $PROJECT_NAME &> /dev/null
 if [ $? -ne 0 ]; then
-    echo -e "\n${red}${bold}ERROR: Failed to clone git repo into ${PROJECT_NAME}${reset}"
+    echo -e "\n${red}${bold}ERROR: Failed to clone git repo into directory ${underline}${PROJECT_NAME}${reset}"
     exit 3
 fi
 
@@ -132,12 +132,14 @@ fi
 
 
 # Remove Skeletor specific stuff
-echo -e "Cleaning up stuff...\n\n"
+echo -e "Cleaning up stuff...\n"
 rm -rf .git
 rm -rf docs
 rm skeletor.sh
 
-
 # Run Make
-echo -e "\n\n${green}${bold}Running Skeletor make...${reset}\n\n"
+echo -e "Running Skeletor make...\n"
+
 make
+
+echo -e "\n${green}${bold}Done!${reset}"
