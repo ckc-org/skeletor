@@ -36,5 +36,3 @@ docker-compose exec django ./manage.py set_default_site --name=localhost --domai
 # generate data (creates default admin account)
 docker-compose exec django ./manage.py generate_data
 
-# Restart to make sure things are started properly (i.e. vuetify on first install)
-docker-compose restart
