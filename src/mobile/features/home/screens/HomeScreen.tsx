@@ -1,5 +1,5 @@
 import { Text, VStack } from "native-base"
-import { AppScreenProps } from "SKELETOR_NEW_PROJECT/shared"
+import { AppScreenProps } from "SKELETOR_NAME_PLACEHOLDER/shared"
 
 export function HomeScreen({ navigation }: AppScreenProps<"Home">) {
   return (
@@ -10,7 +10,7 @@ export function HomeScreen({ navigation }: AppScreenProps<"Home">) {
       alignItems="center"
     >
       <Text>
-        Welcome to SKELETOR_NEW_PROJECT!
+        Welcome to SKELETOR_NAME_PLACEHOLDER!
       </Text>
     </VStack>
   )

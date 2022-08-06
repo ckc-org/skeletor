@@ -1,5 +1,5 @@
 {
-  "name": "{{ new_project }}",
+  "name": "SKELETOR_NAME_PLACEHOLDER",
   "scripts": {
     "postdeploy": "bin/heroku/setup",
     "pr-predestroy": "bin/heroku/teardown"

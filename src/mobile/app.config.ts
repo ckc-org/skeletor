@@ -1,13 +1,13 @@
 import { ExpoConfig, ConfigContext } from "@expo/config"
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
-  name: "SKELETOR_NEW_PROJECT",
-  slug: "SKELETOR_NEW_PROJECT",
-  // owner: "SKELETOR_NEW_PROJECT",
+  name: "SKELETOR_NAME_PLACEHOLDER",
+  slug: "SKELETOR_NAME_PLACEHOLDER",
+  // owner: "SKELETOR_NAME_PLACEHOLDER",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/icon.png",
-  scheme: "SKELETOR_NEW_PROJECT",
+  scheme: "SKELETOR_NAME_PLACEHOLDER",
   splash: {
     "image": "./assets/splash.png",
     "resizeMode": "contain",
@@ -20,11 +20,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "**/*"
   ],
   ios: {
-    bundleIdentifier: "test.SKELETOR_NEW_PROJECT.app",
+    bundleIdentifier: "test.SKELETOR_NAME_PLACEHOLDER.app",
     supportsTablet: true,
   },
   android: {
-    package: "test.SKELETOR_NEW_PROJECT.app",
+    package: "test.SKELETOR_NAME_PLACEHOLDER.app",
     adaptiveIcon: {
       foregroundImage: "./assets/adaptive-icon.png",
       backgroundColor: "#FFFFFF"

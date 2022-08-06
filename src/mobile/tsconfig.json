@@ -4,7 +4,7 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "SKELETOR_NEW_PROJECT/*": ["./*"]
+      "SKELETOR_NAME_PLACEHOLDER/*": ["./*"]
     }
   }
 }

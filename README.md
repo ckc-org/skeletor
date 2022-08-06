@@ -33,7 +33,7 @@ $ bash <(curl -fsSL https://skeletor.ckcollab.com)
 -----------------
 
 
-# {{ new_project }}
+# SKELETOR_NAME_PLACEHOLDER
 
 
 ## installation

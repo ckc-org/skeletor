@@ -107,7 +107,7 @@ fi
 # Clone repo
 echo "Git cloning into directory ${green}'$PROJECT_NAME'${reset} with frontend choice ${green}#$FRONTEND${reset}"
 
-git clone https://github.com/ckc-org/skeletor.git $PROJECT_NAME &> /dev/null
+git clone ~/src/skeletor $PROJECT_NAME &> /dev/null
 if [ $? -ne 0 ]; then
     echo -e "\n${red}${bold}ERROR: Failed to clone git repo into ${PROJECT_NAME}${reset}"
     exit 3
@@ -121,8 +121,8 @@ cd $PROJECT_NAME || exit 3
 # Remove opening of README, before "-------------" line
 sed -i '' '1,/^-----------------$/d' README.md
 
-# Replace "{{ new_project }}" with $PROJECT_NAME
-grep -rl "{{ new_project }}" . | xargs sed -i "" -e "s@{{ new_project }}@$PROJECT_NAME@g"
+# Replace "SKELETOR_NAME_PLACEHOLDER" with $PROJECT_NAME
+grep -rl "SKELETOR_NAME_PLACEHOLDER" . | xargs sed -i "" -e "s@SKELETOR_NAME_PLACEHOLDER@$PROJECT_NAME@g"
 
 
 # Remove mobile dir if we don't need it
@@ -131,7 +131,8 @@ if [[ $FRONTEND == "$FRONTEND_WEB_VUEJS" ]]; then
 fi
 
 
-# Remove Skeletor dir specific stuff
+# Remove Skeletor specific stuff
+echo -e "Cleaning up stuff...\n\n"
 rm -rf .git
 rm -rf docs
 rm skeletor.sh
