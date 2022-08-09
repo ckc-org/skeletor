@@ -1,7 +1,8 @@
 from .base import *
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# NOTE about emails: Django takes over email sending during tests, and all emails are saved to
+# mail.outbox -- https://docs.djangoproject.com/en/4.1/topics/testing/tools/#email-services
 
 # Turn off DJDT
 DEBUG_TOOLBAR_CONFIG = {
