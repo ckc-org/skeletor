@@ -8,10 +8,12 @@ This is the official [CKC](https://ckcollab.com) base project, we use this
 for most of our new clients. It gives us:
 
  &nbsp;&nbsp; ❯ &nbsp;One command dev install: `make`<br>
- &nbsp;&nbsp; ❯ &nbsp;Heroku deploys for frontend and backend<br>
+ &nbsp;&nbsp; ❯ &nbsp;Stack: [Django](https://www.djangoproject.com/) + [Vue](https://vuejs.org/) + [React Native](https://reactnative.dev/)<br>
+ &nbsp;&nbsp; ❯ &nbsp;[Heroku](https://heroku.com/) deploys for frontend and backend<br>
  &nbsp;&nbsp; ❯ &nbsp;Email templates + helpers<br>
- &nbsp;&nbsp; ❯ &nbsp;Fast tests w/coverage (pytest)<br>
+ &nbsp;&nbsp; ❯ &nbsp;Fast backend tests w/coverage ([pytest](https://docs.pytest.org/))<br>
  &nbsp;&nbsp; ❯ &nbsp;Hot reloading for local dev<br>
+ &nbsp;&nbsp; ❯ &nbsp;[Expo](https://expo.dev/) and [NativeBase](https://nativebase.io/) for React Native<br>
  
  
 &nbsp;<br>
