@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 #
 #
 #    ▄████████    ▄█   ▄█▄    ▄████████  ▄█          ▄████████     ███      ▄██████▄     ▄████████
@@ -18,8 +19,11 @@
 #
 #
 
+
 # ----------------------------------------------------------------------------
 # Script overview:
+#     make sure docker is running
+#
 #     take input PROJECT_NAME if not provided to shell script already
 #
 #     take input FRONTEND, default = 1
@@ -28,7 +32,7 @@
 #
 #     git clone master into PROJECT_NAME
 #
-#     remove mobile dir if FRONTEND_WEB_VUEJS
+#     if FRONTEND_WEB_VUEJS then remove mobile dir
 #
 #     replace {{ project_name }} with PROJECT_NAME
 #
@@ -90,7 +94,13 @@ $(echo $fancy_print_command) << EOF
 
 EOF
 
+# Make sure Docker is running first..
+if ! docker info > /dev/null 2>&1; then
+  echo -e "\n${red}${bold}ERROR: This script uses docker, and docker isn't running - please start docker and try again!${reset}"
+  exit 4
+fi
 
+# Get user input
 read -p "Please provide a folder/project name: ${green}" PROJECT_NAME
 echo "${reset}"
 
