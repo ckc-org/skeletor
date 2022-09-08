@@ -44,7 +44,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.frontend
-    command: npm run dev
+    command: bash -c "yarn && yarn run dev"
     env_file: .env
     environment:
       - HOST=0.0.0.0
