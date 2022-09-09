@@ -224,17 +224,6 @@ CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
         'LOCATION': [REDIS_URL],
-        'OPTIONS': {
-            'DB': 1,
-            'PARSER_CLASS': 'redis.connection.HiredisParser',
-            'CONNECTION_POOL_CLASS': 'redis.BlockingConnectionPool',
-            'CONNECTION_POOL_CLASS_KWARGS': {
-                'max_connections': 3,
-                'timeout': 20,
-            },
-            'MAX_CONNECTIONS': 3,
-            'PICKLE_VERSION': -1,
-        },
     },
 }
 
