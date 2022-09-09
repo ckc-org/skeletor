@@ -93,12 +93,14 @@ SECRET_KEY = os.environ.get("SECRET_KEY", '5p&8i^z@#%nxkp&z)o%=m$51-hz&u7q^^ldtd
 LOGIN_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'users.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+SESSION_ENGINE = os.environ.get("SESSION_ENGINE", "django.contrib.sessions.backends.cached_db")
 
 
 # =============================================================================
 # Debugging
 # =============================================================================
 DEBUG = os.environ.get('DEBUG', False)
+
 
 # =============================================================================
 # Database
@@ -204,11 +206,34 @@ TEMPLATED_EMAIL_FILE_EXTENSION = 'html'  # for nice highlighting, instead of .em
 # ============================================================================
 # Channels
 # ============================================================================
+REDIS_URL = os.environ.get('REDIS_URL', 'redis://redis:6379')
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [os.environ.get('REDIS_URL', 'redis://redis:6379')],
+            "hosts": [REDIS_URL],
+        },
+    },
+}
+
+
+# =============================================================================
+# Caching
+# =============================================================================
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': [REDIS_URL],
+        'OPTIONS': {
+            'DB': 1,
+            'PARSER_CLASS': 'redis.connection.HiredisParser',
+            'CONNECTION_POOL_CLASS': 'redis.BlockingConnectionPool',
+            'CONNECTION_POOL_CLASS_KWARGS': {
+                'max_connections': 3,
+                'timeout': 20,
+            },
+            'MAX_CONNECTIONS': 3,
+            'PICKLE_VERSION': -1,
         },
     },
 }

@@ -71,10 +71,6 @@ export default {
         // IMPORTANT! Do our initializing! (from our auth plugin)
         this.$auth.ctx.app.project_initialize()
 
-        // TODO: We need to make a good client side initialization spot...
-        // Connect to websocket and start receiving store commits from backend
-        this.$store.dispatch('realtime/start_listening')
-
         this.errors = {}
       } catch (e) {
         if (e.response) {
