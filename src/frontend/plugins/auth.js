@@ -8,7 +8,7 @@ export default function ({ app, $auth, store }) {
   //   this.$auth.ctx.app.project_initialize()
   app.project_initialize = () => {
     // Connect to websocket and start receiving store commits from backend
-    // this.$store.dispatch('realtime/start_listening')
+    // store.dispatch('realtime/start_listening')
 
     // TODO: Add more "on project start" stuff here!
     // store.dispatch('some_object/get')
