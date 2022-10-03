@@ -39,7 +39,7 @@ jobs:
       - name: Clone Skeletor into "/tmp/new_project" directory
         run: |
           cd /tmp
-          "new_project" "1" | $GITHUB_WORKSPACE/skeletor.sh
+          printf "%s\n" "new_project" "1" | $GITHUB_WORKSPACE/skeletor.sh
 
       - name: Set up Skeletor in "/tmp/new_project" directory
         working-directory: /tmp/new_project

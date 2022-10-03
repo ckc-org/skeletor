@@ -164,6 +164,7 @@ echo -e "Cleaning up stuff...\n"
 rm -rf .git
 rm -rf docs
 rm skeletor.sh
+rm .github/workflows/skeletor_test.yml
 
 # Run Make
 echo -e "Running Skeletor make...\n"
