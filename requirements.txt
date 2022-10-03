@@ -1,7 +1,6 @@
 Django==4.1.1
 django-cors-headers==3.13.0
 django-extensions==3.2.0
-dj-rest-auth==2.2.5
 djangorestframework==3.13.1
 django-ckc==0.0.8
 

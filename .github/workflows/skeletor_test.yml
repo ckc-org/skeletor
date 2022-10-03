@@ -1,0 +1,75 @@
+name: Skeletor testing
+
+on:
+  push:
+    branches: [ '*' ]
+
+env:
+  DB_HOST: localhost
+  REDIS_URL: redis://localhost:6379
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:13
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: postgres
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          # Fetch all branches (for migration conflict checks)
+          fetch-depth: 0
+
+      - name: Clone Skeletor into "/tmp/new_project" directory
+        run: |
+          "new_project" "1" | ./skeletor.sh
+
+      - name: Set up Skeletor in "/tmp/new_project" directory
+        working-directory: /tmp/new_project
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.10
+
+      - name: Install python dependencies
+        run: |
+          pip install -r requirements.dev.txt
+
+      - name: Test with pytest
+        run: |
+          cd src/backend && pytest
+
+  flake8:
+    name: flake8
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          # Fetch all branches (for migration conflict checks)
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.10.6
+
+      - name: Lint with flake8
+        run: |
+          pip install $(cat requirements.dev.txt | grep flake8)
+          cd src/backend && flake8
