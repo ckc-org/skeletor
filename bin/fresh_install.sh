@@ -14,9 +14,6 @@ ln -sf src/frontend/yarn.lock .
 # Make frontend build dir so we can volume it immediately (doesn't exist otherwise)
 mkdir -p src/frontend/build/
 
-# Turn off docker TTY stuff, so we run nicely in github actions
-COMPOSE_INTERACTIVE_NO_CLI=1
-
 # Build docker containers
 docker-compose up -d
 
