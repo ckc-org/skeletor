@@ -5,10 +5,10 @@ from django.core import mail
 from django.urls import reverse
 
 from factories import UserFactory
-from tests.utils import TwApiTestCase
+from tests.utils import CkcAPITestCase
 
 
-class TestUserPasswordReset(TwApiTestCase):
+class TestUserPasswordReset(CkcAPITestCase):
     def test_password_reset_ignores_invalid_emails(self):
         resp = self.client.post(reverse('passwordreset-list'), {"email": "random@non-existing-email.com"})
         assert resp.status_code == 200
