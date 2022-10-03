@@ -16,12 +16,15 @@ mkdir -p src/frontend/build/
 # Build docker containers
 docker-compose up -d
 
+# NOTE: "-T" flag is for running docker-compose stuff on Github actions, otherwise not
+# necessary
+
 # Make frontend assets
-docker-compose exec builder yarn run generate
+docker-compose exec -T builder yarn run generate
 
 # setup database and gather assets; make sure we run this _after_ building frontend assets
-docker-compose exec django ./manage.py collectstatic --noinput
-docker-compose exec django ./manage.py migrate
+docker-compose exec -T django ./manage.py collectstatic --noinput
+docker-compose exec -T django ./manage.py migrate
 
 # setup React Native, if it's around
 if [ -d "src/mobile" ]; then
