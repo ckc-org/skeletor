@@ -21,11 +21,11 @@ docker-compose up -d
 # necessary
 
 # Make frontend assets
-docker-compose exec builder yarn run generate
+docker-compose exec -T builder yarn run generate
 
 # setup database and gather assets; make sure we run this _after_ building frontend assets
-docker-compose exec django ./manage.py collectstatic --noinput
-docker-compose exec django ./manage.py migrate
+docker-compose exec -T django ./manage.py collectstatic --noinput
+docker-compose exec -T django ./manage.py migrate
 
 # setup React Native, if it's around
 if [ -d "src/mobile" ]; then
@@ -39,8 +39,8 @@ fi
 #printf "\n\n * - * - * - * - * - * - * - * - *\n\n"
 #printf "What is the hostname? (i.e. example.com or localhost)\n > "
 #read HOSTNAME
-docker-compose exec django ./manage.py set_default_site --name=localhost --domain=localhost
+docker-compose exec -T django ./manage.py set_default_site --name=localhost --domain=localhost
 
 # generate data (creates default admin account)
-docker-compose exec django ./manage.py generate_data
+docker-compose exec -T django ./manage.py generate_data
 

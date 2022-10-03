@@ -31,14 +31,15 @@ jobs:
           curl -fsSL https://test.docker.com -o test-docker.sh
           sudo sh test-docker.sh
 
-      - name: Clone Skeletor into "/tmp/new_project" directory
+      - name: Run skeletor
         env:
           SKELETOR_BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |
+          # "/tmp/new_project" directory is final result
           cd /tmp
           printf "%s\n" "new_project" "1" | $GITHUB_WORKSPACE/skeletor.sh
 
-      - name: Test Skeletor in "/tmp/new_project" directory
+      - name: Test Skeletor
         working-directory: /tmp/new_project
         run: |
           docker-compose exec django pytest
