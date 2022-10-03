@@ -4,6 +4,9 @@ on:
   push:
     branches: [ '*' ]
 
+env:
+  COMPOSE_INTERACTIVE_NO_CLI: 1
+
 jobs:
   build:
     runs-on: ubuntu-latest
