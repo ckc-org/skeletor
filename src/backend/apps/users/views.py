@@ -1,10 +1,17 @@
-from django.contrib.auth import authenticate, login, logout
-from rest_framework import views, status
+from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
+from rest_framework import views, status, viewsets
+from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
-from users.serializers import LoginSerializer
+from users.serializers import LoginSerializer, PasswordResetSerializer, PasswordResetConfirmSerializer
+
+
+User = get_user_model()
 
 
 # TODO: Add to api docs ??
@@ -42,3 +49,35 @@ class LogoutView(views.APIView):
     def post(self, request, format=None):
         logout(request)
         return Response(status=status.HTTP_200_OK)
+
+
+class UserPasswordResetViewSet(viewsets.ViewSet):
+    serializer_class = PasswordResetSerializer
+    permission_classes = [AllowAny]
+
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response()
+
+    @action(
+        detail=False,
+        methods=('post',),
+        serializer_class=PasswordResetConfirmSerializer,
+        url_path='confirm/(?P<uid>[^/.]+)/(?P<token>[^/.]+)'
+    )
+    def confirm(self, request, uid, token):
+        try:
+            user_pk = force_str(urlsafe_base64_decode(uid))
+            user = User.objects.get(pk=user_pk)
+        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+            raise ValidationError({'uid': ['Invalid value']})
+
+        if not default_token_generator.check_token(user, token):
+            raise ValidationError({'token': ['Invalid value']})
+
+        serializer = PasswordResetConfirmSerializer(data=request.data, context={'user': user})
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response()

@@ -44,7 +44,7 @@ class UserAndLoginTests(CkcAPITestCase):
 
         resp = self.client.post(reverse("rest_login"), {"email": "test@test.com", "password": "test"})
         assert resp.status_code == 200
-        
+
     def test_user_login_and_remember_me_sets_expiry_properly(self):
         user = UserFactory(email="test@test.com", password="test")
         data = {
@@ -60,4 +60,3 @@ class UserAndLoginTests(CkcAPITestCase):
         resp = self.client.post(reverse("rest_login"), data=data)
         assert resp.status_code == 200
         assert resp.cookies['sessionid']['max-age'] == ''
-

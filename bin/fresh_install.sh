@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
+
 # Only copy over .env_sample if .env doesn't exist
 cp -n .env_sample .env || echo ".env already exists"
-
-echo "Make sure you add this hostname to ALLOWED_HOSTS in .env"
 
 # Create githooks in project, warns us about requirements/migrations changes
 ./bin/create_git_hooks.sh
@@ -15,9 +14,18 @@ ln -sf src/frontend/yarn.lock .
 # Make frontend build dir so we can volume it immediately (doesn't exist otherwise)
 mkdir -p src/frontend/build/
 
-# first deploy (build nuxt and stuff .. old, should be deprecated as we never use
-# this to deploy)
-./bin/deploy.sh
+# Build docker containers
+docker-compose up -d
+
+# NOTE: "-T" flag is for running docker-compose stuff on Github actions, otherwise not
+# necessary
+
+# Make frontend assets
+docker-compose exec -T builder yarn run generate
+
+# setup database and gather assets; make sure we run this _after_ building frontend assets
+docker-compose exec -T django ./manage.py collectstatic --noinput
+docker-compose exec -T django ./manage.py migrate
 
 # setup React Native, if it's around
 if [ -d "src/mobile" ]; then
@@ -31,8 +39,8 @@ fi
 #printf "\n\n * - * - * - * - * - * - * - * - *\n\n"
 #printf "What is the hostname? (i.e. example.com or localhost)\n > "
 #read HOSTNAME
-docker-compose exec django ./manage.py set_default_site --name=localhost --domain=localhost
+docker-compose exec -T django ./manage.py set_default_site --name=localhost --domain=localhost
 
 # generate data (creates default admin account)
-docker-compose exec django ./manage.py generate_data
+docker-compose exec -T django ./manage.py generate_data
 

@@ -15,8 +15,11 @@
 #
 # Usage:
 #
-#     $ bash <(curl -fsSL https://skeletor.ckcollab.com)
+#    $ bash <(curl -fsSL https://skeletor.ckcollab.com)
 #
+#
+# Environment variables:
+#    SKELETOR_BRANCH: the branch name to use when cloning from Skeletor git repo, default = master
 #
 
 
@@ -131,11 +134,13 @@ if [[ $FRONTEND -gt 2 ]]; then
     exit 2
 fi
 
+# Select skeletor branch, default is master
+: "${SKELETOR_BRANCH:=master}"
 
-# Clone repo
+# Clone repo into $PROJECT_NAME dir
 echo -e "Git cloning into directory ${green}'$PROJECT_NAME'${reset} with frontend choice ${green}#$FRONTEND${reset}\n"
 
-git clone https://github.com/ckc-org/skeletor.git $PROJECT_NAME &> /dev/null
+git clone -b $SKELETOR_BRANCH https://github.com/ckc-org/skeletor.git $PROJECT_NAME &> /dev/null
 if [ $? -ne 0 ]; then
     echo -e "\n${red}${bold}ERROR: Failed to clone git repo into directory ${underline}${PROJECT_NAME}${reset}"
     exit 3
@@ -164,6 +169,7 @@ echo -e "Cleaning up stuff...\n"
 rm -rf .git
 rm -rf docs
 rm skeletor.sh
+rm .github/workflows/skeletor_test.yml
 
 # Run Make
 echo -e "Running Skeletor make...\n"

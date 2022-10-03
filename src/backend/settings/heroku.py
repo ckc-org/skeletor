@@ -43,7 +43,7 @@ if cloudcube_url:
     AWS_QUERYSTRING_AUTH = False
     AWS_S3_SIGNATURE_VERSION = "s3v4"
     AWS_S3_FILE_OVERWRITE = False
-    
+
 
 # =============================================================================
 # Monitoring/analyzing process

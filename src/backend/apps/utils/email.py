@@ -3,7 +3,10 @@ import os
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.contrib.auth.tokens import default_token_generator
 from django.contrib.staticfiles.finders import find
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
 from templated_email import send_templated_mail, InlineImage
 
 from anymail.exceptions import AnymailRecipientsRefused
@@ -17,8 +20,10 @@ def welcome(to: User):
     return _send_mail('welcome', [to.email])
 
 
-def password_reset(to: User, uid, token):
-    return _send_mail('password_reset', [to.email], uid=uid, token=token)
+def password_reset(user: User):
+    uid = urlsafe_base64_encode(force_bytes(user.pk))
+    token = default_token_generator.make_token(user)
+    return _send_mail('password_reset', [user.email], uid=uid, token=token)
 
 
 def _send_mail(template_name, to_emails, from_email=None, **kwargs):

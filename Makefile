@@ -3,10 +3,3 @@ init:
 
 reset:
 	@./bin/reset_db.sh
-
-deploy:
-	@./bin/deploy.sh
-
-test:
-	docker-compose exec django py.test
-	docker-compose exec builder yarn test

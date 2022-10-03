@@ -4,24 +4,25 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
-# from rest_framework import routers
+from rest_framework import routers
 
-from users.views import LoginView, LogoutView
+from users.views import LoginView, LogoutView, UserPasswordResetViewSet
 
+router = routers.DefaultRouter()
 
-# router = routers.DefaultRouter()
+# user related, i.e. reset passwords
+router.register('passwordreset', UserPasswordResetViewSet, basename='passwordreset')
+
+# Custom views
 # router.register('some_resource', SomeViewSet)
 
 urlpatterns = [
     # Our URLS
-    # path('api/', include(router.urls)),
+    path('api/', include(router.urls)),
 
-    # TODO: Add to api docs ??
-    # We're overriding dj-rest-auth login endpoint to set our own cookie with its own expiry
+    # TODO: Add these auth endpoints to api docs, like password reset ??
     path('api/auth/login/', LoginView.as_view(), name="rest_login"),
     path('api/auth/logout/', LogoutView.as_view(), name="rest_logout"),
-
-    path('api/auth/', include('dj_rest_auth.urls')),
 
     # Django built in
     path('admin/', admin.site.urls),

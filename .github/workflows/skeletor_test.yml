@@ -1,0 +1,59 @@
+name: Skeletor testing
+
+on:
+  push:
+    branches: [ '*' ]
+
+env:
+  COMPOSE_INTERACTIVE_NO_CLI: 1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+#    defaults:
+#      run:
+#        # This shell gives us a fake TTY, apparently, allowing docker-compose to work easily
+#        shell: 'script -q -e -c "bash {0}"'
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          # Fetch all branches (for migration conflict checks)
+          fetch-depth: 0
+
+      - name: Upgrade docker (better TTY support)
+        run: |
+          curl -fsSL https://test.docker.com -o test-docker.sh
+          sudo sh test-docker.sh
+
+      - name: Run skeletor
+        env:
+          SKELETOR_BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          # "/tmp/new_project" directory is final result
+          cd /tmp
+          printf "%s\n" "new_project" "1" | $GITHUB_WORKSPACE/skeletor.sh
+
+      - name: Test Skeletor
+        working-directory: /tmp/new_project
+        run: |
+          docker-compose exec -T django pytest
+
+  flake8:
+    name: flake8
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          # Fetch all branches (for migration conflict checks)
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.10.6
+
+      - name: Lint with flake8
+        run: |
+          pip install $(cat requirements.dev.txt | grep flake8)
+          cd src/backend && flake8
