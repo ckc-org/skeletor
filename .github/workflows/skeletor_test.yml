@@ -25,7 +25,7 @@ jobs:
       - name: Test Skeletor in "/tmp/new_project" directory
         working-directory: /tmp/new_project
         run: |
-          docker-compose exec django pytest
+          docker-compose exec -T django pytest
 #
 #      - name: Set up Python
 #        uses: actions/setup-python@v3
