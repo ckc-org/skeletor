@@ -38,10 +38,13 @@ jobs:
 
       - name: Clone Skeletor into "/tmp/new_project" directory
         run: |
-          "new_project" "1" | ./skeletor.sh
+          cd /tmp
+          "new_project" "1" | $GITHUB_WORKSPACE/skeletor.sh
 
       - name: Set up Skeletor in "/tmp/new_project" directory
         working-directory: /tmp/new_project
+        run: |
+          ls -aln
 
       - name: Set up Python
         uses: actions/setup-python@v3
