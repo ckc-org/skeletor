@@ -25,7 +25,7 @@ jobs:
       - name: Upgrade docker (better TTY support)
         run: |
           # Remove old
-          sudo apt-get purge containerd.io
+          apt-get remove docker docker-engine docker.io containerd runc
 
           # Install new
           curl -fsSL https://test.docker.com -o test-docker.sh
