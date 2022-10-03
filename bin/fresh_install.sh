@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+# Disable TTS
+export COMPOSE_INTERACTIVE_NO_CLI=1
+
 # Only copy over .env_sample if .env doesn't exist
 cp -n .env_sample .env || echo ".env already exists"
 
