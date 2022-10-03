@@ -2,8 +2,6 @@
 # Only copy over .env_sample if .env doesn't exist
 cp -n .env_sample .env || echo ".env already exists"
 
-echo "Make sure you add this hostname to ALLOWED_HOSTS in .env"
-
 # Create githooks in project, warns us about requirements/migrations changes
 ./bin/create_git_hooks.sh
 
@@ -15,9 +13,15 @@ ln -sf src/frontend/yarn.lock .
 # Make frontend build dir so we can volume it immediately (doesn't exist otherwise)
 mkdir -p src/frontend/build/
 
-# first deploy (build nuxt and stuff .. old, should be deprecated as we never use
-# this to deploy)
-./bin/deploy.sh
+# Build docker containers
+docker-compose up -d
+
+# Make frontend assets
+docker-compose exec builder yarn run generate
+
+# setup database and gather assets; make sure we run this _after_ building frontend assets
+docker-compose exec django ./manage.py collectstatic --noinput
+docker-compose exec django ./manage.py migrate
 
 # setup React Native, if it's around
 if [ -d "src/mobile" ]; then
