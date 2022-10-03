@@ -20,12 +20,9 @@ urlpatterns = [
     # Our URLS
     path('api/', include(router.urls)),
 
-    # TODO: Add to api docs ??
-    # We're overriding dj-rest-auth login endpoint to set our own cookie with its own expiry
+    # TODO: Add these auth endpoints to api docs, like password reset ??
     path('api/auth/login/', LoginView.as_view(), name="rest_login"),
     path('api/auth/logout/', LogoutView.as_view(), name="rest_logout"),
-
-    path('api/auth/', include('dj_rest_auth.urls')),
 
     # Django built in
     path('admin/', admin.site.urls),
