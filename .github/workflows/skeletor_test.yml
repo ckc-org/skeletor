@@ -22,8 +22,12 @@ jobs:
           # Fetch all branches (for migration conflict checks)
           fetch-depth: 0
 
-      - name: Upgrade docker..
+      - name: Upgrade docker (better TTY support)
         run: |
+          # Remove old
+          sudo apt-get purge docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+          # Install new
           curl -fsSL https://test.docker.com -o test-docker.sh
           sudo sh test-docker.sh
 
