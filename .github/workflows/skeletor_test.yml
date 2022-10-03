@@ -11,6 +11,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        # This shell gives us a fake TTY, apparently, allowing docker-compose to work easily
+        shell: 'script -q -e -c "bash {0}"'
+
     steps:
       - uses: actions/checkout@v3
         with:
@@ -27,7 +32,7 @@ jobs:
       - name: Test Skeletor in "/tmp/new_project" directory
         working-directory: /tmp/new_project
         run: |
-          docker-compose exec -T django pytest
+          docker-compose exec django pytest
 #
 #      - name: Set up Python
 #        uses: actions/setup-python@v3
