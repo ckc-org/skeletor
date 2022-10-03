@@ -18,9 +18,11 @@ jobs:
           fetch-depth: 0
 
       - name: Clone Skeletor into "/tmp/new_project" directory
+        env:
+          SKELETOR_BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |
           cd /tmp
-          printf "%s\n" "new_project" "1" | sudo $GITHUB_WORKSPACE/skeletor.sh
+          printf "%s\n" "new_project" "1" | $GITHUB_WORKSPACE/skeletor.sh
 
       - name: Test Skeletor in "/tmp/new_project" directory
         working-directory: /tmp/new_project
