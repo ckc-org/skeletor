@@ -24,10 +24,6 @@ jobs:
 
       - name: Upgrade docker (better TTY support)
         run: |
-          # Remove old
-          sudo apt-get purge docker-ce
-
-          # Install new
           curl -fsSL https://test.docker.com -o test-docker.sh
           sudo sh test-docker.sh
 
@@ -42,7 +38,7 @@ jobs:
       - name: Test Skeletor
         working-directory: /tmp/new_project
         run: |
-          docker-compose exec django pytest
+          docker-compose exec -T django pytest
 
   flake8:
     name: flake8
