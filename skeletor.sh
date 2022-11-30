@@ -163,7 +163,8 @@ grep -rl "SKELETOR_NAME_PLACEHOLDER" . | xargs sed -i "" -e "s@SKELETOR_NAME_PLA
 # Remove mobile dir if we don't need it
 if [[ $FRONTEND == "$FRONTEND_WEB_VUEJS" ]]; then
     rm -rf src/mobile
-elif [[ $FRONTEND == "$FRONTEND_WEB_NEXTJS_REACT" ]]
+
+elif [[ $FRONTEND == "$FRONTEND_WEB_NEXTJS_REACT" ]]; then
     rm -rf src/mobile
     rm -rf src/frontend
     cp -r src/react_frontend src/frontend
