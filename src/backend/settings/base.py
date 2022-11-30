@@ -170,6 +170,8 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+if not os.path.exists('/frontend/generated/static'):
+    os.mkdir('/frontend/generated/static')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     '/frontend/generated/static',

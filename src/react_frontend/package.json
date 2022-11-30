@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "generate": "next build",
+    "generate": "next build && next export",
     "lint": "next lint"
   },
   "devDependencies": {

@@ -169,7 +169,7 @@ elif [[ $FRONTEND == "$FRONTEND_WEB_NEXTJS_REACT" ]]; then
     rm -rf src/mobile
     rm -rf src/frontend
     cp -r src/react_frontend src/frontend
-    rm -rf src/frontend
+    rm -rf src/react_frontend
 fi
 
 
