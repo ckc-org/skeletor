@@ -117,11 +117,13 @@ cat << EOF
 ${underline}Available frontends:${reset}
     ${green}${bold}1. Vue (web only) [recommended/default]${reset}
     2. Vue (web) + React Native (mobile)
+    3. Nextjs (web only)
 
 EOF
 
 FRONTEND_WEB_VUEJS=1
 FRONTEND_WEB_VUEJS_MOBILE_REACT_NATIVE=2
+FRONTEND_WEB_NEXTJS_REACT=2
 
 read -p "Please select your preferred frontend: ${green}" FRONTEND
 echo "${reset}"
@@ -129,8 +131,8 @@ echo "${reset}"
 # Set default to 1 if no input given
 FRONTEND=${FRONTEND:-1}
 
-if [[ $FRONTEND -gt 2 ]]; then
-    echo -e "\n${red}${bold}ERROR: Invalid FRONTEND choice... must be 1 or 2!${reset}"
+if [[ $FRONTEND -gt 3 ]]; then
+    echo -e "\n${red}${bold}ERROR: Invalid FRONTEND choice... must be 1 2, or 3!${reset}"
     exit 2
 fi
 
@@ -161,6 +163,11 @@ grep -rl "SKELETOR_NAME_PLACEHOLDER" . | xargs sed -i "" -e "s@SKELETOR_NAME_PLA
 # Remove mobile dir if we don't need it
 if [[ $FRONTEND == "$FRONTEND_WEB_VUEJS" ]]; then
     rm -rf src/mobile
+elif [[ $FRONTEND == "$FRONTEND_WEB_NEXTJS_REACT" ]]
+    rm -rf src/mobile
+    rm -rf src/frontend
+    cp -r src/react_frontend src/frontend
+    rm -rf src/frontend
 fi
 
 
