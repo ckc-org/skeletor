@@ -21,7 +21,10 @@ docker-compose up -d
 # necessary
 
 # Make frontend assets
-docker-compose exec -T builder yarn
+if [ -d "src/frontend/next.config.js"]; then
+    docker-compose exec -T builder yarn
+fi
+
 docker-compose exec -T builder yarn run generate
 
 # setup database and gather assets; make sure we run this _after_ building frontend assets
