@@ -19,7 +19,8 @@ services:
     env_file: .env
     volumes:
       - ./src/backend:/app
-      - ./src/frontend/build:/frontend:delegated
+      # skeletor.sh defines the static volume
+      - STATIC_VOLUME
     ports:
       - 8000:8000
     depends_on:

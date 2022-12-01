@@ -163,6 +163,9 @@ grep -rl "SKELETOR_NAME_PLACEHOLDER" . | xargs sed -i "" -e "s@SKELETOR_NAME_PLA
 
 # Remove mobile dir if we don't need it. set node version in Dockerfile.frontend
 NODE_VERSION=12
+# - ./src/frontend/build:/frontend:delegated
+VOLUME_DIR_SEARCH="STATIC_VOLUME"
+VOLUME_DIR="\.\/src\/frontend\/build:\/frontend:delegated"
 if [[ $FRONTEND == "$FRONTEND_WEB_VUEJS" ]]; then
     rm -rf src/mobile
 
@@ -172,8 +175,10 @@ elif [[ $FRONTEND == "$FRONTEND_WEB_NEXTJS_REACT" ]]; then
     cp -r src/react_frontend src/frontend
     rm -rf src/react_frontend
     NODE_VERSION=19
+    VOLUME_DIR="./src/frontend/build:/frontend/generated/static:delegated"
 fi
 sed -i -e "s/^FROM node:NODE_VERSION/FROM node:${NODE_VERSION}/g" docker/Dockerfile.frontend
+sed -i -e "s/${VOLUME_DIR_SEARCH}/${VOLUME_DIR}/g" docker-compose.yml
 
 # Remove Skeletor specific stuff
 echo -e "Cleaning up stuff...\n"
