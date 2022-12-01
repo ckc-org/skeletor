@@ -60,7 +60,11 @@ MIDDLEWARE = (
 )
 
 ROOT_URLCONF = 'urls'
-
+template_dirs = []
+if os.path.exists('/frontend/generated/'):
+    template_dirs.append('/frontend/generated/')
+if os.path.exists('/frontend/out/'):
+    template_dirs.append('/frontend/out')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -70,6 +74,7 @@ TEMPLATES = [
             # We "collectstatic" either a Vue or React frontend, which pushes an
             # index.html to this directory that we can serve from urls.py on `/` endpoint
             'staticfiles/',
+            *template_dirs
         ],
         'APP_DIRS': True,
         'OPTIONS': {
