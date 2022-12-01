@@ -21,7 +21,7 @@ docker-compose up -d
 # necessary
 
 # Make frontend assets
-if [ -f "src/frontend/next.config.js"]; then
+if [ -f "src/frontend/next.config.js" ]; then
     docker-compose exec -T builder yarn
 fi
 
