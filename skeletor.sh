@@ -173,8 +173,7 @@ elif [[ $FRONTEND == "$FRONTEND_WEB_NEXTJS_REACT" ]]; then
     rm -rf src/react_frontend
     NODE_VERSION=19
 fi
-
-sed -i "s/^FROM node:NODE_VERSION.*/FROM node: ${NODE_VERSION}/" /docker/Dockerfile.frontend
+sed -i -e "s/^FROM node:NODE_VERSION/FROM node:${NODE_VERSION}/g" docker/Dockerfile.frontend
 
 # Remove Skeletor specific stuff
 echo -e "Cleaning up stuff...\n"
