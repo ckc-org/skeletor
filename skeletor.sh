@@ -161,7 +161,8 @@ sed -i '' '1,/^-----------------$/d' README.md
 grep -rl "SKELETOR_NAME_PLACEHOLDER" . | xargs sed -i "" -e "s@SKELETOR_NAME_PLACEHOLDER@$PROJECT_NAME@g"
 
 
-# Remove mobile dir if we don't need it
+# Remove mobile dir if we don't need it. set node version in Dockerfile.frontend
+NODE_VERSION=12
 if [[ $FRONTEND == "$FRONTEND_WEB_VUEJS" ]]; then
     rm -rf src/mobile
 
@@ -170,8 +171,10 @@ elif [[ $FRONTEND == "$FRONTEND_WEB_NEXTJS_REACT" ]]; then
     rm -rf src/frontend
     cp -r src/react_frontend src/frontend
     rm -rf src/react_frontend
+    NODE_VERSION=19
 fi
 
+sed -i "s/^FROM node:NODE_VERSION.*/FROM node: ${NODE_VERSION}/" /docker/Dockerfile.frontend
 
 # Remove Skeletor specific stuff
 echo -e "Cleaning up stuff...\n"
