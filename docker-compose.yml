@@ -66,11 +66,12 @@ services:
         - 6379:6379
     logging: *default-logging
     volumes:
-        - ./volumes/redis:/data
-        - ./docker/redis.conf:/redis.conf
-        - ./docker/sysctl.conf:/etc/sysctl.conf
+        - redis_data:/data
+#        - ./docker/redis.conf:/redis.conf
+#        - ./docker/sysctl.conf:/etc/sysctl.conf
     restart: unless-stopped
-    command: redis-server /redis.conf --bind 0.0.0.0
+    #command: redis-server /redis.conf --bind 0.0.0.0
 
 volumes:
   db_data:
+  redis_data:

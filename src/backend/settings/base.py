@@ -66,7 +66,10 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
-            '/frontend/generated',
+
+            # We "collectstatic" either a Vue or React frontend, which pushes an
+            # index.html to this directory that we can serve from urls.py on `/` endpoint
+            'staticfiles/',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -170,12 +173,15 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-if not os.path.exists('/frontend/generated/static'):
-    os.mkdir('/frontend/generated/static')
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
-    '/frontend/generated/static',
+    # '/frontend/generated/static',
 )
+if os.path.exists('/frontend/generated/static'):
+    STATICFILES_DIRS += ('/frontend/generated/static',)
+if os.path.exists('/frontend/out/'):  #
+    STATICFILES_DIRS += ('/frontend/out',)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
 
