@@ -95,7 +95,7 @@ export default {
   */
   vuetify: vuetify_config,
   router: {
-    mode: process.env.NODE_ENV === 'production' ? 'hash' : 'history',
+    mode: process.env.NODE_ENV === 'development' ? 'history' : 'hash',
     middleware: ['auth']
   },
   /*
