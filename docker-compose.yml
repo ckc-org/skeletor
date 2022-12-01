@@ -54,7 +54,7 @@ services:
       - ./src/frontend:/app:cached
       # This _deletes_ the node_modules/ host volume folder in docker, so it uses the docker image
       # node_modules/ -- if you modify yarn.lock you'll need to build the docker image again.
-      #- /app/node_modules
+      - /app/node_modules
     depends_on:
       - django
     logging: *default-logging
