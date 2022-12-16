@@ -1,4 +1,4 @@
-import nextConfig from "../next.config";
+import nextConfig from "../../next.config";
 import axios from 'axios'
 import React from "react";
 
