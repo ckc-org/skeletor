@@ -60,13 +60,21 @@ MIDDLEWARE = (
 )
 
 ROOT_URLCONF = 'urls'
-
+template_dirs = []
+if os.path.exists('/frontend/generated/'):
+    template_dirs.append('/frontend/generated/')
+if os.path.exists('/frontend/out/'):
+    template_dirs.append('/frontend/out')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
-            '/frontend/generated',
+
+            # We "collectstatic" either a Vue or React frontend, which pushes an
+            # index.html to this directory that we can serve from urls.py on `/` endpoint
+            'staticfiles/',
+            *template_dirs
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -150,6 +158,10 @@ CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_HTTPONLY = True
 
 
+SESSION_COOKIE_DOMAIN = os.environ.get("SESSION_COOKIE_DOMAIN", "localhost:8000")
+SESSION_COOKIE_SAMESITE = os.environ.get('SESSION_COOKIE_SAMESITE', 'None')
+
+
 # =============================================================================
 # Whitenoise
 # =============================================================================
@@ -166,10 +178,15 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
-    '/frontend/generated/static',
+    # '/frontend/generated/static',
 )
+if os.path.exists('/frontend/generated/static'):
+    STATICFILES_DIRS += ('/frontend/generated/static',)
+if os.path.exists('/frontend/out/'):  #
+    STATICFILES_DIRS += ('/frontend/out',)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
 

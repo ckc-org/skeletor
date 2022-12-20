@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.tokens import default_token_generator
+from django.http import JsonResponse
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 from rest_framework import views, status, viewsets
@@ -49,6 +50,21 @@ class LogoutView(views.APIView):
     def post(self, request, format=None):
         logout(request)
         return Response(status=status.HTTP_200_OK)
+
+
+class UserProfileView(views.APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, format=None):
+        from pprint import pprint
+        pprint(request.__dict__)
+        if request.user:
+            print('user found')
+        return JsonResponse({
+            "username": "you_are_admin",
+            "id": 1,
+            "dummy_data": "testing data",
+        })
 
 
 class UserPasswordResetViewSet(viewsets.ViewSet):

@@ -1,0 +1,53 @@
+.custom-scroll-bar-vertical::-webkit-scrollbar {
+    width: 2px;
+}
+
+.custom-scroll-bar-horizontal::-webkit-scrollbar {
+    height: 2px;
+}
+
+/* Track */
+.custom-scroll-bar-horizontal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+.custom-scroll-bar-vertical::-webkit-scrollbar-track, .custom-scroll-bar-horizontal::-webkit-scrollbar-thumb {
+    background: var(--v-grey-base);
+}
+
+.custom-scroll-bar-vertical::-webkit-scrollbar-thumb {
+    background: black;
+}
+
+
+// Scroll bar
+/* width */
+.custom-scroll-bar::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.custom-scroll-bar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+.custom-scroll-bar::-webkit-scrollbar-thumb {
+    background: var(--v-grey-dark-base);
+}
+
+
+.invisible-scroll::-webkit-scrollbar {
+    height: 0;
+}
+
+/* Track */
+.invisible-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+.invisible-scroll::-webkit-scrollbar-thumb {
+    background: transparent;
+}
