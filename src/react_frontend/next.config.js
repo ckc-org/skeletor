@@ -1,4 +1,5 @@
 const withPlugins = require('next-with-plugins')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = withPlugins({
   reactStrictMode: true,

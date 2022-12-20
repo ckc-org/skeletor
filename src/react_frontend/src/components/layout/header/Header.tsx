@@ -25,7 +25,7 @@ function Header() {
           <Link className={styles.link} href="/">
             Settings
           </Link>
-          <Link className={styles.link} href="/login">
+          <Link className={styles.link} href="/harvey_login">
             Login
           </Link>
         </div>

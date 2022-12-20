@@ -7,6 +7,10 @@ export default function Home() {
       <Header/>
 
       <main>
+        <div>
+          You're signed in.
+        </div>
+        <button>Sign out</button>
       </main>
 
       <footer>

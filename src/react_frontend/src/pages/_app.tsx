@@ -1,12 +1,9 @@
 import '../styles/globals.styl'
 import type {AppProps} from 'next/app'
-// @ts-ignore
-import { SessionProvider } from "next-auth/react"
+// import {ThemeProvider} from "@mui/material";
 
-export default function App({Component, pageProps: { session, ...pageProps }}: AppProps) {
+export default function App({Component, pageProps: {session, ...pageProps}}: AppProps) {
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
-    </SessionProvider>
+    <Component {...pageProps} />
   )
 }
