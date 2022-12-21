@@ -14,7 +14,7 @@ class LoginSerializer(serializers.Serializer):
     remember_me = serializers.BooleanField(default=False, required=False)
 
 
-class CustomUserDetailsSerializer(serializers.ModelSerializer):
+class UserDetailsSerializer(serializers.ModelSerializer):
     """
     User model w/o password
     """

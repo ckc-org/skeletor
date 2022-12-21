@@ -149,6 +149,11 @@ CORS_ALLOW_CREDENTIALS = True
 
 SESSION_COOKIE_HTTPONLY = True
 
+CSRF_TRUSTED_ORIGINS = (
+    'http://localhost:3000',
+    SITE_DOMAIN,
+)
+
 
 # =============================================================================
 # Whitenoise
@@ -172,15 +177,6 @@ STATICFILES_DIRS = (
 )
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
-
-
-# =============================================================================
-# dj rest auth
-# =============================================================================
-REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'users.serializers.CustomUserDetailsSerializer',
-    'PASSWORD_RESET_SERIALIZER': 'users.serializers.PasswordResetCustomEmailSerializer',
-}
 
 
 # =============================================================================

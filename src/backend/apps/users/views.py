@@ -2,13 +2,13 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
-from rest_framework import views, status, viewsets
+from rest_framework import views, status, viewsets, mixins
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
-from users.serializers import LoginSerializer, PasswordResetSerializer, PasswordResetConfirmSerializer
+from users.serializers import LoginSerializer, PasswordResetSerializer, PasswordResetConfirmSerializer, UserDetailsSerializer
 
 
 User = get_user_model()
@@ -49,6 +49,17 @@ class LogoutView(views.APIView):
     def post(self, request, format=None):
         logout(request)
         return Response(status=status.HTTP_200_OK)
+
+
+class UserDetailView(mixins.ListModelMixin, viewsets.GenericViewSet):
+    """This is the view hit after logging in, or after re-visiting page, to get
+    user profile data"""
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserDetailsSerializer
+
+    def list(self, request, *args, **kwargs):
+        serializer = self.get_serializer(self.request.user)
+        return Response(serializer.data)
 
 
 class UserPasswordResetViewSet(viewsets.ViewSet):
