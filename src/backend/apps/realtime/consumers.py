@@ -16,7 +16,6 @@ class RealtimeConsumer(AsyncJsonWebsocketConsumer):
 
         channel_layer = get_channel_layer()
 
-        # TODO dont do this if generate results has not been clicked
         async_to_sync(channel_layer.group_send)(
             make_realtime_room_key(user),
             {
