@@ -232,6 +232,46 @@ CACHES = {
 
 
 # =============================================================================
+# Celery
+# =============================================================================
+CELERY_BROKER_URL = REDIS_URL
+CELERY_RESULT_BACKEND = REDIS_URL
+CELERY_TIMEZONE = "US/Pacific"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 15 * 60  # in seconds
+CELERY_WORKER_HIJACK_ROOT_LOGGER = False  # let's handle our own logging stuff
+
+
+# =============================================================================
+# Redis SSL fun
+# =============================================================================
+# Handle Redis being SSL
+if REDIS_URL.startswith('rediss'):
+    import ssl
+
+    # Mute the Heroku Redis error:
+    # "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate in certificate chain"
+    # by disabling hostname check.
+
+    # Channels
+    ssl_context = ssl.SSLContext()
+    ssl_context.check_hostname = False
+    CHANNEL_LAYERS["default"]["CONFIG"]["hosts"] = [{
+        'address': REDIS_URL,
+        'ssl': ssl_context,
+    }]
+
+    # Celery
+    CELERY_BROKER_URL += "?ssl_cert_reqs=none"
+    CELERY_RESULT_BACKEND += "?ssl_cert_reqs=none"
+
+    # Caches
+    CACHES['default']['OPTIONS'] = {
+        'ssl_cert_reqs': ssl.CERT_NONE,
+    }
+
+
+# =============================================================================
 # Logging
 # =============================================================================
 LOGGING = {
