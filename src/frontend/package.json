@@ -4,6 +4,10 @@
     "description": "",
     "author": "CKC",
     "private": true,
+    "engines": {
+        "yarn": "<1.23",
+        "node": "<13.0.0"
+    },
     "scripts": {
         "dev": "nuxt",
         "build": "nuxt build",
