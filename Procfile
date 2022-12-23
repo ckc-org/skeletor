@@ -1,2 +1,2 @@
-web: cd src/backend && uvicorn asgi:application --host 0.0.0.0 --port $PORT
-release: cd src/backend && ./manage.py migrate
+web: uvicorn asgi:application --host 0.0.0.0 --port $PORT --app-dir src/backend
+release: ./manage.py migrate --work-dir src/backend
