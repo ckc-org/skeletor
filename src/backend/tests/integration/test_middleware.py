@@ -2,7 +2,7 @@ from factories import UserFactory
 from tests.utils import CkcAPITestCase
 
 
-class CustomMiddlewareTests(CkcAPITestCase):
+class RedirectTests(CkcAPITestCase):
     def test_append_slash_works(self):
         self.client.force_authenticate(UserFactory())
         no_slash_resp = self.client.get('/api')
@@ -12,3 +12,7 @@ class CustomMiddlewareTests(CkcAPITestCase):
         assert slash_resp.status_code == 200
 
         self.assertRedirects(no_slash_resp, '/api/', status_code=301)
+
+    def test_404_on_nonexistend_api_view(self):
+        resp = self.client.get('/api/i_do_not_exist/')
+        assert resp.status_code == 404
