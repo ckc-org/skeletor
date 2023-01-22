@@ -166,6 +166,7 @@ WHITENOISE_MANIFEST_STRICT = False
 # Storage
 # =============================================================================
 STATIC_URL = '/static/'
+STATIC_URL_PREFIX = next((section for section in STATIC_URL.split('/') if section), 'static')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -177,6 +178,7 @@ STATICFILES_DIRS = (
 )
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
+MEDIA_URL_PREFIX = next((section for section in MEDIA_URL.split('/') if section), 'media')
 
 
 # =============================================================================
