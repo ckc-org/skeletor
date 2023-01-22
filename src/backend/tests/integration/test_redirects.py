@@ -13,6 +13,6 @@ class RedirectTests(CkcAPITestCase):
 
         self.assertRedirects(no_slash_resp, '/api/', status_code=301)
 
-    def test_404_on_nonexistend_api_view(self):
+    def test_404_on_nonexistent_api_view(self):
         resp = self.client.get('/api/i_do_not_exist/')
         assert resp.status_code == 404
