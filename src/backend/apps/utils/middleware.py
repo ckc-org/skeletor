@@ -3,7 +3,7 @@ from django.conf import settings
 from django.urls import is_valid_path
 
 
-class CustomCommonMiddleware(CommonMiddleware):
+class CommonMiddlewareWithNuxtIndexRedirect(CommonMiddleware):
     def should_redirect_with_slash(self, request):
         """
         Return True if settings.APPEND_SLASH is True and appending a slash to
@@ -12,9 +12,7 @@ class CustomCommonMiddleware(CommonMiddleware):
         Exclude our catch-all template view when deciding if a path matches our urlconf.
         """
         if settings.APPEND_SLASH and not request.path_info.endswith("/"):
-            urlconf = getattr(request, "urlconf", None)
-            if urlconf is None:
-                urlconf = 'urls.base'
+            urlconf = getattr(request, "urlconf", 'urls.base')
             if not is_valid_path(request.path_info, urlconf):
                 match = is_valid_path("%s/" % request.path_info, urlconf)
                 if match:
