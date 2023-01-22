@@ -5,9 +5,9 @@ import vuetify_config from './vuetify.config'
 export const getBrowserBaseURL = () => {
   // Production
   if (process.env.SITE_DOMAIN) {
-    return `${ process.env.SITE_DOMAIN }`
+    return `${process.env.SITE_DOMAIN}`
   } else if (process.env.HEROKU_APP_NAME) {
-    return `https://${ process.env.HEROKU_APP_NAME }.herokuapp.com`
+    return `https://${process.env.HEROKU_APP_NAME}.herokuapp.com`
   } else {
     throw "Trying to launch in production without SITE_DOMAIN or HEROKU_APP_NAME defined!"
   }
@@ -95,7 +95,6 @@ export default {
   */
   vuetify: vuetify_config,
   router: {
-    mode: process.env.NODE_ENV === 'production' ? 'hash' : 'history',
     middleware: ['auth']
   },
   /*
