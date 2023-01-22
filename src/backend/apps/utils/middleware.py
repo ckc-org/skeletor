@@ -1,6 +1,11 @@
-from django.middleware.common import CommonMiddleware
-from django.conf import settings
+import logging
+
 from django.urls import is_valid_path
+from django.conf import settings
+from django.middleware.common import CommonMiddleware
+
+
+logger = logging.getLogger(__name__)
 
 
 class CommonMiddlewareWithNuxtIndexRedirect(CommonMiddleware):
@@ -17,5 +22,6 @@ class CommonMiddlewareWithNuxtIndexRedirect(CommonMiddleware):
                 match = is_valid_path("%s/" % request.path_info, urlconf)
                 if match:
                     view = match.func
+                    logger.debug('Appending slash to url path.')
                     return getattr(view, "should_append_slash", True)
         return False
