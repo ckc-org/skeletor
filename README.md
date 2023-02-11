@@ -13,7 +13,7 @@ for most of our new clients. It gives us:
  &nbsp;&nbsp; ❯ &nbsp;Email templates + helpers<br>
  &nbsp;&nbsp; ❯ &nbsp;Fast backend tests w/coverage ([pytest](https://docs.pytest.org/))<br>
  &nbsp;&nbsp; ❯ &nbsp;Hot reloading for local dev<br>
- &nbsp;&nbsp; ❯ &nbsp;[Expo](https://expo.dev/) and [NativeBase](https://nativebase.io/) for React Native<br>
+ &nbsp;&nbsp; ❯ &nbsp;[Expo](https://expo.dev/) for [React Native](https://reactnative.dev/)<br>
  
  
 &nbsp;<br>
