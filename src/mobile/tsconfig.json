@@ -1,10 +1,6 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true,
-    "baseUrl": ".",
-    "paths": {
-      "SKELETOR_NAME_PLACEHOLDER/*": ["./*"]
-    }
+    "strict": true
   }
 }
