@@ -10,9 +10,6 @@ export default function App() {
         <Text style={styles.username}>
           Username
         </Text>
-        <Text style={styles.username}>
-          Username
-        </Text>
       </View>
       <StatusBar style="auto" />
     </View>
