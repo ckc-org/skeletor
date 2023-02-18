@@ -1,26 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native-ui-lib';
 
-export default function App() {
+export default () => {
   return (
-    <View style={styles.container}>
-        <Text style={styles.title}>
-          Home
-        </Text>
+    <View flex center>
+      <Text bg-blue>
+        Home
+      </Text>
     </View >
-  );
+  )
 }
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 30,
-  },
-  container: {
-    marginTop: 200,
-    padding: 20,
-    display: 'flex',
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
