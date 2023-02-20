@@ -1,15 +1,20 @@
+import { useRouter } from 'expo-router'
 import { TextField, Button, Text, View } from 'react-native-ui-lib'
-import { useAuth } from '../../context/auth/provider'
 
 export default () => {
-  const { signIn, user } = useAuth()
+  const router = useRouter()
+
+  const createAccount = () => {
+    router.push('/confirmEmail')
+  }
+
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Email:</Text>
       <TextField></TextField>
       <Text>Password:</Text>
       <TextField></TextField>
-      <Button onPress={signIn} label="Sign In" />
+      <Button onPress={createAccount}label='Create Account' />
     </View>
   )
 }

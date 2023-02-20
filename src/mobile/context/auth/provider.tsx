@@ -53,16 +53,13 @@ const useProtectedRoute = (user: SelfUser) => {
 
   useEffect(() => {
     const inAuthGroup = segments[0] === '(auth)'
-    console.log('inAuthGroup', inAuthGroup)
-    console.log('authed', user.authenticated)
-
     if (
       // If the user is not signed in and the initial segment is not anything in the auth group.
       !user.authenticated &&
       !inAuthGroup
     ) {
       // Redirect to the signIn page.
-      router.replace('/signIn')
+      router.replace('/splash')
     } else if (user.authenticated && inAuthGroup) {
       // Redirect away from the signIn page.
       router.replace('/')
