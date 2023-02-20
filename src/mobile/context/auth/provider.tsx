@@ -64,7 +64,7 @@ const useProtectedRoute = (user: SelfUser) => {
       router.replace('/signIn')
     } else if (user.authenticated && inAuthGroup) {
       // Redirect away from the signIn page.
-      router.replace('/profile')
+      router.replace('/')
     }
   }, [user, segments])
 }
