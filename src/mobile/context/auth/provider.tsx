@@ -9,12 +9,12 @@ import {
 
 type SelfUser =
   | {
-      authenticated: boolean
+      authenticated: true
       email: string
       id: number
     }
   | {
-      authenticated: boolean
+      authenticated: false
     }
 
 const unauthenticatedUser: SelfUser = {
@@ -22,6 +22,7 @@ const unauthenticatedUser: SelfUser = {
 }
 
 const authenticatedUser: SelfUser = {
+  id: 1,
   email: 'example@user.com',
   authenticated: true,
 }
