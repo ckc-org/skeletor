@@ -11,6 +11,9 @@ export default () => {
         screenOptions={{
           headerShown: !isSplash,
           headerTintColor: 'black',
+          contentStyle: {
+            backgroundColor: 'white',
+          }
         }}
       ></Stack>
     </>
