@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { TextField, Button, Text, View } from 'react-native-ui-lib'
 import { useAuth } from '../../context/auth/provider'
 
@@ -12,9 +12,14 @@ export default () => {
 
   const [emailValid, setEmailValid] = useState(false)
   const [passwordValid, setPasswordValid] = useState(false)
-
   const [emailTouched, setEmailTouched] = useState(false)
-  const [passwordTouched, setPasswordTouched] = useState(false)
+  const [validCredentials, setValidCredentials] = useState(true)
+
+  const signInRequest = async () => {
+    const success = await signIn(email, password)
+    setValidCredentials(success)
+    setEmail(email + ' ')
+  }
 
   return (
     <View
@@ -44,8 +49,12 @@ export default () => {
           label="Email"
           value={email}
           placeholder="email@example.com"
-          validate={['required', 'email']}
-          validationMessage={['Email is required', 'Email is invalid']}
+          validate={['required', 'email', () => validCredentials]}
+          validationMessage={[
+            'Email is required',
+            'Email is invalid',
+            'Invalid credentials',
+          ]}
           onBlur={() => {
             setEmailTouched(true)
           }}
@@ -70,11 +79,7 @@ export default () => {
           secureTextEntry
           validate={['required']}
           validationMessage={['Password is required']}
-          validateOnBlur={!passwordTouched}
-          validateOnChange={passwordTouched}
-          onBlur={() => {
-            setPasswordTouched(true)
-          }}
+          validateOnChange
           onChangeValidity={(valid) => {
             setPasswordValid(valid)
           }}
@@ -85,7 +90,7 @@ export default () => {
         />
         <Button
           disabled={!emailValid || !passwordValid}
-          onPress={() => signIn(email, password)}
+          onPress={signInRequest}
           label="Sign In"
           borderRadius={'5%'}
         />

@@ -29,13 +29,14 @@ const unauthenticatedUser: SelfUser = {
 // }
 
 type Auth = {
-  signIn: (email: string, password: string) => void
+  signIn: (email: string, password: string) => Promise<boolean>
   signOut: () => void
   user: SelfUser
 }
 
 const authData = {
-  signIn: (email: string, password: string) => {},
+  signIn: (email: string, password: string): Promise<boolean> =>
+    new Promise((resolve) => resolve(false)),
   signOut: () => {},
   user: unauthenticatedUser,
 }
@@ -86,7 +87,9 @@ export const AuthProvider = (props: PropsWithChildren) => {
       })
     } catch (e) {
       console.error(e)
+      return false
     }
+    return true
   }
 
   const signOut = async () => {
