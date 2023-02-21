@@ -3,6 +3,7 @@ import { Button, Text, View } from 'react-native-ui-lib'
 
 export default () => {
   const router = useRouter()
+
   return (
     <View
       flex
@@ -14,7 +15,7 @@ export default () => {
       }}
     >
       <Text text20>App Title</Text>
-      <View width={'85%'} style={{marginBottom: '10%'}}>
+      <View width={'85%'} style={{ marginBottom: '10%' }}>
         <Button
           label="Sign Up"
           borderRadius={'5%'}

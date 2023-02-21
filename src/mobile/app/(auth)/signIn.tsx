@@ -1,14 +1,18 @@
 import { useRouter } from 'expo-router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TextField, Button, Text, View } from 'react-native-ui-lib'
 import { useAuth } from '../../context/auth/provider'
 
 export default () => {
-  const { signIn } = useAuth()
+  const { signIn, initCSRF } = useAuth()
   const router = useRouter()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  useEffect(() => {
+    initCSRF()
+  }, [])
 
   return (
     <View

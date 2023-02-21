@@ -6,6 +6,7 @@ import {
   useEffect,
   useState,
 } from 'react'
+import { axios } from '../../requests'
 
 type SelfUser =
   | {
@@ -30,12 +31,14 @@ const authenticatedUser: SelfUser = {
 type Auth = {
   signIn: (email: string, password: string) => void
   signOut: () => void
+  initCSRF: () => void
   user: SelfUser
 }
 
 const authData = {
   signIn: (email: string, password: string) => {},
   signOut: () => {},
+  initCSRF: () => {},
   user: unauthenticatedUser,
 }
 
@@ -70,19 +73,47 @@ const useProtectedRoute = (user: SelfUser) => {
 export const AuthProvider = (props: PropsWithChildren) => {
   const [user, setAuth] = useState<SelfUser>(unauthenticatedUser)
 
+  const initCSRF = async () => {
+    try {
+      axios.get('/csrf/')
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  useEffect(() => {
+    initCSRF()
+  }, [])
+
   useProtectedRoute(user)
+
+  const signIn = async (email: string, password: string) => {
+    email = 'admin@admin.com'
+    password = 'admin'
+    console.log('making request', `email: ${email}, password: ${password}`)
+    try {
+      const resp = await axios.post('/auth/login/', {
+        email,
+        password,
+      }) as SelfUser
+      setAuth({
+        authenticated: true,
+        email,
+        id: resp.data.id,
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   return (
     <AuthContext.Provider
       value={{
-        signIn: (email: string, password: string) => {
-          const u = authenticatedUser
-          u.email = email
-          setAuth(u)
-        },
+        signIn,
         signOut: () => {
           setAuth(unauthenticatedUser)
         },
+        initCSRF,
         user,
       }}
     >
