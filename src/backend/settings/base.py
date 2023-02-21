@@ -9,6 +9,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # "apps" in each import
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
+
+# =============================================================================
+# Debugging
+# =============================================================================
+DEBUG = os.environ.get('DEBUG', False)
+
+
 # =============================================================================
 # Django
 # =============================================================================
@@ -59,6 +66,9 @@ MIDDLEWARE = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+if DEBUG:
+    MIDDLEWARE += ('utils.middleware.RequestDataLoggingMiddleware',)
+
 ROOT_URLCONF = 'urls'
 
 TEMPLATES = [
@@ -93,12 +103,6 @@ LOGIN_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'users.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 SESSION_ENGINE = os.environ.get("SESSION_ENGINE", "django.contrib.sessions.backends.cached_db")
-
-
-# =============================================================================
-# Debugging
-# =============================================================================
-DEBUG = os.environ.get('DEBUG', False)
 
 
 # =============================================================================

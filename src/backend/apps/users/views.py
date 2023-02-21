@@ -1,4 +1,3 @@
-from django.middleware.csrf import get_token as get_csrf_token
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_str
@@ -13,14 +12,6 @@ from users.serializers import LoginSerializer, PasswordResetSerializer, Password
 
 
 User = get_user_model()
-
-
-class CSRFTokenView(views.APIView):
-    permission_classes = [AllowAny]
-
-    def get(self, request):
-        get_csrf_token(request)
-        return Response()
 
 
 # TODO: Add to api docs ??
