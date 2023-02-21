@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { TextField, Button, Text, View } from 'react-native-ui-lib'
 import { useAuth } from '../../context/auth/provider'
 
@@ -9,6 +9,12 @@ export default () => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const [emailValid, setEmailValid] = useState(false)
+  const [passwordValid, setPasswordValid] = useState(false)
+
+  const [emailTouched, setEmailTouched] = useState(false)
+  const [passwordTouched, setPasswordTouched] = useState(false)
 
   return (
     <View
@@ -36,9 +42,18 @@ export default () => {
             borderBottomWidth: 2,
           }}
           label="Email"
+          value={email}
           placeholder="email@example.com"
           validate={['required', 'email']}
           validationMessage={['Email is required', 'Email is invalid']}
+          onBlur={() => {
+            setEmailTouched(true)
+          }}
+          validateOnBlur={!emailTouched}
+          validateOnChange={emailTouched}
+          onChangeValidity={(valid) => {
+            setEmailValid(valid)
+          }}
           enableErrors
           onChangeText={(text) => {
             setEmail(text)
@@ -51,15 +66,25 @@ export default () => {
             borderBottomWidth: 2,
           }}
           label="Password"
+          value={password}
           secureTextEntry
-          validate={['required', 'email']}
-          validationMessage={['Email is required', 'Email is invalid']}
+          validate={['required']}
+          validationMessage={['Password is required']}
+          validateOnBlur={!passwordTouched}
+          validateOnChange={passwordTouched}
+          onBlur={() => {
+            setPasswordTouched(true)
+          }}
+          onChangeValidity={(valid) => {
+            setPasswordValid(valid)
+          }}
           enableErrors
           onChangeText={(text) => {
             setPassword(text)
           }}
         />
         <Button
+          disabled={!emailValid || !passwordValid}
           onPress={() => signIn(email, password)}
           label="Sign In"
           borderRadius={'5%'}

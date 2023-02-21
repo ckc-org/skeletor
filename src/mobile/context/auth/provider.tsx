@@ -22,11 +22,11 @@ const unauthenticatedUser: SelfUser = {
   authenticated: false,
 }
 
-const authenticatedUser: SelfUser = {
-  id: 1,
-  email: 'example@user.com',
-  authenticated: true,
-}
+// const authenticatedUser: SelfUser = {
+//   id: 1,
+//   email: 'example@user.com',
+//   authenticated: true,
+// }
 
 type Auth = {
   signIn: (email: string, password: string) => void
@@ -69,20 +69,17 @@ const useProtectedRoute = (user: SelfUser) => {
 }
 
 export const AuthProvider = (props: PropsWithChildren) => {
-  const [user, setAuth] = useState<SelfUser>(unauthenticatedUser)
+  const [user, setUser] = useState<SelfUser>(unauthenticatedUser)
 
   useProtectedRoute(user)
 
   const signIn = async (email: string, password: string) => {
-    email = 'admin@admin.com'
-    password = 'admin'
-    console.log('making request', `email: ${email}, password: ${password}`)
     try {
       const resp = (await axios.post('/auth/login/', {
         email,
         password,
       })) as SelfUser
-      setAuth({
+      setUser({
         authenticated: true,
         email,
         id: resp.data.id,
@@ -95,7 +92,7 @@ export const AuthProvider = (props: PropsWithChildren) => {
   const signOut = async () => {
     try {
       await axios.post('/auth/logout/')
-      setAuth(unauthenticatedUser)
+      setUser(unauthenticatedUser)
     } catch (e) {
       console.error(e)
     }
