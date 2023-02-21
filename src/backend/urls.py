@@ -6,7 +6,7 @@ from django.urls import path, re_path
 from django.views.generic import TemplateView
 from rest_framework import routers
 
-from users.views import LoginView, LogoutView, UserPasswordResetViewSet, UserDetailView
+from users.views import LoginView, LogoutView, UserPasswordResetViewSet, UserDetailView, CSRFTokenView
 
 router = routers.DefaultRouter()
 
@@ -19,6 +19,7 @@ router.register('passwordreset', UserPasswordResetViewSet, basename='passwordres
 urlpatterns = [
     # Our URLS
     path('api/', include(router.urls)),
+    path('api/csrf/', CSRFTokenView.as_view(), name="csrf"),
 
     # TODO: Add these auth endpoints to api docs, like password reset ??
     path('api/auth/login/', LoginView.as_view(), name="rest_login"),
