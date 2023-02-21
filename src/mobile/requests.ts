@@ -13,7 +13,13 @@ axiosInstance.interceptors.response.use(
         return cookie.startsWith('csrftoken=')
       })
       if (csrfCookie) {
-        axiosInstance.defaults.headers.common['X-CSRFToken'] = csrfCookie[0].split(';')[0].split('=')[1]
+        try {
+          axiosInstance.defaults.headers.common['X-CSRFToken'] = csrfCookie[0]
+            .split(';')[0]
+            .split('=')[1]
+        } catch (e) {
+          axiosInstance.defaults.headers.common['X-CSRFToken'] = ''
+        }
       }
     }
     return response
@@ -22,5 +28,19 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error)
   },
 )
+
+axiosInstance.interceptors.request.use((request) => {
+  if (
+    request.method === 'post' ||
+    request.method === 'patch' ||
+    request.method === 'put' ||
+    request.method === 'delete'
+  ) {
+    if (!axiosInstance.defaults.headers.common['X-CSRFToken']) {
+      axiosInstance.defaults.headers.common['X-CSRFToken'] = ''
+    }
+  }
+  return request
+})
 
 export { axiosInstance as axios }

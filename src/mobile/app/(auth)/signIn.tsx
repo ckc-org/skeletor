@@ -4,15 +4,11 @@ import { TextField, Button, Text, View } from 'react-native-ui-lib'
 import { useAuth } from '../../context/auth/provider'
 
 export default () => {
-  const { signIn, initCSRF } = useAuth()
+  const { signIn } = useAuth()
   const router = useRouter()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
-  useEffect(() => {
-    initCSRF()
-  }, [])
 
   return (
     <View
