@@ -28,13 +28,13 @@ const authenticatedUser: SelfUser = {
 }
 
 type Auth = {
-  signIn: () => void
+  signIn: (email: string, password: string) => void
   signOut: () => void
   user: SelfUser
 }
 
 const authData = {
-  signIn: () => {},
+  signIn: (email: string, password: string) => {},
   signOut: () => {},
   user: unauthenticatedUser,
 }
@@ -75,8 +75,10 @@ export const AuthProvider = (props: PropsWithChildren) => {
   return (
     <AuthContext.Provider
       value={{
-        signIn: () => {
-          setAuth(authenticatedUser)
+        signIn: (email: string, password: string) => {
+          const u = authenticatedUser
+          u.email = email
+          setAuth(u)
         },
         signOut: () => {
           setAuth(unauthenticatedUser)

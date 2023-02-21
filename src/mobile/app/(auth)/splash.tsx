@@ -4,11 +4,31 @@ import { Button, Text, View } from 'react-native-ui-lib'
 export default () => {
   const router = useRouter()
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Splash</Text>
-      <Button label="Sign Up" onPress={() => router.push('/signUp')} />
-      <Button label="Sign In" onPress={() => router.push('/signIn')} />
-      <Button label="Forgot Password" onPress={() => router.push('/forgotPassword')} />
+    <View
+      flex
+      center
+      style={{
+        marginTop: '30%',
+        justifyContent: 'space-between',
+        height: '70%',
+      }}
+    >
+      <Text text20>App Title</Text>
+      <View width={'85%'} style={{marginBottom: '10%'}}>
+        <Button
+          label="Sign Up"
+          borderRadius={'5%'}
+          onPress={() => router.push('/signUp')}
+        />
+        <Button
+          label="Sign In"
+          borderRadius={'5%'}
+          backgroundColor={'#fff'}
+          color={'#000'}
+          fontWeight={'bold'}
+          onPress={() => router.push('/signIn')}
+        />
+      </View>
     </View>
   )
 }
