@@ -26,7 +26,7 @@ export default () => {
           width: '85%',
         }}
       >
-        <Text text20 style={{ marginbottom: 40 }}>
+        <Text text20 style={{ marginBottom: 40 }}>
           Sign In
         </Text>
         <TextField
