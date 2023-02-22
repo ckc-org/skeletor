@@ -1,5 +1,4 @@
-import { useRouter } from 'expo-router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { TextField, Button, Text, View } from 'react-native-ui-lib'
 import { useAuth } from '../../context/auth/provider'
 
@@ -12,10 +11,27 @@ export default () => {
   const [emailValid, setEmailValid] = useState(false)
   const [passwordValid, setPasswordValid] = useState(false)
   const [emailTouched, setEmailTouched] = useState(false)
-  const [validCredentials, setValidCredentials] = useState(true)
+  const [emailError, setEmailError] = useState('')
 
-  const submit = () => {
-    createAccount(email, password)
+  const submit = async () => {
+    try {
+      const resp = await createAccount(email.trim(), password)
+      if (resp.status === 400) {
+        if (resp.data.email) {
+          console.log(resp.data.email[0])
+          setEmailError(resp.data.email[0])
+          
+          // Trigger validation
+          setEmail(email + '1')
+          setTimeout(() => {
+            setEmail(email)
+          }, 0)
+        }
+      } else {
+      }
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return (
@@ -42,13 +58,13 @@ export default () => {
           }}
           label="Email"
           keyboardType="email-address"
-          value={email}
+          value={email.trim()}
           placeholder="email@example.com"
-          validate={['required', 'email', () => validCredentials]}
+          validate={['required', 'email', () => !emailError]}
           validationMessage={[
             'Email is required',
             'Email is invalid',
-            'Invalid credentials',
+            emailError,
           ]}
           onBlur={() => {
             setEmailTouched(true)
@@ -60,7 +76,8 @@ export default () => {
           }}
           enableErrors
           onChangeText={(text) => {
-            setEmail(text)
+            setEmail(text.trim())
+            setEmailError('')
           }}
         />
         <TextField

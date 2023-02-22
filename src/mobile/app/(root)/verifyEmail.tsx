@@ -6,7 +6,7 @@ import { axios } from '../../requests'
 import { useEffect, useState } from 'react'
 
 export default () => {
-  const { signOut, verifyEmail } = useAuth()
+  const { user, signOut, verifyEmail } = useAuth()
 
   const [code, setCode] = useState('')
   const [resendButtonDisabled, setResendButtonDisabled] = useState(true)
@@ -49,7 +49,7 @@ export default () => {
           height: '50%',
         }}
       >
-        <Text>Enter the code we sent your email here:</Text>
+        <Text>Enter the code we sent your email ({ user ? user.email : ''}) here:</Text>
         <OTPInputView
           pinCount={6}
           onCodeChanged={setCode}
