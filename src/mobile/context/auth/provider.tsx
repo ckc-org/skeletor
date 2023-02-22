@@ -51,7 +51,7 @@ const useProtectedRoute = (user: SelfUser | null) => {
       // Force user to verify email before they can do anything as an authed user.
       router.replace('/verifyEmail')
     } else if (user && user.email_verified && segments[1] === 'verifyEmail') {
-      // Force user to verify email before they can do anything as an authed user.
+      // Redirect user to home page after email verification.
       router.replace('/')
     } else if (user && inAuthGroup) {
       // Redirect away from the signIn page.
