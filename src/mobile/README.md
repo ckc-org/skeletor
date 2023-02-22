@@ -22,8 +22,7 @@ Run `yarn ios` to automatically start up an iOS simulator with expo.
 
 Change the `API_DOMAIN` environment variable in `.env` to your machine's local IP address (not localhost). This will allow your phone to know which server to send API requests to.
 
-`src/mobile/.env`
-
+`src/mobile/.env`:
 ```diff
 - API_DOMAIN=localhost:8000
 # Example local ip
