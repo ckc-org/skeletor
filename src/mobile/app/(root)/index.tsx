@@ -6,6 +6,8 @@ export default () => {
   const router = useRouter()
   const { user } = useAuth()
 
+  if (!user) return <Text bg-blue>Loading...</Text>
+
   return (
     <View flex center>
       <Text bg-blue>Home</Text>

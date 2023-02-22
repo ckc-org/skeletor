@@ -18,7 +18,7 @@ export default () => {
   const signInRequest = async () => {
     const success = await signIn(email, password)
     setValidCredentials(success)
-    setEmail(email + ' ')
+    setEmail(email + ' ') // Trigger onChange to validate
   }
 
   return (
