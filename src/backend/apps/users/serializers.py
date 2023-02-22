@@ -4,6 +4,7 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 from utils import email
+from users.models import OTPVerificationCode
 
 
 User = get_user_model()
@@ -16,14 +17,18 @@ class LoginSerializer(serializers.Serializer):
 
 
 class EmailVerificationSerializer(serializers.Serializer):
-    email = serializers.EmailField(required=True)
     otp_code = serializers.CharField(required=True)
 
     def validate(self, attrs):
-        user = get_object_or_404(User, email=attrs['email'])
-        if not user.email_verification_code == attrs['otp_code']:
+        code = OTPVerificationCode.objects.filter(user=self.context['request'].user).last()
+        if code is None or code.code == attrs['otp_code']:
             raise ValidationError({'otp_code': 'Invalid OTP code.'})
         return attrs
+
+    def save(self):
+        user = self.context['request'].user
+        user.email_verified = True
+        user.save()
 
 
 class UserSelfDetailSerializer(serializers.ModelSerializer):
@@ -37,11 +42,6 @@ class UserSelfDetailSerializer(serializers.ModelSerializer):
             'last_name',
         )
         read_only_fields = ('email', 'email_verified')
-
-    def create(self, validated_data):
-        user = super().create(validated_data)
-        login(self.context['request'], user)
-        return user
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -60,6 +60,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         send_otp_email_verification = validated_data.pop('send_otp_email_verification')
         user = super().create(validated_data)
+        login(self.context['request'], user)
         if send_otp_email_verification:
             email.otp_email_verification(user)
         return user

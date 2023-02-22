@@ -68,7 +68,7 @@ class UserViewSet(
             return UserCreateSerializer
         if self.action == 'retrieve':
             return UserDetailSerializer
-        if self.action in ['me', 'verify_email']:
+        if self.action == 'me':
             return UserSelfDetailSerializer
         if self.action == 'verify_email':
             return EmailVerificationSerializer
@@ -95,21 +95,21 @@ class UserViewSet(
         headers = self.get_success_headers(serializer.data)
         return Response(UserSelfDetailSerializer(user).data, status=status.HTTP_201_CREATED, headers=headers)
 
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['post'])
     def resend_otp_email_verification(self, request):
         email.otp_email_verification(request.user)
         return Response()
 
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['post'])
     def verify_email(self, request):
-        serializer = self.get_serializer_class(request.data)
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(UserSelfDetailSerializer(request.user).data)
 
     @action(detail=False, methods=['get'])
     def me(self, request):
-        serializer = self.get_serializer_class(request.user)
+        serializer = self.get_serializer(request.user)
         return Response(serializer.data)
 
 

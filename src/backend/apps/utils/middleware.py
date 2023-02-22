@@ -26,4 +26,8 @@ class RequestDataLoggingMiddleware:
                 logger.info(request.read())
                 logger.info(pformat(getattr(response, 'data', None)))
 
+                logger.info('response headers:')
+                for h in response.headers:
+                    logger.info(f'{h}: {response.headers[h]}')
+
         return response
