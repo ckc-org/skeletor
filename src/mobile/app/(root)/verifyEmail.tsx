@@ -6,7 +6,7 @@ import { axios } from '../../requests'
 import { useEffect, useState } from 'react'
 
 export default () => {
-  const { verifyEmail } = useAuth()
+  const { signOut, verifyEmail } = useAuth()
 
   const [code, setCode] = useState('')
   const [resendButtonDisabled, setResendButtonDisabled] = useState(true)
@@ -62,6 +62,10 @@ export default () => {
           disabled={resendButtonDisabled}
           onPress={resend}
           label="Resend code"
+        />
+        <Button
+          onPress={signOut}
+          label="Sign Out"
         />
       </View>
     </View>
