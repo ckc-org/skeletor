@@ -88,9 +88,7 @@ export const AuthProvider = (props: PropsWithChildren) => {
           email,
           password,
         })
-      ).data as SelfUser
-      console.log(data)
-
+      ).data.user as SelfUser
       setUser(data)
     } catch (e) {
       console.error(e)
@@ -110,12 +108,14 @@ export const AuthProvider = (props: PropsWithChildren) => {
 
   const createAccount = async (email: string, password: string) => {
     try {
-      const resp = await axios.post('/users/', {
-        email,
-        password,
-        send_otp_email_verification: true,
-      })
-      setUser({ ...resp.data })
+      const data = (
+        await axios.post('/users/', {
+          email,
+          password,
+          send_otp_email_verification: true,
+        })
+      ).data.user as SelfUser
+      setUser(data)
     } catch (e) {
       console.error(e)
       return false
