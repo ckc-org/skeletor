@@ -4,6 +4,8 @@ import { useAuth } from '../../context/auth/provider'
 export default () => {
   const { signOut, user } = useAuth()
 
+  if (!user) return null
+
   return (
     <View flex paddingH-25 paddingT-120>
       <View flex row>

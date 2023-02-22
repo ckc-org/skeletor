@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { TextField, Button, Text, View } from 'react-native-ui-lib'
 import { useAuth } from '../../context/auth/provider'
 
@@ -45,8 +45,13 @@ export default () => {
             width: '100%',
             borderBottomColor: '#eee',
             borderBottomWidth: 2,
+            height: 40,
+          }}
+          style={{
+            fontSize: 24,
           }}
           label="Email"
+          keyboardType='email-address'
           value={email}
           placeholder="email@example.com"
           validate={['required', 'email', () => validCredentials]}
@@ -73,6 +78,10 @@ export default () => {
             width: '100%',
             borderBottomColor: '#eee',
             borderBottomWidth: 2,
+            height: 40,
+          }}
+          style={{
+            fontSize: 24,
           }}
           label="Password"
           value={password}
@@ -93,6 +102,7 @@ export default () => {
           onPress={signInRequest}
           label="Sign In"
           borderRadius={'5%'}
+          enableShadow
         />
         <Button
           label="Forgot Password"
@@ -101,6 +111,10 @@ export default () => {
           color={'#000'}
           fontWeight={'bold'}
           onPress={() => router.push('/forgotPassword')}
+          style={{
+            marginTop: 10,
+            height: 50,
+          }}
         />
       </View>
     </View>

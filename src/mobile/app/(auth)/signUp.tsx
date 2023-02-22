@@ -35,8 +35,13 @@ export default () => {
             width: '100%',
             borderBottomColor: '#eee',
             borderBottomWidth: 2,
+            height: 40,
+          }}
+          style={{
+            fontSize: 24,
           }}
           label="Email"
+          keyboardType="email-address"
           value={email}
           placeholder="email@example.com"
           validate={['required', 'email', () => validCredentials]}
@@ -63,6 +68,10 @@ export default () => {
             width: '100%',
             borderBottomColor: '#eee',
             borderBottomWidth: 2,
+            height: 40,
+          }}
+          style={{
+            fontSize: 24,
           }}
           label="Password"
           value={password}

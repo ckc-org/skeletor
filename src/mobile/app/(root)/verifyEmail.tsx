@@ -6,18 +6,18 @@ import { axios } from '../../requests'
 import { useEffect, useState } from 'react'
 
 export default () => {
-  const {} = useAuth()
+  const { verifyEmail } = useAuth()
 
   const [code, setCode] = useState('')
   const [resendButtonDisabled, setResendButtonDisabled] = useState(true)
 
   const submit = () => {
-    console.log(code)
+    verifyEmail(code)
   }
 
   const resend = async () => {
     try {
-      await axios.post('/user/resend_otp_email_verification/')
+      await axios.post('/users/resend_otp_email_verification/')
     } catch (err) {
       console.log(err)
     }

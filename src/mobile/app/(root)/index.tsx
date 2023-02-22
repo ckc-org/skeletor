@@ -16,7 +16,7 @@ export default () => {
           {k}: {String(user[k])}
         </Text>
       ))}
-      <Button label="To profile" onPress={() => router.push('profile')} />
+      <Button label="To profile" onPress={() => router.push('/profile')} />
     </View>
   )
 }
