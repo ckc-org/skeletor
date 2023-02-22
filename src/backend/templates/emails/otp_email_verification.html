@@ -1,0 +1,30 @@
+{% extends "emails/base.html" %}
+
+{% block subject %}
+    Verify Email
+{% endblock %}
+
+{% block extra_head %}
+
+{% endblock %}
+
+{% block content %}
+
+    <table style="margin-bottom: 15px;">
+        <tr>
+            <td class="title">
+                Verifiy your email
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Please copy the following code and paste it in the app to verify your email.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ otp_code }}
+            </td>
+        </tr>
+    </table>
+{% endblock %}

@@ -1,4 +1,5 @@
-from django.contrib.auth import get_user_model, password_validation
+from django.contrib.auth import login, get_user_model, password_validation
+from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
@@ -14,10 +15,38 @@ class LoginSerializer(serializers.Serializer):
     remember_me = serializers.BooleanField(default=False, required=False)
 
 
-class UserDetailsSerializer(serializers.ModelSerializer):
-    """
-    User model w/o password
-    """
+class EmailVerificationSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)
+    otp_code = serializers.CharField(required=True)
+
+    def validate(self, attrs):
+        user = get_object_or_404(User, email=attrs['email'])
+        if not user.email_verification_code == attrs['otp_code']:
+            raise ValidationError({'otp_code': 'Invalid OTP code.'})
+        return attrs
+
+
+class UserSelfDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            'id',
+            'email',
+            'email_verified',
+            'first_name',
+            'last_name',
+        )
+        read_only_fields = ('email', 'email_verified')
+
+    def create(self, validated_data):
+        user = super().create(validated_data)
+        login(self.context['request'], user)
+        return user
+
+
+class UserCreateSerializer(serializers.ModelSerializer):
+    send_otp_email_verification = serializers.BooleanField(default=False, required=False, write_only=True)
+
     class Meta:
         model = User
         fields = (
@@ -25,8 +54,37 @@ class UserDetailsSerializer(serializers.ModelSerializer):
             'email',
             'first_name',
             'last_name',
+            'send_otp_email_verification',
         )
-        read_only_fields = ('email',)
+
+    def create(self, validated_data):
+        send_otp_email_verification = validated_data.pop('send_otp_email_verification')
+        user = super().create(validated_data)
+        if send_otp_email_verification:
+            email.otp_email_verification(user)
+        return user
+
+
+class UserDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            'id',
+            'first_name',
+            'last_name',
+        )
+
+
+class UserListSerializer(serializers.ModelSerializer):
+    """
+    User model w/o password
+    """
+    class Meta:
+        model = User
+        fields = (
+            'id',
+            'first_name',
+        )
 
 
 class PasswordResetSerializer(serializers.Serializer):

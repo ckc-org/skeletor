@@ -38,6 +38,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     # REQUIRED_FIELDS = ['email']
 
     email = CIEmailField(verbose_name="email", max_length=60, unique=True)
+    email_verified = models.BooleanField(default=False)
+
     first_name = models.CharField(max_length=64, null=True, blank=True)
     last_name = models.CharField(max_length=64, null=True, blank=True)
     date_joined = models.DateTimeField(verbose_name="date joined", auto_now_add=True)
@@ -45,8 +47,23 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-
+    
     objects = CustomUserManager()
-
+    
     def __str__(self):
         return self.email
+    
+
+def generate_otp():
+    import random
+    return str(random.randint(100000, 999999))
+
+
+class OTPVerificationCode(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    code = models.CharField(max_length=6, default=generate_otp)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_used = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.code

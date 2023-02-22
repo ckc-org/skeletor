@@ -11,6 +11,8 @@ from templated_email import send_templated_mail, InlineImage
 
 from anymail.exceptions import AnymailRecipientsRefused
 
+from users.models import OTPVerificationCode
+
 
 logger = logging.getLogger()
 User = get_user_model()
@@ -24,6 +26,11 @@ def password_reset(user: User):
     uid = urlsafe_base64_encode(force_bytes(user.pk))
     token = default_token_generator.make_token(user)
     return _send_mail('password_reset', [user.email], uid=uid, token=token)
+
+
+def otp_email_verification(user: User):
+    otp_code = OTPVerificationCode.objects.create(user=user)
+    return _send_mail('otp_email_verification', [user.email], otp_code=otp_code.code)
 
 
 def _send_mail(template_name, to_emails, from_email=None, **kwargs):

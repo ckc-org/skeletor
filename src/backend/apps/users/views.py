@@ -8,7 +8,10 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
-from users.serializers import LoginSerializer, PasswordResetSerializer, PasswordResetConfirmSerializer, UserDetailsSerializer
+from users.serializers import LoginSerializer, PasswordResetSerializer, PasswordResetConfirmSerializer, UserSelfDetailSerializer, UserDetailSerializer, UserListSerializer, UserCreateSerializer, EmailVerificationSerializer
+from users.permissions import IsUser
+
+from utils import email
 
 
 User = get_user_model()
@@ -38,7 +41,7 @@ class LoginView(views.APIView):
 
             login(request, user)
 
-            return Response(status=status.HTTP_200_OK)
+            return Response(UserSelfDetailSerializer(user).data)
         else:
             raise ValidationError({"non_field_errors": ["Incorrect login information."]})
 
@@ -51,14 +54,62 @@ class LogoutView(views.APIView):
         return Response(status=status.HTTP_200_OK)
 
 
-class UserDetailView(mixins.ListModelMixin, viewsets.GenericViewSet):
-    """This is the view hit after logging in, or after re-visiting page, to get
-    user profile data"""
-    permission_classes = [IsAuthenticated]
-    serializer_class = UserDetailsSerializer
+class UserViewSet(
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet,
+):
+    queryset = User.objects.all()
 
-    def list(self, request, *args, **kwargs):
-        serializer = self.get_serializer(self.request.user)
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'partial_update']:
+            return UserCreateSerializer
+        if self.action == 'retrieve':
+            return UserDetailSerializer
+        if self.action in ['me', 'verify_email']:
+            return UserSelfDetailSerializer
+        if self.action == 'verify_email':
+            return EmailVerificationSerializer
+        else:
+            return UserListSerializer
+
+    def get_permission_classes(self):
+        if self.action == 'create':
+            return [AllowAny]
+        elif self.action in ['update', 'partial_update']:
+            return [IsAuthenticated, IsUser]
+        elif self.action in ['list', 'retrieve', 'me', 'verify_email', 'resend_otp_email_verification']:
+            return [IsAuthenticated]
+        else:
+            raise NotImplementedError(f'Action {self.action} not implemented.')
+
+    def get_permissions(self):
+        return [permission() for permission in self.get_permission_classes()]
+    
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        headers = self.get_success_headers(serializer.data)
+        return Response(UserSelfDetailSerializer(user).data, status=status.HTTP_201_CREATED, headers=headers)
+
+    @action(detail=False, methods=['get'])
+    def resend_otp_email_verification(self, request):
+        email.otp_email_verification(request.user)
+        return Response()
+
+    @action(detail=False, methods=['get'])
+    def verify_email(self, request):
+        serializer = self.get_serializer_class(request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(UserSelfDetailSerializer(request.user).data)
+
+    @action(detail=False, methods=['get'])
+    def me(self, request):
+        serializer = self.get_serializer_class(request.user)
         return Response(serializer.data)
 
 
