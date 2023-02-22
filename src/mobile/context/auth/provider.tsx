@@ -8,6 +8,7 @@ import {
   useState,
 } from 'react'
 import { axios } from '../../requests'
+import A, { AxiosError, AxiosResponse } from 'axios'
 
 export type SelfUser = {
   id: number
@@ -19,7 +20,7 @@ export type SelfUser = {
 
 type Auth = {
   signIn: (email: string, password: string) => Promise<boolean>
-  createAccount: (email: string, password: string) => Promise<boolean>
+  createAccount: (email: string, password: string) => Promise<AxiosResponse>
   verifyEmail: (code: string) => Promise<boolean>
   signOut: () => void
   user: SelfUser | null
@@ -37,9 +38,25 @@ const useProtectedRoute = (user: SelfUser | null) => {
   const segments = useSegments()
   const router = useRouter()
 
+  // Persist the router state with AsyncStorage.
+  useEffect(() => {
+    AsyncStorage.setItem('@router-state', segments.join('/'))
+  }, [segments])
+
+  useEffect(() => {
+    const loadRouterState = async () => {
+      const storedRoute = await AsyncStorage.getItem('@router-state')
+      if (storedRoute) {
+        router.replace(storedRoute)
+      }
+    }
+    loadRouterState()
+  }, [])
+
   useEffect(() => {
     const inAuthGroup = segments[0] === '(auth)'
 
+    // Redirect when the user is definitely on the wrong screen based on auth state.
     if (
       // If the user is not signed in and the initial segment is not anything in the auth group.
       !user &&
@@ -108,27 +125,30 @@ export const AuthProvider = (props: PropsWithChildren) => {
 
   const createAccount = async (email: string, password: string) => {
     try {
-      const data = (
-        await axios.post('/users/', {
+      const resp = await axios.post<{ token: string; user: SelfUser }>(
+        '/users/',
+        {
           email,
           password,
           send_otp_email_verification: true,
-        })
-      ).data.user as SelfUser
-      setUser(data)
-    } catch (e) {
-      console.error(e)
-      return false
+        },
+      )
+      setUser(resp.data.user)
+      return resp
+    } catch (e: unknown) {
+      if (A.isAxiosError(e) && e.response) {
+        return e.response
+      } else {
+        throw e
+      }
     }
-    return true
   }
 
   const verifyEmail = async (code: string) => {
     try {
-      const resp = await axios.post('/users/verify_email/', {
+      const resp = await axios.post<SelfUser>('/users/verify_email/', {
         otp_code: code,
       })
-
       setUser({ ...resp.data })
     } catch (e) {
       console.error(e)
