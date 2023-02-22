@@ -4,7 +4,7 @@ import AsyncStorage  from '@react-native-async-storage/async-storage'
 
 const axiosInstance = axios.create({
   baseURL: Constants.expoConfig.extra.apiBaseURL,
-  withCredentials: true,
+  withCredentials: false,
 })
 
 // Load the token from storage
@@ -20,7 +20,8 @@ loadToken()
 axiosInstance.interceptors.response.use(
   (response) => {
     console.log(response.config.url)
-    if (response.config.url === '/auth/login/') {
+    // If login request or user-create request, store the token
+    if (response.config.url === '/auth/login/' || (response.config.url === '/users/' && response.config.method === 'post')) {
       // Store the token in storage
       const token = response.data.token
       AsyncStorage.setItem('token', token)
