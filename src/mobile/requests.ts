@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
   withCredentials: false,
 })
 
-// Load the token from storage
+// Load the token from storage when app loads
 const loadToken = async () => {
   const token = await AsyncStorage.getItem('token')
   if (token) {
@@ -20,7 +20,7 @@ loadToken()
 axiosInstance.interceptors.response.use(
   (response) => {
     console.log(response.config.url)
-    // If login request or user-create request, store the token
+    // If login request or user-create request, get the token
     if (response.config.url === '/auth/login/' || (response.config.url === '/users/' && response.config.method === 'post')) {
       // Store the token in storage
       const token = response.data.token
