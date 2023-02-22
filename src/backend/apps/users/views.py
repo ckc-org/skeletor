@@ -7,6 +7,8 @@ from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.authtoken.models import Token
 
 from users.serializers import LoginSerializer, PasswordResetSerializer, PasswordResetConfirmSerializer, UserSelfDetailSerializer, UserDetailSerializer, UserListSerializer, UserCreateSerializer, EmailVerificationSerializer
 from users.permissions import IsUser
@@ -41,14 +43,17 @@ class LoginView(views.APIView):
 
             login(request, user)
 
-            return Response(UserSelfDetailSerializer(user).data)
+            token, created = Token.objects.get_or_create(user=user)
+
+            return Response({
+                'token': token.key,
+                'user': UserSelfDetailSerializer(user).data,
+            })
         else:
             raise ValidationError({"non_field_errors": ["Incorrect login information."]})
 
 
 class LogoutView(views.APIView):
-    permission_classes = [IsAuthenticated]
-
     def post(self, request, format=None):
         logout(request)
         return Response(status=status.HTTP_200_OK)
@@ -83,17 +88,24 @@ class UserViewSet(
         elif self.action in ['list', 'retrieve', 'me', 'verify_email', 'resend_otp_email_verification']:
             return [IsAuthenticated]
         else:
-            raise NotImplementedError(f'Action {self.action} not implemented.')
+            return [IsAuthenticated]
 
     def get_permissions(self):
         return [permission() for permission in self.get_permission_classes()]
-    
+
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         headers = self.get_success_headers(serializer.data)
-        return Response(UserSelfDetailSerializer(user).data, status=status.HTTP_201_CREATED, headers=headers)
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({
+            'token': token.key,
+            'user': UserSelfDetailSerializer(user).data,
+        },
+            status=status.HTTP_201_CREATED,
+            headers=headers,
+        )
 
     @action(detail=False, methods=['post'])
     def resend_otp_email_verification(self, request):
