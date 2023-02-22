@@ -8,15 +8,33 @@ export default () => {
 
   return (
     <View flex paddingH-25 paddingT-120>
-      <View flex row>
-        <Avatar size={100}></Avatar>
-        <Text gray30 text20>
-          {user.email}
-        </Text>
+      <View
+        flex
+        row
+        style={{
+          alignItems: 'center',
+        }}
+      >
+        <Avatar
+          backgroundColor="#ddd"
+          size={100}
+          containerStyle={{
+            marginRight: 40,
+          }}
+        />
+        <Text style={{ fontSize: 30 }}>Username</Text>
       </View>
-      <Button bg-blue onPress={signOut}>
-        <Text white>Sign Out</Text>
-      </Button>
+      <View flex>
+        <Text style={{ fontSize: 20 }}>{user.email}</Text>
+      </View>
+      <Button
+        bg-blue
+        onPress={signOut}
+        style={{
+          marginBottom: 40,
+        }}
+        label="Sign Out"
+      />
     </View>
   )
 }
