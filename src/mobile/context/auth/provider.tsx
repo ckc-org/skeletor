@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useRouter, useSegments } from 'expo-router'
 import {
   createContext,
@@ -8,40 +9,22 @@ import {
 } from 'react'
 import { axios } from '../../requests'
 
-type SelfUser =
-  | {
-      authenticated: true
-      email: string
-      id: number
-    }
-  | {
-      authenticated: false
-    }
-
-const unauthenticatedUser: SelfUser = {
-  authenticated: false,
+export type SelfUser = {
+  id: number
+  email: string
+  email_verified: boolean
+  first_name: string
+  last_name: string
 }
-
-// const authenticatedUser: SelfUser = {
-//   id: 1,
-//   email: 'example@user.com',
-//   authenticated: true,
-// }
 
 type Auth = {
   signIn: (email: string, password: string) => Promise<boolean>
+  createAccount: (email: string, password: string) => Promise<boolean>
   signOut: () => void
-  user: SelfUser
+  user: SelfUser | null
 }
 
-const authData = {
-  signIn: (email: string, password: string): Promise<boolean> =>
-    new Promise((resolve) => resolve(false)),
-  signOut: () => {},
-  user: unauthenticatedUser,
-}
-
-const AuthContext = createContext<Auth>(authData)
+const AuthContext = createContext<Auth>({} as Auth)
 
 // This hook can be used to access the user info.
 export const useAuth = () => {
@@ -49,7 +32,7 @@ export const useAuth = () => {
 }
 
 // This hook will protect the route access based on user authentication.
-const useProtectedRoute = (user: SelfUser) => {
+const useProtectedRoute = (user: SelfUser | null) => {
   const segments = useSegments()
   const router = useRouter()
 
@@ -57,34 +40,53 @@ const useProtectedRoute = (user: SelfUser) => {
     const inAuthGroup = segments[0] === '(auth)'
     if (
       // If the user is not signed in and the initial segment is not anything in the auth group.
-      !user.authenticated &&
+      !user &&
       !inAuthGroup
     ) {
       // Redirect to the signIn page.
       router.replace('/splash')
-    } else if (user.authenticated && inAuthGroup) {
+    } else if (user && !user.email_verified) {
+      // Force user to verify email before they can do anything as an authed user.
+      if (segments[0] !== '(auth)' || segments[1] !== 'confirmEmail') {
+        router.replace('/verifyEmail')
+      }
+    } else if (user && inAuthGroup) {
       // Redirect away from the signIn page.
       router.replace('/')
     }
   }, [user, segments])
 }
 
+const UserStorageKey = '@user-state'
+
 export const AuthProvider = (props: PropsWithChildren) => {
-  const [user, setUser] = useState<SelfUser>(unauthenticatedUser)
+  const [user, setUser] = useState<SelfUser | null>(null)
+
+  useEffect(() => {
+    const loadUser = async () => {
+      const userData = await AsyncStorage.getItem(UserStorageKey)
+      if (userData) {
+        setUser(JSON.parse(userData))
+      }
+    }
+    loadUser()
+  }, [])
+
+  useEffect(() => {
+    AsyncStorage.setItem(UserStorageKey, JSON.stringify(user))
+  }, [user])
 
   useProtectedRoute(user)
 
   const signIn = async (email: string, password: string) => {
     try {
-      const resp = (await axios.post('/auth/login/', {
-        email,
-        password,
-      })) as SelfUser
-      setUser({
-        authenticated: true,
-        email,
-        id: resp.data.id,
-      })
+      const data = (
+        await axios.post('/auth/login/', {
+          email,
+          password,
+        })
+      ).data as SelfUser
+      setUser(data)
     } catch (e) {
       console.error(e)
       return false
@@ -95,10 +97,25 @@ export const AuthProvider = (props: PropsWithChildren) => {
   const signOut = async () => {
     try {
       await axios.post('/auth/logout/')
-      setUser(unauthenticatedUser)
+      setUser(null)
     } catch (e) {
       console.error(e)
     }
+  }
+
+  const createAccount = async (email: string, password: string) => {
+    try {
+      const resp = await axios.post('/users/', {
+        email,
+        password,
+        send_otp_email_verification: true,
+      })
+      setUser({ ...resp.data, authenticated: true })
+    } catch (e) {
+      console.error(e)
+      return false
+    }
+    return true
   }
 
   return (
@@ -106,6 +123,7 @@ export const AuthProvider = (props: PropsWithChildren) => {
       value={{
         signIn,
         signOut,
+        createAccount,
         user,
       }}
     >
