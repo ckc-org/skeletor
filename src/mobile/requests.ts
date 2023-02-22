@@ -1,8 +1,10 @@
 import axios from 'axios'
+import Constants from 'expo-constants'
 
-const baseURL = 'http://localhost:8000/api'
-
-const axiosInstance = axios.create({ baseURL, withCredentials: true })
+const axiosInstance = axios.create({
+  baseURL: Constants.expoConfig.extra.apiBaseURL,
+  withCredentials: true,
+})
 
 axiosInstance.interceptors.response.use(
   (response) => {
