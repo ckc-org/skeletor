@@ -1,28 +1,35 @@
 import axios from 'axios'
 import Constants from 'expo-constants'
+import AsyncStorage  from '@react-native-async-storage/async-storage'
 
 const axiosInstance = axios.create({
   baseURL: Constants.expoConfig.extra.apiBaseURL,
   withCredentials: true,
 })
 
+// Load the token from storage
+const loadToken = async () => {
+  const token = await AsyncStorage.getItem('token')
+  if (token) {
+    axiosInstance.defaults.headers.common['Authorization'] = `Token ${token}`
+  }
+}
+
+loadToken()
+
 axiosInstance.interceptors.response.use(
   (response) => {
-    const setCookie = response.headers['set-cookie']
-
-    if (setCookie) {
-      const csrfCookie = setCookie.filter((cookie: string) => {
-        return cookie.startsWith('csrftoken=')
-      })
-      if (csrfCookie) {
-        try {
-          axiosInstance.defaults.headers.common['X-CSRFToken'] = csrfCookie[0]
-            .split(';')[0]
-            .split('=')[1]
-        } catch (e) {
-          axiosInstance.defaults.headers.common['X-CSRFToken'] = ''
-        }
-      }
+    console.log(response.config.url)
+    if (response.config.url === '/auth/login/') {
+      // Store the token in storage
+      const token = response.data.token
+      AsyncStorage.setItem('token', token)
+      // Set the token in the header
+      axiosInstance.defaults.headers.common['Authorization'] = `Token ${token}`
+    } else if (response.config.url === '/auth/logout/') {
+      // Remove the token from storage and the header
+      AsyncStorage.removeItem('token')
+      axiosInstance.defaults.headers.common['Authorization'] = ''
     }
     return response
   },
@@ -30,19 +37,5 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error)
   },
 )
-
-axiosInstance.interceptors.request.use((request) => {
-  if (
-    request.method === 'post' ||
-    request.method === 'patch' ||
-    request.method === 'put' ||
-    request.method === 'delete'
-  ) {
-    if (!axiosInstance.defaults.headers.common['X-CSRFToken']) {
-      axiosInstance.defaults.headers.common['X-CSRFToken'] = ''
-    }
-  }
-  return request
-})
 
 export { axiosInstance as axios }
