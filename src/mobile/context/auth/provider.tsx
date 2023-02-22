@@ -20,6 +20,7 @@ export type SelfUser = {
 type Auth = {
   signIn: (email: string, password: string) => Promise<boolean>
   createAccount: (email: string, password: string) => Promise<boolean>
+  verifyEmail: (code: string) => Promise<boolean>
   signOut: () => void
   user: SelfUser | null
 }
@@ -38,6 +39,7 @@ const useProtectedRoute = (user: SelfUser | null) => {
 
   useEffect(() => {
     const inAuthGroup = segments[0] === '(auth)'
+
     if (
       // If the user is not signed in and the initial segment is not anything in the auth group.
       !user &&
@@ -45,11 +47,12 @@ const useProtectedRoute = (user: SelfUser | null) => {
     ) {
       // Redirect to the signIn page.
       router.replace('/splash')
-    } else if (user && !user.email_verified) {
+    } else if (user && !user.email_verified && segments[1] !== 'verifyEmail') {
       // Force user to verify email before they can do anything as an authed user.
-      if (segments[0] !== '(auth)' || segments[1] !== 'confirmEmail') {
-        router.replace('/verifyEmail')
-      }
+      router.replace('/verifyEmail')
+    } else if (user && user.email_verified && segments[1] === 'verifyEmail') {
+      // Force user to verify email before they can do anything as an authed user.
+      router.replace('/')
     } else if (user && inAuthGroup) {
       // Redirect away from the signIn page.
       router.replace('/')
@@ -86,6 +89,8 @@ export const AuthProvider = (props: PropsWithChildren) => {
           password,
         })
       ).data as SelfUser
+      console.log(data)
+
       setUser(data)
     } catch (e) {
       console.error(e)
@@ -95,9 +100,9 @@ export const AuthProvider = (props: PropsWithChildren) => {
   }
 
   const signOut = async () => {
+    setUser(null)
     try {
       await axios.post('/auth/logout/')
-      setUser(null)
     } catch (e) {
       console.error(e)
     }
@@ -110,7 +115,21 @@ export const AuthProvider = (props: PropsWithChildren) => {
         password,
         send_otp_email_verification: true,
       })
-      setUser({ ...resp.data, authenticated: true })
+      setUser({ ...resp.data })
+    } catch (e) {
+      console.error(e)
+      return false
+    }
+    return true
+  }
+
+  const verifyEmail = async (code: string) => {
+    try {
+      const resp = await axios.post('/users/verify_email/', {
+        otp_code: code,
+      })
+
+      setUser({ ...resp.data })
     } catch (e) {
       console.error(e)
       return false
@@ -124,6 +143,7 @@ export const AuthProvider = (props: PropsWithChildren) => {
         signIn,
         signOut,
         createAccount,
+        verifyEmail,
         user,
       }}
     >
