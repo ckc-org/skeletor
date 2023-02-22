@@ -1,5 +1,11 @@
 # Running locally
 
+### Install dependencies
+
+Run `yarn` inside of the `src/mobile` directory.
+
+### Environment variables
+
 Populate a .env file with the following variables, so they get pulled into the device when running Expo Go:
 
 ```
@@ -7,6 +13,15 @@ API_DOMAIN=localhost:8000
 ```
 
 If you want to run it on your device, you'll have to replace `API_DOMAIN` with your host computer's local IP address, so the phone can talk to the server.
+
+### Start up simulator
+
+Run `yarn ios` to automatically start up an iOS simulator with expo.
+
+### Run locally on physical device
+
+Change the `API_DOMAIN` environment variable in `.env` to your machine's local IP address (not localhost). This will allow your phone to know which server to send API requests to.
+Run `yarn start` to run expo without an iOS simulator. Although, `yarn ios` will work fine for this as well if you want both a physical device and a simulator running.
 
 # How it works
 
