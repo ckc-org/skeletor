@@ -21,6 +21,15 @@ Run `yarn ios` to automatically start up an iOS simulator with expo.
 ### Run locally on physical device
 
 Change the `API_DOMAIN` environment variable in `.env` to your machine's local IP address (not localhost). This will allow your phone to know which server to send API requests to.
+
+.env
+
+```diff
+- API_DOMAIN=localhost:8000
+# Example local ip
++ API_DOMAIN=192.168.1.133:8000
+```
+
 Run `yarn start` to run expo without an iOS simulator. Although, `yarn ios` will work fine for this as well if you want both a physical device and a simulator running.
 
 # How it works
