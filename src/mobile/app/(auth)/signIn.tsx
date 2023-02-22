@@ -51,7 +51,7 @@ export default () => {
             fontSize: 24,
           }}
           label="Email"
-          keyboardType='email-address'
+          keyboardType="email-address"
           value={email}
           placeholder="email@example.com"
           validate={['required', 'email', () => validCredentials]}
@@ -71,6 +71,7 @@ export default () => {
           enableErrors
           onChangeText={(text) => {
             setEmail(text)
+            setValidCredentials(true)
           }}
         />
         <TextField
@@ -95,6 +96,7 @@ export default () => {
           enableErrors
           onChangeText={(text) => {
             setPassword(text)
+            setValidCredentials(true)
           }}
         />
         <Button
