@@ -21,7 +21,7 @@ class EmailVerificationSerializer(serializers.Serializer):
 
     def validate(self, attrs):
         code = OTPVerificationCode.objects.filter(user=self.context['request'].user).last()
-        if code is None or code.code == attrs['otp_code']:
+        if code is None or code.code != attrs['otp_code']:
             raise ValidationError({'otp_code': 'Invalid OTP code.'})
         return attrs
 

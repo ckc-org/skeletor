@@ -11,8 +11,8 @@ export default () => {
   const [code, setCode] = useState('')
   const [resendButtonDisabled, setResendButtonDisabled] = useState(true)
 
-  const submit = () => {
-    verifyEmail(code)
+  const submit = (newestCode: string) => {
+    verifyEmail(newestCode)
   }
 
   const resend = async () => {
