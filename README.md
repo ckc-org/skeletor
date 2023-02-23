@@ -23,13 +23,7 @@ for most of our new clients. It gives us:
 ### Start a project..
 
 ```bash
-$ bash <(curl -fsSL https://skeletor.ckcollab.com)
-```
-
-#### To start using a specific branch of `skeletor`:
-
-```bash
-$ SKELETOR_BRANCH=<branch-name> bash <(curl -fsSL https://skeletor.ckcollab.com)
+SKELETOR_BRANCH=master bash <(curl -fsSL https://skeletor.ckcollab.com)
 ```
 
 &nbsp;<br>
