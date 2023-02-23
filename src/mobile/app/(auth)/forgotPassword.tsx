@@ -74,6 +74,12 @@ export default () => {
           labelStyle={{ fontSize: 16 }}
           disabled={!emailValid || emailSent}
         />
+        {emailSent && (
+          <Text style={{ marginTop: 20 }}>
+            If an account with that email exists, you will receive an email with
+            a link to reset your password.
+          </Text>
+        )}
       </View>
     </View>
   )
