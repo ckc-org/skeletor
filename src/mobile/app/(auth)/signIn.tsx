@@ -134,12 +134,10 @@ export default () => {
           disabled={!submitButtonEnabled}
           onPress={signInRequest}
           label="Sign In"
-          borderRadius={'5%'}
           enableShadow
         />
         <Button
           label="Forgot Password"
-          borderRadius={'5%'}
           backgroundColor={'rgba(0,0,0,0)'}
           color={'#000'}
           fontWeight={'bold'}

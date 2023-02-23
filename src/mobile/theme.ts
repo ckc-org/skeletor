@@ -6,6 +6,7 @@ ThemeManager.setComponentForcedTheme('Button', (props, context) => {
   return {
     labelStyle: [styles.buttonLabelBaseStyle, labelStyle],
     style: [styles.buttonBaseStyle, style],
+    borderRadius: '5%',
     ...others,
   }
 })

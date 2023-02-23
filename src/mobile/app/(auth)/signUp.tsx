@@ -107,7 +107,6 @@ export default () => {
           disabled={!emailValid || !passwordValid}
           onPress={submit}
           label="Create Account"
-          borderRadius={'5%'}
         />
       </View>
     </View>

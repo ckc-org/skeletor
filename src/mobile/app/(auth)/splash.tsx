@@ -18,13 +18,11 @@ export default () => {
       <View width={'85%'} style={{ marginBottom: '10%' }}>
         <Button
           label="Sign Up"
-          borderRadius={'5%'}
           onPress={() => router.push('/signUp')}
           enableShadow
         />
         <Button
           label="Sign In"
-          borderRadius={'5%'}
           backgroundColor={'rbga(0,0,0,0)'}
           color={'#000'}
           fontWeight={'bold'}
