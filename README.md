@@ -27,7 +27,13 @@ $ bash <(curl -fsSL https://skeletor.ckcollab.com)
 ```
 
 ### Environment variables:
-* `SKELETOR_BRANCH`: the branch name to use when cloning from Skeletor git repo, default = `master`
+
+-   `SKELETOR_BRANCH`: the branch name to use when cloning from Skeletor git repo, default = `master`
+
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
 
 <img src="docs/skeletor_creation.gif" width="100%" alt="Skeletor installation">
 
