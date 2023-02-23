@@ -31,6 +31,7 @@ docker-compose exec -T django ./manage.py migrate
 if [ -d "src/mobile" ]; then
     cd src/mobile
     yarn
+    cp .env_sample .env
     cd ../../
 fi
 
