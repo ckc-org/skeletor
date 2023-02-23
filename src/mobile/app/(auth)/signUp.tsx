@@ -18,7 +18,6 @@ export default () => {
       const resp = await createAccount(email.trim(), password)
       if (resp.status === 400) {
         if (resp.data.email) {
-          console.log(resp.data.email[0])
           setEmailError(resp.data.email[0])
           
           // Trigger validation

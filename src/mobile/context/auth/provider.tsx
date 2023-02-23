@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react'
 import { axios } from '../../requests'
-import A, { AxiosError, AxiosResponse } from 'axios'
+import A, { AxiosResponse } from 'axios'
 
 export type SelfUser = {
   id: number
@@ -19,7 +19,7 @@ export type SelfUser = {
 }
 
 type Auth = {
-  signIn: (email: string, password: string) => Promise<boolean>
+  signIn: (email: string, password: string) => Promise<AxiosResponse>
   createAccount: (email: string, password: string) => Promise<AxiosResponse>
   verifyEmail: (code: string) => Promise<boolean>
   signOut: () => void
@@ -100,18 +100,22 @@ export const AuthProvider = (props: PropsWithChildren) => {
 
   const signIn = async (email: string, password: string) => {
     try {
-      const data = (
-        await axios.post('/auth/login/', {
+      const resp = await axios.post<{ token: string; user: SelfUser }>(
+        '/auth/login/',
+        {
           email,
           password,
-        })
-      ).data.user as SelfUser
-      setUser(data)
-    } catch (e) {
-      console.error(e)
-      return false
+        },
+      )
+      setUser(resp.data.user)
+      return resp
+    } catch (e: unknown) {
+      if (A.isAxiosError(e) && e.response) {
+        return e.response
+      } else {
+        throw e
+      }
     }
-    return true
   }
 
   const signOut = async () => {

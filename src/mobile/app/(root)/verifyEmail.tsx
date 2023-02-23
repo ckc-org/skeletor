@@ -49,7 +49,16 @@ export default () => {
           height: '50%',
         }}
       >
-        <Text>Enter the code we sent your email ({ user ? user.email : ''}) here:</Text>
+        <Text>
+          Enter the code we sent your email ({user ? user.email : ''}) here:
+        </Text>
+        <Text
+          style={{
+            color: 'red',
+          }}
+        >
+          This will always succeed, even if the code is wrong.
+        </Text>
         <OTPInputView
           pinCount={6}
           onCodeChanged={setCode}
@@ -63,10 +72,7 @@ export default () => {
           onPress={resend}
           label="Resend code"
         />
-        <Button
-          onPress={signOut}
-          label="Sign Out"
-        />
+        <Button onPress={signOut} label="Sign Out" />
       </View>
     </View>
   )
