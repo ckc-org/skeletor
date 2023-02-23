@@ -101,18 +101,18 @@ class PasswordResetSerializer(serializers.Serializer):
 
 
 class PasswordResetConfirmSerializer(serializers.Serializer):
-    password_1 = serializers.CharField(max_length=64)
-    password_2 = serializers.CharField(max_length=64)
+    new_password_1 = serializers.CharField(max_length=64)
+    new_password_2 = serializers.CharField(max_length=64)
 
-    def validate_password_2(self, value):
+    def validate_new_password_2(self, value):
         password_validation.validate_password(value)
         return value
 
     def validate(self, attrs):
-        if attrs['password_1'] != attrs['password_2']:
-            raise ValidationError({'password_1': 'Passwords should match.', 'password_2': 'Passwords should match.'})
+        if attrs['new_password_1'] != attrs['new_password_2']:
+            raise ValidationError({'new_password_1': 'Passwords should match.', 'new_password_2': 'Passwords should match.'})
         return attrs
 
     def save(self):
-        self.context['user'].set_password(self.validated_data['password_2'])
+        self.context['user'].set_password(self.validated_data['new_password_2'])
         self.context['user'].save()
