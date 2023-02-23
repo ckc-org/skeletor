@@ -151,8 +151,8 @@ fi
 cd $PROJECT_NAME || exit 3
 
 
-# Remove opening of README, before "-------------" line
-sed -i '' '1,/^-----------------$/d' README.md
+# Remove opening of README, before "---" line
+sed -i '' '1,/^---$/d' README.md
 
 # Replace "SKELETOR_NAME_PLACEHOLDER" with $PROJECT_NAME
 grep -rl "SKELETOR_NAME_PLACEHOLDER" . | xargs sed -i "" -e "s@SKELETOR_NAME_PLACEHOLDER@$PROJECT_NAME@g"
