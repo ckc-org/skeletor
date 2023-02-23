@@ -17,25 +17,18 @@
             <v-card-text>
               <v-alert outlined type="error" v-if="errors.non_field_errors || errors.detail">
                 <ul>
-                  <li v-for="(error, i) in errors.non_field_errors" :key="i">{{ error }}</li>
+                  <li v-for="(  error, i  ) in errors.non_field_errors" :key="i">{{ error }}</li>
                 </ul>
                 {{ errors.detail }}
               </v-alert>
 
 
-              <v-text-field label="Password"
-                            :error="!!errors.new_password1"
-                            :error-messages="errors.new_password1"
-                            prepend-icon="lock"
-                            v-model='form.new_password1'
-                            type="password"></v-text-field>
+              <v-text-field label="Password" :error="!!errors.new_password_1" :error-messages="errors.new_password_1"
+                prepend-icon="lock" v-model='form.new_password_1' type="password"></v-text-field>
 
-              <v-text-field label="Confirm password"
-                            :error="!!errors.new_password2"
-                            :error-messages="errors.new_password2"
-                            prepend-icon="lock"
-                            v-model='form.new_password2'
-                            type="password"></v-text-field>
+              <v-text-field label="Confirm password" :error="!!errors.new_password_2"
+                :error-messages="errors.new_password_2" prepend-icon="lock" v-model='form.new_password_2'
+                type="password"></v-text-field>
             </v-card-text>
 
             <v-card-actions>
@@ -54,8 +47,8 @@ export default {
   data() {
     return {
       form: {
-        new_password1: '',
-        new_password2: '',
+        new_password_1: '',
+        new_password_2: '',
       },
       errors: {},
       successful: false
@@ -64,12 +57,7 @@ export default {
   methods: {
     async submitReset() {
       try {
-        const payload = {
-          uid: this.$route.params.uid,
-          token: this.$route.params.token,
-          ...this.form
-        }
-        await this.$axios.post('/api/auth/password/reset/confirm/', payload)
+        await this.$axios.post(`/api/passwordreset/confirm/${this.$route.params.uid}/${this.$route.params.token}/`, this.form)
         this.successful = true
         this.errors = {}
       } catch (error) {

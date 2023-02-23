@@ -30,11 +30,9 @@
       >
         <v-list-item-group
           v-model="group"
-          active-class="deep-orange--text text--accent-4"
+          active-class="primary--text"
         >
-          <v-list-item
-            to="/"
-          >
+           <v-list-item to="/">
             <v-list-item-icon>
               <v-icon>mdi-home</v-icon>
             </v-list-item-icon>
