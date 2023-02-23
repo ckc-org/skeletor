@@ -47,12 +47,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    
+
     objects = CustomUserManager()
-    
+
     def __str__(self):
         return self.email
-    
+
 
 def generate_otp():
     import random
@@ -64,6 +64,6 @@ class OTPVerificationCode(models.Model):
     code = models.CharField(max_length=6, default=generate_otp)
     created_at = models.DateTimeField(auto_now_add=True)
     is_used = models.BooleanField(default=False)
-    
+
     def __str__(self):
         return self.code
