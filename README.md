@@ -26,7 +26,7 @@ for most of our new clients. It gives us:
 $ bash <(curl -fsSL https://skeletor.ckcollab.com)
 ```
 
-#### To start from a specific branch:
+#### To start using a specific branch of `skeletor`:
 
 ```bash
 $ SKELETOR_BRANCH=<branch-name> bash <(curl -fsSL https://skeletor.ckcollab.com)
