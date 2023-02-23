@@ -6,7 +6,7 @@ from django.urls import path, re_path
 from django.views.generic import TemplateView
 from rest_framework import routers
 
-from users.views import LoginView, LogoutView, UserPasswordResetViewSet, UserDetailView
+from users.views import LoginView, LogoutView, UserPasswordResetViewSet, UserViewSet
 
 router = routers.DefaultRouter()
 
@@ -14,7 +14,7 @@ router = routers.DefaultRouter()
 router.register('passwordreset', UserPasswordResetViewSet, basename='passwordreset')
 
 # Custom views
-# router.register('some_resource', SomeViewSet)
+router.register('users', UserViewSet)
 
 urlpatterns = [
     # Our URLS
@@ -23,7 +23,6 @@ urlpatterns = [
     # TODO: Add these auth endpoints to api docs, like password reset ??
     path('api/auth/login/', LoginView.as_view(), name="rest_login"),
     path('api/auth/logout/', LogoutView.as_view(), name="rest_logout"),
-    path('api/auth/user/', UserDetailView.as_view({'get': 'list'}), name="user_detail"),
 
     # Django built in
     path('admin/', admin.site.urls),

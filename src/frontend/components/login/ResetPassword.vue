@@ -61,7 +61,7 @@ export default {
     async submit() {
       try {
         this.errors = {}
-        await this.$axios.post('/api/auth/users/reset_password/', { email: this.email })
+        await this.$axios.post('/api/passwordreset/', { email: this.email })
         this.successful = true
       } catch (error) {
         this.errors = error.response.data

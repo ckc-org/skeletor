@@ -9,6 +9,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # "apps" in each import
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
+
+# =============================================================================
+# Debugging
+# =============================================================================
+DEBUG = os.environ.get('DEBUG', False)
+
+
 # =============================================================================
 # Django
 # =============================================================================
@@ -59,6 +66,9 @@ MIDDLEWARE = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+if DEBUG:
+    MIDDLEWARE += ('utils.middleware.RequestDataLoggingMiddleware',)
+
 ROOT_URLCONF = 'urls'
 
 TEMPLATES = [
@@ -96,12 +106,6 @@ SESSION_ENGINE = os.environ.get("SESSION_ENGINE", "django.contrib.sessions.backe
 
 
 # =============================================================================
-# Debugging
-# =============================================================================
-DEBUG = os.environ.get('DEBUG', False)
-
-
-# =============================================================================
 # Database
 # =============================================================================
 DATABASES = {'default': {}}
@@ -129,6 +133,7 @@ DATABASES["default"]["CONN_MAX_AGE"] = 500
 # =============================================================================
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (

@@ -1,7 +1,7 @@
 {% extends "emails/base.html" %}
 
 {% block subject %}
-    Password Reset
+    Verify Email
 {% endblock %}
 
 {% block extra_head %}
@@ -13,19 +13,17 @@
     <table style="margin-bottom: 15px;">
         <tr>
             <td class="title">
-                Changing your password
+                Verifiy your email
             </td>
         </tr>
         <tr>
             <td>
-                Need to reset your password? No problem. Just click below to get started.
+                Please copy the following code and paste it in the app to verify your email.
             </td>
         </tr>
         <tr>
             <td>
-                <a href="{{ SITE_DOMAIN }}/password-reset-confirm/{{ uid }}/{{ token }}/" class="button">
-                    Reset my password
-                </a>
+                {{ otp_code }}
             </td>
         </tr>
     </table>
