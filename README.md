@@ -23,8 +23,13 @@ for most of our new clients. It gives us:
 ### Start a project..
 
 ```bash
-$ bash <(curl -fsSL https://skeletor.ckcollab.com)
+SKELETOR_BRANCH=master bash <(curl -fsSL https://skeletor.ckcollab.com)
 ```
+
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
 
 <img src="docs/skeletor_creation.gif" width="100%" alt="Skeletor installation">
 

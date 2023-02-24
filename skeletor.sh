@@ -138,7 +138,7 @@ fi
 : "${SKELETOR_BRANCH:=master}"
 
 # Clone repo into $PROJECT_NAME dir
-echo -e "Git cloning into directory ${green}'$PROJECT_NAME'${reset} with frontend choice ${green}#$FRONTEND${reset}\n"
+echo -e "Git cloning from branch $SKELETOR_BRANCH into directory ${green}'$PROJECT_NAME'${reset} with frontend choice ${green}#$FRONTEND${reset}\n"
 
 git clone -b $SKELETOR_BRANCH https://github.com/ckc-org/skeletor.git $PROJECT_NAME &> /dev/null
 if [ $? -ne 0 ]; then
@@ -151,8 +151,8 @@ fi
 cd $PROJECT_NAME || exit 3
 
 
-# Remove opening of README, before "-------------" line
-sed -i '' '1,/^-----------------$/d' README.md
+# Remove opening of README, before "---" line
+sed -i '' '1,/^---$/d' README.md
 
 # Replace "SKELETOR_NAME_PLACEHOLDER" with $PROJECT_NAME
 grep -rl "SKELETOR_NAME_PLACEHOLDER" . | xargs sed -i "" -e "s@SKELETOR_NAME_PLACEHOLDER@$PROJECT_NAME@g"
