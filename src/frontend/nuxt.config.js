@@ -58,7 +58,19 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth',
     '@nuxtjs/moment',
+    '@pinia/nuxt',
   ],
+  /*
+   * Pinia configuration
+   */
+  pinia: {
+    autoImports: [
+      // automatically imports `defineStore`
+      'defineStore', // import { defineStore } from 'pinia'
+      ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+    ],
+  },
+
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
