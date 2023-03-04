@@ -1,10 +1,11 @@
-FROM node:12
+FROM node:19
 
 RUN mkdir /app
 
-ADD ./src/frontend/package.json /app/.
-ADD ./src/frontend/yarn.lock /app/.
 
 WORKDIR /app
 
-RUN yarn
+# Not necessary to run this any more, because it happens in docker-compose.yml
+#ADD ./src/frontend/package.json /app/.
+#ADD ./src/frontend/yarn.lock /app/.
+#RUN yarn

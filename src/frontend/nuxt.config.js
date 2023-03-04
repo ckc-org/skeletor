@@ -1,6 +1,7 @@
 import webpack from 'webpack'
 import head_config from './head.config'
 import vuetify_config from './vuetify.config'
+import { defineNuxtConfig } from '@nuxt/bridge'
 
 export const getBrowserBaseURL = () => {
   // Production
@@ -13,7 +14,7 @@ export const getBrowserBaseURL = () => {
   }
 }
 
-export default {
+export default defineNuxtConfig({
   ssr: false,
   /*
   ** Headers of the page
@@ -129,6 +130,47 @@ export default {
       new webpack.ProvidePlugin({
         '_': 'lodash'
       })
-    ]
+    ],
+    // @ts-ignore
+    transpile: ['iron-webcrypto', 'unhead'],
   },
-}
+  bridge: {
+
+    // -- Opt-in features --
+
+    // Use Vite as the bundler instead of webpack 4
+    vite: false,
+
+    // Enable Nuxt 3 compatible useHead
+    // meta: true,
+
+
+    // -- Default features --
+
+    // Use legacy server instead of Nitro
+    nitro: false,
+
+    // Use legacy generator rather than new nitro prerenderer
+    nitroGenerator: false,
+
+    // Disable nuxt 3 compatible `nuxtApp` interface
+    // app: false,
+
+    // Disable Composition API support
+    // capi: false,
+
+    // ... or just disable legacy Composition API support
+    // capi: {
+    //   legacy: false
+    // },
+
+    // Do not transpile modules
+    // transpile: false,
+
+    // Disable composables auto importing
+    // imports: false,
+
+    // Do not warn about module incompatibilities
+    // constraints: false
+  },
+})
