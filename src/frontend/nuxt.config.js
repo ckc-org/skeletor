@@ -154,10 +154,10 @@ export default defineNuxtConfig({
     nitroGenerator: false,
 
     // Disable nuxt 3 compatible `nuxtApp` interface
-    // app: false,
+    app: false,
 
     // Disable Composition API support
-    // capi: false,
+    capi: false,
 
     // ... or just disable legacy Composition API support
     // capi: {
@@ -165,12 +165,12 @@ export default defineNuxtConfig({
     // },
 
     // Do not transpile modules
-    // transpile: false,
+    transpile: false,
 
     // Disable composables auto importing
-    // imports: false,
+    imports: false,
 
     // Do not warn about module incompatibilities
-    // constraints: false
+    constraints: false
   },
 })
