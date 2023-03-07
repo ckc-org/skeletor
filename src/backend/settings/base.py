@@ -125,7 +125,7 @@ else:  # pragma: no cover
         }
     }
 
-DATABASES["default"]["CONN_MAX_AGE"] = 500
+DATABASES["default"]["CONN_MAX_AGE"] = 10  # short timeout so we don't have too many dangling clients
 
 
 # =============================================================================
