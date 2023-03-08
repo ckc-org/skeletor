@@ -47,6 +47,7 @@ THIRD_PARTY_APPS = (
     'corsheaders',
     'ckc',
     'channels',
+    'anymail',
 )
 OUR_APPS = (
     'users',
