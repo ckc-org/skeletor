@@ -195,7 +195,8 @@ DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@example.com')
 SERVER_EMAIL = os.environ.get('SERVER_EMAIL', DEFAULT_FROM_EMAIL)
 
 ANYMAIL = {
-    'MANDRILL_API_KEY': os.environ.get('MANDRILL_API_KEY', '123456'),
+    # To use this we want to set EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
+    'SENDGRID_API_KEY': os.environ.get('SENDGRID_API_KEY', '123456'),
 }
 
 DEFAULT_EMAIL_CONTEXT = {
