@@ -4,6 +4,9 @@ FROM python:3.11
 # graphviz, libgraphviz-dev for making diagrams from models
 RUN apt-get update && apt-get install -yy gcc build-essential python-setuptools graphviz libgraphviz-dev
 
+# Uncomment to install GeoSpatial PostGIS dependencies..
+#RUN apt-get install -y libgdal-dev
+
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
