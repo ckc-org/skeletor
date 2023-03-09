@@ -1,22 +1,42 @@
-## Build Setup
+# Nuxt 3 Minimal Starter
 
-Yarn or NPM can be used
-``` bash
-# install dependencies
-$ npm install
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+## Setup
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+Make sure to install the dependencies:
 
-# generate static project
-$ npm run generate
+```bash
+# yarn
+yarn install
 
-# test project
-$ npm run test
+# npm
+npm install
+
+# pnpm
+pnpm install
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## Development Server
+
+Start the development server on http://localhost:3000
+
+```bash
+npm run dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+npm run build
+```
+
+Locally preview production build:
+
+```bash
+npm run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
