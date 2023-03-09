@@ -47,6 +47,16 @@
         fluid
       >
         <v-row>
+          <v-col>
+            Data table:
+            <v-data-table
+              :items="items"
+              :headers="headers"
+            />
+          </v-col>
+        </v-row>
+
+        <v-row>
           <v-col
             v-for="card in cards"
             :key="card"
@@ -94,6 +104,16 @@ export default {
       ['mdi-send', 'Send'],
       ['mdi-delete', 'Trash'],
       ['mdi-alert-octagon', 'Spam'],
+    ],
+    items: [
+      {id: 1, name: "Eric Carmichael", email: "eric@ckcollab.com"},
+      {id: 2, name: "Eric Nagel", email: "nagel@ckcollab.com"},
+      {id: 3, name: "Eric ???", email: "future.eric@ckcollab.com"},
+    ],
+    headers: [
+      {title: 'ID', key: 'id'},
+      {title: 'Name', key: 'name'},
+      {title: 'Email', key: 'email'},
     ],
   }),
 }

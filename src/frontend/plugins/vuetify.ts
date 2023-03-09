@@ -1,8 +1,11 @@
 import {createVuetify} from 'vuetify'
+import * as labs from 'vuetify/labs/components'
 
 export default defineNuxtPlugin(nuxtApp => {
   const vuetify = createVuetify({
-    // your config will come here
+    components: {
+      ...labs,
+    },
   })
 
   nuxtApp.vueApp.use(vuetify)

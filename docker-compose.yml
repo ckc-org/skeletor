@@ -49,7 +49,10 @@ services:
     environment:
       - HOST=0.0.0.0
     ports:
+      # For normal server..
       - 3000:3000
+      # For dev reload stuff
+      - 24678:24678
     volumes:
       - ./src/frontend:/app:cached
       # This _deletes_ the node_modules/ host volume folder in docker, so it uses the docker image
