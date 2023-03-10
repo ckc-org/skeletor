@@ -7,8 +7,15 @@ export default defineNuxtConfig({
     preset: 'service-worker'
   },
 
+  runtimeConfig: {
+    public: {
+      baseURL: process.env.BASE_URL || 'http://localhost:8000/',
+    },
+  },
+
   modules: [
     '@pinia/nuxt',
+    '@nuxt/devtools',
 
     // this adds the vuetify vite plugin
     // also produces type errors in the current beta release
