@@ -48,6 +48,8 @@ services:
     env_file: .env
     environment:
       - HOST=0.0.0.0
+#      - NUXT_APP_BASE_URL=http://localhost:8000/
+#      - NUXT_PUBLIC_API_BASE_URL=http://localhost:8000/
     ports:
       # For normal server..
       - 3000:3000

@@ -6,7 +6,6 @@
           <v-toolbar color="primary" dark flat>
             <v-toolbar-title class="display-1">Login</v-toolbar-title>
           </v-toolbar>
-
           <v-form @submit.prevent="login" novalidate>
             <v-card-text>
               <v-alert outlined type="error" v-if="errors.non_field_errors || errors.detail">
@@ -15,7 +14,6 @@
                 </ul>
                 {{ errors.detail }}
               </v-alert>
-
               <v-text-field
                 v-model="form.email"
                 label="Email"
@@ -35,11 +33,11 @@
                 onfocus="this.select()"
                 type="password"></v-text-field>
             </v-card-text>
-
             <v-card-actions>
               <nuxt-link to="/passwordReset">Forgot password?</nuxt-link>
               <v-spacer></v-spacer>
               <v-btn type="submit">Login</v-btn>
+              <v-btn @click="test">Test</v-btn>
             </v-card-actions>
           </v-form>
         </v-card>
@@ -47,43 +45,58 @@
     </v-layout>
   </v-container>
 </template>
-
-<script>
-export default {
-  auth: false,
-  data() {
-    return {
-      errors: {},
-      form: {
-        email: '',
-        password: ''
-      },
-      remember_me: true
-    }
-  },
-  methods: {
-    async login() {
-      try {
-        await this.$auth.login({ data: this.form })
-
-        this.$nuxt.$router.push('/')
-
-        // IMPORTANT! Do our initializing! (from our auth plugin)
-        this.$auth.ctx.app.project_initialize()
-
-        this.errors = {}
-      } catch (e) {
-        if (e.response) {
-          this.errors = e.response.data
-        } else {
-          console.error(e)
-        }
-
-        // focus on in the input to easily re-enter password
-        this.$refs.password.focus()
-      }
-    }
-  }
+<script setup>
+import { ref } from "vue"
+import { useUserAuth } from "~/store/user"
+const userAuth = useUserAuth()
+console.log("user store: ", userAuth.user)
+const errors = {}
+const form = ref({ email: "", password: "" })
+const remember_me = true
+async function login() {
+  console.log("Logging in")
+  console.log("form", form.value.email, form.value.password)
+  await userAuth.fetchUser()
+  await userAuth.login(form.value)
+  console.log("after login: ", userAuth.user)
 }
+// export default {
+//   auth: false,
+//   data() {
+//     return {
+//       errors: {},
+//       form: {
+//         email: '',
+//         password: ''
+//       },
+//       remember_me: true
+//     }
+//   },
+//   methods: {
+//     test() {
+//       console.log(useUserAuth())
+//     },
+//     async login() {
+//       try {
+//         await this.$auth.login({ data: this.form })
+//
+//         this.$nuxt.$router.push('/')
+//
+//         // IMPORTANT! Do our initializing! (from our auth plugin)
+//         this.$auth.ctx.app.project_initialize()
+//
+//         this.errors = {}
+//       } catch (e) {
+//         if (e.response) {
+//           this.errors = e.response.data
+//         } else {
+//           console.error(e)
+//         }
+//
+//         // focus on in the input to easily re-enter password
+//         this.$refs.password.focus()
+//       }
+//     }
+//   }
+// }
 </script>
-

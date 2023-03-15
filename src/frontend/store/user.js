@@ -15,7 +15,9 @@ export const useUserAuth = defineStore("user", {
 
   actions: {
     async fetchUser() {
-      const res = await fetch("/api/users/me/")
+      const res = await fetch("/api/users/me/", {
+        baseURL: process.env?.API_BASE_URL || 'http://localhost:8000',
+      })
 
       const user = await res.json()
       this.user = user
@@ -23,6 +25,7 @@ export const useUserAuth = defineStore("user", {
     async login(email, password) {
       const res = await fetch("/api/auth/login/", {
         method: "POST",
+        baseURL: process.env?.API_BASE_URL || 'http://localhost:8000',
         headers: {
           "Content-Type": "application/json",
         },

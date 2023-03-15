@@ -1,5 +1,7 @@
 import vuetify from 'vite-plugin-vuetify'
 
+console.log("env url: " + process.env.BASE_URL)
+
 export default defineNuxtConfig({
   // Clientside only rendering
   ssr: false,
@@ -7,11 +9,15 @@ export default defineNuxtConfig({
     preset: 'service-worker'
   },
 
-  runtimeConfig: {
-    public: {
-      baseURL: process.env.BASE_URL || 'http://localhost:8000/',
-    },
-  },
+  // plugins: [
+  //   'plugins/fetch.js',
+  // ],
+
+  // runtimeConfig: {
+  //   public: {
+  //     baseURL: process.env.BASE_URL || 'http://localhost:8000/',
+  //   },
+  // },
 
   modules: [
     '@pinia/nuxt',
@@ -36,11 +42,14 @@ export default defineNuxtConfig({
   },
 
   css: ['vuetify/styles'], // vuetify ships precompiled css, no need to import sass
+
   vite: {
     // @ts-ignore
     // curently this will lead to a type error, but hopefully will be fixed soon #justBetaThings
     ssr: {
-      noExternal: ['vuetify'], // add the vuetify vite plugin
+      noExternal: [
+        'vuetify',
+      ],
     },
   },
 })
