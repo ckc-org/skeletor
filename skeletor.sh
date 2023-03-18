@@ -169,6 +169,7 @@ echo -e "Cleaning up stuff...\n"
 rm -rf .git
 rm -rf docs
 rm skeletor.sh
+rm LICENSE
 rm .github/workflows/skeletor_test.yml
 
 # Run Make
