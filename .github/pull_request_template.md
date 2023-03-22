@@ -1,25 +1,9 @@
-# @ mention of reviewers
-...
-
-
 # A brief description of the purpose of the changes contained in this PR.
-...
-
-
-# Known issues to be addressed in a separate PR
 ...
 
 
 # Hand testing
 - [ ] add checklist here
-
-
-# Any relevant files for testing
-[link]('#') to any relevant files (or drag and drop into github)
-
-
-# Misc. comments
-...
 
 
 # Checklist
