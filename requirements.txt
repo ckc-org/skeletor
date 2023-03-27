@@ -24,7 +24,7 @@ django-templated-email==3.0.0
 scout-apm==2.26.1
 
 # Caching
-redis==4.3.4
+redis==4.5.3
 
 # Realtime
 channels==3.0.5
