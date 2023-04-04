@@ -13,7 +13,9 @@ DEBUG_TOOLBAR_CONFIG = {
 TEMPLATES[0]['DIRS'].append(os.path.join(BASE_DIR, '../frontend/build/generated'))
 
 # Make whitenoise not nag about missing files
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STORAGES["staticfiles"] = {
+    "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+}
 WHITENOISE_MANIFEST_STRICT = False
 
 # This stops WhiteNoise from scanning your static files on start up

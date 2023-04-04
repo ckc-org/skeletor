@@ -22,8 +22,10 @@ class RequestDataLoggingMiddleware:
                 logger.info('request headers:')
                 for h in request.headers:
                     logger.info(f'{h}: {request.headers[h]}')
-                request._stream.seek(0)
-                logger.info(request.read())
+                # TODO: This request stream seek/reading isn't working any more, fix it?
+                #  Broke with Django 4.2.0 upgrade Apr 3, 2023
+                # request._stream.seek(0)
+                # logger.info(request.read())
                 logger.info(pformat(getattr(response, 'data', None)))
 
                 logger.info('response headers:')

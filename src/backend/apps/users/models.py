@@ -37,7 +37,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     # REQUIRED_FIELDS = ['email']
 
-    email = CIEmailField(verbose_name="email", max_length=60, unique=True)
+    email = models.EmailField(verbose_name="email", max_length=60, unique=True, db_collation="case_insensitive")
     email_verified = models.BooleanField(default=False)
 
     first_name = models.CharField(max_length=64, null=True, blank=True)

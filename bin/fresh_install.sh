@@ -20,6 +20,14 @@ docker-compose up -d
 # NOTE: "-T" flag is for running docker-compose stuff on Github actions, otherwise not
 # necessary
 
+# Wait for frontend to finish building
+printf "Waiting for frontend to finish building."
+until $(curl --output /dev/null --silent --head --fail http://localhost:3000); do
+    printf '.'
+    sleep 3
+done
+echo "done waiting!\n"
+
 # Make frontend assets
 docker-compose exec -T builder yarn run generate
 
