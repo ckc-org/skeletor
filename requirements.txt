@@ -1,4 +1,4 @@
-Django==4.1.7
+Django==4.2.0
 django-cors-headers==3.13.0
 django-extensions==3.2.0
 djangorestframework==3.14.0
@@ -11,7 +11,7 @@ django-querycount==0.7.0
 
 # Database
 dj-database-url==1.0.0
-psycopg2-binary==2.9.5
+psycopg2==3.1.8
 
 # Storage
 whitenoise[brotli]==6.2.0
