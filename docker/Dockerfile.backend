@@ -12,7 +12,10 @@ ENV PYTHONDONTWRITEBYTECODE 1
 
 ADD requirements.dev.txt .
 ADD requirements.txt .
-RUN pip install -r requirements.dev.txt
+# Speed up pip install:
+#  "--disable-pip-version-check" Disable version check when installing to speed things up
+#  "--no-compile" don't make *.pyc files at build time, do it at runtime
+RUN pip install -r requirements.dev.txt --disable-pip-version-check --no-compile
 
 WORKDIR /app
 
