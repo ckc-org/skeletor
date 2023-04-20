@@ -9,7 +9,9 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 
-from users.serializers import LoginSerializer, PasswordResetSerializer, PasswordResetConfirmSerializer, UserSelfDetailSerializer, UserDetailSerializer, UserListSerializer, UserCreateSerializer, EmailVerificationSerializer
+from users.serializers import LoginSerializer, PasswordResetSerializer, PasswordResetConfirmSerializer, \
+    UserSelfDetailSerializer, UserDetailSerializer, UserListSerializer, UserCreateSerializer, \
+    EmailVerificationSerializer
 from users.permissions import IsUser
 
 from utils import email

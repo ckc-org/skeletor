@@ -30,10 +30,12 @@ exclude = [
     "node_modules",
     "venv",
 ]
-per-file-ignores = {}
+#per-file-ignores = {
+#    "settings/*.py" = ["E501", "F405", "W605"]
+#}
 
 # Same as Black.
-line-length = 88
+line-length = 120
 
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
@@ -44,3 +46,9 @@ target-version = "py311"
 [tool.ruff.mccabe]
 # Unlike Flake8, default to a complexity level of 10.
 max-complexity = 10
+
+[tool.ruff.per-file-ignores]
+#"__init__.py" = ["E402"]
+#"path/to/file.py" = ["E402"]
+"*/settings/*.py" = ["E501", "F405", "W605", "F403"]
+"*/migrations/*.py" = ["E501"]
