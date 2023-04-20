@@ -11,6 +11,7 @@ for most of our new clients. It gives us:
 &nbsp;&nbsp; ❯ &nbsp;Stack: [Django](https://www.djangoproject.com/) + [Vue](https://vuejs.org/) + [React Native](https://reactnative.dev/)<br>
 &nbsp;&nbsp; ❯ &nbsp;[Heroku](https://heroku.com/) deploys for frontend and backend<br>
 &nbsp;&nbsp; ❯ &nbsp;Email templates + helpers<br>
+&nbsp;&nbsp; ❯ &nbsp;[Pre-commit](https://pre-commit.com) with [ruff](https://beta.ruff.rs/)<br>
 &nbsp;&nbsp; ❯ &nbsp;Fast backend tests w/coverage ([pytest](https://docs.pytest.org/))<br>
 &nbsp;&nbsp; ❯ &nbsp;Hot reloading for local dev<br>
 &nbsp;&nbsp; ❯ &nbsp;[Expo](https://expo.dev/) for [React Native](https://reactnative.dev/)<br>
