@@ -63,10 +63,10 @@ jobs:
       run: |
         pip install -r requirements.dev.txt
 
-    - name: Lint with flake8
+    - name: Lint with ruff
       run: |
-        cd src/backend && flake8
-    
+        ruff --config src/backend/pyproject.toml src/backend
+
     - name: Test with pytest
       run: |
         cd src/backend

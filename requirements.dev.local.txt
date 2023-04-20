@@ -1,0 +1,3 @@
+# These get installed on your dev environment outside docker
+ruff==0.0.262
+pre-commit==3.2.2

@@ -28,7 +28,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Pass through to our SPA (this template is in /frontend/dist docker volume)
-    re_path(f'^(?!api|admin|__debug__|{settings.STATIC_URL_PREFIX}|{settings.MEDIA_URL_PREFIX}).*', TemplateView.as_view(template_name='index.html'), name="index"),
+    re_path(
+        f'^(?!api|admin|__debug__|{settings.STATIC_URL_PREFIX}|{settings.MEDIA_URL_PREFIX}).*',
+        TemplateView.as_view(template_name='index.html'),
+        name="index"
+    ),
 ]
 
 

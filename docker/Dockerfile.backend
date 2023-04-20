@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -yy gcc build-essential python-setuptools 
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
+ADD requirements.dev.local.txt .
 ADD requirements.dev.txt .
 ADD requirements.txt .
 # Speed up pip install:

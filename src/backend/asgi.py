@@ -8,8 +8,8 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings.base')
 asgi_application = get_asgi_application()
 
-from channels.auth import AuthMiddlewareStack
-from realtime.consumers import RealtimeConsumer
+from channels.auth import AuthMiddlewareStack  # noqa
+from realtime.consumers import RealtimeConsumer  # noqa
 
 
 application = ProtocolTypeRouter({

@@ -109,7 +109,10 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
 
     def validate(self, attrs):
         if attrs['new_password_1'] != attrs['new_password_2']:
-            raise ValidationError({'new_password_1': 'Passwords should match.', 'new_password_2': 'Passwords should match.'})
+            raise ValidationError({
+                'new_password_1': 'Passwords should match.',
+                'new_password_2': 'Passwords should match.'
+            })
         return attrs
 
     def save(self):

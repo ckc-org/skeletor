@@ -20,6 +20,10 @@ docker-compose up -d
 # NOTE: "-T" flag is for running docker-compose stuff on Github actions, otherwise not
 # necessary
 
+# Install python tooling locally
+pip install -r requirements.dev.local.txt
+pre-commit install
+
 # Wait for frontend to finish building
 printf "Waiting for frontend to finish building."
 until $(curl --output /dev/null --silent --head --fail http://localhost:3000); do
@@ -52,4 +56,3 @@ docker-compose exec -T django ./manage.py set_default_site --name=localhost --do
 
 # generate data (creates default admin account)
 docker-compose exec -T django ./manage.py generate_data
-
