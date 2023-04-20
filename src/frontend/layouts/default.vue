@@ -4,6 +4,7 @@
       class="primary"
       app
       dark
+      v-if="this.$auth.loggedIn"
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
