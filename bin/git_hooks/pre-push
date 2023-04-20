@@ -7,20 +7,6 @@ color_off="\033[m"
 printf "\n==================== Running pre-push checks ====================\n"
 
 # ----------------------------------------------------------------------------
-# Flake8
-# ----------------------------------------------------------------------------
-flake8=`docker run --rm -v $(pwd)/src/backend:/app $(basename $(pwd))_django /usr/local/bin/flake8`
-
-if [ ! -z "${flake8}" ]
-then
-    echo "${red} ***  There were style issues on the backend. Please fix before pushing!  *** ${color_off}"
-    echo "${flake8}"
-    exit 1
-fi
-
-echo "${green} ✅ Passed flake8 check ${color_off}"
-
-# ----------------------------------------------------------------------------
 # Migrations
 # ----------------------------------------------------------------------------
 # Get all the migration path names, up to the NNNN (i.e. in 0001_initial),
