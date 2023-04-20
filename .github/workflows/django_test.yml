@@ -65,7 +65,7 @@ jobs:
 
     - name: Lint with ruff
       run: |
-        cd src/backend && ruff --config src/backend/pyproject.toml src/backend
+        ruff --config src/backend/pyproject.toml src/backend
 
     - name: Test with pytest
       run: |

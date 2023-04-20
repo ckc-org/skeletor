@@ -56,4 +56,4 @@ jobs:
       - name: Lint with ruff
         run: |
           pip install $(cat requirements.dev.local.txt | grep ruff)
-          cd src/backend && ruff --config src/backend/pyproject.toml src/backend
+          ruff --config src/backend/pyproject.toml src/backend
