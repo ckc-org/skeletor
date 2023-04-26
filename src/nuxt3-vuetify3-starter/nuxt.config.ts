@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     modules: [
         '@pinia/nuxt',
 
-        "@kevinmarrec/nuxt-pwa",
+        // Vuetify
         async (options, nuxt) => {
             nuxt.hooks.hook("vite:extendConfig", (config) =>
                 // @ts-ignore
