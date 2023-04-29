@@ -107,7 +107,6 @@ venv.bak/
 node_modules
 
 # Our project
-.env
 volumes/
 src/backend/artifacts
 src/backend/staticfiles

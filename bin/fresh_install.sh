@@ -9,7 +9,7 @@ cp -n .env_sample .env || echo ".env already exists"
 # Fix symlinks from potentially busted django-admin.py startproject
 ln -sf src/backend/manage.py .
 ln -sf src/frontend/package.json .
-ln -sf src/frontend/yarn.lock .
+ln -sf src/frontend/package-lock.json .
 
 # Make frontend build dir so we can volume it immediately (doesn't exist otherwise)
 mkdir -p src/frontend/build/
