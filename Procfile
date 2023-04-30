@@ -1,2 +1,3 @@
-web: bin/start-nginx-debug uvicorn asgi:application --host 0.0.0.0 --port $PORT --app-dir src/backend
+# /tmp/nginx.socket is where heroku nginx buildpack listens
+web: bin/start-nginx-debug uvicorn asgi:application --uds /tmp/nginx.socket --app-dir src/backend
 release: ./manage.py migrate --pythonpath src/backend
