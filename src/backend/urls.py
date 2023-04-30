@@ -38,3 +38,8 @@ if settings.DEBUG:  # pragma: no cover
     urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls)),
     ]
+
+# If we're being served on Heroku, we're on `django/` prefix, so prefix
+# all urls with that
+if settings.SETTINGS_MODULE == 'settings.heroku':
+    urlpatterns = [path('django/', include(urlpatterns))]
