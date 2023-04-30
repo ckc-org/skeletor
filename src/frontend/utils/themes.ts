@@ -8,8 +8,8 @@ export const light: ThemeDefinition = {
   colors: {
     background: "#FFFFFF",
     surface: "#FFFFFF",
-    primary: twColors.indigo[600],
-    secondary: twColors.purple[600],
+    primary: twColors.purple[600],
+    secondary: twColors.sky[600],
     error: twColors.red[500],
     info: twColors.blue[500],
     success: twColors.emerald[500],
