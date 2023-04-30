@@ -21,3 +21,9 @@ application = ProtocolTypeRouter({
         ])
     ),
 })
+
+
+# If we're on Heroku, then let's let heroku nginx buildpack know that we're ready by
+# touching this file to make it exist: /tmp/app-initialized
+if os.getenv('DJANGO_SETTINGS_MODULE') == 'settings.heroku':
+    open('/tmp/app-initialized', 'a').close()
