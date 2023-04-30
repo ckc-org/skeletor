@@ -101,13 +101,30 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useCounterStore } from "../store/myStore"
+import { useRequest } from "../composables/useRequest"
 
 const email = ref("")
 const password = ref("")
 
 const { ruleEmail, rulePassLen, ruleRequired } = useFormRules()
 
-
 const { count } = storeToRefs(useCounterStore())
 const { increment } = useCounterStore()
+
+const submit = async () => {
+  const { isFetching, error, data } = useRequest('/auth/login/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: { email: email.value, password: password.value },
+  })
+
+  await isFetching
+
+  if (error.value) {
+    throw new Error(error.value.message)
+  }
+
+  return data.value
+}
+
 </script>

@@ -1,15 +1,22 @@
 import vuetify from "vite-plugin-vuetify";
 
 // PWA Config
-const title = "Vuetify 3 + Nuxt 3 Starter";
-const shortTitle = "Vuetify 3 + Nuxt 3 Starter";
-const description =
-    "Template to get you up and running with Nuxt 3 & Vuetify 3";
+const title = "Skeletor";
+const shortTitle = "Skeletor";
+const description = "Welcome to Skeletor -- a bootstrapped starter project.";
 const image = "https://vuetify3nuxt3starter.behonbaker.com/starter.png";
 const url = "https://vuetify3nuxt3starter.behonbaker.com/";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+
+    // Runtime Config
+    runtimeConfig: {
+        public: {
+            server_url: process.env.BASE_URL || 'http://localhost:8000/api',
+        },
+    },
+
     // import styles
     css: ["@/assets/main.scss"],
     // enable takeover mode
