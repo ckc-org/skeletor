@@ -30,26 +30,29 @@ graph LR
 
 ## Set up
 
- 1. Make an app on Heroku
- 1. Add-ons to install:
-    * Postgres
-    * Redis
-    * Papertrail/some logger
- 1. In "Deploy" tab: Connect with GitHub
- 1. In "Settings" tab:
-    * Add these buildpacks to your app:
-        * heroku/nodejs
-        * heroku/python
-        * https://github.com/heroku/heroku-buildpack-nginx.git
-    * Add env vars:
-        * `DJANGO_SETTINGS_MODULE=settings.heroku`
-        * `SECRET_KEY=<random secret key>`
- 1. Click "Deploy app"
- 1. Typically now you should run `./manage.py generate_data`
+1. Make an app on Heroku
+1. Add-ons to install:
+   * Postgres
+   * Redis
+   * Papertrail/some logger
+1. In "Deploy" tab: Connect with GitHub
+1. In "Settings" tab:
+   * Add these buildpacks to your app:
+       * heroku/nodejs
+       * heroku/python
+       * https://github.com/heroku/heroku-buildpack-nginx.git
+   * Add env vars:
+       * `SITE_DOMAIN=https://<your app>.herokuapp.com`
+       * `DJANGO_SETTINGS_MODULE=settings.heroku`
+       * `SECRET_KEY=<random secret key>`
+1. Click "Deploy app"
+1. Typically now you should run `./manage.py generate_data`
+
 
 ## If you want to tweak `nginx.conf`
 
 Edit `<project root>/config/nginx.conf.erb`
+
 
 ## Bonus craftsman engineer style stuff
 
