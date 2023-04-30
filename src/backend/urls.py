@@ -2,8 +2,7 @@ from django.conf import settings
 from django.conf.urls import include
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, re_path
-from django.views.generic import TemplateView
+from django.urls import path
 from rest_framework import routers
 
 from users.views import LoginView, LogoutView, UserPasswordResetViewSet, UserViewSet
@@ -26,13 +25,6 @@ urlpatterns = [
 
     # Django built in
     path('admin/', admin.site.urls),
-
-    # Pass through to our SPA (this template is in /frontend/dist docker volume)
-    re_path(
-        f'^(?!api|admin|__debug__|{settings.STATIC_URL_PREFIX}|{settings.MEDIA_URL_PREFIX}).*',
-        TemplateView.as_view(template_name='index.html'),
-        name="index"
-    ),
 ]
 
 

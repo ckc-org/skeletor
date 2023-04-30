@@ -53,19 +53,6 @@ SCOUT_NAME = f"{DOMAIN}"
 
 
 # =============================================================================
-# Fix static files/paths
-# =============================================================================
-TEMPLATES[0]['DIRS'] = [
-    os.path.join(BASE_DIR, '../frontend/build/generated'),
-    os.path.join(BASE_DIR, 'templates'),
-]
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, '../frontend/build/generated/static'),
-    os.path.join(BASE_DIR, 'static'),
-)
-
-
-# =============================================================================
 # CORS
 # =============================================================================
 CORS_ORIGIN_ALLOW_ALL = False
