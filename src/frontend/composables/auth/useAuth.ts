@@ -16,25 +16,20 @@ export const useAuth = () => {
         password: string,
         rememberMe: boolean,
     ): Promise<typeof useFetch> => {
-        const res = useRequest('/auth/login', {
+        const res = await useRequest('/auth/login/', {
             method: 'POST',
             body: JSON.stringify({
                 email,
                 password,
                 rememberMe,
             }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
         });
-        // await res.isFetching
-        console.log(res.isFetching)
-        // if (res.error.value) {
-        //     throw new Error(res.error)
-        //     return res
-        // } else {
-        //     setUser(res.data.value.user);
-        // }
+        if (res.error.value) {
+            throw new Error(res.error)
+            return res
+        } else {
+            setUser(res.data.value.user);
+        }
 
         return res;
     };
@@ -59,8 +54,7 @@ export const useAuth = () => {
 
     const me = async (): Promise<typeof useFetch> => {
         try {
-            const res = useRequest('/auth/me', {method: 'POST'});
-            await res.isFetching;
+            const res = useRequest('/users/me/', {method: 'POST'});
 
             if (res.error.value) {
                 throw new Error(res.error);
@@ -80,3 +74,7 @@ export const useAuth = () => {
         me,
     };
 };
+
+
+
+

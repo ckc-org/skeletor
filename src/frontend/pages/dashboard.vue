@@ -28,7 +28,17 @@
 
 <script setup>
 import { useDisplay } from 'vuetify'
+import { useAuth } from "../composables/auth/useAuth"
+
 const display = ref(useDisplay())
+const auth = useAuth()
+
+
+onMounted(() => {
+  console.log('fire')
+  auth.me()
+})
+
 </script>
 
 <style scoped lang="scss">

@@ -77,8 +77,8 @@ const form = ref(null)
 
 
 const submit = async () => {
-  // await login( email.value, password.value)
-  // return
+  await login( email.value, password.value)
+  return
   const { valid } = await form.value.validate()
   if (valid || true) {
 
