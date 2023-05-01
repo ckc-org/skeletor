@@ -36,7 +36,7 @@
       />
     </div>
     <div class="mt-5">
-      <VBtn type="submit" block min-height="33px" color="primary">
+      <VBtn type="submit" block min-height="44px" color="primary">
         Create Account
       </VBtn
       >

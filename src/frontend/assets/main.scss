@@ -19,6 +19,25 @@ Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     transition: .2s;
 }
 
+.v-application::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.v-application.v-theme--dark::before {
+    background: url("grid_dark.svg") 0 0 repeat;
+}
+
+.v-application.v-theme--light::before {
+    background: url("grid_light.svg") 0 0 repeat;
+}
+
+
 // Reset link styles
 a {
     color: inherit;
