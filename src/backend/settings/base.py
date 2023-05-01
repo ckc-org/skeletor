@@ -151,11 +151,8 @@ REST_FRAMEWORK = {
 # =============================================================================
 # Security/cookies
 # =============================================================================
-from corsheaders.defaults import default_headers
 CORS_ORIGIN_WHITELIST = ('http://localhost:3000',)
-# CORS_ALLOW_HEADERS = list(default_headers) + [
-#     'credentials',
-#]
+
 CORS_ALLOW_CREDENTIALS = True
 
 SESSION_COOKIE_HTTPONLY = True

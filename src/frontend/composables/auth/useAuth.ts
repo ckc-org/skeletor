@@ -54,7 +54,7 @@ export const useAuth = () => {
 
     const me = async (): Promise<typeof useFetch> => {
         try {
-            const res = useRequest('/users/me/', {method: 'POST'});
+            const res = useRequest('/users/me/', {method: 'GET'});
 
             if (res.error.value) {
                 throw new Error(res.error);
@@ -74,7 +74,3 @@ export const useAuth = () => {
         me,
     };
 };
-
-
-
-
