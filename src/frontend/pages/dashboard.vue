@@ -28,14 +28,8 @@
 
 <script setup>
 import { useDisplay } from 'vuetify'
-
 const display = ref(useDisplay())
-console.log(display)
 </script>
 
 <style scoped lang="scss">
-h1 {
-  color: green;
-}
-
 </style>
