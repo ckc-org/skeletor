@@ -14,6 +14,9 @@ $family: "Inter var", "Inter", apple-system, BlinkMacSystemFont, "Segoe UI", Rob
   }
 }
 
+.v-application {
+    transition: .2s;
+}
 // Reset link styles
 a {
   color: inherit;
@@ -40,6 +43,7 @@ a {
   display: inline-block;
   cursor: pointer;
 }
+
 // Theme gradients
 .gradient {
   &.primary {

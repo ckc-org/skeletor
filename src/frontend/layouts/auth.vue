@@ -40,13 +40,15 @@ const toggle_theme = () => {
 }
 </script>
 
-<style lang="stylus">
+<style lang="scss" scoped>
 .rotate-180 {
   transform: rotate(180deg);
   transition: .2s;
 }
 
-.icon
+.icon {
   transition: .5s;
+}
+
 
 </style>
