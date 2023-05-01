@@ -1,4 +1,4 @@
-export const twColors = {
+export const ckcColors = {
     black: "#000",
     white: "#fff",
     slate: {

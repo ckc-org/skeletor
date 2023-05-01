@@ -18,7 +18,7 @@ export default defineNuxtConfig({
     },
 
     // import styles
-    css: ["@/assets/main.scss"],
+    css: ["@/assets/main.scss", "@/assets/stylus/index.styl"],
     // enable takeover mode
     typescript: {shim: false},
     build: {transpile: ["vuetify"]},
