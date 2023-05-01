@@ -2,77 +2,104 @@
   <h1>Sign In</h1>
   <p class="text-medium-emphasis">Welcome back! Let's get started</p>
 
-  <VForm @submit.prevent="submit" class="mt-7">
+  <v-form @submit.prevent="submit" ref="form" class="mt-7">
     <div class="mt-1">
       <label class="label text-grey-darken-2" for="email">Email</label>
-      <VTextField
+      <v-text-field
         :rules="[ruleRequired, ruleEmail]"
         v-model="email"
         prepend-inner-icon="fluent:mail-24-regular"
         id="email"
         name="email"
         type="email"
-      />
+        :error-messages="errors.email"
+        :error="!!errors.email"
+      ></v-text-field>
     </div>
     <div class="mt-1">
       <label class="label text-grey-darken-2" for="password">Password</label>
-      <VTextField
+      <v-text-field
         :rules="[ruleRequired, rulePassLen]"
         v-model="password"
         prepend-inner-icon="fluent:password-20-regular"
         id="password"
         name="password"
         type="password"
-      />
+        :error-messages="errors.password"
+        :error="!!errors.password"
+      ></v-text-field>
     </div>
     <div class="mt-5">
-
-      <VBtn type="submit" block min-height="44px" class="gradient primary">Sign In</VBtn>
+      <v-btn
+        type="submit"
+        block
+        min-height="44px"
+        class="gradient primary"
+        :loading="isLoading"
+      >
+        Sign In
+      </v-btn>
     </div>
-  </VForm>
+  </v-form>
   <p class="text-body-2 mt-10">
-    <NuxtLink to="/reset-password" class="font-weight-bold text-primary"
+    <nuxt-link to="/reset-password" class="font-weight-bold text-primary"
     >Forgot password?
-    </NuxtLink>
+    </nuxt-link>
   </p>
   <p class="text-body-2 mt-4">
-    <span
-    >Don't have an account?
-      <NuxtLink to="/signup" class="font-weight-bold text-primary"
-      >
+    <span>
+      Don't have an account?
+      <nuxt-link to="/signup" class="font-weight-bold text-primary">
         Sign Up
-      </NuxtLink>
+      </nuxt-link>
     </span>
   </p>
+
 </template>
 
 <script setup>
 //set layout to auth
 import { useRequest } from "../composables/useRequest"
+import { useAuth } from "../composables/auth/useAuth"
+
 definePageMeta({
   layout: "auth",
-});
+})
 
 const { ruleEmail, rulePassLen, ruleRequired } = useFormRules()
+const { login } = useAuth()
 
 const email = ref("")
 const password = ref("")
+const isLoading = ref(false)
+const errors = ref({})
+const form = ref(null)
 
 
 const submit = async () => {
-  const { isFetching, error, data } = useRequest('/auth/login/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: { email: email.value, password: password.value },
-  })
+  const { valid } = await form.value.validate()
+  console.log(valid)
+  if (valid) {
 
-  await isFetching
+    isLoading.value = true // Set isLoading to true when submitting
+    errors.value = {} // Reset errors
+    const { isFetching, error, data } = useRequest("/auth/login/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: { email: email.value, password: password.value },
+    })
 
-  if (error.value) {
-    throw new Error(error.value.message)
+    await isFetching
+
+    if (error.value) {
+      isLoading.value = false // Set isLoading to false if there's an error
+      errors.value = error.value.data
+      throw new Error(error)
+    }
+
+    isLoading.value = false // Set isLoading to false after the request is completed
+    return data.value
   }
-
-  return data.value
 }
 
 </script>

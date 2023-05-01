@@ -39,7 +39,6 @@ const theme = useTheme()
 
 const setThemeFromLocalStorage = () => {
   const isDark = localStorage.getItem("isDark");
-  console.log(isDark)
   theme.global.name.value = isDark === 'true' ? 'dark' : 'light'
 };
 
@@ -48,7 +47,6 @@ onMounted(setThemeFromLocalStorage);
 const toggle_theme = async () => {
   theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
   // save to localstorage
-  console.log('setting to dark:', JSON.stringify(theme.global.current.value.dark))
   localStorage.setItem("isDark", JSON.stringify(theme.global.current.value.dark));
 }
 </script>
