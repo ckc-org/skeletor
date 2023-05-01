@@ -77,19 +77,20 @@ const form = ref(null)
 
 
 const submit = async () => {
+  // await login( email.value, password.value)
+  // return
   const { valid } = await form.value.validate()
-  console.log(valid)
-  if (valid) {
+  if (valid || true) {
 
     isLoading.value = true // Set isLoading to true when submitting
     errors.value = {} // Reset errors
-    const { isFetching, error, data } = useRequest("/auth/login/", {
+    const { error, data } = useRequest("/auth/login/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: { email: email.value, password: password.value },
     })
 
-    await isFetching
+    console.log(error.value)
 
     if (error.value) {
       isLoading.value = false // Set isLoading to false if there's an error
