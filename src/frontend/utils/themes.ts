@@ -6,7 +6,7 @@ export const LIGHT_THEME = "light";
 export const light: ThemeDefinition = {
     dark: false,
     colors: {
-        background: "#FFFFFF",
+        background: ckcColors.gray[200],
         surface: "#FFFFFF",
         primary: ckcColors.purple[600],
         secondary: ckcColors.sky[600],
@@ -24,7 +24,7 @@ export const dark: ThemeDefinition = {
     dark: true,
     colors: {
 
-        background: ckcColors.slate[950],
+        background: ckcColors.gray[800],
         surface: ckcColors.slate[900],
         primary: ckcColors.purple[600],
         secondary: ckcColors.sky[600],

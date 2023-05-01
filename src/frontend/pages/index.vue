@@ -27,7 +27,7 @@
     </div>
     <div class="mt-5">
 
-      <VBtn type="submit" block min-height="44px" color="primary">Sign In</VBtn>
+      <VBtn type="submit" block min-height="44px" class="gradient primary">Sign In</VBtn>
     </div>
   </VForm>
   <p class="text-body-2 mt-10">

@@ -1,4 +1,5 @@
 import {createVuetify} from "vuetify";
+import {LIGHT_THEME} from "~/utils/themes";
 
 export default defineNuxtPlugin((app) => {
     const vuetify = createVuetify({
@@ -6,7 +7,7 @@ export default defineNuxtPlugin((app) => {
         defaults,
         // add theme
         theme: {
-            defaultTheme: DARK_THEME,
+            defaultTheme: LIGHT_THEME,
             themes: {
                 light,
                 dark,
