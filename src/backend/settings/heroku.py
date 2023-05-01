@@ -55,6 +55,8 @@ SCOUT_NAME = f"{DOMAIN}"
 # =============================================================================
 # Static
 # =============================================================================
+# On Heroku nginx buildpack is serving the Nuxt3 app from / so we need to prefix
+# all of our stuff with /django
 STATIC_URL = '/django/static/'
 
 
