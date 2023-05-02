@@ -19,7 +19,6 @@ loadToken()
 
 axiosInstance.interceptors.response.use(
   (response) => {
-    console.log(response.config.url)
     // If login request or user-create request, get the token
     if (response.config.url === '/auth/login/' || (response.config.url === '/users/' && response.config.method === 'post')) {
       // Store the token in storage
