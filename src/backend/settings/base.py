@@ -127,7 +127,8 @@ else:  # pragma: no cover
         }
     }
 
-DATABASES["default"]["CONN_MAX_AGE"] = 10  # short timeout so we don't have too many dangling clients
+# Conn max age sucks! Causes "too many clients" errors..
+# DATABASES["default"]["CONN_MAX_AGE"] = 10  # short timeout so we don't have too many dangling clients
 
 
 # =============================================================================
