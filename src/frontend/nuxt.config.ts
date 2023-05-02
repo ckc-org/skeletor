@@ -9,7 +9,6 @@ const url = "https://vuetify3nuxt3starter.behonbaker.com/";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-
     // Runtime Config
     runtimeConfig: {
         public: {
@@ -31,6 +30,7 @@ export default defineNuxtConfig({
     },
     modules: [
         '@pinia/nuxt',
+        '@vueuse/nuxt',
 
         // Vuetify
         async (options, nuxt) => {
@@ -40,7 +40,6 @@ export default defineNuxtConfig({
             );
         },
     ],
-
     app: {
         head: {
             title: "Vuetify 3 + Nuxt 3 Starter",
@@ -108,5 +107,5 @@ export default defineNuxtConfig({
                 },
             ],
         },
-    },
+    }
 });

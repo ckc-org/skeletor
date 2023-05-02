@@ -58,12 +58,11 @@
 </template>
 
 <script setup>
-//set layout to auth
-import { useRequest } from "../composables/useRequest"
-import { useAuth } from "../composables/auth/useAuth"
+import { useAuth } from "../composables/useAuth"
 
 definePageMeta({
   layout: "auth",
+  middleware: ["guest"]
 })
 
 const { ruleEmail, rulePassLen, ruleRequired } = useFormRules()
@@ -77,20 +76,13 @@ const form = ref(null)
 
 
 const submit = async () => {
-  await login( email.value, password.value)
-  return
   const { valid } = await form.value.validate()
   if (valid || true) {
 
     isLoading.value = true // Set isLoading to true when submitting
     errors.value = {} // Reset errors
-    const { error, data } = useRequest("/auth/login/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: { email: email.value, password: password.value },
-    })
 
-    console.log(error.value)
+    const { error, data } = await login(email.value, password.value)
 
     if (error.value) {
       isLoading.value = false // Set isLoading to false if there's an error
@@ -99,6 +91,7 @@ const submit = async () => {
     }
 
     isLoading.value = false // Set isLoading to false after the request is completed
+    navigateTo("/dashboard")
     return data.value
   }
 }

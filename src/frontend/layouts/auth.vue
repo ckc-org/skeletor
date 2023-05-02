@@ -1,9 +1,8 @@
 <template>
-  <div>
-    <v-app class="overflow-x-hidden">
+    <v-app class="overflow-hidden">
       <v-main>
         <v-container fluid class="fill-height">
-          <div class="z-index-2 d-flex justify-space-between fill-width pa-4 ">
+          <div class="z-index-2 d-flex justify-space-between fill-width px-4 ">
             <v-btn
               icon
               variant="outlined"
@@ -39,15 +38,12 @@
         </v-container>
       </v-main>
     </v-app>
-  </div>
 </template>
 
 <script setup lang="ts">
 import {useTheme} from "vuetify";
 
 const theme = useTheme()
-// on mounted set theme to localstorage value
-// theme.global.name.value = localStorage.getItem('theme') || 'light'
 
 const setThemeFromLocalStorage = () => {
   const isDark = localStorage.getItem("isDark");

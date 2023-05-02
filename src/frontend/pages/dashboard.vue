@@ -28,16 +28,25 @@
 
 <script setup>
 import { useDisplay } from 'vuetify'
-import { useAuth } from "../composables/auth/useAuth"
+import { useAuth } from "../composables/useAuth"
 
 const display = ref(useDisplay())
 const auth = useAuth()
-
-
-onMounted(() => {
-  console.log('fire')
-  auth.me()
+definePageMeta({
+  middleware: ["auth"]
 })
+
+
+const setThemeFromLocalStorage = async () => {
+  console.log(auth.isLoggedIn.value)
+  try {
+    await auth.fetchUser()
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+onMounted(setThemeFromLocalStorage)
 
 </script>
 
