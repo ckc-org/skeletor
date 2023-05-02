@@ -1,0 +1,21 @@
+<template>
+  <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M2.77246 8.86249H22.2699V21.2699C22.2699 21.74 22.0831 22.1909 21.7507 22.5233C21.4183 22.8557 20.9675 23.0424 20.4974 23.0424H4.54495C4.07486 23.0424 3.62402 22.8557 3.29161 22.5233C2.95921 22.1909 2.77246 21.74 2.77246 21.2699V8.86249V8.86249Z"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path
+      d="M24.0424 7.09V3.54501C24.0424 2.56609 23.2488 1.77252 22.2699 1.77252L2.77245 1.77252C1.79353 1.77252 0.99996 2.56609 0.99996 3.54501V7.09C0.99996 8.06892 1.79353 8.86249 2.77245 8.86249H22.2699C23.2488 8.86249 24.0424 8.06892 24.0424 7.09Z"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9.86243 14.18H15.1799" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</template>
+
+<script>
+export default {
+  name: "ProjectsIcon"
+}
+</script>
+
+<style scoped>
+
+</style>

@@ -30,9 +30,19 @@ a {
   }
 }
 
-.v-btn {
-  font-weight: 700 !important;
+//.v-btn {
+//  font-weight: 700 !important;
+//}
+.v-container {
+    max-width: 1270px;
 }
+
+@media (min-width: 1280px) {
+    .v-container {
+        max-width: 1270px !important;
+    }
+}
+
 .label {
   font-weight: 600;
   font-size: 15px;
