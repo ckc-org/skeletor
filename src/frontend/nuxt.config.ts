@@ -4,8 +4,8 @@ import vuetify from "vite-plugin-vuetify";
 const title = "Skeletor";
 const shortTitle = "Skeletor";
 const description = "Welcome to Skeletor -- a bootstrapped starter project.";
-const image = "https://vuetify3nuxt3starter.behonbaker.com/starter.png";
-const url = "https://vuetify3nuxt3starter.behonbaker.com/";
+const image = "https://raw.githubusercontent.com/ckc-org/skeletor/master/docs/skeletor_full.png";
+const url = "https://github.com/ckc-org/skeletor";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({

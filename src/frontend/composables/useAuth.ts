@@ -1,20 +1,21 @@
 import {ref, computed} from 'vue'
 import {useStorage} from '@vueuse/core'
-import {User, UserWithoutPassword} from '~/types'
+import {UserT, UserWithoutPasswordT} from '~/types/authTypes'
 import {useRequest} from '~/composables/useRequest'
 import {navigateTo} from "#app";
 
-interface LoginResponseData {
-    user: UserWithoutPassword
+
+interface UserDataT {
+    user: UserT | UserWithoutPasswordT
 }
 
 export const useAuth = () => {
     const userFromStorage = useStorage<string | null>('user', null)
-    const authUser = ref<User | UserWithoutPassword | null>(
+    const authUser = ref<UserT | UserWithoutPasswordT | null>(
         userFromStorage.value ? JSON.parse(userFromStorage.value) : null
     )
 
-    const setUser = (user: User | UserWithoutPassword | null) => {
+    const setUser = (user: UserT | UserWithoutPasswordT | null) => {
         userFromStorage.value = user ? JSON.stringify(user) : null
         authUser.value = user
     }
@@ -26,18 +27,21 @@ export const useAuth = () => {
         password: string,
         rememberMe?: boolean
     ) => {
-        const res = await useRequest<LoginResponseData>('/auth/login/', {
-            method: 'POST',
+        const res = await useRequest<any>("/auth/login/", {
+            method: "POST",
             body: JSON.stringify({
                 email,
                 password,
                 rememberMe,
             }),
-        })
+        });
 
-        if (res.data?.value?.user) {
-            setUser(res.data.value.user)
+        const userData = res.data?.value as any;
+
+        if (userData?.user) {
+            setUser(userData.user);
         }
+
 
         return res
     }
@@ -51,6 +55,7 @@ export const useAuth = () => {
         return res
     }
 
+
     const fetchUserRequest = useRequest('/users/me/')
     const fetchUser = async () => {
         const {data, error, execute} = fetchUserRequest
@@ -58,11 +63,11 @@ export const useAuth = () => {
 
         if (error.value) {
             setUser(null)
-            throw new Error(error.value)
+            throw new Error(error.value as any)
         }
 
-        if (data?.value?.user) {
-            setUser(data.value.user)
+        if ((data?.value as any)?.user as UserT) {
+            setUser((data.value as any).user)
         }
 
         return {data, error, execute}
