@@ -10,6 +10,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 
+SETTINGS_MODULE = os.getenv("DJANGO_SETTINGS_MODULE")
+
+
 # =============================================================================
 # Debugging
 # =============================================================================
@@ -77,7 +80,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
-            '/frontend/generated',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -125,7 +127,8 @@ else:  # pragma: no cover
         }
     }
 
-DATABASES["default"]["CONN_MAX_AGE"] = 10  # short timeout so we don't have too many dangling clients
+# Conn max age sucks! Causes "too many clients" errors..
+# DATABASES["default"]["CONN_MAX_AGE"] = 10  # short timeout so we don't have too many dangling clients
 
 
 # =============================================================================
@@ -150,6 +153,7 @@ REST_FRAMEWORK = {
 # Security/cookies
 # =============================================================================
 CORS_ORIGIN_WHITELIST = ('http://localhost:3000',)
+
 CORS_ALLOW_CREDENTIALS = True
 
 SESSION_COOKIE_HTTPONLY = True
@@ -182,7 +186,6 @@ STORAGES = {
 }
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
-    '/frontend/generated/static',
 )
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'

@@ -9,10 +9,7 @@ cp -n .env_sample .env || echo ".env already exists"
 # Fix symlinks from potentially busted django-admin.py startproject
 ln -sf src/backend/manage.py .
 ln -sf src/frontend/package.json .
-ln -sf src/frontend/yarn.lock .
-
-# Make frontend build dir so we can volume it immediately (doesn't exist otherwise)
-mkdir -p src/frontend/build/
+ln -sf src/frontend/package-lock.json .
 
 # Build docker containers
 docker-compose up -d
@@ -32,11 +29,7 @@ until $(curl --output /dev/null --silent --head --fail http://localhost:3000); d
 done
 echo "done waiting!\n"
 
-# Make frontend assets
-docker-compose exec -T builder yarn run generate
-
 # setup database and gather assets; make sure we run this _after_ building frontend assets
-docker-compose exec -T django ./manage.py collectstatic --noinput
 docker-compose exec -T django ./manage.py migrate
 
 # setup React Native, if it's around

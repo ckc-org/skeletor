@@ -19,7 +19,6 @@ services:
     env_file: .env
     volumes:
       - ./src/backend:/app
-      - ./src/frontend/build:/frontend:delegated
     ports:
       - 8000:8000
     depends_on:
@@ -46,12 +45,13 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.frontend
-    command: bash -c "yarn && yarn run dev"
+    command: bash -c "npm i . && npm run dev"
     env_file: .env
     environment:
       - HOST=0.0.0.0
     ports:
       - 3000:3000
+      - 24678:24678
     volumes:
       - ./src/frontend:/app:cached
       # This _deletes_ the node_modules/ host volume folder in docker, so it uses the docker image

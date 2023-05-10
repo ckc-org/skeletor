@@ -1,79 +1,81 @@
 <template>
-  <v-app>
-    <v-app-bar
-      class="primary"
-      app
-      dark
-      v-if="this.$auth.loggedIn"
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-
-      <v-spacer/>
-
-      <v-btn
-        @click="$auth.logout()"
-        outlined
-        class="ml-2"
-      >
-        Sign Out &nbsp;
-        <v-icon>mdi-logout</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-navigation-drawer
-      v-model="drawer"
-      absolute
-      temporary
-    >
-      <v-list
-        nav
-        dense
-      >
-        <v-list-item-group
-          v-model="group"
-          active-class="primary--text"
-        >
-           <v-list-item to="/">
-            <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Home</v-list-item-title>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
-
-    <!-- Sizes your content based upon application components -->
+  <v-app class="overflow-hidden">
     <v-main>
-      <!-- Provides the application the proper gutter -->
-      <v-container fluid class="fill-height align-start">
-        <nuxt class="content"/>
+      <v-container fluid class="fill-height">
+        <div class="z-index-2 d-flex flex-sm-column px-4 pb-4">
+          <v-btn
+            icon
+            variant="outlined"
+            class="transition"
+            @click="toggle_theme"
+          >
+            <v-icon
+              :class="theme.global.current.value.dark ? 'rotate-180 icon' : ' icon'"
+              icon="mdi-theme-light-dark"
+              size="30px"
+            />
+          </v-btn>
+
+          <v-btn
+            icon
+            variant="outlined"
+            class="transition ml-4 ml-sm-0 mt-sm-4"
+            @click="logout"
+          >
+            <v-icon
+              class="rotate-180"
+              icon="mdi-logout"
+              size="24px"
+            />
+          </v-btn>
+        </div>
+        <v-row no-gutters justify="center" class="fill-height z-index-1 relative">
+          <v-col cols="12" md="10" lg="8" sm="10">
+            <slot/>
+          </v-col>
+        </v-row>
       </v-container>
     </v-main>
-
-    <v-footer
-      v-if="this.$auth.loggedIn"
-      dark
-      class="primary"
-      app
-    >
-      <!-- Footer Wrapper -->
-      Footer ?!
-    </v-footer>
   </v-app>
 </template>
 
-<script>
-export default {
-  data: () => ({
-    drawer: false,
-    group: null,
-  }),
+<script setup lang="ts">
+import {useTheme} from "vuetify";
+import {useAuth} from "~/composables/useAuth";
+import {navigateTo} from "#app";
+
+const auth = useAuth()
+const theme = useTheme()
+
+const setThemeFromLocalStorage = () => {
+  const isDark = localStorage.getItem("isDark");
+  theme.global.name.value = isDark === 'true' ? 'dark' : 'light'
+};
+
+const toggle_theme = () => {
+  theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+  // save to localstorage
+  localStorage.setItem("isDark", JSON.stringify(theme.global.current.value.dark));
 }
+
+const logout = async () => {
+  try {
+    await auth.logout()
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+onMounted(setThemeFromLocalStorage);
 </script>
 
-<style lang="stylus" scoped>
-.content
-  width 100%
-  height 100%
+<style lang="scss" scoped>
+.rotate-180 {
+  transform: rotate(180deg);
+  transition: .2s;
+}
+
+.icon {
+  transition: .5s;
+}
 </style>

@@ -9,6 +9,7 @@ celerybeat-schedule
 docker-compose.override.yml
 
 var/
+volumes/
 
 src/backend/.pytest_cache
 src/backend/staticfiles

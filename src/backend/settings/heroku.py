@@ -53,16 +53,11 @@ SCOUT_NAME = f"{DOMAIN}"
 
 
 # =============================================================================
-# Fix static files/paths
+# Static
 # =============================================================================
-TEMPLATES[0]['DIRS'] = [
-    os.path.join(BASE_DIR, '../frontend/build/generated'),
-    os.path.join(BASE_DIR, 'templates'),
-]
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, '../frontend/build/generated/static'),
-    os.path.join(BASE_DIR, 'static'),
-)
+# On Heroku nginx buildpack is serving the Nuxt3 app from / so we need to prefix
+# all of our stuff with /django
+STATIC_URL = '/django/static/'
 
 
 # =============================================================================

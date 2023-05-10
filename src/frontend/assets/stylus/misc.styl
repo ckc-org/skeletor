@@ -1,0 +1,109 @@
+// Misc
+#app {
+  font-weight 300
+}
+@media (min-width: 1904px)
+    .width-container {
+        max-width: 1280px !important;
+    }
+.width-container
+    max-width 1280px
+    padding 0 32px
+
+#app.theme--light
+    background var(--v-white-dark-base)
+
+.fill-width
+    width 100%
+
+.flex-1
+    flex 1
+
+.text-nowrap
+    white-space nowrap !important
+
+.text-underline
+    text-decoration underline
+
+.text-none
+    text-decoration none
+
+.upload-btn
+    padding 0 !important
+    position: relative;
+    cursor pointer
+
+    .v-btn__content
+        height 100%
+
+    >>> .v-btn__content
+        height 100%
+        width 100%
+        display flex
+        cursor pointer !important
+
+    .v-input__control
+        opacity 0
+        position: absolute;
+        margin: 0 !important;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+
+        .v-input__slot
+            margin-bottom: 0 !important
+            cursor pointer !important
+            z-index: 9;
+            position: absolute;
+            bottom: 0;
+            height: 100%;
+            width 100%
+
+
+    .v-input__icon.v-input__icon--clear
+        display none
+
+    .v-input__prepend-outer, .v-input
+        cursor pointer !important
+        position: absolute;
+        top 0
+        right: 0;
+        z-index: 9;
+        width 100%
+        height 100%
+        margin 0 !important
+
+        .v-input__icon
+            border-radius 0 !important
+            height 100% !important
+
+            .v-icon
+                height 100%
+                width 100%
+                opacity 0
+
+
+// click event stuff
+.cursor-pointer
+    cursor pointer
+
+.cursor-default
+    cursor default !important
+
+.no-pointer-events
+    pointer-events none
+
+.no-click-highlight
+    &:focus
+        opacity .6 !important
+        transition 0s
+
+    &:active
+        opacity .4 !important
+        transition 0s
+
+    .v-ripple__container
+        display none !important
+
+    &::before
+        display none !important
