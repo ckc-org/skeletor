@@ -66,3 +66,10 @@ class OTPVerificationCode(models.Model):
 
     def __str__(self):
         return self.code
+
+
+class Daily(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="dailies")
+    date_created = models.DateTimeField(auto_now=True)
+    yesterday_description = models.TextField()
+    today_description = models.TextField()

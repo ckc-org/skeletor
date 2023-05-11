@@ -2,35 +2,37 @@
   <div>
     <VApp>
       <div class="d-flex flex-column align-center relative">
-        <v-avatar class="absolute left" color="red" size="200"></v-avatar>
-        <h1 class="pa-7">Welcome Back, Jesse</h1>
-        <v-btn variant="tonal">Check In</v-btn>
+        <v-avatar class="absolute left-custom top-custom border-sm" color="grey" size="170">
+          <img src="~/assets/ai_avatar.png"/>
+        </v-avatar>
+        <h1 class="mt-5 mb-3 font-40 font-weight-regular">Welcome Back, <span class="font-weight-bold">Jesse</span></h1>
+        <v-btn variant="tonal" width="110">Check In</v-btn>
       </div>
-      <v-row class="justify-center mt-7">
+      <v-row class="justify-center mt-10">
         <v-col cols="auto">
-          <v-btn to="/">
-            <v-icon class="mr-2" icon="mgmt:DashboardIcon"></v-icon>
+          <v-btn class="text-capitalize font-16" variant="plain" to="/">
+            <v-icon class="mr-2" size="15" icon="mgmt:DashboardIcon"></v-icon>
             Dashboard
           </v-btn>
         </v-col>
         <v-col cols="auto">
-          <v-btn class="text-capitalize" variant="plain" to="/about">
-            <v-icon class="mr-2" size="20" icon="mgmt:ProjectsIcon"></v-icon>
+          <v-btn class="text-capitalize font-16" variant="plain" to="/about">
+            <v-icon class="mr-2" size="15" icon="mgmt:ProjectsIcon"></v-icon>
             Projects
           </v-btn>
         </v-col>
         <v-col cols="auto">
-          <v-btn to="/contact">
+          <v-btn class="text-capitalize font-16" variant="plain" to="/contact">
             Insights
           </v-btn>
         </v-col>
         <v-col cols="auto">
-          <v-btn to="/finances">
+          <v-btn class="text-capitalize font-16" variant="plain" to="/finances">
             Finances
           </v-btn>
         </v-col>
         <v-col cols="auto">
-          <v-btn to="/history">
+          <v-btn class="text-capitalize font-16" variant="plain" to="/history">
             History
           </v-btn>
         </v-col>

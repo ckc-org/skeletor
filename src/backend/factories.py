@@ -6,6 +6,8 @@ import factory
 
 from django.contrib.auth import get_user_model
 
+from users.models import Daily
+
 
 class UserFactory(factory.django.DjangoModelFactory):
     email = factory.Faker('email')
@@ -24,3 +26,12 @@ class UserFactory(factory.django.DjangoModelFactory):
         else:
             self.set_password('factoryuserpass')
         self.save()
+
+
+class DailyFactory(factory.django.DjangoModelFactory):
+    user = factory.SubFactory(UserFactory)
+    yesterday_description = "test description from yesterday"
+    today_description = "test description from today"
+
+    class Meta:
+        model = Daily

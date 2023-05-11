@@ -13,7 +13,7 @@ router = routers.DefaultRouter()
 router.register('passwordreset', UserPasswordResetViewSet, basename='passwordreset')
 
 # Custom views
-router.register('users', UserViewSet)
+router.register('users', UserViewSet, basename="user")
 
 urlpatterns = [
     # Our URLS

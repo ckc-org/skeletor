@@ -29,6 +29,13 @@ export default defineNuxtConfig({
         ],
     },
     modules: [
+        ['@nuxtjs/google-fonts', {
+            families: {
+                'Raleway': true,
+                download: true,
+                inject: true
+            }
+        }],
         '@pinia/nuxt',
         '@vueuse/nuxt',
 

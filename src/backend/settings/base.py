@@ -365,3 +365,8 @@ if DEBUG:  # pragma: no cover
     DEBUG_TOOLBAR_CONFIG = {
         "SHOW_TOOLBAR_CALLBACK": lambda request: True
     }
+
+# =============================================================================
+# HARVEST
+# =============================================================================
+HARVEST_ACCESS_TOKEN = os.environ.get("HARVEST_ACCESS_TOKEN")

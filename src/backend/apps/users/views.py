@@ -16,6 +16,7 @@ from users.permissions import IsUser
 
 from utils import email
 
+from utils.integrations.slack import send_message
 
 User = get_user_model()
 
@@ -124,6 +125,12 @@ class UserViewSet(
     def me(self, request):
         serializer = self.get_serializer(request.user)
         return Response(serializer.data)
+
+    @action(detail=False, methods=['post'])
+    def send_message_to_slack(self, request):
+        send_message(self.request.data["message"])
+
+        return Response(status=200)
 
 
 class UserPasswordResetViewSet(viewsets.ViewSet):

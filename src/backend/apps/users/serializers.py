@@ -5,6 +5,7 @@ from rest_framework.exceptions import ValidationError
 from utils import email
 from users.models import OTPVerificationCode
 
+from users.models import Daily
 
 User = get_user_model()
 
@@ -28,6 +29,20 @@ class EmailVerificationSerializer(serializers.Serializer):
         user = self.context['request'].user
         user.email_verified = True
         user.save()
+
+
+class DailySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Daily
+
+        fields = (
+            'id',
+            'user',
+            'date_created',
+            'yesterday_description',
+            'today_description',
+        )
 
 
 class UserSelfDetailSerializer(serializers.ModelSerializer):
@@ -66,12 +81,15 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
+    dailies = DailySerializer(many=True)
+
     class Meta:
         model = User
         fields = (
             'id',
             'first_name',
             'last_name',
+            'dailies',
         )
 
 

@@ -1,6 +1,6 @@
 from django.urls import reverse
 
-from factories import UserFactory
+from factories import UserFactory, DailyFactory
 from tests.utils import CkcAPITestCase
 from users.models import User
 
@@ -60,3 +60,29 @@ class UserAndLoginTests(CkcAPITestCase):
         resp = self.client.post(reverse("rest_login"), data=data)
         assert resp.status_code == 200
         assert resp.cookies['sessionid']['max-age'] == ''
+
+    def test_user_detail_retrieve(self):
+        user = UserFactory(email="test@test.com", password="test")
+        users_daily = DailyFactory(user=user)
+
+        self.client.force_authenticate(user)
+
+        url = reverse("user-detail", args=[user.id])
+
+        resp = self.client.get(url)
+        assert resp.status_code == 201
+
+    def test_user_sending_message_to_slack(self):
+        user = UserFactory(email="test@test.com", password="test")
+
+        self.client.force_authenticate(user)
+
+        data = {
+            "test": "data",
+        }
+
+        url = reverse("user-send-message-to-slack")
+
+        resp = self.client.post(url, data, format="json")
+        assert resp.status_code == 200
+

@@ -11,8 +11,12 @@ Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
 @supports (font-variation-settings: normal) {
     :root {
-        font-family: "Inter var", sans-serif;
+        font-family: Satoshi, "Inter var", sans-serif;
     }
+}
+
+h1 {
+    font-family: Raleway, sans-serif;
 }
 
 // Reset link styles
