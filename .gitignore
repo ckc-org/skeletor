@@ -113,4 +113,5 @@ src/backend/artifacts
 src/backend/staticfiles
 src/backend/uploads
 src/frontend/build/*
+src/frontend/.nuxt/*
 src/frontend/node_modules/*
