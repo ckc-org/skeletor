@@ -241,6 +241,10 @@ CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
         'LOCATION': [REDIS_URL],
+        'OPTIONS': {
+            'pool_class': 'redis.BlockingConnectionPool',
+            'max_connections': 2,
+        }
     },
 }
 
