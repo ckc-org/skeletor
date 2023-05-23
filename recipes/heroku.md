@@ -43,6 +43,7 @@ graph LR
        * https://github.com/heroku/heroku-buildpack-nginx.git
    * Add env vars:
        * `SITE_DOMAIN=https://<your app>.herokuapp.com`
+       * `API_BASE_URL=https://<your app>.herokuapp.com/django/api`
        * `DJANGO_SETTINGS_MODULE=settings.heroku`
        * `SECRET_KEY=<random secret key>`
 1. Click "Deploy app"
