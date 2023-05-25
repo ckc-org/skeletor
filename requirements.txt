@@ -1,30 +1,30 @@
 Django==4.2.1
-django-cors-headers==3.14.0
+django-cors-headers==4.0.0
 django-extensions==3.2.1
 djangorestframework==3.14.0
 django-ckc==0.0.9
 factory-boy==3.2.1
 
 # Heroku staging debug tools
-django-debug-toolbar==4.0.0
+django-debug-toolbar==4.1.0
 django-querycount==0.8.3
 
 # Database
 dj-database-url==2.0.0
-psycopg==3.1.8
+psycopg==3.1.9
 
 # Storage
 whitenoise[brotli]==6.4.0
 
 # Email
-django-anymail==9.1
+django-anymail==10.0
 django-templated-email==3.0.1
 
 # Monitoring
 scout-apm==2.26.1
 
 # Caching
-redis==4.5.4
+redis==4.5.5
 
 # Realtime
 channels==4.0.0
