@@ -38,9 +38,9 @@ graph LR
 1. In "Deploy" tab: Connect with GitHub
 1. In "Settings" tab:
    * Add these buildpacks to your app:
-       * heroku/nodejs
-       * heroku/python
-       * https://github.com/heroku/heroku-buildpack-nginx.git
+       * `heroku/nodejs`
+       * `heroku/python`
+       * `https://github.com/heroku/heroku-buildpack-nginx.git`
    * Add env vars:
        * `SITE_DOMAIN=https://<your app>.herokuapp.com`
        * `API_BASE_URL=https://<your app>.herokuapp.com/django/api`
