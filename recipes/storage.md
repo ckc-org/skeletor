@@ -48,8 +48,14 @@ Do you want to add file uploads? What about image uploads? Do this shit!
               exit 0
           "
     ```
-1. add `django-storages[boto3]==1.13.2` to `requirements.txt`
-1. for image uploads also add `pillow==9.4.0` to `requirements.txt`
+ 1. add `django-storages[boto3]==1.13.2` to `requirements.txt`
+ 1. for image uploads also add `pillow==9.4.0` to `requirements.txt`
+ 1. add `storages` to `INSTALLED_APPS`
+ 1.  set default storage
+    ```python
+    # in base.py
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    ```
 
 # On AWS
 
