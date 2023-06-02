@@ -51,10 +51,27 @@ Do you want to add file uploads? What about image uploads? Do this shit!
  1. add `django-storages[boto3]==1.13.2` to `requirements.txt`
  1. for image uploads also add `pillow==9.4.0` to `requirements.txt`
  1. add `storages` to `INSTALLED_APPS`
- 1.  set default storage
+ 1. set default storage and AWS settings
     ```python
     # in base.py
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage"
+        },
+    }
+    
+    # =============================================================================
+    # AWS
+    # =============================================================================
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', "minioadmin")
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', "minioadmin")
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', "ckc_bucket")
+    AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME", None)
+    AWS_DEFAULT_ACL = os.environ.get('AWS_DEFAULT_ACL', None)
+    AWS_S3_ENDPOINT_URL = os.environ.get('AWS_S3_ENDPOINT_URL', None)
+    AWS_QUERYSTRING_AUTH = False
+    AWS_S3_SIGNATURE_VERSION = "s3v4"
+    AWS_S3_FILE_OVERWRITE = False
     ```
 
 # On AWS
