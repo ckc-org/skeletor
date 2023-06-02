@@ -22,7 +22,7 @@ Do you want to add file uploads? What about image uploads? Do this shit!
           MINIO_ROOT_USER: "${AWS_ACCESS_KEY_ID}"
           MINIO_ROOT_PASSWORD: "${AWS_SECRET_ACCESS_KEY}"
         volumes:
-          - ./var/minio:/storage
+          - ./volumes/minio:/storage
         ports:
           - 9000:9000
           - 9001:9001
