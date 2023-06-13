@@ -58,6 +58,9 @@ OUR_APPS = (
 )
 INSTALLED_APPS = THIRD_PARTY_APPS + OUR_APPS
 
+# If we forget a slash it makes things so slow to repeat the request, don't allow it!
+APPEND_SLASH = False
+
 MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
