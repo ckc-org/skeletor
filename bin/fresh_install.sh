@@ -27,7 +27,7 @@ until $(curl --output /dev/null --silent --head --fail http://localhost:3000); d
     printf '.'
     sleep 3
 done
-echo "done waiting!\n"
+echo "done waiting!"
 
 # setup database and gather assets; make sure we run this _after_ building frontend assets
 docker-compose exec -T django ./manage.py migrate
