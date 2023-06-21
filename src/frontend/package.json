@@ -14,7 +14,7 @@
         "@nuxtjs/google-fonts": "^3.0.0",
         "@vueuse/core": "^10.1.2",
         "@vueuse/nuxt": "^10.1.2",
-        "nuxt": "3.4.1",
+        "nuxt": "3.4.3",
         "sass": "^1.62.0",
         "stylus": "^0.59.0",
         "stylus-loader": "^7.1.0",
