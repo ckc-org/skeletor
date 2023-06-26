@@ -17,6 +17,9 @@ docker-compose up -d
 # NOTE: "-T" flag is for running docker-compose stuff on Github actions, otherwise not
 # necessary
 
+# Init a git repo..
+git init
+
 # Install python tooling locally
 pip install -r requirements.dev.local.txt
 pre-commit install
