@@ -23,10 +23,14 @@ jobs:
           # Fetch all branches (for migration conflict checks)
           fetch-depth: 0
 
-      - name: Upgrade docker (better TTY support)
+      - name: Install deps
         run: |
+          # Upgrade docker (better TTY support)
           curl -fsSL https://test.docker.com -o test-docker.sh
           sudo sh test-docker.sh
+
+          # Install git for pre-commit to work
+          sudo apt-get update && sudo apt-get install -y git
 
       - name: Run skeletor
         env:
