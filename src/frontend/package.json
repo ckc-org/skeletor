@@ -14,16 +14,16 @@
         "@nuxtjs/google-fonts": "^3.0.0",
         "@vueuse/core": "^10.1.2",
         "@vueuse/nuxt": "^10.1.2",
-        "nuxt": "3.4.3",
+        "nuxt": "^3.6.2",
         "sass": "^1.62.0",
         "stylus": "^0.59.0",
         "stylus-loader": "^7.1.0",
-        "vuetify": "^3.1.15"
+        "vuetify": "^3.1.15",
+        "vuetify-nuxt-module": "^0.4.1"
     },
     "dependencies": {
         "@pinia/nuxt": "^0.4.9",
-        "pinia": "^2.0.35",
-        "vite-plugin-vuetify": "^1.0.2"
+        "pinia": "^2.0.35"
     },
     "overrides": {
         "vue": "latest"

@@ -20,7 +20,6 @@ export default defineNuxtConfig({
     css: ["@/assets/main.scss", "@/assets/stylus/index.styl"],
     // enable takeover mode
     typescript: {shim: false},
-    build: {transpile: ["vuetify"]},
     pinia: {
         autoImports: [
             // automatically imports `defineStore`
@@ -31,14 +30,7 @@ export default defineNuxtConfig({
     modules: [
         '@pinia/nuxt',
         '@vueuse/nuxt',
-
-        // Vuetify
-        async (options, nuxt) => {
-            nuxt.hooks.hook("vite:extendConfig", (config) =>
-                // @ts-ignore
-                config.plugins.push(vuetify())
-            );
-        },
+        'vuetify-nuxt-module'
     ],
     app: {
         head: {
