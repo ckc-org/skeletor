@@ -4,7 +4,7 @@ https://factoryboy.readthedocs.io/en/latest/recipes.html
 """
 import factory
 
-from django.contrib.auth import get_user_model
+from users.models import User
 
 
 class UserFactory(factory.django.DjangoModelFactory):
@@ -13,7 +13,7 @@ class UserFactory(factory.django.DjangoModelFactory):
     last_name = factory.Faker('last_name')
 
     class Meta:
-        model = get_user_model()
+        model = User
 
     @factory.post_generation
     def password(self, created, extracted):

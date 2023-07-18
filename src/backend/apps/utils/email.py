@@ -2,7 +2,6 @@ import logging
 import os
 
 from django.conf import settings
-from django.contrib.auth import get_user_model
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.staticfiles.finders import find
 from django.utils.encoding import force_bytes
@@ -11,11 +10,9 @@ from templated_email import send_templated_mail, InlineImage
 
 from anymail.exceptions import AnymailRecipientsRefused
 
-from users.models import OTPVerificationCode
-
+from users.models import OTPVerificationCode, User
 
 logger = logging.getLogger()
-User = get_user_model()
 
 
 def welcome(to: User):

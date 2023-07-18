@@ -1,12 +1,9 @@
-from django.contrib.auth import login, get_user_model, password_validation
+from django.contrib.auth import login, password_validation
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 from utils import email
-from users.models import OTPVerificationCode
-
-
-User = get_user_model()
+from users.models import OTPVerificationCode, User
 
 
 class LoginSerializer(serializers.Serializer):

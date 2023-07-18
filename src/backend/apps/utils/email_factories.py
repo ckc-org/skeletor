@@ -1,13 +1,10 @@
-from django.contrib.auth import get_user_model
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 
-from users.factories import UserFactory
+from factories import UserFactory
+from users.models import User
 from . import email
-
-
-User = get_user_model()
 
 
 def welcome(to_email):
