@@ -1,9 +1,13 @@
 import json
+import logging
 
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
 from json import JSONDecodeError
 
 from realtime.helpers import make_realtime_room_key
+
+
+logger = logging.getLogger(__name__)
 
 
 class RealtimeConsumer(AsyncJsonWebsocketConsumer):
@@ -43,7 +47,9 @@ class RealtimeConsumer(AsyncJsonWebsocketConsumer):
             self.channel_name
         )
 
-    async def disconnect(self):
+    async def disconnect(self, code):
+        logger.info(f"Disconnecting {self.scope['user']} from {self.channel_name}")
+
         await self.channel_layer.group_discard(
             make_realtime_room_key(self.scope['user']),
             self.channel_name
