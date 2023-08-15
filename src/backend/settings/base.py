@@ -242,11 +242,10 @@ CHANNEL_LAYERS = {
 # =============================================================================
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'BACKEND': 'django_redis.cache.RedisCache',
         'LOCATION': [REDIS_URL],
         'OPTIONS': {
-            'pool_class': 'redis.BlockingConnectionPool',
-            'max_connections': 2,
+            'CONNECTION_POOL_KWARGS': {'max_connections': 2}
         }
     },
 }
