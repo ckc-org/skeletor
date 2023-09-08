@@ -173,9 +173,10 @@ cd $PROJECT_NAME || exit 3
 # Remove opening of README, before "---" line
 cross_platform_sed '1,/^---$/d' README.md
 
-# Replace "SKELETOR_NAME_PLACEHOLDER" with $PROJECT_NAME
-grep -rl "SKELETOR_NAME_PLACEHOLDER" . | xargs cross_platform_sed -e "s@SKELETOR_NAME_PLACEHOLDER@$PROJECT_NAME@g"
-
+# Replace "SKELETOR_NAME_PLACEHOLDER" with $PROJECT_NAME in all files
+for file in $(grep -rl "SKELETOR_NAME_PLACEHOLDER" .); do
+    cross_platform_sed -e "s@SKELETOR_NAME_PLACEHOLDER@$PROJECT_NAME@g" "$file"
+done
 
 # Remove mobile dir if we don't need it
 if [[ $FRONTEND == "$FRONTEND_WEB_VUEJS" ]]; then
