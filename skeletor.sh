@@ -101,16 +101,15 @@ EOF
 cross_platform_sed() {
     # The first argument is the sed expression
     local expr="$1"
-    # The second argument is the file to operate on
-    local file="$2"
-    
+    shift  # Remove the first argument from $@
+
     # Detect the OS
     local OS=$(uname)
 
     if [ "$OS" = "Darwin" ]; then  # macOS
-        sed -i '' "$expr" "$file"
+        sed -i '' "$expr" "$@"
     elif [ "$OS" = "Linux" ]; then  # Linux
-        sed -i "$expr" "$file"
+        sed -i "$expr" "$@"
     else
         echo "Unsupported OS: $OS"
         exit 1
