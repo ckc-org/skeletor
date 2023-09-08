@@ -12,9 +12,9 @@ ln -sf src/frontend/package.json .
 ln -sf src/frontend/package-lock.json .
 
 # Build docker containers
-docker-compose up -d
+docker compose up -d
 
-# NOTE: "-T" flag is for running docker-compose stuff on Github actions, otherwise not
+# NOTE: "-T" flag is for running docker compose stuff on Github actions, otherwise not
 # necessary
 
 # Init a git repo..
@@ -33,7 +33,7 @@ done
 echo "done waiting!"
 
 # setup database and gather assets; make sure we run this _after_ building frontend assets
-docker-compose exec -T django ./manage.py migrate
+docker compose exec -T django ./manage.py migrate
 
 # setup React Native, if it's around
 if [ -d "src/mobile" ]; then
@@ -48,7 +48,7 @@ fi
 #printf "\n\n * - * - * - * - * - * - * - * - *\n\n"
 #printf "What is the hostname? (i.e. example.com or localhost)\n > "
 #read HOSTNAME
-docker-compose exec -T django ./manage.py set_default_site --name=localhost --domain=localhost
+docker compose exec -T django ./manage.py set_default_site --name=localhost --domain=localhost
 
 # generate data (creates default admin account)
-docker-compose exec -T django ./manage.py generate_data
+docker compose exec -T django ./manage.py generate_data
