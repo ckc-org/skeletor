@@ -97,6 +97,26 @@ $(echo $fancy_print_command) << EOF
 
 EOF
 
+# Setup cross platform helper functions
+cross_platform_sed() {
+    # The first argument is the sed expression
+    local expr="$1"
+    # The second argument is the file to operate on
+    local file="$2"
+    
+    # Detect the OS
+    local OS=$(uname)
+
+    if [ "$OS" = "Darwin" ]; then  # macOS
+        sed -i '' "$expr" "$file"
+    elif [ "$OS" = "Linux" ]; then  # Linux
+        sed -i "$expr" "$file"
+    else
+        echo "Unsupported OS: $OS"
+        exit 1
+    fi
+}
+
 # Make sure Docker is running first..
 if ! docker info > /dev/null 2>&1; then
   echo -e "\n${red}${bold}ERROR: This script uses docker, and docker isn't running - please start docker and try again!${reset}"
@@ -152,10 +172,10 @@ cd $PROJECT_NAME || exit 3
 
 
 # Remove opening of README, before "---" line
-sed -i '' '1,/^---$/d' README.md
+cross_platform_sed '1,/^---$/d' README.md
 
 # Replace "SKELETOR_NAME_PLACEHOLDER" with $PROJECT_NAME
-grep -rl "SKELETOR_NAME_PLACEHOLDER" . | xargs sed -i "" -e "s@SKELETOR_NAME_PLACEHOLDER@$PROJECT_NAME@g"
+grep -rl "SKELETOR_NAME_PLACEHOLDER" . | xargs cross_platform_sed -e "s@SKELETOR_NAME_PLACEHOLDER@$PROJECT_NAME@g"
 
 
 # Remove mobile dir if we don't need it
