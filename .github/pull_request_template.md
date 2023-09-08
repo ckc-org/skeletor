@@ -7,10 +7,9 @@
 
 
 # Checklist
-- [ ] Code review by me 
+- [ ] Code review by me
 - [ ] New code covered by automated tests
 - [ ] I'm proud of my work
 - [ ] Code review by reviewer
 - [ ] Hand tested by reviewer
 - [ ] Ready to merge
-
