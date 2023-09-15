@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import Dashboard from "~/sections/dashboard/Dashboard.vue";
+import Dashboard from "~/sections/private-site/Dashboard.vue";
 
 definePageMeta({
   middleware: ["auth"]
