@@ -1,4 +1,4 @@
-FROM node:18
+FROM oven/bun
 
 # Prepare main directory
 RUN mkdir /frontend
