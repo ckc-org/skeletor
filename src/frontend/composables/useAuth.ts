@@ -5,10 +5,6 @@ import {useRequest} from '~/composables/useRequest'
 import {navigateTo} from "#app";
 
 
-interface UserDataT {
-    user: UserT | UserWithoutPasswordT
-}
-
 export const useAuth = () => {
     const userFromStorage = useStorage<string | null>('user', null)
     const authUser = ref<UserT | UserWithoutPasswordT | null>(
@@ -56,24 +52,26 @@ export const useAuth = () => {
     }
 
 
-    const fetchUserRequest = useRequest('/users/me/')
     const fetchUser = async () => {
-        const {data, error, execute} = fetchUserRequest
-        await execute()
+        const {data, error} = await useRequest('/users/me/')
 
-        if (error.value) {
+        if (error.value?.statusCode === 401 || error.value?.statusCode === 403) {
             setUser(null)
-            throw new Error(error.value as any)
+            // delete cookie csrftoken
+            eraseCookie('csrftoken')
+            eraseCookie('sessionid')
+            // navigateTo('/')
+            // throw new Error(error.value as any)
+        }
+        if ((data?.value as any) as UserT) {
+            setUser((data.value as any))
         }
 
-        if ((data?.value as any)?.user as UserT) {
-            setUser((data.value as any).user)
-        }
-
-        return {data, error, execute}
+        return {data, error}
     }
 
     return {
+        setUser,
         login,
         logout,
         fetchUser,
@@ -81,4 +79,8 @@ export const useAuth = () => {
         userFromStorage,
         isLoggedIn,
     }
+}
+
+function eraseCookie(name: string) {
+    document.cookie = name + '=; Max-Age=-99999999;';
 }
