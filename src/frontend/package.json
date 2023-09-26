@@ -1,14 +1,15 @@
 {
     "private": true,
     "engines": {
-      "node": "18.x",
-      "npm": "9.x"
+        "node": "18.x",
+        "npm": "9.x"
     },
     "scripts": {
         "build": "nuxt build",
         "dev": "nuxt dev",
         "generate": "nuxt generate",
         "reset": "rm -rf .nuxt node_modules .output package-lock.json && npm install",
+        "test": "cypress install && xvfb-run -a npx cypress run",
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare",
         "heroku-postbuild": "cd src/frontend && nuxi generate"
@@ -18,6 +19,7 @@
         "@nuxtjs/google-fonts": "^3.0.2",
         "@vueuse/core": "^10.4.1",
         "@vueuse/nuxt": "^10.4.1",
+        "cypress": "^13.2.0",
         "nuxt": "^3.7.4",
         "sass": "^1.68.0",
         "stylus": "^0.60.0",
