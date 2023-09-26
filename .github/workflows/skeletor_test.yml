@@ -37,10 +37,15 @@ jobs:
           cd /tmp
           printf "%s\n" "new_project" "1" | $GITHUB_WORKSPACE/skeletor.sh
 
-      - name: Test Skeletor
+      - name: Test Django
         working-directory: /tmp/new_project
         run: |
           docker-compose exec -T django pytest
+
+      - name: Test Vue
+        working-directory: /tmp/new_project
+        run: |
+          docker-compose exec -T builder npm run test
 
   linting:
     name: linting

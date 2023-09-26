@@ -20,9 +20,6 @@ whitenoise[brotli]==6.5.0
 django-anymail==10.1
 django-templated-email==3.0.1
 
-# Monitoring
-scout-apm==2.26.1
-
 # Caching
 redis[hiredis]==5.0.0
 django-redis==5.3.0

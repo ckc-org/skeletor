@@ -1,14 +1,15 @@
 {
     "private": true,
     "engines": {
-      "node": "18.x",
-      "npm": "9.x"
+        "node": "18.x",
+        "npm": "9.x"
     },
     "scripts": {
         "build": "nuxt build",
         "dev": "nuxt dev",
         "generate": "nuxt generate",
         "reset": "rm -rf .nuxt node_modules .output package-lock.json && npm install",
+        "test": "cypress install && xvfb-run -a npx cypress run",
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare",
         "heroku-postbuild": "cd src/frontend && nuxi generate"
@@ -18,12 +19,13 @@
         "@nuxtjs/google-fonts": "^3.0.2",
         "@vueuse/core": "^10.4.1",
         "@vueuse/nuxt": "^10.4.1",
-        "nuxt": "^3.7.3",
-        "sass": "^1.67.0",
+        "cypress": "^13.2.0",
+        "nuxt": "^3.7.4",
+        "sass": "^1.68.0",
         "stylus": "^0.60.0",
         "stylus-loader": "^7.1.3",
-        "vuetify": "^3.3.16",
-        "vuetify-nuxt-module": "^0.5.7"
+        "vuetify": "^3.3.17",
+        "vuetify-nuxt-module": "^0.5.12"
     },
     "dependencies": {
         "@pinia/nuxt": "^0.4.11",
