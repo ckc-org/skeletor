@@ -1,10 +1,4 @@
 FROM node:18
 
 # Prepare main directory
-RUN mkdir /frontend
 WORKDIR /frontend
-
-# Keep /app dir available in case some other process needs it .. we need to use
-# /frontend because of a nuxt bug with vite:
-# https://github.com/nuxt/nuxt/issues/20446
-RUN ln -s /frontend /app
