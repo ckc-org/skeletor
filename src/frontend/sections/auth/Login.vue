@@ -3,6 +3,11 @@
   <p class="text-medium-emphasis">Welcome back! Let's get started</p>
 
   <v-form @submit.prevent="submit" ref="form" class="mt-7">
+    <v-alert v-if="errors.non_field_errors" type="error">
+      <ul>
+        <li v-for="(error, index) in errors.non_field_errors" :key="index">{{ error }}</li>
+      </ul>
+    </v-alert>
     <div class="mt-1">
       <label class="label text-grey-darken-2" for="email">Email</label>
       <v-text-field
@@ -29,6 +34,7 @@
         :error="!!errors.password"
       ></v-text-field>
     </div>
+
     <div class="mt-5">
       <v-btn
         type="submit"
@@ -68,7 +74,6 @@ const password = ref("")
 const isLoading = ref(false)
 const errors = ref({})
 const form = ref(null)
-
 
 const submit = async () => {
   const { valid } = await form.value.validate()
