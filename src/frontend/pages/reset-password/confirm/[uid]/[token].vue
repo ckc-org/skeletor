@@ -69,10 +69,14 @@ const submit = async () => {
     }),
   })
 
-  if (error) {
-    errors.value = error.value?.data
+  if (error.value && error.value?.statusCode !== 200) {
+    errors.value = error.value.data
   } else {
+    // Clear errors
     errors.value = {}
+
+    // Go to login page
+    navigateTo("/")
   }
 };
 </script>
