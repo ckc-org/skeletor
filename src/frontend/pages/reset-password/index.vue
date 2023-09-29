@@ -15,7 +15,7 @@
       />
     </div>
     <div class="mt-5">
-      <VBtn type="submit" block min-height="44px" color="primary">
+      <VBtn type="submit" block min-height="44px" color="primary" @click="reset_password">
         Send instructions
       </VBtn>
     </div>
@@ -24,7 +24,8 @@
     <span
     >Don't have an account?
       <NuxtLink to="/signup" class="font-weight-bold text-primary"
-      >Sign Up
+      >
+        Sign Up
       </NuxtLink
       >
     </span
@@ -43,5 +44,17 @@ const password = ref("");
 const {ruleEmail, rulePassLen, ruleRequired} = useFormRules();
 
 const submit = async () => {
+  try {
+
+    const res = await useRequest<any>("/passwordreset/", {
+      method: "POST",
+      body: JSON.stringify({
+        email: email.value,
+      }),
+    });
+
+  } catch (e) {
+    console.error(e)
+  }
 };
 </script>
