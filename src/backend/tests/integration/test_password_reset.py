@@ -22,7 +22,7 @@ class TestUserPasswordReset(CkcAPITestCase):
         assert len(mail.outbox) == 1
 
         # Open up the email and find the link to our frontend, to snag uid + token
-        pattern = re.compile(r'.*password-reset-confirm/(?P<uid>.*?)/(?P<token>.*?)/', re.MULTILINE | re.DOTALL)
+        pattern = re.compile(r'.*reset-password/confirm/(?P<uid>.*?)/(?P<token>.*?)/', re.MULTILINE | re.DOTALL)
         result = pattern.match(mail.outbox[0].body).groupdict()
         uid = result["uid"]
         token = result["token"]

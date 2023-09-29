@@ -17,7 +17,14 @@ export default defineNuxtConfig({
     },
 
     // import styles
-    css: ["@/assets/main.scss", "@/assets/stylus/index.styl"],
+    css: [
+        "vuetify/lib/styles/main.sass",
+        "@/assets/main.scss",
+        "@/assets/stylus/index.styl"
+    ],
+    build: {
+        transpile: ["vuetify"]
+    },
     // enable takeover mode
     typescript: {shim: false},
     pinia: {
@@ -27,10 +34,19 @@ export default defineNuxtConfig({
             ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
         ],
     },
+        // 'vuetify-nuxt-module',
     modules: [
         '@pinia/nuxt',
         '@vueuse/nuxt',
-        'vuetify-nuxt-module'
+
+        // Vuetify
+        async (options, nuxt) => {
+            nuxt.hooks.hook("vite:extendConfig", (config) =>
+                // @ts-ignore
+                config.plugins.push(vuetify())
+            );
+        },
+
     ],
     app: {
         head: {

@@ -49,6 +49,7 @@ services:
     env_file: .env
     environment:
       - HOST=0.0.0.0
+      - DISPLAY=:99
     ports:
       - 3000:3000
       - 24678:24678
