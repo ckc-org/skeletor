@@ -33,6 +33,7 @@ USE_X_FORWARDED_HOST = True
 SITE_ID = 1
 
 SITE_DOMAIN = os.environ.get('SITE_DOMAIN', 'http://localhost:8000')
+FRONTEND_URL = os.environ.get('FRONTEND_URL', 'http://localhost:3000')
 
 THIRD_PARTY_APPS = (
     'django.contrib.sites',
@@ -210,6 +211,7 @@ ANYMAIL = {
 DEFAULT_EMAIL_CONTEXT = {
     'CURRENT_YEAR': datetime.datetime.now().year,
     'SITE_DOMAIN': SITE_DOMAIN,
+    'FRONTEND_URL': FRONTEND_URL,
     'DEFAULT_FROM_EMAIL': DEFAULT_FROM_EMAIL,
 
     # Keys prepended with IMAGE_ are replaced with InlineImages when generating emails
