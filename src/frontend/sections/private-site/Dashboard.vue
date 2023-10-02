@@ -28,7 +28,7 @@
 
 <script setup>
 import { useDisplay } from 'vuetify'
-import { useAuth } from "../composables/useAuth"
+import { useAuth } from "~/composables/useAuth"
 
 const display = ref(useDisplay())
 const auth = useAuth()
