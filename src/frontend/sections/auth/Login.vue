@@ -65,6 +65,7 @@
 
 <script setup>
 import { useAuth } from "~/composables/useAuth"
+import useErrorHandler from "~/composables/useErrorHandler"
 
 const { ruleEmail, rulePassLen, ruleRequired } = useFormRules()
 const { login } = useAuth()
@@ -87,7 +88,8 @@ const submit = async () => {
     if (error.value) {
       isLoading.value = false // Set isLoading to false if there's an error
       errors.value = error.value.data
-      throw new Error(error)
+      useErrorHandler(error.value)
+      return
     }
 
     isLoading.value = false // Set isLoading to false after the request is completed
