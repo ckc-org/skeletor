@@ -64,7 +64,7 @@
 </template>
 
 <script setup>
-import { useAuth } from "../composables/useAuth"
+import { useAuth } from "~/composables/useAuth"
 
 const { ruleEmail, rulePassLen, ruleRequired } = useFormRules()
 const { login } = useAuth()
