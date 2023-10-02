@@ -15,7 +15,7 @@
 
 <script>
 
-import { useSnackbarStore } from "../../store/snackbar"
+import { useSnackbarStore } from "~/store/snackbar"
 
 export default {
   setup() {
