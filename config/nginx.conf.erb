@@ -50,7 +50,13 @@ http {
         location / {
             root /app/src/frontend/.output/public;
 
-            try_files $uri $uri/ /index.html;
+            try_files $uri $uri/index.html /200.html;
+
+            error_page 404 /200.html;
+
+            # Speed things up..
+            tcp_nopush on;
+            tcp_nodelay on;
 
             if ($http_x_forwarded_proto != "https") {
                return 301 https://$host$request_uri;
