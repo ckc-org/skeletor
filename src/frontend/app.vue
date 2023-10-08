@@ -2,6 +2,7 @@
   <div>
     <NuxtLayout>
       <NuxtPage/>
+      <Snackbar />
     </NuxtLayout>
   </div>
 </template>
