@@ -16,6 +16,13 @@ export default defineNuxtConfig({
         },
     },
 
+    logLevel: 'verbose',
+
+    // Nitro server config
+    nitro: {
+      logLevel: 5
+    },
+
     // import styles
     css: [
         "vuetify/lib/styles/main.sass",
