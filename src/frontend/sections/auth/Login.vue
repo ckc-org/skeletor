@@ -3,7 +3,7 @@
   <p class="text-medium-emphasis">Welcome back! Let's get started</p>
 
   <v-form @submit.prevent="submit" ref="form" class="mt-7">
-    <v-alert v-if="errors.non_field_errors" type="error">
+    <v-alert v-if="errors?.non_field_errors" type="error">
       <ul>
         <li v-for="(error, index) in errors.non_field_errors" :key="index">{{ error }}</li>
       </ul>
@@ -87,7 +87,7 @@ const submit = async () => {
 
     if (error.value) {
       isLoading.value = false // Set isLoading to false if there's an error
-      errors.value = error.value.data
+      errors.value = error.value.data || {}
       useErrorHandler(error.value)
       return
     }
