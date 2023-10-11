@@ -22,6 +22,9 @@ if [ -n "${CODESPACE_NAME}" ]; then
 
     echo "\nDocker ready."
 
+    # Make ports public
+    gh codespace ports visibility 3000:public 8000:public -c $CODESPACE_NAME
+
     # Copy env, we'll change it with codespace specific values
     cp .env_sample .env
 

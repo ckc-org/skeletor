@@ -1,5 +1,4 @@
 {
   "forwardPorts": [3000, 8000],
-  "postAttachCommand": "./.devcontainer/postAttachCommand.sh",
   "postCreateCommand": "./.devcontainer/postCreateCommand.sh"
 }
