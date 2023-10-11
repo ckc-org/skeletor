@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 CODESPACE_NAME=$(jq -r ".CODESPACE_NAME" /workspaces/.codespaces/shared/environment-variables.json)
 
 # If we have github CODESPACE_NAME, then do fancy setup stuff..
