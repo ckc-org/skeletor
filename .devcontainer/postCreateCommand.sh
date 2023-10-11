@@ -9,9 +9,9 @@ if [ -n "${CODESPACE_NAME}" ]; then
     # Wait for docker sock to be ready, print period while waiting, time out
     # after 60 seconds
     counter=0
-    while ! [[ -e /var/run/docker.sock ]]; do
+    while ! docker info > /dev/null 2>&1; do
       if [[ $counter -gt 60 ]]; then
-        echo "Timed out waiting for docker socket"
+        echo "Timed out waiting for docker"
         exit 1
       fi
 
@@ -19,6 +19,8 @@ if [ -n "${CODESPACE_NAME}" ]; then
       printf '.'
       sleep 1
     done
+
+    echo "Docker ready."
 
     # Copy env, we'll change it with codespace specific values
     cp .env_sample .env
