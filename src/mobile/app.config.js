@@ -13,6 +13,9 @@ module.exports = {
     extra: {
       apiBaseURL: `http://${process.env.API_DOMAIN}/api`,
     },
+    plugins: [
+      "expo-router",
+    ],
     splash: {
       image: './assets/splash.png',
       resizeMode: 'contain',

@@ -45,7 +45,8 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.frontend
-    command: bash -c "bun install && bun --bun run dev"
+    command: bash -c "bun install --no-save && bun --bun run dev"
+#    command: bash -c "npm i . && npx nuxi dev"
     env_file: .env
     environment:
       - HOST=0.0.0.0

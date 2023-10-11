@@ -38,7 +38,7 @@ docker compose exec -T django ./manage.py migrate
 # setup React Native, if it's around
 if [ -d "src/mobile" ]; then
     cd src/mobile
-    yarn
+    npm i
     cp .env_sample .env
     cd ../../
 fi
