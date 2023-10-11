@@ -1,4 +1,5 @@
 {
   "forwardPorts": [3000, 8000],
+  "postAttachCommand": "gh codespace ports visibility 3000:public 8000:public -c $CODESPACE_NAME",
   "postCreateCommand": "./.devcontainer/postCreateCommand.sh"
 }
