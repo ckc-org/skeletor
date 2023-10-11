@@ -2,7 +2,21 @@ CODESPACE_NAME=$(jq -r ".CODESPACE_NAME" /workspaces/.codespaces/shared/environm
 
 # If we have github CODESPACE_NAME, then do fancy setup stuff..
 if [ -n "${CODESPACE_NAME}" ]; then
-    echo "Setting up Skeletor debugging for $CODESPACE_NAME"
+    echo "!!! Setting up Skeletor codespace debugging"
+
+    # Wait for docker sock to be ready, print period while waiting, time out
+    # after 60 seconds
+    counter=0
+    while ! [[ -e /var/run/docker.sock ]]; do
+      if [[ $counter -gt 60 ]]; then
+        echo "Timed out waiting for docker socket"
+        exit 1
+      fi
+
+      counter=$((counter+1))
+      printf '.'
+      sleep 1
+    done
 
     # Copy env, we'll change it with codespace specific values
     cp .env_sample .env
