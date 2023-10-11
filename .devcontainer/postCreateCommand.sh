@@ -22,9 +22,6 @@ if [ -n "${CODESPACE_NAME}" ]; then
 
     echo "\nDocker ready."
 
-    # Make ports public
-    gh codespace ports visibility 3000:public 8000:public -c $CODESPACE_NAME
-
     # Copy env, we'll change it with codespace specific values
     cp .env_sample .env
 
@@ -34,7 +31,11 @@ if [ -n "${CODESPACE_NAME}" ]; then
     # Write these new values to .env
     sed -i "s|FRONTEND_URL=.*|FRONTEND_URL=$CODESPACE_FRONTEND_URL|g" .env
     sed -i "s|BACKEND_URL=.*|BACKEND_URL=$CODESPACE_BACKEND_URL|g" .env
-fi
 
-# Start the project!
-make
+    # Start the project!
+    make
+
+    # Make ports public .. twice for some reason works better ...
+    gh codespace ports visibility 3000:public 8000:public -c $CODESPACE_NAME
+    gh codespace ports visibility 3000:public 8000:public -c $CODESPACE_NAME
+fi
