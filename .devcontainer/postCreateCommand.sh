@@ -20,7 +20,7 @@ if [ -n "${CODESPACE_NAME}" ]; then
       sleep 1
     done
 
-    echo "Docker ready."
+    echo "\nDocker ready."
 
     # Copy env, we'll change it with codespace specific values
     cp .env_sample .env

@@ -156,15 +156,15 @@ REST_FRAMEWORK = {
 # =============================================================================
 # Security/cookies
 # =============================================================================
-CORS_ORIGIN_WHITELIST = ('http://localhost:3000',)
+CORS_ORIGIN_WHITELIST = (FRONTEND_URL,)
 
 CORS_ALLOW_CREDENTIALS = True
 
 SESSION_COOKIE_HTTPONLY = True
 
 CSRF_TRUSTED_ORIGINS = (
-    'http://localhost:3000',
     BACKEND_URL,
+    FRONTEND_URL,
 )
 
 
