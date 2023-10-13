@@ -1,3 +1,5 @@
+from urllib.parse import urlparse
+
 from .base import *
 
 
@@ -6,8 +8,8 @@ BACKEND_URL = os.environ.get('BACKEND_URL', f'https://{HEROKU_APP_NAME}.herokuap
 
 assert BACKEND_URL or HEROKU_APP_NAME, "BACKEND_URL or at least HEROKU_APP_NAME must be defined"
 
-# Remove protocol from domain, if given
-DOMAIN = BACKEND_URL.replace('http://', '').replace('https://', '').replace("/", "")
+_parsed_backend_url = urlparse(BACKEND_URL)
+DOMAIN = _parsed_backend_url.netloc
 SITE_NAME = DOMAIN
 
 # =============================================================================
@@ -58,7 +60,8 @@ STATIC_URL = '/django/static/'
 # =============================================================================
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
-    BACKEND_URL,
+    # outputs <SCHEME>://<DOMAIN>
+    f"{_parsed_backend_url.scheme}://{_parsed_backend_url.netloc}",
 )
 
 
