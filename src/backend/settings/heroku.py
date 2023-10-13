@@ -28,7 +28,7 @@ SECURE_SSL_REDIRECT = True
 # =============================================================================
 cloudcube_url = os.environ.get('CLOUDCUBE_URL')
 if cloudcube_url:
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STORAGES['default']['BACKEND'] = 'storages.backends.s3boto3.S3Boto3Storage'
 
     # example cloudcube url: https://cloud-cube.s3.amazonaws.com/bucketname
     cloudcube_url = os.environ.get('CLOUDCUBE_URL')
