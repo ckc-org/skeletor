@@ -11,7 +11,7 @@ module.exports = {
     userInterfaceStyle: 'light',
     scheme: 'skeletor',
     extra: {
-      apiBaseURL: `http://${process.env.API_DOMAIN}/api`,
+      apiBaseURL: `${process.env.BACKEND_URL}/api`,
     },
     plugins: [
       "expo-router",

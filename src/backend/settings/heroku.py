@@ -2,12 +2,12 @@ from .base import *
 
 
 HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME")
-SITE_DOMAIN = os.environ.get('SITE_DOMAIN', f'https://{HEROKU_APP_NAME}.herokuapp.com')
+BACKEND_URL = os.environ.get('BACKEND_URL', f'https://{HEROKU_APP_NAME}.herokuapp.com')
 
-assert SITE_DOMAIN or HEROKU_APP_NAME, "SITE_DOMAIN or at least HEROKU_APP_NAME must be defined"
+assert BACKEND_URL or HEROKU_APP_NAME, "BACKEND_URL or at least HEROKU_APP_NAME must be defined"
 
 # Remove protocol from domain, if given
-DOMAIN = SITE_DOMAIN.replace('http://', '').replace('https://', '').replace("/", "")
+DOMAIN = BACKEND_URL.replace('http://', '').replace('https://', '').replace("/", "")
 SITE_NAME = DOMAIN
 
 # =============================================================================
@@ -58,7 +58,7 @@ STATIC_URL = '/django/static/'
 # =============================================================================
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
-    SITE_DOMAIN,
+    BACKEND_URL,
 )
 
 
