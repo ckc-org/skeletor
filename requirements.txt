@@ -1,5 +1,5 @@
-Django==4.2.4
-django-cors-headers==4.2.0
+Django==4.2.6
+django-cors-headers==4.3.0
 django-extensions==3.2.3
 djangorestframework==3.14.0
 django-ckc==0.0.10
@@ -11,18 +11,18 @@ django-querycount==0.8.3
 
 # Database
 dj-database-url==2.1.0
-psycopg==3.1.10
+psycopg==3.1.12
 
 # Storage
-whitenoise[brotli]==6.5.0
+whitenoise[brotli]==6.6.0
 
 # Email
 django-anymail==10.1
 django-templated-email==3.0.1
 
 # Caching
-redis[hiredis]==5.0.0
-django-redis==5.3.0
+redis[hiredis]==5.0.1
+django-redis==5.4.0
 
 # Realtime
 channels==4.0.0
