@@ -6,7 +6,7 @@
 import Dashboard from "~/sections/private-site/Dashboard.vue";
 
 definePageMeta({
-  middleware: ["auth"]
+  // middleware: ["auth"]
 })
 </script>
 
