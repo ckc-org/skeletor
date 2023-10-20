@@ -64,17 +64,17 @@
 </template>
 
 <script setup>
-import { useAuth } from "~/composables/useAuth"
 import useErrorHandler from "~/composables/useErrorHandler"
+import {userStore} from "~/store/user";
 
 const { ruleEmail, rulePassLen, ruleRequired } = useFormRules()
-const { login } = useAuth()
 
 const email = ref("")
 const password = ref("")
 const isLoading = ref(false)
 const errors = ref({})
 const form = ref(null)
+const user = userStore()
 
 const submit = async () => {
   const { valid } = await form.value.validate()
@@ -83,7 +83,9 @@ const submit = async () => {
     isLoading.value = true // Set isLoading to true when submitting
     errors.value = {} // Reset errors
 
-    const { error, data } = await login(email.value, password.value)
+    const rememberMe = true
+
+    const { error, data } = await user.login(email.value, password.value, rememberMe)
 
     if (error.value) {
       isLoading.value = false // Set isLoading to false if there's an error
