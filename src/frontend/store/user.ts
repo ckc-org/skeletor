@@ -6,7 +6,6 @@ import {navigateTo} from "#app";
 
 
 export const userStore = defineStore('user', {
-    persist: true,
     id: 'user',
     state: () => {
         const hasSession = useCookie('sessionid').value
