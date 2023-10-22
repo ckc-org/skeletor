@@ -35,6 +35,12 @@
       ></v-text-field>
     </div>
 
+    <v-checkbox
+      v-model="rememberMe"
+      label="Remember me"
+      density="compact"
+    />
+
     <div class="mt-5">
       <v-btn
         type="submit"
@@ -70,6 +76,7 @@ import {userStore} from "~/store/user";
 const { ruleEmail, rulePassLen, ruleRequired } = useFormRules()
 
 const email = ref("")
+const rememberMe = ref(false)
 const password = ref("")
 const isLoading = ref(false)
 const errors = ref({})
@@ -83,9 +90,7 @@ const submit = async () => {
     isLoading.value = true // Set isLoading to true when submitting
     errors.value = {} // Reset errors
 
-    const rememberMe = true
-
-    const { error, data } = await user.login(email.value, password.value, rememberMe)
+    const { error, data } = await user.login(email.value, password.value, rememberMe.value)
 
     if (error.value) {
       isLoading.value = false // Set isLoading to false if there's an error
