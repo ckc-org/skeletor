@@ -1,9 +1,9 @@
-import {userStore} from "~/store/user";
+import { userStore } from "~/store/user"
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const div = document.createElement('div')
-    div.id = 'app'
-    div.innerHTML = '<div class="nuxt-loading-container"><div class="nuxt-progress-spinner"></div></div>'
+  div.id = 'app'
+  div.innerHTML = '<div class="nuxt-loading-container" id="preload-spinner"><div class="nuxt-progress-spinner"></div></div>'
 
 
   document.body.append(div)
@@ -16,11 +16,13 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   In this file we're just fetching the user before anything else
    */
-  const store = userStore();
+  const store = userStore()
   try {
-    await store.fetchUser();
+    await store.fetchUser()
   } catch (e) {
-    console.error(e);
+    console.error(e)
   }
 
+  // remove loading
+  document.getElementById('preload-spinner').remove()
 })
