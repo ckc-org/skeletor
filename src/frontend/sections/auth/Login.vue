@@ -85,23 +85,20 @@ const user = userStore()
 
 const submit = async () => {
   const { valid } = await form.value.validate()
-  if (valid || true) {
-
+  if (valid) {
     isLoading.value = true // Set isLoading to true when submitting
     errors.value = {} // Reset errors
 
-    const { error, data } = await user.login(email.value, password.value, rememberMe.value)
-
-    if (error.value) {
+    try {
+      await user.login(email.value, password.value, rememberMe.value)
+      navigateTo("/dashboard")
+    } catch (e) {
       isLoading.value = false // Set isLoading to false if there's an error
-      errors.value = error.value.data || {}
-      useErrorHandler(error.value)
-      return
+      errors.value = e.data || {}
+      useErrorHandler(e)
     }
 
     isLoading.value = false // Set isLoading to false after the request is completed
-    navigateTo("/dashboard")
-    return data.value
   }
 }
 

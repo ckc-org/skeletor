@@ -37,7 +37,7 @@ export const userStore = defineStore('user', {
       return res;
     },
     async login(email: string, password: string, rememberMe?: boolean) {
-      const res = await useRequest("/auth/login/", {
+      const {token, user} = await useRequest("/auth/login/", {
         method: "POST",
         body: {
           email,
@@ -46,13 +46,8 @@ export const userStore = defineStore('user', {
         },
       });
 
-      const userData = res.data?.value as any;
-
-      if (userData?.user) {
-        this.setUser(userData.user);
-      }
-
-      return res;
+      this.setUser(user)
+      this.isLoggedIn = true
     },
     async logout() {
       const csrftoken = useCookie('csrftoken')
@@ -63,21 +58,16 @@ export const userStore = defineStore('user', {
       return res
     },
     async fetchUser() {
-      const {data, error} = await useRequest('/users/me/')
-
-      if (error.value) {
+      try {
+        const userData = await useRequest('/users/me/')
+        this.setUser(userData)
+        this.isLoggedIn = true
+      } catch(e) {
         this.setUser(null)
         eraseCookie('csrftoken')
         eraseCookie('sessionid')
-        throw new Error(error.value as any)
+        // throw new Error(error.value as any)
       }
-
-      if (data?.value as UserT) {
-        this.setUser(data.value)
-        this.isLoggedIn = true
-      }
-
-      return {data, error}
     }
   }
 });

@@ -16,6 +16,10 @@ trim_trailing_whitespace = false
 indent_size = 4
 tab_width = 4
 
+[{*.js,*.ts,*.tsx,*.vue,*.html}]
+indent_size = 2
+tab_width = 2
+
 [{*.js,*.vue}]
 # Vue
 ij_vue_indent_children_of_top_level = template
