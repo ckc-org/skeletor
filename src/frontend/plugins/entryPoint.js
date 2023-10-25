@@ -10,5 +10,9 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   In this file we're just fetching the user before anything else
    */
   const store = userStore();
-  await store.fetchUser();
+  try {
+    await store.fetchUser();
+  } catch (e) {
+    console.error(e);
+  }
 })
