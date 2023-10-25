@@ -1,6 +1,6 @@
 <template>
-  <div class="d-md-flex text-left flex-column justify-center align-center">
-    <div class="text-h2 font-weight-black text-md-left text-center">Welcome to Skeletor</div>
+  <div class="d-md-flex text-left flex-column justify-center">
+    <div class="text-h2 font-weight-black text-md-left">Welcome to Skeletor</div>
     <div>
       <v-img
         src="https://raw.githubusercontent.com/ckc-org/skeletor/master/docs/skeletor_full.png"
@@ -8,11 +8,11 @@
         :width="display.lgAndUp ? '440px' : '100%'"
         class="float-md-right"
       />
-      <div class="text-body-1 pt-16">
-        Welcome to the CKC Skeletor project, a resource developed by our in-house team at CKC. This project aims to
+      <div class="text-body-1 pt-4 pl-2">
+        This a resource developed by our in-house team at CKC. This project aims to
         provide developers with a robust foundation, enabling them effectively initiate their web applications using a
         basic Django, Nuxt, and Vue 3 setup.
-        <div class="text-h4 font-weight-bold mt-3">Some features include:</div>
+        <div class="text-h4 font-weight-bold mt-8 mb-2">Some features include:</div>
         ❯ One command dev install: make <br/>
         ❯ Stack: Django + Vue + React Native <br/>
         ❯ Heroku deploys for frontend and backend <br/>
@@ -28,12 +28,8 @@
 
 <script setup>
 import { useDisplay } from 'vuetify'
-import { useAuth } from "~/composables/useAuth"
 
 const display = ref(useDisplay())
-const auth = useAuth()
-
-
 </script>
 
 <style scoped lang="scss">

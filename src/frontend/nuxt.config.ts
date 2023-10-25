@@ -9,6 +9,9 @@ const url = "https://github.com/ckc-org/skeletor";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  ssr: false,
+  target: 'static',
+
   // Runtime Config
   runtimeConfig: {
     public: {
@@ -61,6 +64,7 @@ export default defineNuxtConfig({
   ],
 
   app: {
+    // Head tag
     head: {
       title: "Vuetify 3 + Nuxt 3 Starter",
       titleTemplate: "%s | Vuetify 3 + Nuxt 3 Starter",

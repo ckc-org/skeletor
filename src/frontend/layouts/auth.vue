@@ -68,6 +68,4 @@ const toggle_theme = async () => {
 .icon {
   transition: .5s;
 }
-
-
 </style>

@@ -1,9 +1,7 @@
+import {userStore} from "~/store/user";
 
 export default defineNuxtRouteMiddleware(async (_to, _from) => {
-    // unused still but should mostly likely work
-    const csrftoken = useCookie('csrftoken')
-    const sessionid = useCookie('sessionid')
-    if (csrftoken.value || sessionid.value) {
+    const user = userStore()
+    if (user.isLoggedIn)
         return navigateTo('/dashboard')
-    }
 })
