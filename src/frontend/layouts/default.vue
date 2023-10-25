@@ -4,28 +4,28 @@
       <v-container fluid class="fill-height">
         <div class="z-index-2 d-flex flex-sm-column px-4 pb-4">
           <v-btn
-              icon
-              variant="outlined"
-              class="transition"
-              @click="toggle_theme"
+            icon
+            variant="outlined"
+            class="transition"
+            @click="toggle_theme"
           >
             <v-icon
-                :class="theme.global.current.value.dark ? 'rotate-180 icon' : ' icon'"
-                icon="mdi-theme-light-dark"
-                size="30px"
+              :class="theme.global.current.value.dark ? 'rotate-180 icon' : ' icon'"
+              icon="mdi-theme-light-dark"
+              size="30px"
             />
           </v-btn>
 
           <v-btn
-              icon
-              variant="outlined"
-              class="transition ml-4 ml-sm-0 mt-sm-4"
-              @click="logout"
+            icon
+            variant="outlined"
+            class="transition ml-4 ml-sm-0 mt-sm-4"
+            @click="logout"
           >
             <v-icon
-                class="rotate-180"
-                icon="mdi-logout"
-                size="24px"
+              class="rotate-180"
+              icon="mdi-logout"
+              size="24px"
             />
           </v-btn>
         </div>
