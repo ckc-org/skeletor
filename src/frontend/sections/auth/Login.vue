@@ -93,7 +93,6 @@ const submit = async () => {
       await user.login(email.value, password.value, rememberMe.value)
       navigateTo("/dashboard")
     } catch (e) {
-      isLoading.value = false // Set isLoading to false if there's an error
       errors.value = e.data || {}
       useErrorHandler(e)
     }
