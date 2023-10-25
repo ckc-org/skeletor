@@ -1,10 +1,12 @@
 import { userStore } from "~/store/user"
 
 export default defineNuxtPlugin(async (nuxtApp) => {
+  /*
+  Loading spinner that we remove after fetching a user
+   */
   const div = document.createElement('div')
   div.id = 'app'
   div.innerHTML = '<div class="nuxt-loading-container" id="preload-spinner"><div class="nuxt-progress-spinner"></div></div>'
-
 
   document.body.append(div)
 
