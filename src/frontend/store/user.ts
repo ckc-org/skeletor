@@ -47,7 +47,6 @@ export const userStore = defineStore('user', {
       });
 
       this.setUser(user)
-      this.isLoggedIn = true
     },
     async logout() {
       const csrftoken = useCookie('csrftoken')
@@ -61,7 +60,6 @@ export const userStore = defineStore('user', {
       try {
         const userData = await useRequest('/users/me/')
         this.setUser(userData)
-        this.isLoggedIn = true
       } catch(e) {
         this.setUser(null)
         eraseCookie('csrftoken')
