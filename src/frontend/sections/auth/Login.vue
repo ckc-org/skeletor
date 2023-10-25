@@ -46,7 +46,8 @@
         type="submit"
         block
         min-height="44px"
-        class="gradient primary"
+        color="primary"
+        class="gradient"
         :loading="isLoading"
       >
         Sign In
