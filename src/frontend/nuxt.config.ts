@@ -64,9 +64,6 @@ export default defineNuxtConfig({
   ],
 
   app: {
-    // Awesome page transitions by default
-    // pageTransition: { name: 'page', mode: 'out-in' },
-
     // Head tag
     head: {
       title: "Vuetify 3 + Nuxt 3 Starter",

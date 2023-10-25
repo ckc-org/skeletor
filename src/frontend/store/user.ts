@@ -13,7 +13,6 @@ export const userStore = defineStore('user', {
         return {
             user: null,
             isLoggedIn: Boolean(hasSession),
-            fetchUserHasBeenRan: false,
         }
     },
     actions: {
@@ -64,18 +63,7 @@ export const userStore = defineStore('user', {
             return res
         },
         async fetchUser() {
-            console.log('fetching user')
-            const {data, error} = await useRequest('/users/me/', {key: Math.random().toString()})
-            console.log("????????? error", error.value)
-            console.log("????????? data", data.value)
-
-            // const resp = await useRequest('/users/me/')
-            // const {execute} = useRequest('/users/me/')
-            // const resp = await execute()
-            // console.log("????????? resp", resp)
-            // const {data, error} = resp
-            // console.log("????????? error", error.value)
-            // console.log("????????? data", data.value)
+            const {data, error} = await useRequest('/users/me/')
 
             if (error.value) {
                 this.setUser(null)
@@ -88,8 +76,6 @@ export const userStore = defineStore('user', {
                 this.setUser(data.value)
                 this.isLoggedIn = true
             }
-
-            this.fetchUserHasBeenRan = true
 
             return {data, error}
         }
