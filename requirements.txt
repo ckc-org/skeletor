@@ -2,6 +2,7 @@ Django==4.2.7
 django-cors-headers==4.3.0
 django-extensions==3.2.3
 djangorestframework==3.14.0
+drf-extensions==0.7.1
 django-ckc==0.0.10
 factory-boy==3.3.0
 
