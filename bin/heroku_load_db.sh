@@ -39,7 +39,8 @@ curl -o "$heroku_dump_filename" "$heroku_dump_url"
 
 # Reset local database
 echo "Resetting local database..."
-docker-compose exec -T db bash -c "dropdb --if-exists -U \$DB_USERNAME \$DB_NAME"
+docker-compose exec -T db bash -c "dropdb --if-exists -U \$DB_USERNAME \$DB_NAME --force"
+docker-compose exec -T db bash -c "dropdb --if-exists -U \$DB_USERNAME test_\$DB_NAME --force"
 docker-compose exec -T db bash -c "createdb -U \$DB_USERNAME \$DB_NAME"
 
 # Load the dump into the local database
