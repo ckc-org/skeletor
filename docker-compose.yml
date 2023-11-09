@@ -28,9 +28,9 @@ services:
     logging: *default-logging
 
   db:
-    image: postgres:13-alpine
+    image: postgres:16-alpine
     # Use this instead for GeoSpatial stuff..
-    #image: postgis/postgis:13-3.3-alpine
+    #image: postgis/postgis:16-3.4-alpine
     env_file: .env
     environment:
       - PGDATA=/var/lib/postgresql/data/pgdata
