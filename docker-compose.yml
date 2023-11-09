@@ -45,7 +45,9 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.frontend
-    command: bash -c "npm i . && npx nuxi dev"
+    # as of Nov 9, 2023, still getting "Nitro addr in use" problems -- should be able to
+    # remove "rm -rf ..." when that is fixed!
+    command: bash -c "npm i . && rm -rf /tmp/nitro/worker-* && npx nuxi dev"
     env_file: .env
     environment:
       - HOST=0.0.0.0
