@@ -1,5 +1,5 @@
-Django==4.2.7
-django-cors-headers==4.3.0
+Django==5.0
+django-cors-headers==4.3.1
 django-extensions==3.2.3
 djangorestframework==3.14.0
 drf-extensions==0.7.1
@@ -12,13 +12,13 @@ django-querycount==0.8.3
 
 # Database
 dj-database-url==2.1.0
-psycopg==3.1.12
+psycopg==3.1.14
 
 # Storage
 whitenoise[brotli]==6.6.0
 
 # Email
-django-anymail==10.1
+django-anymail==10.2
 django-templated-email==3.0.1
 
 # Caching
@@ -28,8 +28,8 @@ django-redis==5.4.0
 # Realtime
 channels==4.0.0
 channels_redis==4.1.0
-uvicorn[standard]==0.23.2
+uvicorn[standard]==0.24.0
 service-identity==23.1.0
 
 # Logging
-colorlog==6.7.0
+colorlog==6.8.0
