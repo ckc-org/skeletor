@@ -25,10 +25,11 @@ django-templated-email==3.0.1
 redis[hiredis]==5.0.1
 django-redis==5.4.0
 
-# Realtime
+# Realtime/server
+gunicorn==21.2.0
+uvicorn[standard]==0.24.0
 channels==4.0.0
 channels_redis==4.1.0
-uvicorn[standard]==0.24.0
 service-identity==23.1.0
 
 # Logging
