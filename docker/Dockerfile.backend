@@ -2,7 +2,8 @@ FROM python:3.12
 
 # gcc, build-essential, python-setuptools for python installation help
 # graphviz, libgraphviz-dev for making diagrams from models
-RUN apt-get update && apt-get install -yy gcc build-essential graphviz libgraphviz-dev
+# inotify-tools for automatic reload of server on code change
+RUN apt-get update && apt-get install -yy gcc build-essential graphviz libgraphviz-dev inotify-tools
 
 # Uncomment to install GeoSpatial PostGIS dependencies..
 #RUN apt-get install -y libgdal-dev
