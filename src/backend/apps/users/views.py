@@ -1,7 +1,9 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.tokens import default_token_generator
+from django.utils.decorators import method_decorator
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
+from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework import views, status, viewsets, mixins
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
@@ -118,6 +120,7 @@ class UserViewSet(
         serializer.save()
         return Response(UserSelfDetailSerializer(request.user).data)
 
+    @method_decorator(ensure_csrf_cookie)
     @action(detail=False, methods=['get'])
     def me(self, request):
         serializer = self.get_serializer(request.user)

@@ -139,3 +139,38 @@ a {
         ) !important;
     }
 }
+
+
+
+// Pre nuxt load loading screen
+.nuxt-loading-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nuxt-progress-spinner {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 6px solid transparent;
+  border-top-color: #78529A;
+  border-right-color: #78529A;
+  animation: nuxt-preload-spin 1s linear infinite;
+}
+
+@keyframes nuxt-preload-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+

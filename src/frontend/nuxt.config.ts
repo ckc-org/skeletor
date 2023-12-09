@@ -9,18 +9,14 @@ const url = "https://github.com/ckc-org/skeletor";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  ssr: false,
+  target: 'static',
+
   // Runtime Config
   runtimeConfig: {
     public: {
-      server_url: process.env.API_BASE_URL || 'http://localhost:8000/api',
+      server_url: `${process.env.BACKEND_URL}/api` || 'http://localhost:8000/api',
     },
-  },
-
-  logLevel: 'verbose',
-
-  // Nitro server config
-  nitro: {
-    logLevel: 5
   },
 
   // import styles
@@ -61,6 +57,7 @@ export default defineNuxtConfig({
   ],
 
   app: {
+    // Head tag
     head: {
       title: "Vuetify 3 + Nuxt 3 Starter",
       titleTemplate: "%s | Vuetify 3 + Nuxt 3 Starter",

@@ -1,13 +1,15 @@
+from urllib.parse import urlparse
+
 from .base import *
 
 
 HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME")
-SITE_DOMAIN = os.environ.get('SITE_DOMAIN', f'https://{HEROKU_APP_NAME}.herokuapp.com')
+BACKEND_URL = os.environ.get('BACKEND_URL', f'https://{HEROKU_APP_NAME}.herokuapp.com')
 
-assert SITE_DOMAIN or HEROKU_APP_NAME, "SITE_DOMAIN or at least HEROKU_APP_NAME must be defined"
+assert BACKEND_URL or HEROKU_APP_NAME, "BACKEND_URL or at least HEROKU_APP_NAME must be defined"
 
-# Remove protocol from domain, if given
-DOMAIN = SITE_DOMAIN.replace('http://', '').replace('https://', '').replace("/", "")
+_parsed_backend_url = urlparse(BACKEND_URL)
+DOMAIN = _parsed_backend_url.netloc
 SITE_NAME = DOMAIN
 
 # =============================================================================
@@ -28,7 +30,7 @@ SECURE_SSL_REDIRECT = True
 # =============================================================================
 cloudcube_url = os.environ.get('CLOUDCUBE_URL')
 if cloudcube_url:
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STORAGES['default']['BACKEND'] = 'storages.backends.s3boto3.S3Boto3Storage'
 
     # example cloudcube url: https://cloud-cube.s3.amazonaws.com/bucketname
     cloudcube_url = os.environ.get('CLOUDCUBE_URL')
@@ -58,7 +60,8 @@ STATIC_URL = '/django/static/'
 # =============================================================================
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
-    SITE_DOMAIN,
+    # outputs <SCHEME>://<DOMAIN>
+    f"{_parsed_backend_url.scheme}://{_parsed_backend_url.netloc}",
 )
 
 

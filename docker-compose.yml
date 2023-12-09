@@ -12,7 +12,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.backend
-    command: uvicorn asgi:application --host 0.0.0.0 --port 8000 --reload --reload-include *.py --reload-include *.html
+    command: gunicorn asgi:application --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --reload
     environment:
       # To make things play nice with dj-database-url
       - DATABASE_URL=postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
@@ -28,9 +28,9 @@ services:
     logging: *default-logging
 
   db:
-    image: postgres:13-alpine
+    image: postgres:16-alpine
     # Use this instead for GeoSpatial stuff..
-    #image: postgis/postgis:13-3.3-alpine
+    #image: postgis/postgis:16-3.4-alpine
     env_file: .env
     environment:
       - PGDATA=/var/lib/postgresql/data/pgdata

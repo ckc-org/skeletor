@@ -3,11 +3,11 @@
 -r requirements.dev.local.txt
 
 bpython==0.24
-responses==0.23.3
-filelock==3.12.2
+responses==0.24.1
+filelock==3.13.1
 
-pytest==7.4.0
+pytest==7.4.3
 pytest-cov==4.1.0
-pytest-django==4.5.2
+pytest-django==4.7.0
 pytest-sugar==0.9.7
-pytest-xdist==3.3.1
+pytest-xdist==3.5.0

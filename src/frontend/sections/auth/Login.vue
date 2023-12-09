@@ -35,12 +35,19 @@
       ></v-text-field>
     </div>
 
+    <v-checkbox
+      v-model="rememberMe"
+      label="Remember me"
+      density="compact"
+    />
+
     <div class="mt-5">
       <v-btn
         type="submit"
         block
         min-height="44px"
-        class="gradient primary"
+        color="primary"
+        class="gradient"
         :loading="isLoading"
       >
         Sign In
@@ -64,37 +71,34 @@
 </template>
 
 <script setup>
-import { useAuth } from "~/composables/useAuth"
 import useErrorHandler from "~/composables/useErrorHandler"
+import {userStore} from "~/store/user";
 
 const { ruleEmail, rulePassLen, ruleRequired } = useFormRules()
-const { login } = useAuth()
 
 const email = ref("")
+const rememberMe = ref(false)
 const password = ref("")
 const isLoading = ref(false)
 const errors = ref({})
 const form = ref(null)
+const user = userStore()
 
 const submit = async () => {
   const { valid } = await form.value.validate()
-  if (valid || true) {
-
+  if (valid) {
     isLoading.value = true // Set isLoading to true when submitting
     errors.value = {} // Reset errors
 
-    const { error, data } = await login(email.value, password.value)
-
-    if (error.value) {
-      isLoading.value = false // Set isLoading to false if there's an error
-      errors.value = error.value.data || {}
-      useErrorHandler(error.value)
-      return
+    try {
+      await user.login(email.value, password.value, rememberMe.value)
+      navigateTo("/dashboard")
+    } catch (e) {
+      errors.value = e.data || {}
+      useErrorHandler(e)
     }
 
     isLoading.value = false // Set isLoading to false after the request is completed
-    navigateTo("/dashboard")
-    return data.value
   }
 }
 

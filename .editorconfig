@@ -3,25 +3,24 @@ root = true
 [*]
 charset = utf-8
 end_of_line = lf
-indent_size = 4
+indent_size = 2
 indent_style = space
 insert_final_newline = true
-tab_width = 4
+tab_width = 2
 trim_trailing_whitespace = true
-
 
 [*.md]
 trim_trailing_whitespace = false
 
-[{*.yml,*.yaml,*.json,*.ts,*.tsx}]
+[*.py]
+indent_size = 4
+tab_width = 4
+
+[{*.js,*.ts,*.tsx,*.vue,*.html}]
 indent_size = 2
 tab_width = 2
 
 [{*.js,*.vue}]
-# General
-indent_size = 2
-tab_width = 2
-
 # Vue
 ij_vue_indent_children_of_top_level = template
 ij_vue_interpolation_new_line_after_start_delimiter = true

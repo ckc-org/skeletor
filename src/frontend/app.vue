@@ -1,16 +1,14 @@
 <template>
-  <div>
+  <div class="fade-in">
     <NuxtLayout>
       <NuxtPage/>
-      <Snackbar />
+      <Snackbar/>
     </NuxtLayout>
   </div>
 </template>
 
 <script setup>
-const auth = useAuth()
-onMounted(() => {
-  auth.fetchUser()
-})
 </script>
 
+<style scoped lang="stylus">
+</style>

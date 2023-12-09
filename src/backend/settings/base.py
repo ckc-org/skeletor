@@ -32,7 +32,7 @@ USE_X_FORWARDED_HOST = True
 
 SITE_ID = 1
 
-SITE_DOMAIN = os.environ.get('SITE_DOMAIN', 'http://localhost:8000')
+BACKEND_URL = os.environ.get('BACKEND_URL', 'http://localhost:8000')
 FRONTEND_URL = os.environ.get('FRONTEND_URL', 'http://localhost:3000')
 
 THIRD_PARTY_APPS = (
@@ -149,22 +149,24 @@ REST_FRAMEWORK = {
     'DATETIME_INPUT_FORMATS': (
         'iso-8601',
         '%B %d, %Y',
-    )
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
 }
 
 
 # =============================================================================
 # Security/cookies
 # =============================================================================
-CORS_ORIGIN_WHITELIST = ('http://localhost:3000',)
+CORS_ORIGIN_WHITELIST = (FRONTEND_URL,)
 
 CORS_ALLOW_CREDENTIALS = True
 
 SESSION_COOKIE_HTTPONLY = True
 
 CSRF_TRUSTED_ORIGINS = (
-    'http://localhost:3000',
-    SITE_DOMAIN,
+    BACKEND_URL,
+    FRONTEND_URL,
 )
 
 
@@ -210,7 +212,7 @@ ANYMAIL = {
 
 DEFAULT_EMAIL_CONTEXT = {
     'CURRENT_YEAR': datetime.datetime.now().year,
-    'SITE_DOMAIN': SITE_DOMAIN,
+    'BACKEND_URL': BACKEND_URL,
     'FRONTEND_URL': FRONTEND_URL,
     'DEFAULT_FROM_EMAIL': DEFAULT_FROM_EMAIL,
 

@@ -41,11 +41,10 @@
 
 <script setup lang="ts">
 import {useTheme} from "vuetify";
-import {useAuth} from "~/composables/useAuth";
-import {navigateTo} from "#app";
+import {userStore} from "~/store/user";
 
-const auth = useAuth()
 const theme = useTheme()
+const user = userStore()
 
 const setThemeFromLocalStorage = () => {
   const isDark = localStorage.getItem("isDark");
@@ -60,7 +59,7 @@ const toggle_theme = () => {
 
 const logout = async () => {
   try {
-    await auth.logout()
+    await user.logout()
   } catch (e) {
     console.error(e)
   }
