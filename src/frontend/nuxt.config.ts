@@ -45,6 +45,7 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@vueuse/nuxt',
+    'nuxt-lodash',
 
     // Vuetify
     async (options, nuxt) => {
@@ -55,6 +56,10 @@ export default defineNuxtConfig({
     },
 
   ],
+
+  lodash: {
+    prefix: '_'
+  },
 
   app: {
     // Head tag
