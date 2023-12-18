@@ -174,6 +174,7 @@ CSRF_TRUSTED_ORIGINS = (
 # Whitenoise
 # =============================================================================
 WHITENOISE_MANIFEST_STRICT = False
+WHITENOISE_KEEP_ONLY_HASHED_FILES = True
 
 
 # =============================================================================
