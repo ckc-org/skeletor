@@ -174,7 +174,6 @@ CSRF_TRUSTED_ORIGINS = (
 # Whitenoise
 # =============================================================================
 WHITENOISE_MANIFEST_STRICT = False
-WHITENOISE_KEEP_ONLY_HASHED_FILES = True
 
 
 # =============================================================================
@@ -188,7 +187,7 @@ STORAGES = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 STATICFILES_DIRS = (
