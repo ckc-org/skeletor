@@ -4,7 +4,7 @@
 Some notes:
 - Using eslint to catch errors/bad patterns. Config file: `/src/frontend/.eslintrc.js`
 - Using prettier to format code. Config file: `/src/frontend/.prettierrc`
-- Custom git hooks defined in `/bin/hooks/`
+- Custom git hooks defined in `/bin/hooks/`. This formats and lints the code prior to committing.
 
 ---
 
@@ -33,6 +33,9 @@ Now a couple more files we need to make executable.
 From root of project run:
 ```
  chmod +x ./bin/linting/format_frontend.sh  
+```
+```
+ chmod +x ./bin/linting/lint_frontend.sh  
 ```
 
 
