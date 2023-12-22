@@ -1,7 +1,6 @@
 #!/bin/sh
 red="\033[0;31m"
 green="\033[0;32m"
-yellow="\033[33m"
 color_off="\033[m"
 
 printf "\n==================== Frontend code-style checks ====================\n"
@@ -24,6 +23,7 @@ if [[ $staged_files ]]; then
   npm run lint-specific -- $staged_files
   lint_status=$?
 
+ # Add newly formatted files to current commit
   git add $staged_files
 
   # If either formatting or linting failed, exit with an error
