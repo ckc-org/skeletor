@@ -4,15 +4,13 @@ green="\033[0;32m"
 yellow="\033[33m"
 color_off="\033[m"
 
-printf "\n==================== Running pre-commit checks ====================\n"
+printf "\n==================== Frontend code-style checks ====================\n"
 
 #-------------------------------------------------------------------------------
 # Frontend linting
 #-------------------------------------------------------------------------------
 
 if [[ $(git diff --name-only HEAD@{1} HEAD | grep -E 'frontend/.*\.(js|ts|vue)$') ]]; then
-  echo "Running frontend linting..."
-
   # variable for all changed files
   changed_files=$(git diff --name-only HEAD@{1} HEAD | grep -E 'frontend/.*\.(js|ts|vue)$')
 
@@ -20,10 +18,9 @@ if [[ $(git diff --name-only HEAD@{1} HEAD | grep -E 'frontend/.*\.(js|ts|vue)$'
   for file in $changed_files; do
     # We need to remove src/frontend/ from the start of the file path
     files_to_format="${files_to_format} ${file#src/frontend/}"
-    echo "✏️ Changed: ${files_to_format}"
+    echo "✏️ ${files_to_format}"
   done
 
-  echo "${files_to_format}"
   cd src/frontend && npm run format-specific -- ${files_to_format} && npm run lint-specific -- ${files_to_format}
 
   if [ $? -ne 0 ]; then
