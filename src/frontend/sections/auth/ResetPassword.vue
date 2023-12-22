@@ -14,9 +14,7 @@
         type="email"
       />
     </div>
-    <div
-      class="mt-5"
->
+    <div class="mt-5">
       >
       <VBtn
         type="submit"
