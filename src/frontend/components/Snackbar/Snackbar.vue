@@ -2,11 +2,8 @@
 <template>
   <v-snackbar v-model="snackbarStore.show" :color="snackbarStore.color">
     {{ snackbarStore.message }}
-    <template v-slot:actions>
-      <v-btn
-        variant="text"
-        @click="snackbarStore.closeSnackbar"
-      >
+    <template #actions>
+      <v-btn variant="text" @click="snackbarStore.closeSnackbar">
         <v-icon>mdi-close</v-icon>
       </v-btn>
     </template>
@@ -14,16 +11,15 @@
 </template>
 
 <script>
-
-import { useSnackbarStore } from "~/store/snackbar"
+import { useSnackbarStore } from "~/store/snackbar";
 
 export default {
   setup() {
-    const snackbarStore = useSnackbarStore()
+    const snackbarStore = useSnackbarStore();
 
     return {
-      snackbarStore
-    }
-  }
-}
+      snackbarStore,
+    };
+  },
+};
 </script>

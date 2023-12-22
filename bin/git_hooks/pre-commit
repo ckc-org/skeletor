@@ -1,0 +1,26 @@
+#!/bin/sh
+red="\033[0;31m"
+green="\033[0;32m"
+yellow="\033[33m"
+color_off="\033[m"
+
+printf "\n==================== Running pre-commit checks ====================\n"
+
+#-------------------------------------------------------------------------------
+# Frontend linting
+#-------------------------------------------------------------------------------
+
+# if frontend files were changed do cd src/frontend and npm run lint
+if [[ $(git diff --name-only HEAD@{1} HEAD | grep -E 'frontend/.*\.(js|vue)$') ]]; then
+    echo "Running frontend linting..."
+
+    # Run linting command
+    cd src/frontend && npm run lint
+
+    if [ $? -ne 0 ]; then
+        echo "${red} ❌ Failed frontend linting ${color_off}\n"
+        exit 1
+    else
+        echo "${green} ✅ Passed frontend linting ${color_off}\n"
+    fi
+fi

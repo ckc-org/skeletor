@@ -1,14 +1,17 @@
-import { userStore } from "~/store/user"
+import { userStore } from "~/store/user";
 
-export default defineNuxtPlugin(async (nuxtApp) => {
+export default defineNuxtPlugin(async () => {
   /*
   Loading spinner that we remove after fetching a user
    */
-  const div = document.createElement('div')
-  div.id = 'app'
-  div.innerHTML = '<div class="nuxt-loading-container" id="preload-spinner"><div class="nuxt-progress-spinner"></div></div>'
+  const div = document.createElement("div");
+  div.id = "app";
 
-  document.body.append(div)
+  div.innerHTML =
+    // eslint-disable-next-line quotes, max-len
+    '<div class="nuxt-loading-container" id="preload-spinner"><div class="nuxt-progress-spinner"></div></div>';
+
+  document.body.append(div);
 
   /*
   On page load we want to check if the user is authenticated and redirect them to the right spot,
@@ -18,13 +21,13 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   In this file we're just fetching the user before anything else
    */
-  const store = userStore()
+  const store = userStore();
   try {
-    await store.fetchUser()
+    await store.fetchUser();
   } catch (e) {
-    console.error(e)
+    console.error(e);
   }
 
   // remove loading
-  document.getElementById('preload-spinner').remove()
-})
+  document.getElementById("preload-spinner").remove();
+});

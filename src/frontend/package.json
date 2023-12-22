@@ -12,12 +12,14 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "heroku-postbuild": "cd src/frontend && nuxi generate",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix",
+    "lint": "eslint . --ext .js,.vue,.ts --ignore-path .gitignore",
     "format": "prettier .  --write"
   },
   "devDependencies": {
     "@iconify/vue": "^4.1.1",
     "@nuxtjs/google-fonts": "^3.0.2",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
     "@vueuse/core": "^10.6.0",
     "@vueuse/nuxt": "^10.6.0",
     "cypress": "^13.5.0",

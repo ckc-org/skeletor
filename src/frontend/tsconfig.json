@@ -3,10 +3,7 @@
   "extends": "./.nuxt/tsconfig.json",
 
   "compilerOptions": {
-    "typeRoots": [
-      "./node_modules/@types",
-      "./types"
-    ],
+    "typeRoots": ["./node_modules/@types", "./types"],
 
     // be less strict!
     "noImplicitAny": false

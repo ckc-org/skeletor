@@ -1,14 +1,12 @@
 <template>
   <div class="fade-in">
     <NuxtLayout>
-      <NuxtPage/>
-      <Snackbar/>
+      <NuxtPage />
+      <Snackbar />
     </NuxtLayout>
   </div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
-<style scoped lang="stylus">
-</style>
+<style scoped lang="stylus"></style>
