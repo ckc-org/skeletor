@@ -1,6 +1,6 @@
 <!-- SnackbarComponent.vue -->
 <template>
-  <v-snackbar v-model='snackbarStore.show' :color="snackbarStore.color">
+  <v-snackbar v-model="snackbarStore.show" :color="snackbarStore.color">
     {{ snackbarStore.message }}
     <template #actions>
       <v-btn variant="text" @click="snackbarStore.closeSnackbar">
