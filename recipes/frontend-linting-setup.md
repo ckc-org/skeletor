@@ -29,6 +29,12 @@ ls -l .git/hooks
 You should see pre-commit hook listed there.
 
 
+Now a couple more files we need to make executable. 
+From root of project run:
+```
+ chmod +x ./bin/linting/format_frontend.sh  
+```
+
 
 ---
 ## Lint on save setup:

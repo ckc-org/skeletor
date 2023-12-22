@@ -13,7 +13,9 @@
     "postinstall": "nuxt prepare",
     "heroku-postbuild": "cd src/frontend && nuxi generate",
     "lint": "eslint . --ext .js,.vue,.ts --ignore-path .gitignore",
-    "format": "prettier .  --write"
+    "format": "prettier .  --write",
+    "format-specific": "../../bin/linting/format_frontend.sh",
+    "lint-specific": "../../bin/linting/lint_frontend.sh"
   },
   "devDependencies": {
     "@iconify/vue": "^4.1.1",

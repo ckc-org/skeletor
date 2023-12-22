@@ -11,16 +11,27 @@ printf "\n==================== Running pre-commit checks ====================\n"
 #-------------------------------------------------------------------------------
 
 # if frontend files were changed do cd src/frontend and npm run lint
-if [[ $(git diff --name-only HEAD@{1} HEAD | grep -E 'frontend/.*\.(js|vue)$') ]]; then
-    echo "Running frontend linting..."
+if [[ $(git diff --name-only HEAD@{1} HEAD | grep -E 'frontend/.*\.(js|ts|vue)$') ]]; then
+  echo "Running frontend linting..."
 
-    # Run linting command
-    cd src/frontend && npm run format && npm run lint
+  # variable for all changed files
+  changed_files=$(git diff --name-only HEAD@{1} HEAD | grep -E 'frontend/.*\.(js|ts|vue)$')
+  echo "Changed files: ${changed_files}"
 
-    if [ $? -ne 0 ]; then
-        echo "${red} ❌ Failed frontend linting ${color_off}\n"
-        exit 1
-    else
-        echo "${green} ✅ Passed frontend linting ${color_off}\n"
-    fi
+  # Run linting command
+  for file in $changed_files; do
+    # We need to remove src/frontend/ from the start of the file path
+    files_to_format="${files_to_format} ${file#src/frontend/}"
+    echo "Files: ${files_to_format}"
+  done
+
+  echo "${files_to_format}"
+  cd src/frontend && npm run format-specific -- ${files_to_format} && npm run lint -- ${files_to_format}
+
+  if [ $? -ne 0 ]; then
+      echo "${red} ❌ Failed frontend linting ${color_off}\n"
+      exit 1
+  else
+      echo "${green} ✅ Passed frontend linting ${color_off}\n"
+  fi
 fi
