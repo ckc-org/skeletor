@@ -16,7 +16,7 @@ cd .git/hooks
 ```
 Sync custom hook with git: 
 ```
-ln -s bin/git_hooks/pre-commit pre-commit
+ln -s ../../bin/git_hooks/pre-commit pre-commit
 ```
 Go back to project root and make hook executable:
 ```
