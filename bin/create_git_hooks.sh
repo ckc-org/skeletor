@@ -5,6 +5,10 @@
 for f in ./bin/git_hooks/*
 do
     mkdir -p .git/hooks/
-    echo "making git hook -> ${f} into .git/hooks/${f##*/}"
-    ln -sf "${f}" ".git/hooks/${f##*/}"
+
+    # get filename from full path
+    filename=$(basename -- "$f")
+
+    echo "making git hook -> ${f} into .git/hooks/${filename}"
+    ln -sf "../../bin/git_hooks/${filename}" ".git/hooks/${filename}"
 done
