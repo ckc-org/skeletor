@@ -11,7 +11,7 @@ Do you want to add file uploads? What about image uploads? Do this shit!
     AWS_SECRET_ACCESS_KEY=minioadmin
     AWS_STORAGE_BUCKET_NAME=ckc_bucket
     ```
- 1. Add `minio` and `createbuckets` to your `docker-compose.yml`
+ 1. Add `minio` and `createbuckets` to your `docker-compose.yml` under `services`
     ```yaml
       minio:
         image: minio/minio:RELEASE.2021-06-14T01-29-23Z
@@ -104,3 +104,11 @@ Do you want to add file uploads? What about image uploads? Do this shit!
         ]
     }
     ```
+    
+# Let's make sure things are working!
+1. You should be able to head over to `http://localhost:9000/minio/` and login using `minioadmin` and `minioadmin`.
+2. If you can get to this screen you're all set up! 
+
+<img width="1087" alt="image" src="https://github.com/ckc-org/skeletor/assets/15066160/90b5a76a-ccf1-4333-86c9-b903936d40c0">
+
+
