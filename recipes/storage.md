@@ -9,7 +9,7 @@ Do you want to add file uploads? What about image uploads? Do this shit!
     AWS_S3_ENDPOINT_URL=http://host.docker.internal:9000/
     AWS_ACCESS_KEY_ID=minioadmin
     AWS_SECRET_ACCESS_KEY=minioadmin
-    AWS_STORAGE_BUCKET_NAME=ckc_bucket
+    AWS_STORAGE_BUCKET_NAME=bucket
     ```
  1. Add `minio` and `createbuckets` to your `docker-compose.yml` under `services`
     ```yaml
@@ -65,7 +65,7 @@ Do you want to add file uploads? What about image uploads? Do this shit!
     # =============================================================================
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', "minioadmin")
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', "minioadmin")
-    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', "ckc_bucket")
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', "bucket")
     AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME", None)
     AWS_DEFAULT_ACL = os.environ.get('AWS_DEFAULT_ACL', None)
     AWS_S3_ENDPOINT_URL = os.environ.get('AWS_S3_ENDPOINT_URL', None)
