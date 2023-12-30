@@ -7,41 +7,7 @@ Some notes:
 - Custom git hooks defined in `/bin/hooks/`. This formats and lints the code prior to committing.
 
 ---
-
-## Git Commit Hook Setup:
-
-Get into hooks directory:
-```
-cd .git/hooks
-```
-Sync custom hook with git: 
-```
-ln -s ../../bin/git_hooks/pre-commit pre-commit
-```
-Go back to project root and make hook executable:
-```
-cd ..; cd ..; chmod +x bin/git_hooks/pre-commit
-```
-Ensure it works by running
-```
-ls -l .git/hooks
-```
-You should see pre-commit hook listed there.
-
-
-Now a couple more files we need to make executable. 
-From root of project run:
-```
- chmod +x ./bin/linting/format_frontend.sh  
-```
-```
- chmod +x ./bin/linting/lint_frontend.sh  
-```
-
-
----
 ## Lint on save setup:
-
 
 ### Pycharm:
 
