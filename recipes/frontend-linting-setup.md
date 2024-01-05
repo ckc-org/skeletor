@@ -41,7 +41,7 @@ Some notes:
 1. Open your project folder in VSCode.
 2. Go to **File > Preferences > Settings** (or press `Ctrl+,`).
 3. In the search bar at the top, type `Prettier`.
-4. Configure the path to Prettier (`node_modules/.bin/prettier`).
+4. Update Prettier: Config Path to `./src/frontend/.prettierrc`).
 
 #### Enable Prettier on Save:
 
