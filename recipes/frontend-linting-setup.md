@@ -36,17 +36,14 @@ Some notes:
 3. Search for `Prettier - Code formatter` in the Extensions view search bar.
 4. Click on the Install button to install the Prettier extension.
 
-#### Configure Prettier in VSCode:
+#### Enable Prettier on Save:
 
 1. Open your project folder in VSCode.
 2. Go to **File > Preferences > Settings** (or press `Ctrl+,`).
 3. In the search bar at the top, type `Prettier`.
-4. Update Prettier: Config Path to `./src/frontend/.prettierrc`).
+4. Still in the Settings, search for `Editor: Format On Save` and make sure it's checked.
 
-#### Enable Prettier on Save:
-
-- Still in the Settings, search for `Editor: Format On Save` and make sure it's checked.
-- OPTIONAL: Customize this behavior per language by searching for `"[language]": { "editor.formatOnSave": true }`, replacing `[language]` with a specific language like `javascript` or `typescript`.
+OPTIONAL -- Customize this behavior per language by searching for `"[language]": { "editor.formatOnSave": true }`, replacing `[language]` with a specific language like `javascript` or `typescript`.
 
 #### Apply and Close:
 
