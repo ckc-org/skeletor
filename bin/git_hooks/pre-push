@@ -40,7 +40,7 @@ DUPLICATE_MIGRATIONS="$(
                         grep "apps/.*/migrations/\d\d\d\d" -o |  # remove the count in front
                         sed -e "s/^/\t/"                         # put a tab in front of each
                       )"
-if [[ $(echo $DUPLICATE_MIGRATIONS) ]]; then
+if [ -n "$(echo $DUPLICATE_MIGRATIONS)" ]; then
     echo "${yellow} ⚠️  WARNING: There were migration issues. Please fix before merging to $BASE_BRANCH!"
     echo " Duplicate migrations found:\n${DUPLICATE_MIGRATIONS}${color_off}"
 else
