@@ -1,5 +1,5 @@
-import {createVuetify} from "vuetify";
-import {LIGHT_THEME} from "~/utils/themes";
+import { createVuetify } from "vuetify";
+import { LIGHT_THEME } from "~/utils/themes";
 
 export default defineNuxtPlugin((app) => {
   const vuetify = createVuetify({

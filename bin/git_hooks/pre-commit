@@ -1,0 +1,35 @@
+#!/bin/sh
+red="\033[0;31m"
+green="\033[0;32m"
+color_off="\033[m"
+
+printf "\n==================== Frontend code-style checks ====================\n"
+
+#-------------------------------------------------------------------------------
+# Frontend linting
+#-------------------------------------------------------------------------------
+
+# Get list of staged files that match the frontend file pattern
+staged_files=$(git diff --cached --name-only | grep -E 'frontend/.*\.(js|ts|vue)$') || true
+if [ -n "$staged_files" ]; then
+  echo "Files to format and lint:"
+  echo "$staged_files"
+
+  # Run formatting and linting commands on staged files
+  npm run format-specific -- $staged_files
+  format_status=$?
+
+  npm run lint-specific -- $staged_files
+  lint_status=$?
+
+ # Add newly formatted files to current commit
+  git add $staged_files
+
+  # If either formatting or linting failed, exit with an error
+if [ $format_status -ne 0 ] || [ $lint_status -ne 0 ]; then
+    echo "${red}❌ Frontend code-style checks failed${color_off}\n"
+    exit 1
+  else
+    echo "${green}✅ Frontend code-style checks passed${color_off}\n"
+  fi
+fi

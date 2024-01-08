@@ -6,6 +6,9 @@ color_off="\033[m"
 
 printf "\n==================== Running pre-push checks ====================\n"
 
+# Get base branch name (master? develop? main?)
+BASE_BRANCH="$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
+
 # ----------------------------------------------------------------------------
 # Migrations
 # ----------------------------------------------------------------------------
@@ -14,14 +17,14 @@ printf "\n==================== Running pre-push checks ====================\n"
 #
 # Example output from below command:
 #   apps/bookings/migrations/0048
-ADDED_MIGRATIONS="$(git diff origin/develop --name-only | grep "apps/.*/migrations/\d\d\d\d" -o)"
+ADDED_MIGRATIONS="$(git diff $BASE_BRANCH --name-only | grep "apps/.*/migrations/\d\d\d\d" -o)"
 #echo "ADDED_MIGRATIONS:\n${ADDED_MIGRATIONS}\n\n"
 
-# Get all of the migration filenames from develop
+# Get all of the migration filenames from $BASE_BRANCH
 #
 # Example output
 #  apps/users/migrations/0001
-EXISTING_MIGRATIONS="$(git ls-tree -r origin/develop | grep "apps/.*/migrations/\d\d\d\d" -o)"
+EXISTING_MIGRATIONS="$(git ls-tree -r $BASE_BRANCH | grep "apps/.*/migrations/\d\d\d\d" -o)"
 
 COMBINED_MIGRATIONS="${ADDED_MIGRATIONS}\n${EXISTING_MIGRATIONS}"
 
@@ -37,8 +40,8 @@ DUPLICATE_MIGRATIONS="$(
                         grep "apps/.*/migrations/\d\d\d\d" -o |  # remove the count in front
                         sed -e "s/^/\t/"                         # put a tab in front of each
                       )"
-if [[ $(echo $DUPLICATE_MIGRATIONS) ]]; then
-    echo "${yellow} ⚠️  WARNING: There were migration issues. Please fix before merging to develop!"
+if [ -n "$(echo $DUPLICATE_MIGRATIONS)" ]; then
+    echo "${yellow} ⚠️  WARNING: There were migration issues. Please fix before merging to $BASE_BRANCH!"
     echo " Duplicate migrations found:\n${DUPLICATE_MIGRATIONS}${color_off}"
 else
     echo ""

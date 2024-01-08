@@ -1,5 +1,5 @@
 <template>
-  <ResetPassword/>
+  <ResetPassword />
 </template>
 
 <script setup lang="ts">
@@ -10,6 +10,4 @@ definePageMeta({
 });
 </script>
 
-<style scoped lang="stylus">
-
-</style>
+<style scoped lang="stylus"></style>
