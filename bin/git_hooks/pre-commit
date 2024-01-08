@@ -26,7 +26,7 @@ if [ -n "$staged_files" ]; then
   git add $staged_files
 
   # If either formatting or linting failed, exit with an error
-  if [[ $format_status -ne 0 || $lint_status -ne 0 ]]; then
+if [ $format_status -ne 0 ] || [ $lint_status -ne 0 ]; then
     echo "${red}❌ Frontend code-style checks failed${color_off}\n"
     exit 1
   else
