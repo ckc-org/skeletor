@@ -11,8 +11,7 @@ printf "\n==================== Frontend code-style checks ====================\n
 
 # Get list of staged files that match the frontend file pattern
 staged_files=$(git diff --cached --name-only | grep -E 'frontend/.*\.(js|ts|vue)$') || true
-
-if [[ $staged_files ]]; then
+if [ -n "$staged_files" ]; then
   echo "Files to format and lint:"
   echo "$staged_files"
 
