@@ -1,5 +1,5 @@
 <template>
-  <div class="fade-in">
+  <div class='fade-in'>
     <NuxtLayout>
       <NuxtPage />
       <Snackbar />
