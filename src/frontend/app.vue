@@ -7,6 +7,8 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const hello = "hello";
+</script>
 
 <style scoped lang="stylus"></style>
