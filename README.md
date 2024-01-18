@@ -123,7 +123,7 @@ $ docker-compose exec django ./manage.py email welcome hello@ckcollab.com
 
 ### Install dependencies
 
-Run `yarn` inside of the `src/mobile` directory.
+Run `npm i` inside of the `src/mobile` directory.
 
 ### Environment variables
 
@@ -137,7 +137,7 @@ If you want to run it on your device, you'll have to replace `BACKEND_URL` with 
 
 ### Start up iOS simulator
 
-Run `yarn ios` to automatically start up an iOS simulator with expo.
+Run `npm run ios` to automatically start up an iOS simulator with expo.
 
 ### Run locally on physical device
 
@@ -151,7 +151,7 @@ Change the `BACKEND_URL` environment variable in `.env` to your machine's local 
 + BACKEND_URL=192.168.1.133:8000
 ```
 
-Run `yarn start` to run expo without an iOS simulator. Although, `yarn ios` will work fine for this as well if you want both a physical device and a simulator running.
+Run `npm run start` to run expo without an iOS simulator. Although, `npm run ios` will work fine for this as well if you want both a physical device and a simulator running.
 
 ## How the mobile app works
 
