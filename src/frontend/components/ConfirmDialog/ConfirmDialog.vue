@@ -1,5 +1,5 @@
 <template>
-  <v-dialog>
+  <v-dialog v-model="value" @blur="emit('cancel')">
     <v-card>
       <v-card-title>
         {{ title }}
