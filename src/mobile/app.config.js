@@ -6,7 +6,6 @@ module.exports = {
     name: 'skeletor',
     slug: 'skeletor',
     version: '0.0.1',
-    orientation: 'portrait',
     icon: './assets/icon.png',
     userInterfaceStyle: 'light',
     scheme: 'skeletor',
