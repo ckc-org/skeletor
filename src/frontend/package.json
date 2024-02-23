@@ -19,29 +19,27 @@
   },
   "devDependencies": {
     "@iconify/vue": "^4.1.1",
-    "@nuxtjs/google-fonts": "^3.0.2",
-    "@typescript-eslint/eslint-plugin": "^6.15.0",
-    "@typescript-eslint/parser": "^6.15.0",
-    "@vueuse/core": "^10.6.0",
-    "@vueuse/nuxt": "^10.6.0",
-    "cypress": "^13.5.0",
+    "@nuxtjs/google-fonts": "^3.1.3",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "@vueuse/core": "^10.7.1",
+    "@vueuse/nuxt": "^10.7.1",
+    "cypress": "^13.6.2",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-vue": "^9.19.2",
-    "nuxt": "^3.8.1",
+    "nuxt": "^3.9.1",
     "prettier": "3.1.1",
-    "sass": "^1.69.5",
-    "stylus": "^0.61.0",
+    "sass": "^1.69.7",
+    "stylus": "^0.62.0",
     "stylus-loader": "^7.1.3",
-    "vuetify": "^3.4.0",
-    "vuetify-nuxt-module": "^0.6.5"
+    "vuetify": "^3.4.9",
+    "vuetify-nuxt-module": "^0.8.0"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
     "nuxt-lodash": "^2.5.3",
-    "pinia": "^2.1.7"
-  },
-  "overrides": {
-    "vue": "latest"
+    "pinia": "^2.1.7",
+    "vue": "^3.4.6"
   }
 }
