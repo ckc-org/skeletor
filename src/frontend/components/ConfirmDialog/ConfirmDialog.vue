@@ -9,7 +9,7 @@
       </v-card-text>
       <v-card-actions class="d-flex justify-end align-center">
         <v-btn @click="emit('cancel')">{{ cancelText }}</v-btn>
-        <v-btn @click="emit('cancel')" color="primary">{{ confirmText }}</v-btn>
+        <v-btn @click="emit('confirm')" color="primary">{{ confirmText }}</v-btn>
     </v-card>
   </v-dialog>
 </template>
