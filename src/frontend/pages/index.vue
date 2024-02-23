@@ -1,5 +1,5 @@
 <template>
-  <Login/>
+  <Login />
 </template>
 
 <script setup lang="ts">
@@ -7,11 +7,8 @@ import Login from "~/sections/auth/Login.vue";
 
 definePageMeta({
   layout: "auth",
-  middleware: ["guest"]
-})
-
+  middleware: ["guest"],
+});
 </script>
 
-<style scoped lang="stylus">
-
-</style>
+<style scoped lang="stylus"></style>

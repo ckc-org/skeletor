@@ -2,20 +2,21 @@ import vuetify from "vite-plugin-vuetify";
 
 // PWA Config
 const title = "Skeletor";
-const shortTitle = "Skeletor";
 const description = "Welcome to Skeletor -- a bootstrapped starter project.";
-const image = "https://raw.githubusercontent.com/ckc-org/skeletor/master/docs/skeletor_full.png";
+const image =
+  "https://raw.githubusercontent.com/ckc-org/skeletor/master/docs/skeletor_full.png";
 const url = "https://github.com/ckc-org/skeletor";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   ssr: false,
-  target: 'static',
+  target: "static",
 
   // Runtime Config
   runtimeConfig: {
     public: {
-      server_url: `${process.env.BACKEND_URL}/api` || 'http://localhost:8000/api',
+      server_url:
+        `${process.env.BACKEND_URL}/api` || "http://localhost:8000/api",
     },
   },
 
@@ -23,29 +24,29 @@ export default defineNuxtConfig({
   css: [
     "vuetify/lib/styles/main.sass",
     "@/assets/main.scss",
-    "@/assets/stylus/index.styl"
+    "@/assets/stylus/index.styl",
   ],
 
   build: {
-    transpile: ["vuetify"]
+    transpile: ["vuetify"],
   },
 
   // enable takeover mode
-  typescript: {shim: false},
+  typescript: { shim: false },
 
   // 'vuetify-nuxt-module',
   pinia: {
     autoImports: [
       // automatically imports `defineStore`
-      'defineStore', // import { defineStore } from 'pinia'
-      ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+      "defineStore", // import { defineStore } from 'pinia'
+      ["defineStore", "definePiniaStore"], // import { defineStore as definePiniaStore } from 'pinia'
     ],
   },
 
   modules: [
-    '@pinia/nuxt',
-    '@vueuse/nuxt',
-    'nuxt-lodash',
+    "@pinia/nuxt",
+    "@vueuse/nuxt",
+    "nuxt-lodash",
 
     // Vuetify
     async (options, nuxt) => {
@@ -54,11 +55,10 @@ export default defineNuxtConfig({
         config.plugins.push(vuetify())
       );
     },
-
   ],
 
   lodash: {
-    prefix: '_'
+    prefix: "_",
   },
 
   app: {
@@ -67,10 +67,10 @@ export default defineNuxtConfig({
       title: "Vuetify 3 + Nuxt 3 Starter",
       titleTemplate: "%s | Vuetify 3 + Nuxt 3 Starter",
       link: [
-        {rel: "stylesheet", href: "https://rsms.me/inter/inter.css"},
-        {rel: "preconnect", href: "https://rsms.me/"},
-        {rel: "icon", type: "image/x-icon", href: "/favicon.ico"},
-        {rel: "canonical", href: url},
+        { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
+        { rel: "preconnect", href: "https://rsms.me/" },
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        { rel: "canonical", href: url },
       ],
       meta: [
         {
@@ -78,8 +78,8 @@ export default defineNuxtConfig({
           name: "description",
           content: description,
         },
-        {property: "og:site_name", content: title},
-        {hid: "og:type", property: "og:type", content: "website"},
+        { property: "og:site_name", content: title },
+        { hid: "og:type", property: "og:type", content: "website" },
         {
           hid: "og:url",
           property: "og:url",
@@ -106,7 +106,7 @@ export default defineNuxtConfig({
           content: image,
         },
         //Twitter
-        {name: "twitter:card", content: "summary_large_image"},
+        { name: "twitter:card", content: "summary_large_image" },
         {
           hid: "twitter:url",
           name: "twitter:url",

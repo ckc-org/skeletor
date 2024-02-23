@@ -1,5 +1,5 @@
 import { h } from "vue";
-import type { IconSet, IconAliases, IconProps } from "vuetify";
+import { IconSet, IconAliases, IconProps } from "vuetify";
 import { Icon } from "@iconify/vue";
 
 const fluentAliases: IconAliases = {

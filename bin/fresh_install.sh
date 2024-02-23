@@ -24,6 +24,9 @@ git init
 pip install -r requirements.dev.local.txt
 pre-commit install
 
+# Install frontend tooling locally
+npm i -g prettier eslint
+
 # Wait for frontend to finish building
 printf "Waiting for frontend to finish building."
 until $(curl --output /dev/null --silent --head --fail http://localhost:3000); do

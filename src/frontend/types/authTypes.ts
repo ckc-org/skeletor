@@ -1,8 +1,8 @@
 export interface UserT {
-    id: string
-    email: string
-    password: string
-    roles: string[]
+  id: string;
+  email: string;
+  password: string;
+  roles: string[];
 }
 
-export type UserWithoutPasswordT = Omit<UserT, 'password'>
+export type UserWithoutPasswordT = Omit<UserT, "password">;
