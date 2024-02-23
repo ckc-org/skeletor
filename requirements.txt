@@ -1,4 +1,4 @@
-Django==5.0.1
+Django==5.0.2
 django-cors-headers==4.3.1
 django-extensions==3.2.3
 djangorestframework==3.14.0
@@ -7,12 +7,12 @@ django-ckc==0.0.10
 factory-boy==3.3.0
 
 # Heroku staging debug tools
-django-debug-toolbar==4.2.0
+django-debug-toolbar==4.3.0
 django-querycount==0.8.3
 
 # Database
 dj-database-url==2.1.0
-psycopg==3.1.17
+psycopg==3.1.18
 
 # Storage
 whitenoise[brotli]==6.6.0
@@ -27,10 +27,10 @@ django-redis==5.4.0
 
 # Realtime/server
 gunicorn==21.2.0
-uvicorn[standard]==0.25.0
+uvicorn[standard]==0.27.1
 channels==4.0.0
-channels_redis==4.1.0
+channels_redis==4.2.0
 service-identity==23.1.0
 
 # Logging
-colorlog==6.8.0
+colorlog==6.8.2
