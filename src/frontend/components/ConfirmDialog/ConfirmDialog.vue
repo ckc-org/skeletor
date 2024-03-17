@@ -9,7 +9,7 @@
       </v-card-text>
       <v-card-actions class="d-flex justify-end align-center">
         <v-btn @click="emit('cancel')">{{ cancelText }}</v-btn>
-        <v-btn @click="emit('confirm')" color="primary">{{ confirmText }}</v-btn>
+        <v-btn color="primary" @click="emit('confirm')">{{ confirmText }}</v-btn>
     </v-card>
   </v-dialog>
 </template>
@@ -22,23 +22,23 @@ const props = defineProps({
   },
   title: {
     type: String,
-    default: 'Are you sure?'
+    default: "Are you sure?"
   },
   text: {
     type: String,
-    default: '',
+    default: "",
   },
   confirmText: {
     type: String,
-    default: 'OK'
+    default: "OK"
   },
   cancelText: {
     type: String,
-    default: 'Cancel'
+    default: "Cancel"
   },
 })
 
-const emit = defineEmits(['cancel', 'confirm'])
+const emit = defineEmits(["cancel", "confirm"])
 
 </script>
 <style scoped lang="stylus">

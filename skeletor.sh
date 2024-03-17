@@ -122,6 +122,13 @@ if ! docker info > /dev/null 2>&1; then
   exit 4
 fi
 
+# Make sure pip is installed
+if ! command -v pip &> /dev/null
+then
+    echo -e "\n${red}${bold}ERROR: pip is not installed!${reset}"
+    exit 5
+fi
+
 # Get user input
 read -p "Please provide a folder/project name: ${green}" PROJECT_NAME
 echo "${reset}"
