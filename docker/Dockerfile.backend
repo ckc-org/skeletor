@@ -11,13 +11,13 @@ RUN apt-get update && apt-get install -yy gcc build-essential graphviz libgraphv
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
+# Install speedy pip installer "uv"
+RUN pip install uv
+
 ADD requirements.dev.local.txt .
 ADD requirements.dev.txt .
 ADD requirements.txt .
-# Speed up pip install:
-#  "--disable-pip-version-check" Disable version check when installing to speed things up
-#  "--no-compile" don't make *.pyc files at build time, do it at runtime
-RUN pip install -r requirements.dev.txt --disable-pip-version-check --no-compile
+RUN uv pip install --system -r requirements.dev.txt
 
 WORKDIR /app
 
