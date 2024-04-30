@@ -1,5 +1,5 @@
 from django.db import DEFAULT_DB_ALIAS, connections
-from django.test import CaptureQueriesContext
+from django.test.utils import CaptureQueriesContext
 from rest_framework.test import APITestCase
 
 
