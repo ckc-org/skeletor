@@ -4,7 +4,7 @@ Some common frontend dev problems and fixes
 
 ### `localhost:3000` gives strange errors or never loads
 
-Try running these command in builder:
+Try running these command in frontend container:
 ```bash
 $ npm run generate
 ``` 

@@ -45,7 +45,7 @@ jobs:
       - name: Test Vue
         working-directory: /tmp/new_project
         run: |
-          docker-compose exec -T builder bun run test
+          docker-compose exec -T frontend bun run test
 
   linting:
     name: linting
