@@ -9,7 +9,7 @@ env:
 
 jobs:
   build:
-    timeout-minutes: 15
+    timeout-minutes: 30
     runs-on: ubuntu-latest
 
 #    defaults:
@@ -45,7 +45,7 @@ jobs:
       - name: Test Vue
         working-directory: /tmp/new_project
         run: |
-          docker-compose exec -T builder npm run test
+          docker-compose exec -T builder bun run test
 
   linting:
     name: linting

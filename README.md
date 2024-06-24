@@ -71,7 +71,7 @@ $ make test
 # docker-compose exec django py.test --cov-report html:artifacts/coverag
 
 # run frontend tests
-# docker-compose exec builder yarn test
+# docker-compose exec builder bun run test
 ```
 
 ## configuration
@@ -101,7 +101,7 @@ docker-compose exec django ./manage.py graph_models -a -g -o my_project_visualiz
 
 when we deploy we'll do the following..
 
--   rebuild the containers (in case of `requirements.txt` or `package.json`/`yarn.lock` changes)
+-   rebuild the containers (in case of `requirements.txt` or `package.json` changes)
 -   compile & collect static assets (vuejs)
 -   run migrations
 
