@@ -1,4 +1,3 @@
-//import {MaybeRef} from '@vueuse/core';
 import { ofetch } from "ofetch";
 
 export const useRequest = (url: RequestInfo, opts?: RequestInit) => {
@@ -8,6 +7,7 @@ export const useRequest = (url: RequestInfo, opts?: RequestInit) => {
     "X-CSRFToken": csrfToken.value || "",
     ...opts?.headers,
   };
+
   const method = (opts?.method?.toUpperCase() || "GET") as
     | "GET"
     | "POST"
@@ -16,7 +16,13 @@ export const useRequest = (url: RequestInfo, opts?: RequestInit) => {
     | "PATCH"
     | "OPTIONS";
 
-  console.log(`useRequest url -> ${config.public.server_url}${url}`);
+  // Create a new options object to avoid modifying the original opts
+  const optionsFinal = {
+    ...opts,
+    headers,
+    method,
+  };
+
 
   return ofetch(url, {
     baseURL: `${config.public.server_url}`,
@@ -30,9 +36,6 @@ export const useRequest = (url: RequestInfo, opts?: RequestInit) => {
     // dont THROW errors, return them
     //ignoreResponseError: true,
 
-    headers,
-    // @ts-ignore
-    method,
-    ...opts,
+    ...optionsFinal,
   });
 };
