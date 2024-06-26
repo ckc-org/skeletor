@@ -264,6 +264,7 @@ CELERY_TIMEZONE = "US/Pacific"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 15 * 60  # in seconds
 CELERY_WORKER_HIJACK_ROOT_LOGGER = False  # let's handle our own logging stuff
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True  # retry connection on startup if it fails
 
 
 # =============================================================================
