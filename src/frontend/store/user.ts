@@ -22,18 +22,12 @@ export const userStore = defineStore("user", {
       });
     },
     async createUser(body: any) {
-      const res = await useRequest("/users/", {
+      const {user, token} = await useRequest("/users/", {
         method: "POST",
         body: body,
       });
 
-      const userData = res.data?.value;
-
-      if (userData?.user) {
-        this.setUser(userData.user);
-      }
-
-      return res;
+      this.setUser(user);
     },
     async login(email: string, password: string, rememberMe?: boolean) {
       const { user } = await useRequest("/auth/login/", {
