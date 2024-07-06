@@ -46,16 +46,30 @@ class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'id',
             'email',
             'first_name',
             'last_name',
             'send_otp_email_verification',
+            'password',
         )
+        extra_kwargs = {
+            'first_name': {'required': True, 'allow_blank': False},
+            'last_name': {'required': True, 'allow_blank': False},
+        }
+
+    def validate_password(self, value):
+        password_validation.validate_password(value)
+        return value
 
     def create(self, validated_data):
         send_otp_email_verification = validated_data.pop('send_otp_email_verification')
-        user = super().create(validated_data)
+
+        user = User.objects.create_user(
+            email=validated_data.pop('email'),
+            password=validated_data.pop('password'),
+            **validated_data,
+        )
+
         login(self.context['request'], user)
         if send_otp_email_verification:
             email.otp_email_verification(user)
