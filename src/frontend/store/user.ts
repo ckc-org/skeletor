@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 import { UserT, UserWithoutPasswordT } from "~/types/authTypes";
 import { useRequest } from "~/composables/useRequest";
 import { navigateTo } from "#app";
+import { useRealtimeStore } from "~/store/realtime";
 
 export const userStore = defineStore("user", {
   id: "user",
@@ -20,9 +21,12 @@ export const userStore = defineStore("user", {
         user: user,
         isLoggedIn: Boolean(user),
       });
+
+      // Start listening to the websocket
+      //useRealtimeStore().startListening()
     },
     async createUser(body: any) {
-      const {user, token} = await useRequest("/users/", {
+      const { user, token } = await useRequest("/users/", {
         method: "POST",
         body: body,
       });
