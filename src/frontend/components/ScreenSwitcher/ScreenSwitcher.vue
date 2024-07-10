@@ -9,17 +9,17 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify";
+import { useDisplay } from "vuetify"
 
 defineProps({
   useDesktopForTablet: {
     type: Boolean,
     default: false,
   },
-});
+})
 
 // Everything defaults to mobile unless isDesktop or isTablet is true
-const breakpoint = useDisplay();
-const isDesktop = computed(() => breakpoint.lgAndUp);
-const isTablet = computed(() => breakpoint.smAndUp);
+const breakpoint = useDisplay()
+const isDesktop = computed(() => breakpoint.lgAndUp)
+const isTablet = computed(() => breakpoint.smAndUp)
 </script>

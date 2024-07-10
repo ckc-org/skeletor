@@ -42,35 +42,35 @@
 </template>
 
 <script setup lang="ts">
-import { useTheme } from "vuetify";
-import { userStore } from "~/store/user";
+import { useTheme } from "vuetify"
+import { userStore } from "~/store/user"
 
-const theme = useTheme();
-const user = userStore();
+const theme = useTheme()
+const user = userStore()
 
 const setThemeFromLocalStorage = () => {
-  const isDark = localStorage.getItem("isDark");
-  theme.global.name.value = isDark === "true" ? "dark" : "light";
-};
+  const isDark = localStorage.getItem("isDark")
+  theme.global.name.value = isDark === "true" ? "dark" : "light"
+}
 
 const toggle_theme = () => {
-  theme.global.name.value = theme.global.current.value.dark ? "light" : "dark";
+  theme.global.name.value = theme.global.current.value.dark ? "light" : "dark"
   // save to localstorage
   localStorage.setItem(
     "isDark",
     JSON.stringify(theme.global.current.value.dark)
-  );
-};
+  )
+}
 
 const logout = async () => {
   try {
-    await user.logout();
+    await user.logout()
   } catch (e) {
-    console.error(e);
+    console.error(e)
   }
-};
+}
 
-onMounted(setThemeFromLocalStorage);
+onMounted(setThemeFromLocalStorage)
 </script>
 
 <style lang="scss" scoped>

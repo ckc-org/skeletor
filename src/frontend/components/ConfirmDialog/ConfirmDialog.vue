@@ -18,11 +18,11 @@
 const props = defineProps({
   value: {
     type: Boolean,
-    required: true
+    required: true,
   },
   title: {
     type: String,
-    default: "Are you sure?"
+    default: "Are you sure?",
   },
   text: {
     type: String,
@@ -30,16 +30,15 @@ const props = defineProps({
   },
   confirmText: {
     type: String,
-    default: "OK"
+    default: "OK",
   },
   cancelText: {
     type: String,
-    default: "Cancel"
+    default: "Cancel",
   },
 })
 
 const emit = defineEmits(["cancel", "confirm"])
-
 </script>
 <style scoped lang="stylus">
 

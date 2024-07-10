@@ -68,34 +68,34 @@
 </template>
 
 <script setup>
-import useErrorHandler from "~/composables/useErrorHandler";
-import { userStore } from "~/store/user";
+import useErrorHandler from "~/composables/useErrorHandler"
+import { userStore } from "~/store/user"
 
-const { ruleEmail, rulePassLen, ruleRequired } = useFormRules();
+const { ruleEmail, rulePassLen, ruleRequired } = useFormRules()
 
-const email = ref("");
-const rememberMe = ref(false);
-const password = ref("");
-const isLoading = ref(false);
-const errors = ref({});
-const form = ref(null);
-const user = userStore();
+const email = ref("")
+const rememberMe = ref(false)
+const password = ref("")
+const isLoading = ref(false)
+const errors = ref({})
+const form = ref(null)
+const user = userStore()
 
 const submit = async () => {
-  const { valid } = await form.value.validate();
+  const { valid } = await form.value.validate()
   if (valid) {
-    isLoading.value = true; // Set isLoading to true when submitting
-    errors.value = {}; // Reset errors
+    isLoading.value = true // Set isLoading to true when submitting
+    errors.value = {} // Reset errors
 
     try {
-      await user.login(email.value, password.value, rememberMe.value);
-      navigateTo("/dashboard");
+      await user.login(email.value, password.value, rememberMe.value)
+      navigateTo("/dashboard")
     } catch (e) {
-      errors.value = e.data || {};
-      useErrorHandler(e);
+      errors.value = e.data || {}
+      useErrorHandler(e)
     }
 
-    isLoading.value = false; // Set isLoading to false after the request is completed
+    isLoading.value = false // Set isLoading to false after the request is completed
   }
-};
+}
 </script>

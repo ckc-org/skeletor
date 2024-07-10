@@ -1,6 +1,6 @@
-import { h } from "vue";
-import { IconSet, IconAliases, IconProps } from "vuetify";
-import { Icon } from "@iconify/vue";
+import { h } from "vue"
+import { IconSet, IconAliases, IconProps } from "vuetify"
+import { Icon } from "@iconify/vue"
 
 const aliases: IconAliases = {
   collapse: "ph:caret-up",
@@ -39,12 +39,12 @@ const aliases: IconAliases = {
   minus: "ph:minus",
   sortAsc: "ph:sort-ascending",
   sortDesc: "ph:sort-descending",
-};
+}
 
 const custom: IconSet = {
   // @ts-ignore
   component: (props: IconProps) => h(Icon, { ...props }),
-};
+}
 
 // export both aliases and the custom object created
-export { aliases, custom };
+export { aliases, custom }

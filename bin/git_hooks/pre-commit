@@ -32,22 +32,25 @@ printf "\n==================== Frontend code-style checks ====================\n
 #-------------------------------------------------------------------------------
 # Get list of staged files that match the frontend file pattern
 staged_files=$(git diff --cached --name-only --diff-filter=d | grep -E 'frontend/.*\.(js|ts|vue)$') || true
+
 if [ -n "$staged_files" ]; then
-    echo "Files to format and lint:"
+    echo "Files to check:"
     echo "$staged_files"
-    # Run formatting and linting commands on staged files
-    npm run format-specific -- $staged_files
-    format_status=$?
-    npm run lint-specific -- $staged_files
-    lint_status=$?
-    # Add newly formatted files to current commit
+
+    # Run Biome check on staged files
+    npx biome check --write --files-ignore-unknown=true $staged_files
+    check_status=$?
+
+    # Add formatted files back to staging
     git add $staged_files
-    # If either formatting or linting failed, exit with an error
-    if [ $format_status -ne 0 ] || [ $lint_status -ne 0 ]; then
-        echo "${red}❌ Frontend code-style checks failed${color_off}\n"
+
+    # If checks or formatting failed, exit with an error
+    if [ $check_status -ne 0 ]; then
+        echo "${red}❌ Code checks or formatting failed${color_off}"
+        echo "Please review the issues, stage any formatting changes, and try committing again."
         exit 1
     else
-        echo "${green}✅ Frontend code-style checks passed${color_off}\n"
+        echo "${green}✅ Code checks and formatting passed${color_off}\n"
     fi
 fi
 

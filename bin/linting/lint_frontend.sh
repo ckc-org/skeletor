@@ -1,1 +1,2 @@
-eslint "$@" --ext .js,.vue,.ts --ignore-path .gitignore
+#!/bin/bash
+npx @biomejs/biome lint "$@"

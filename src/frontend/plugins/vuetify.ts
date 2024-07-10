@@ -1,5 +1,5 @@
-import { createVuetify } from "vuetify";
-import { LIGHT_THEME } from "~/utils/themes";
+import { createVuetify } from "vuetify"
+import { LIGHT_THEME } from "~/utils/themes"
 
 export default defineNuxtPlugin((app) => {
   const vuetify = createVuetify({
@@ -28,7 +28,7 @@ export default defineNuxtPlugin((app) => {
         custom,
       },
     },
-  });
+  })
 
-  app.vueApp.use(vuetify);
-});
+  app.vueApp.use(vuetify)
+})

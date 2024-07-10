@@ -45,23 +45,23 @@
 </template>
 
 <script setup lang="ts">
-import { useRequest } from "~/composables/useRequest";
-import { useRoute } from "#app";
+import { useRequest } from "~/composables/useRequest"
+import { useRoute } from "#app"
 
 definePageMeta({
   layout: "auth",
-});
+})
 
-const new_password_1 = ref("");
-const new_password_2 = ref("");
+const new_password_1 = ref("")
+const new_password_2 = ref("")
 
-const errors = ref({});
+const errors = ref({})
 
-const route = useRoute();
+const route = useRoute()
 
 const submit = async () => {
-  const uid = route.params.uid;
-  const token = route.params.token;
+  const uid = route.params.uid
+  const token = route.params.token
 
   const { error } = await useRequest<any>(
     `/passwordreset/confirm/${uid}/${token}/`,
@@ -72,16 +72,16 @@ const submit = async () => {
         new_password_2: new_password_2.value,
       }),
     }
-  );
+  )
 
   if (error.value && error.value?.statusCode !== 200) {
-    errors.value = error.value.data;
+    errors.value = error.value.data
   } else {
     // Clear errors
-    errors.value = {};
+    errors.value = {}
 
     // Go to login page
-    navigateTo("/");
+    navigateTo("/")
   }
-};
+}
 </script>

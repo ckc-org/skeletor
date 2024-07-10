@@ -1,10 +1,10 @@
 // snackbarStore.ts
-import { defineStore } from "pinia";
+import { defineStore } from "pinia"
 
 interface SnackbarState {
-  message: string;
-  color: string;
-  show: boolean;
+  message: string
+  color: string
+  show: boolean
 }
 
 export const useSnackbarStore = defineStore({
@@ -17,14 +17,14 @@ export const useSnackbarStore = defineStore({
   actions: {
     displaySnackbar(color: string, message: string) {
       if (color === "error") {
-        console.error(message);
+        console.error(message)
       }
-      this.color = color;
-      this.message = message;
-      this.show = true;
+      this.color = color
+      this.message = message
+      this.show = true
     },
     closeSnackbar() {
-      this.show = false;
+      this.show = false
     },
   },
-});
+})
