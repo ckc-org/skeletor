@@ -10,6 +10,7 @@
       <v-card-actions class="d-flex justify-end align-center">
         <v-btn @click="emit('cancel')">{{ cancelText }}</v-btn>
         <v-btn color="primary" @click="emit('confirm')">{{ confirmText }}</v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
