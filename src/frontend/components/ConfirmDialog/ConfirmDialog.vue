@@ -18,7 +18,8 @@
 const props = defineProps({
   value: {
     type: Boolean,
-    required:                true,
+    required:
+      true,
   },
   title: {
     type: String,
