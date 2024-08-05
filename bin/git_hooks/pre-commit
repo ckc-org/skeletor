@@ -31,7 +31,11 @@ printf "\n==================== Frontend code-style checks ====================\n
 # Frontend linting
 #-------------------------------------------------------------------------------
 # Get list of staged files that match the frontend file pattern
+cd src/frontend
 staged_files=$(git diff --cached --name-only --diff-filter=d | grep -E 'frontend/.*\.(js|ts|vue)$') || true
+
+# remove src/frontend from each file path, because we're already in the frontend directory
+staged_files=$(echo "$staged_files" | sed 's/src\/frontend\///g')
 
 if [ -n "$staged_files" ]; then
     echo "Files to check:"
@@ -53,6 +57,9 @@ if [ -n "$staged_files" ]; then
         echo "${green}✅ Code checks and formatting passed${color_off}\n"
     fi
 fi
+
+# Go back to root of the repository
+cd ../../
 
 echo "${green}✅ All pre-commit checks passed${color_off}\n"
 exit 0
