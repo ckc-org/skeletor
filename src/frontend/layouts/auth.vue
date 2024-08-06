@@ -54,25 +54,25 @@
 </template>
 
 <script setup lang="ts">
-import { useTheme } from "vuetify";
+import { useTheme } from "vuetify"
 
-const theme = useTheme();
+const theme = useTheme()
 
 const setThemeFromLocalStorage = () => {
-  const isDark = localStorage.getItem("isDark");
-  theme.global.name.value = isDark === "true" ? "dark" : "light";
-};
+  const isDark = localStorage.getItem("isDark")
+  theme.global.name.value = isDark === "true" ? "dark" : "light"
+}
 
-onMounted(setThemeFromLocalStorage);
+onMounted(setThemeFromLocalStorage)
 
 const toggle_theme = async () => {
-  theme.global.name.value = theme.global.current.value.dark ? "light" : "dark";
+  theme.global.name.value = theme.global.current.value.dark ? "light" : "dark"
   // save to localstorage
   localStorage.setItem(
     "isDark",
     JSON.stringify(theme.global.current.value.dark)
-  );
-};
+  )
+}
 </script>
 
 <style lang="scss" scoped>

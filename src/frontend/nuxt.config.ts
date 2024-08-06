@@ -1,11 +1,11 @@
-import vuetify from "vite-plugin-vuetify";
+import vuetify from "vite-plugin-vuetify"
 
 // PWA Config
-const title = "Skeletor";
-const description = "Welcome to Skeletor -- a bootstrapped starter project.";
+const title = "Skeletor"
+const description = "Welcome to Skeletor -- a bootstrapped starter project."
 const image =
-  "https://raw.githubusercontent.com/ckc-org/skeletor/master/docs/skeletor_full.png";
-const url = "https://github.com/ckc-org/skeletor";
+  "https://raw.githubusercontent.com/ckc-org/skeletor/master/docs/skeletor_full.png"
+const url = "https://github.com/ckc-org/skeletor"
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -53,7 +53,7 @@ export default defineNuxtConfig({
       nuxt.hooks.hook("vite:extendConfig", (config) =>
         // @ts-ignore
         config.plugins.push(vuetify())
-      );
+      )
     },
   ],
 
@@ -134,4 +134,4 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
-});
+})

@@ -11,15 +11,15 @@
 </template>
 
 <script>
-import { useSnackbarStore } from "~/store/snackbar";
+import { useSnackbarStore } from "~/store/snackbar"
 
 export default {
   setup() {
-    const snackbarStore = useSnackbarStore();
+    const snackbarStore = useSnackbarStore()
 
     return {
       snackbarStore,
-    };
+    }
   },
-};
+}
 </script>

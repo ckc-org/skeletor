@@ -32,9 +32,9 @@
 </template>
 
 <script setup lang="ts">
-import { useDisplay } from "vuetify";
+import { useDisplay } from "vuetify"
 
-const display = ref(useDisplay());
+const display = ref(useDisplay())
 </script>
 
 <style scoped lang="scss"></style>

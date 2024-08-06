@@ -38,9 +38,9 @@
 </template>
 
 <script setup lang="ts">
-const email = ref("");
+const email = ref("")
 
-const { ruleEmail, ruleRequired } = useFormRules();
+const { ruleEmail, ruleRequired } = useFormRules()
 const submit = async () => {
   try {
     await useRequest<any>("/passwordreset/", {
@@ -48,9 +48,9 @@ const submit = async () => {
       body: JSON.stringify({
         email: email.value,
       }),
-    });
+    })
   } catch (e) {
-    console.error(e);
+    console.error(e)
   }
-};
+}
 </script>

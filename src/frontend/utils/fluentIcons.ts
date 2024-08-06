@@ -1,6 +1,6 @@
-import { h } from "vue";
-import { IconSet, IconAliases, IconProps } from "vuetify";
-import { Icon } from "@iconify/vue";
+import { h } from "vue"
+import { IconSet, IconAliases, IconProps } from "vuetify"
+import { Icon } from "@iconify/vue"
 
 const fluentAliases: IconAliases = {
   collapse: "fluent:chevron-up-24-regular",
@@ -39,11 +39,11 @@ const fluentAliases: IconAliases = {
   minus: "fluent:subtract-24-regular",
   sortAsc: "fluent:arrow-sort-up-24-regular",
   sortDesc: "fluent:arrow-sort-down-24-regular",
-};
+}
 
 const fluentCustom: IconSet = {
   // @ts-ignore
   component: (props: IconProps) => h(Icon, { ...props }),
-};
+}
 
-export { fluentAliases, fluentCustom };
+export { fluentAliases, fluentCustom }

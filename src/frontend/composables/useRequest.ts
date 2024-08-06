@@ -1,12 +1,12 @@
-import { ofetch } from "ofetch";
+import { ofetch } from "ofetch"
 
 export const useRequest = (url: RequestInfo, opts?: RequestInit) => {
-  const config = useRuntimeConfig();
-  const csrfToken = useCookie("csrftoken");
+  const config = useRuntimeConfig()
+  const csrfToken = useCookie("csrftoken")
   const headers = {
     "X-CSRFToken": csrfToken.value || "",
     ...opts?.headers,
-  };
+  }
 
   const method = (opts?.method?.toUpperCase() || "GET") as
     | "GET"
@@ -14,15 +14,14 @@ export const useRequest = (url: RequestInfo, opts?: RequestInit) => {
     | "PUT"
     | "DELETE"
     | "PATCH"
-    | "OPTIONS";
+    | "OPTIONS"
 
   // Create a new options object to avoid modifying the original opts
   const optionsFinal = {
     ...opts,
     headers,
     method,
-  };
-
+  }
 
   return ofetch(url, {
     baseURL: `${config.public.server_url}`,
@@ -37,5 +36,5 @@ export const useRequest = (url: RequestInfo, opts?: RequestInit) => {
     //ignoreResponseError: true,
 
     ...optionsFinal,
-  });
-};
+  })
+}

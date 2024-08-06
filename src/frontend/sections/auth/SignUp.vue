@@ -64,24 +64,24 @@
 </template>
 
 <script setup>
-import { userStore } from "~/store/user";
+import { userStore } from "~/store/user"
 
-const user = userStore();
+const user = userStore()
 
 const form = ref({
   first_name: "",
   last_name: "",
   email: "",
   password: "",
-});
-const errors = ref({});
+})
+const errors = ref({})
 
 const submit = async () => {
   try {
-    await user.createUser(form.value);
-    navigateTo("/dashboard");
+    await user.createUser(form.value)
+    navigateTo("/dashboard")
   } catch (e) {
-    errors.value = e.data || {};
+    errors.value = e.data || {}
   }
-};
+}
 </script>
