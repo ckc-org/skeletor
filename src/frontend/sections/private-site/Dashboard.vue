@@ -4,7 +4,7 @@
       Welcome to Skeletor
     </div>
     <div>
-      <v-img
+      <Image
         src="https://raw.githubusercontent.com/ckc-org/skeletor/master/docs/skeletor_full.png"
         height="440px"
         :width="display.lgAndUp ? '440px' : '100%'"
