@@ -122,7 +122,7 @@ if db_from_env:  # pragma: no cover
 else:  # pragma: no cover
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'ENGINE': 'django.db.backends.postgresql',
             'NAME': os.environ.get('DB_NAME', 'postgres'),
             'USER': os.environ.get('DB_USERNAME', 'postgres'),
             'PASSWORD': os.environ.get('DB_PASSWORD', 'postgres'),
@@ -131,9 +131,10 @@ else:  # pragma: no cover
         }
     }
 
-# Conn max age sucks! Causes "too many clients" errors..
-# DATABASES["default"]["CONN_MAX_AGE"] = 10  # short timeout so we don't have too many dangling clients
-
+# Use django built in connection pools
+DATABASES['default']['OPTIONS'] = {
+    'pool': True
+}
 
 # =============================================================================
 # DRF
