@@ -3,9 +3,9 @@
   <v-snackbar v-model="snackbarStore.show" :color="snackbarStore.color">
     {{ snackbarStore.message }}
     <template #actions>
-      <v-btn variant="text" @click="snackbarStore.closeSnackbar">
+      <Button variant="text" @click="snackbarStore.closeSnackbar">
         <v-icon>mdi-close</v-icon>
-      </v-btn>
+      </Button>
     </template>
   </v-snackbar>
 </template>
