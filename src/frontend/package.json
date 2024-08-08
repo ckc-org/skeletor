@@ -21,6 +21,7 @@
     "@biomejs/biome": "1.8.3",
     "@iconify/vue": "^4.1.2",
     "@nuxtjs/google-fonts": "^3.2.0",
+    "@primevue/nuxt-module": "^4.0.4",
     "@vueuse/core": "^10.11.0",
     "@vueuse/nuxt": "^10.11.0",
     "cypress": "^13.12.0",
@@ -29,13 +30,14 @@
     "sass": "^1.77.6",
     "stylus": "^0.63.0",
     "stylus-loader": "^8.1.0",
-    "vuetify": "^3.6.10",
     "vuetify-nuxt-module": "^0.14.1"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
     "nuxt-lodash": "^2.5.3",
     "pinia": "^2.1.7",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.0.4",
     "vue": "^3.4.30"
   }
 }

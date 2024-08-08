@@ -1,5 +1,3 @@
-import vuetify from "vite-plugin-vuetify"
-
 // PWA Config
 const title = "Skeletor"
 const description = "Welcome to Skeletor -- a bootstrapped starter project."
@@ -21,20 +19,13 @@ export default defineNuxtConfig({
   },
 
   // import styles
-  css: [
-    "vuetify/lib/styles/main.sass",
-    "@/assets/main.scss",
-    "@/assets/stylus/index.styl",
-  ],
+  css: ["@/assets/main.scss", "@/assets/stylus/index.styl"],
 
-  build: {
-    transpile: ["vuetify"],
-  },
+  build: {},
 
   // enable takeover mode
   typescript: { shim: false },
 
-  // 'vuetify-nuxt-module',
   pinia: {
     autoImports: [
       // automatically imports `defineStore`
@@ -47,15 +38,12 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@vueuse/nuxt",
     "nuxt-lodash",
-
-    // Vuetify
-    async (options, nuxt) => {
-      nuxt.hooks.hook("vite:extendConfig", (config) =>
-        // @ts-ignore
-        config.plugins.push(vuetify())
-      )
-    },
+    "@primevue/nuxt-module",
   ],
+
+  primevue: {
+    /* Configuration */
+  },
 
   lodash: {
     prefix: "_",
@@ -64,8 +52,8 @@ export default defineNuxtConfig({
   app: {
     // Head tag
     head: {
-      title: "Vuetify 3 + Nuxt 3 Starter",
-      titleTemplate: "%s | Vuetify 3 + Nuxt 3 Starter",
+      title: "PrimeVue + Nuxt 3 Starter",
+      titleTemplate: "%s | PrimeVue + Nuxt 3 Starter",
       link: [
         { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
         { rel: "preconnect", href: "https://rsms.me/" },
