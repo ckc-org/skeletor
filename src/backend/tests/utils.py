@@ -31,4 +31,6 @@ class _AssertNumQueriesApproxContext(CaptureQueriesContext):
         upper_bound = self.num + self.delta
 
         assert lower_bound <= executed <= upper_bound, \
-            f"Expected {self.num} queries (+/-{self.delta}), but {executed} were executed."
+            (f"Expected {self.num} queries (+/-{self.delta}), but {executed} were executed."
+            f"Captured queries were:\n"
+            f"{'\n'.join(f'{i}. {query['sql']}' for i, query in enumerate(self.captured_queries, start=1))}")  # noqa
