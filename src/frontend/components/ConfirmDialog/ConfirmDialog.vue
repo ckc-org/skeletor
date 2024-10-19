@@ -8,8 +8,8 @@
         {{ text }}
       </v-card-text>
       <v-card-actions class="d-flex justify-end align-center">
-        <v-btn @click="emit('cancel')">{{ cancelText }}</v-btn>
-        <v-btn color="primary" @click="emit('confirm')">{{ confirmText }}</v-btn>
+        <Button @click="emit('cancel')">{{ cancelText }}</Button>
+        <Button color="primary" @click="emit('confirm')">{{ confirmText }}</Button>
       </v-card-actions>
     </v-card>
   </v-dialog>

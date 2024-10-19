@@ -3,7 +3,7 @@
     <v-main>
       <v-container fluid class="fill-height">
         <div class="z-index-2 d-flex justify-space-between fill-width px-4">
-          <v-btn
+          <Button
             icon
             variant="outlined"
             class="transition"
@@ -16,13 +16,13 @@
               icon="mdi-theme-light-dark"
               size="30px"
             />
-          </v-btn>
+          </Button>
           <v-sheet
             class="bg-transparent hidden-sm-and-up"
             width="150px"
             height="150px"
           >
-            <v-img
+            <Image
               src="https://raw.githubusercontent.com/ckc-org/skeletor/master/docs/skeletor_full.png"
             />
           </v-sheet>
@@ -41,7 +41,7 @@
                 class="hidden-sm-and-down fill-height d-flex justify-center align-center"
                 md="6"
               >
-                <v-img
+                <Image
                   src="https://raw.githubusercontent.com/ckc-org/skeletor/master/docs/skeletor_full.png"
                 />
               </v-col>
