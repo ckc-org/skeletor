@@ -1,16 +1,10 @@
 "use client";
-import { useState } from "react";
-import {
-  Box,
-  TextField,
-  Typography,
-  Paper,
-  Alert,
-  AlertTitle,
-} from "@mui/material";
+
+import { LoadingButton } from "@mui/lab";
+import { Alert, AlertTitle, Box, Paper, TextField, Typography } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
-import { LoadingButton } from "@mui/lab";
+import { useState } from "react";
 import client from "../../../plugins/client";
 
 const confirmPasswordReset = async ({ uid, token, passwords }) => {

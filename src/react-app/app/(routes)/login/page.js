@@ -1,10 +1,11 @@
 "use client";
-import { useState } from "react";
-import { Box, TextField, Typography, Paper, Alert, Link } from "@mui/material";
+
+import { LoadingButton } from "@mui/lab";
+import { Alert, Box, Link, Paper, TextField, Typography } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import client from "../../(core)/plugins/client";
-import { LoadingButton } from "@mui/lab";
 
 const loginUser = async (credentials) => {
   await client.post("/auth/login/", credentials);

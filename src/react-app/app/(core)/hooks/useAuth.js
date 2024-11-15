@@ -2,12 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import client from "../plugins/client";
-import {
-  clearUser,
-  setAuthError,
-  setAuthLoading,
-  setUser,
-} from "../store/auth/authSlice";
+import { clearUser, setAuthError, setAuthLoading, setUser } from "../store/auth/authSlice";
 
 export function useAuth() {
   const dispatch = useDispatch();

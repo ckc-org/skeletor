@@ -1,14 +1,13 @@
 // client.js
-export const baseURL =
-  process.env.REACT_APP_API_BASE_URL || "http://localhost:8000/api";
+export const baseURL = process.env.REACT_APP_API_BASE_URL || "http://localhost:8000/api";
 
 class APIClient {
   // Add this method to get CSRF token from cookies
   getCsrfToken() {
-    const name = 'csrftoken';
+    const name = "csrftoken";
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
+    if (parts.length === 2) return parts.pop().split(";").shift();
     return null;
   }
 
@@ -20,9 +19,7 @@ class APIClient {
 
     if (!response.ok) {
       const error = await response.json().catch(() => ({}));
-      throw new Error(
-        error.message || `HTTP error! status: ${response.status}`,
-      );
+      throw new Error(error.message || `HTTP error! status: ${response.status}`);
     }
 
     const contentType = response.headers.get("content-type");
@@ -45,9 +42,11 @@ class APIClient {
         Accept: "application/json",
         "Content-Type": "application/json",
         // Add CSRF token to headers for non-GET requests
-        ...(options.method !== 'GET' && csrfToken ? {
-          'X-CSRFToken': csrfToken
-        } : {}),
+        ...(options.method !== "GET" && csrfToken
+          ? {
+              "X-CSRFToken": csrfToken,
+            }
+          : {}),
         ...options.headers,
       },
     };

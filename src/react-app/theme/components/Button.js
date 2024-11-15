@@ -1,4 +1,4 @@
-const Button = (theme) => ({
+const Button = (_theme) => ({
   MuiButton: {
     defaultProps: { size: "lg" },
     styleOverrides: {

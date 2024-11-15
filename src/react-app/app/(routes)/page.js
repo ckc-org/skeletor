@@ -1,9 +1,10 @@
 "use client";
+
 import { LoadingButton } from "@mui/lab";
 import { Box } from "@mui/material";
-import ProtectedRoute from "../(core)/components/auth/ProtectedRoute";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import ProtectedRoute from "../(core)/components/auth/ProtectedRoute";
 import client from "../(core)/plugins/client";
 
 const logout = async () => {
@@ -13,7 +14,7 @@ export default function Home() {
   const router = useRouter();
   const logoutMutation = useMutation({
     mutationFn: logout,
-    onSuccess: (data) => {
+    onSuccess: (_data) => {
       router.push("/login");
     },
     onError: (error) => {
