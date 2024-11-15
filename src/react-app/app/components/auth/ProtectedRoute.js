@@ -6,7 +6,6 @@ import { useAuth } from "../../hooks/useAuth";
 const ProtectedRoute = ({ children }) => {
   const router = useRouter();
   const { user, isLoading, error } = useAuth();
-  console.log("user", user);
 
   // Show loading state
   if (isLoading) {

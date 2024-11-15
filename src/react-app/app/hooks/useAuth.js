@@ -2,14 +2,19 @@
 import { useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import client from "../plugins/client";
-import { clearUser, setUser } from "../store/auth/authSlice";
+import {
+  clearUser,
+  setAuthError,
+  setAuthLoading,
+  setUser,
+} from "../store/auth/authSlice";
 
 export function useAuth() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
   const query = useQuery({
-    queryKey: ["auth"],
+    queryKey: ["auth", "me"],
     queryFn: async () => {
       try {
         dispatch(setAuthLoading(true));
@@ -25,10 +30,13 @@ export function useAuth() {
         dispatch(setAuthLoading(false));
       }
     },
-    // Don't refetch on window focus since we're managing auth state
-    refetchOnWindowFocus: false,
-    // Cache the auth state for 5 minutes
-    staleTime: 5 * 60 * 1000,
+    // Disable caching
+    gcTime: 0,
+    staleTime: 0,
+    cacheTime: 0,
+    refetchOnMount: true,
+    refetchOnReconnect: true,
+    refetchOnWindowFocus: true,
   });
 
   return {
