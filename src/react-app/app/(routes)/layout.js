@@ -1,21 +1,20 @@
 "use client";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Providers } from "./providers";
 import { ThemeProvider } from "@mui/material";
-import theme from "../theme";
+import theme from "../../theme";
 import "../../styles/globals.css";
-const queryClient = new QueryClient();
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <QueryClientProvider client={queryClient}>
+        <Providers>
           <ThemeProvider theme={theme}>
             <CssBaseline />
             {children}
           </ThemeProvider>
-        </QueryClientProvider>
+        </Providers>
       </body>
     </html>
   );

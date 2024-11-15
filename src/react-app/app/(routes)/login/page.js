@@ -1,17 +1,9 @@
 "use client";
 import { useState } from "react";
-import {
-  Box,
-  TextField,
-  Typography,
-  Paper,
-  Alert,
-  Button,
-  Link,
-} from "@mui/material";
+import { Box, TextField, Typography, Paper, Alert, Link } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import client from "../plugins/client";
+import client from "../../(core)/plugins/client";
 import { LoadingButton } from "@mui/lab";
 
 const loginUser = async (credentials) => {
@@ -57,7 +49,6 @@ export default function LoginPage() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        bgcolor: "grey.50",
       }}
     >
       <Paper

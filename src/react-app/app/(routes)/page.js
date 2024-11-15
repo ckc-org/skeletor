@@ -1,10 +1,10 @@
 "use client";
 import { LoadingButton } from "@mui/lab";
 import { Box } from "@mui/material";
-import client from "./plugins/client";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
+import ProtectedRoute from "../(core)/components/auth/ProtectedRoute";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import client from "../(core)/plugins/client";
 
 const logout = async () => {
   await client.post("/auth/logout/");
