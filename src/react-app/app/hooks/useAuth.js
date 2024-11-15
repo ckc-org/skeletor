@@ -19,7 +19,7 @@ export function useAuth() {
       try {
         dispatch(setAuthLoading(true));
         const response = await client.get("/users/me/");
-        dispatch(setUser(response.data));
+        dispatch(setUser(response));
         dispatch(setAuthError(null));
         return response.data;
       } catch (error) {

@@ -21,11 +21,11 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
-  if (error) {
-    const currentPath = encodeURIComponent(window.location.pathname);
-    router.push(`/login?redirect=${currentPath}`);
-    return null;
-  }
+  // if (error) {
+  //   const currentPath = encodeURIComponent(window.location.pathname);
+  //   router.push(`/login?redirect=${currentPath}`);
+  //   return null;
+  // }
 
   // If we have a user, render the protected content
   return user ? children : null;

@@ -12,7 +12,6 @@ export default function Home() {
   const logoutMutation = useMutation({
     mutationFn: logout,
     onSuccess: (data) => {
-      console.log("Logout successful", data);
       router.push("/login");
     },
     onError: (error) => {
