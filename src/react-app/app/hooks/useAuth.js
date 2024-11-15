@@ -16,16 +16,19 @@ export function useAuth() {
   const query = useQuery({
     queryKey: ["auth", "me"],
     queryFn: async () => {
+      dispatch(setAuthLoading(true));
       try {
-        dispatch(setAuthLoading(true));
         const response = await client.get("/users/me/");
+        if (!response) {
+          throw new Error("No response received");
+        }
         dispatch(setUser(response));
         dispatch(setAuthError(null));
-        return response.data;
+        return response || null; // Ensure we never return undefined
       } catch (error) {
         dispatch(clearUser());
         dispatch(setAuthError(error.message));
-        throw error;
+        return null; // Return null instead of throwing
       } finally {
         dispatch(setAuthLoading(false));
       }
