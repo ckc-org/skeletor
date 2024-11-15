@@ -3,6 +3,15 @@ export const baseURL =
   process.env.REACT_APP_API_BASE_URL || "http://localhost:8000/api";
 
 class APIClient {
+  // Add this method to get CSRF token from cookies
+  getCsrfToken() {
+    const name = 'csrftoken';
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+  }
+
   async handleResponse(response) {
     if (response.status === 401) {
       window.location.href = "/login";
@@ -26,12 +35,19 @@ class APIClient {
   async request(url, options = {}) {
     const fullUrl = url.startsWith("http") ? url : `${baseURL}${url}`;
 
+    // Get CSRF token
+    const csrfToken = this.getCsrfToken();
+
     const fetchOptions = {
       ...options,
-      credentials: "include", // Equivalent to withCredentials: true
+      credentials: "include",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        // Add CSRF token to headers for non-GET requests
+        ...(options.method !== 'GET' && csrfToken ? {
+          'X-CSRFToken': csrfToken
+        } : {}),
         ...options.headers,
       },
     };
