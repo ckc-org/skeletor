@@ -1,6 +1,14 @@
 "use client";
 import { useState } from "react";
-import { Box, TextField, Typography, Paper, Alert } from "@mui/material";
+import {
+  Box,
+  TextField,
+  Typography,
+  Paper,
+  Alert,
+  Button,
+  Link,
+} from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import client from "../plugins/client";
@@ -91,18 +99,22 @@ export default function LoginPage() {
             sx={{ mb: 2 }}
           />
 
-          <TextField
-            fullWidth
-            label="Password"
-            name="password"
-            type="password"
-            variant="outlined"
-            value={credentials.password}
-            onChange={handleChange}
-            disabled={loginMutation.isPending}
-            required
-            sx={{ mb: 3 }}
-          />
+          <Box sx={{ mb: 3 }}>
+            <TextField
+              fullWidth
+              label="Password"
+              name="password"
+              type="password"
+              variant="outlined"
+              value={credentials.password}
+              onChange={handleChange}
+              disabled={loginMutation.isPending}
+              required
+            />
+            <Link sx={{ fontSize: "14px" }} href="/forgot-password">
+              Forgot password?
+            </Link>
+          </Box>
 
           <LoadingButton
             fullWidth
@@ -110,6 +122,7 @@ export default function LoginPage() {
             variant="contained"
             color="primary"
             size="large"
+            sx={{ color: "white" }}
             loading={loginMutation.isPending}
           >
             Sign In
