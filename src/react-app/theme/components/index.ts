@@ -1,5 +1,5 @@
 // components
-import Button from "./Button";
+import Button from "./Button"
 
 const components = (theme) => ({
   ...Button(theme),
@@ -17,6 +17,6 @@ const components = (theme) => ({
       },
     },
   },
-});
+})
 
-export default components;
+export default components

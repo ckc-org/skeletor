@@ -124,6 +124,6 @@ const typography = (theme) => ({
   //   'Roboto',
   //   'sans-serif'
   // ].join(','),
-});
+})
 
-export default typography;
+export default typography

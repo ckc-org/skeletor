@@ -56,6 +56,6 @@ const Button = (_theme) => ({
       // },
     ],
   },
-});
+})
 
-export default Button;
+export default Button

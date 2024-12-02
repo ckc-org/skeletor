@@ -1,36 +1,36 @@
-"use client";
-import { LoadingButton } from "@mui/lab";
-import { Alert, Box, Link, Paper, TextField, Typography } from "@mui/material";
-import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
-import client from "../plugins/client";
+"use client"
+import { LoadingButton } from "@mui/lab"
+import { Alert, Box, Link, Paper, TextField, Typography } from "@mui/material"
+import { useMutation } from "@tanstack/react-query"
+import { useState } from "react"
+import client from "../plugins/client"
 
 const requestPasswordReset = async (email) => {
-  await client.post("/passwordreset/", { email });
-};
+  await client.post("/passwordreset/", { email })
+}
 
 export default function ForgotPasswordPage() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("")
 
   const resetMutation = useMutation({
     mutationFn: requestPasswordReset,
     onSuccess: () => {
       // You might want to show a success message or redirect
-      console.log("Password reset instructions sent");
+      console.log("Password reset instructions sent")
     },
     onError: (error) => {
-      console.error("Failed to send reset instructions", error);
+      console.error("Failed to send reset instructions", error)
     },
-  });
+  })
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    resetMutation.mutate(email);
-  };
+    e.preventDefault()
+    resetMutation.mutate(email)
+  }
 
   const handleChange = (e) => {
-    setEmail(e.target.value);
-  };
+    setEmail(e.target.value)
+  }
 
   return (
     <Box
@@ -107,5 +107,5 @@ export default function ForgotPasswordPage() {
         </form>
       </Paper>
     </Box>
-  );
+  )
 }

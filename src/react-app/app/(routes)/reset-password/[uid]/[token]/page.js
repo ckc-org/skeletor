@@ -1,64 +1,64 @@
-"use client";
+"use client"
 
-import { LoadingButton } from "@mui/lab";
-import { Alert, AlertTitle, Box, Paper, TextField, Typography } from "@mui/material";
-import { useMutation } from "@tanstack/react-query";
-import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
-import client from "../../../plugins/client";
+import { LoadingButton } from "@mui/lab"
+import { Alert, AlertTitle, Box, Paper, TextField, Typography } from "@mui/material"
+import { useMutation } from "@tanstack/react-query"
+import { useParams, useRouter } from "next/navigation"
+import { useState } from "react"
+import client from "../../../plugins/client"
 
 const confirmPasswordReset = async ({ uid, token, passwords }) => {
-  await client.post(`/passwordreset/confirm/${uid}/${token}/`, passwords);
-};
+  await client.post(`/passwordreset/confirm/${uid}/${token}/`, passwords)
+}
 
 export default function ResetPasswordConfirmPage() {
-  const router = useRouter();
-  const params = useParams();
-  const { uid, token } = params;
+  const router = useRouter()
+  const params = useParams()
+  const { uid, token } = params
 
   const [passwords, setPasswords] = useState({
     new_password_1: "",
     new_password_2: "",
-  });
-  const [errors, setErrors] = useState({});
+  })
+  const [errors, setErrors] = useState({})
 
   const resetMutation = useMutation({
     mutationFn: (passwords) => confirmPasswordReset({ uid, token, passwords }),
     onSuccess: () => {
-      setErrors({});
-      router.push("/");
+      setErrors({})
+      router.push("/")
     },
     onError: (error) => {
       // Assuming the error response structure matches your Vue implementation
       if (error.response?.data) {
-        setErrors(error.response.data);
+        setErrors(error.response.data)
       } else {
         setErrors({
           non_field_errors: ["An unexpected error occurred. Please try again."],
-        });
+        })
       }
     },
-  });
+  })
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    resetMutation.mutate(passwords);
-  };
+    e.preventDefault()
+    resetMutation.mutate(passwords)
+  }
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setPasswords((prev) => ({
       ...prev,
       [name]: value,
-    }));
+    }))
     // Clear field-specific error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
         [name]: undefined,
-      }));
+      }))
     }
-  };
+  }
 
   return (
     <Box
@@ -155,5 +155,5 @@ export default function ResetPasswordConfirmPage() {
         </form>
       </Paper>
     </Box>
-  );
+  )
 }

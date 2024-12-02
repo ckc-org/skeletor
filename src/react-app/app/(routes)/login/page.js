@@ -1,46 +1,46 @@
-"use client";
+"use client"
 
-import { LoadingButton } from "@mui/lab";
-import { Alert, Box, Link, Paper, TextField, Typography } from "@mui/material";
-import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import client from "../../(core)/plugins/client";
+import { LoadingButton } from "@mui/lab"
+import { Alert, Box, Link, Paper, TextField, Typography } from "@mui/material"
+import { useMutation } from "@tanstack/react-query"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import client from "../../(core)/plugins/client"
 
 const loginUser = async (credentials) => {
-  await client.post("/auth/login/", credentials);
-};
+  await client.post("/auth/login/", credentials)
+}
 
 export default function LoginPage() {
-  const router = useRouter();
+  const router = useRouter()
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
-  });
+  })
 
   const loginMutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      console.log("Login successful", data);
-      router.push("/");
+      console.log("Login successful", data)
+      router.push("/")
     },
     onError: (error) => {
-      console.error("Login failed", error);
+      console.error("Login failed", error)
     },
-  });
+  })
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    loginMutation.mutate(credentials);
-  };
+    e.preventDefault()
+    loginMutation.mutate(credentials)
+  }
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setCredentials((prev) => ({
       ...prev,
       [name]: value,
-    }));
-  };
+    }))
+  }
 
   return (
     <Box
@@ -122,5 +122,5 @@ export default function LoginPage() {
         </form>
       </Paper>
     </Box>
-  );
+  )
 }
