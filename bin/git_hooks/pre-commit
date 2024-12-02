@@ -31,18 +31,18 @@ printf "\n==================== Frontend code-style checks ====================\n
 # Frontend linting
 #-------------------------------------------------------------------------------
 # Get list of staged files that match the frontend file pattern
-cd src/frontend
-staged_files=$(git diff --cached --name-only --diff-filter=d | grep -E 'frontend/.*\.(js|ts|vue)$') || true
 
-# remove src/frontend from each file path, because we're already in the frontend directory
-staged_files=$(echo "$staged_files" | sed 's/src\/frontend\///g')
+cd src/react-app # should be src/frontend but I'm using react-app for now
+staged_files=$(git diff --cached --name-only --diff-filter=d | grep -E 'react-app/.*\.(js|ts|jsx|tsx)$') || true
+# remove src/react-app from each file path, because we're already in the react-app directory
+staged_files=$(echo "$staged_files" | sed 's/src\/react-app\///g')
 
 if [ -n "$staged_files" ]; then
-    echo "Files to check:"
+    echo "Files to format:"
     echo "$staged_files"
 
     # Run Biome check on staged files
-    npx biome check --write --files-ignore-unknown=true $staged_files
+    npx biome format --write --files-ignore-unknown=true $staged_files
     check_status=$?
 
     # Add formatted files back to staging
