@@ -188,7 +188,15 @@ for file in $(grep -rl "SKELETOR_NAME_PLACEHOLDER" .); do
 done
 
 VOLUME_DIR_SEARCH="STATIC_VOLUME"
-VOLUME_DIR="\.\/src\/frontend\/build:\/frontend:cached"
+# For Vue.js
+VOLUME_DIR="./src/frontend/build:/frontend:cached"
+
+# For Next.js
+if [[ $FRONTEND == "$FRONTEND_WEB_NEXTJS_REACT" ]]; then
+    VOLUME_DIR="./src/frontend/build:/frontend/generated/static:cached"
+fi
+
+
 
 # Remove mobile dir if we don't need it.
 if [[ $FRONTEND == "$FRONTEND_WEB_VUEJS" ]]; then
@@ -201,7 +209,9 @@ elif [[ $FRONTEND == "$FRONTEND_WEB_NEXTJS_REACT" ]]; then
     VOLUME_DIR="./src/frontend/build:/frontend/generated/static:cached"
 fi
 sed -i -e "s/^FROM node:NODE_VERSION/FROM node:${NODE_VERSION}/g" docker/Dockerfile.frontend
-sed -i -e "s/${VOLUME_DIR_SEARCH}/${VOLUME_DIR}/g" docker-compose.yml
+
+# Use a different delimiter for sed since we have forward slashes in our path
+sed -i -e "s#STATIC_VOLUME#${VOLUME_DIR}#g" docker-compose.yml
 
 
 # Remove Skeletor specific stuff

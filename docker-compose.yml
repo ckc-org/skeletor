@@ -54,8 +54,9 @@ services:
       - 3000:3000
       - 24678:24678
     volumes:
-      # skeletor.sh defines the static volume
-      - STATIC_VOLUME
+      - ./src/frontend/build:/frontend:cached   # for Vue
+      # or
+      - ./src/frontend/build:/frontend/generated/static:cached   # for Next.js
     depends_on:
       - django
     logging: *default-logging
