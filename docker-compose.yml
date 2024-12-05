@@ -54,8 +54,14 @@ services:
       - 3000:3000
       - 24678:24678
     volumes:
-      # skeletor.sh defines the static volume
-      - STATIC_VOLUME
+      # For quick development with Skeletor, you can swap out the frontend dir
+      # with the env var FRONTEND_DIR! Defaults to VueJS
+      - ${FRONTEND_DIR:-./src/frontend}:/frontend:cached
+
+      # These volume mounts to exclude node_modules and build caches:
+#      - /frontend/node_modules
+#      - /frontend/.nuxt
+#      - /frontend/.next
     depends_on:
       - django
     logging: *default-logging
