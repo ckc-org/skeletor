@@ -9,7 +9,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.backend
-    command: uvicorn asgi:application --host 0.0.0.0 --port 8000 --reload 
+    command: uvicorn asgi:application --host 0.0.0.0 --port 8000 --reload
     # can't use gunicorn workers with --reload, fyi!
     #command: gunicorn asgi:application --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
     environment:
@@ -54,7 +54,14 @@ services:
       - 3000:3000
       - 24678:24678
     volumes:
-      - ./src/frontend:/frontend:cached
+      # For quick development with Skeletor, you can swap out the frontend dir
+      # with the env var FRONTEND_DIR! Defaults to VueJS
+      - ${FRONTEND_DIR:-./src/frontend}:/frontend:cached
+
+      # These volume mounts to exclude node_modules and build caches:
+#      - /frontend/node_modules
+#      - /frontend/.nuxt
+#      - /frontend/.next
     depends_on:
       - django
     logging: *default-logging
