@@ -40,7 +40,7 @@
     <v-checkbox v-model="rememberMe" label="Remember me" density="compact" />
 
     <div class="mt-5">
-      <v-btn
+      <Button
         type="submit"
         block
         min-height="44px"
@@ -49,7 +49,7 @@
         :loading="isLoading"
       >
         Sign In
-      </v-btn>
+      </Button>
     </div>
   </v-form>
   <p class="text-body-2 mt-10">
