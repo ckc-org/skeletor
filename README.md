@@ -24,7 +24,9 @@ for most of our new clients. It gives us:
 ### Start a project..
 
 ```bash
-SKELETOR_BRANCH=master bash <(curl -fsSL https://skeletor.ckcollab.com)
+# Optionally set a skeletor branch to use something other than master
+#export SKELETOR_BRANCH=some-feature-branch
+bash <(curl -fsSL https://skeletor.ckcollab.com)  
 ```
 
 &nbsp;<br>
