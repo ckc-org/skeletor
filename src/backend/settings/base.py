@@ -160,7 +160,6 @@ REST_FRAMEWORK = {
 # Security/cookies
 # =============================================================================
 CORS_ALLOWED_ORIGINS = (FRONTEND_URL,)
-print("CORS_ALLOWED_ORIGINS", CORS_ALLOWED_ORIGINS)
 
 CORS_ALLOW_CREDENTIALS = True
 
