@@ -56,7 +56,16 @@ Do you want to add file uploads? What about image uploads? Do this shit!
     # in base.py
     STORAGES = {
         "default": {
-            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage"
+            "BACKEND": "utils.storage.PublicStorage"
+        },
+        "public": {
+            "BACKEND": "utils.storage.PublicStorage"
+        },
+        "private": {
+            "BACKEND": "utils.storage.PrivateStorage"        
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
         },
     }
     
