@@ -3,7 +3,7 @@
     <v-main>
       <v-container fluid class="fill-height">
         <div class="z-index-2 d-flex flex-sm-column px-4 pb-4">
-          <v-btn
+          <Button
             icon
             variant="outlined"
             class="transition"
@@ -16,16 +16,16 @@
               icon="mdi-theme-light-dark"
               size="30px"
             />
-          </v-btn>
+          </Button>
 
-          <v-btn
+          <Button
             icon
             variant="outlined"
             class="transition ml-4 ml-sm-0 mt-sm-4"
             @click="logout"
           >
             <v-icon class="rotate-180" icon="mdi-logout" size="24px" />
-          </v-btn>
+          </Button>
         </div>
         <v-row
           no-gutters
