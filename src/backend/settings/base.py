@@ -159,7 +159,7 @@ REST_FRAMEWORK = {
 # =============================================================================
 # Security/cookies
 # =============================================================================
-CORS_ORIGIN_WHITELIST = (FRONTEND_URL,)
+CORS_ALLOWED_ORIGINS = (FRONTEND_URL,)
 
 CORS_ALLOW_CREDENTIALS = True
 

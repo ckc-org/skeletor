@@ -143,11 +143,15 @@ cat << EOF
 ${underline}Available frontends:${reset}
     ${green}${bold}1. Vue (web only) [recommended/default]${reset}
     2. Vue (web) + React Native (mobile)
+    3. Next.js (web only)
+    4. Next.js (web) + React Native (mobile)
 
 EOF
 
 FRONTEND_WEB_VUEJS=1
 FRONTEND_WEB_VUEJS_MOBILE_REACT_NATIVE=2
+FRONTEND_WEB_NEXTJS=3
+FRONTEND_WEB_NEXTJS_MOBILE_REACT_NATIVE=4
 
 read -p "Please select your preferred frontend: ${green}" FRONTEND
 echo "${reset}"
@@ -155,8 +159,8 @@ echo "${reset}"
 # Set default to 1 if no input given
 FRONTEND=${FRONTEND:-1}
 
-if [[ $FRONTEND -gt 2 ]]; then
-    echo -e "\n${red}${bold}ERROR: Invalid FRONTEND choice... must be 1 or 2!${reset}"
+if [[ $FRONTEND -gt 3 ]]; then
+    echo -e "\n${red}${bold}ERROR: Invalid FRONTEND choice... must be 1, 2 or 3!${reset}"
     exit 2
 fi
 
@@ -185,10 +189,31 @@ for file in $(grep -rl "SKELETOR_NAME_PLACEHOLDER" .); do
     cross_platform_sed -e "s@SKELETOR_NAME_PLACEHOLDER@$PROJECT_NAME@g" "$file"
 done
 
-# Remove mobile dir if we don't need it
+VOLUME_DIR_SEARCH="STATIC_VOLUME"
+# For Vue.js
+VOLUME_DIR="./src/frontend/build:/frontend:cached"
+
+# For Next.js
+if [[ $FRONTEND == "$FRONTEND_WEB_NEXTJS" ]]; then
+    VOLUME_DIR="./src/frontend/build:/frontend/generated/static:cached"
+fi
+
+
+
+# Remove mobile dir if we don't need it.
 if [[ $FRONTEND == "$FRONTEND_WEB_VUEJS" ]]; then
     rm -rf src/mobile
+elif [[ $FRONTEND == "$FRONTEND_WEB_NEXTJS" ]]; then
+    rm -rf src/mobile
+    rm -rf src/frontend
+    cp -r src/react src/frontend
+    rm -rf src/react
+    VOLUME_DIR="./src/frontend/build:/frontend/generated/static:cached"
 fi
+sed -i -e "s/^FROM node:NODE_VERSION/FROM node:${NODE_VERSION}/g" docker/Dockerfile.frontend
+
+# Use a different delimiter for sed since we have forward slashes in our path
+sed -i -e "s#STATIC_VOLUME#${VOLUME_DIR}#g" docker-compose.yml
 
 
 # Remove Skeletor specific stuff

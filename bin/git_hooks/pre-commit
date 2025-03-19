@@ -27,39 +27,68 @@ fi
 echo "${green}✅ No unstaged Django migrations found${color_off}"
 
 printf "\n==================== Frontend code-style checks ====================\n"
+
 #-------------------------------------------------------------------------------
 # Frontend linting
 #-------------------------------------------------------------------------------
-# Get list of staged files that match the frontend file pattern
-cd src/frontend
-staged_files=$(git diff --cached --name-only --diff-filter=d | grep -E 'frontend/.*\.(js|ts|vue)$') || true
 
-# remove src/frontend from each file path, because we're already in the frontend directory
-staged_files=$(echo "$staged_files" | sed 's/src\/frontend\///g')
+lint_frontend_directory() {
+    local full_path=$1
+    local dir_name=$(basename "$full_path")
+    local original_dir=$(pwd)
 
-if [ -n "$staged_files" ]; then
-    echo "Files to check:"
-    echo "$staged_files"
-
-    # Run Biome check on staged files
-    npx biome check --write --files-ignore-unknown=true $staged_files
-    check_status=$?
-
-    # Add formatted files back to staging
-    git add $staged_files
-
-    # If checks or formatting failed, exit with an error
-    if [ $check_status -ne 0 ]; then
-        echo "${red}❌ Code checks or formatting failed${color_off}"
-        echo "Please review the issues, stage any formatting changes, and try committing again."
-        exit 1
-    else
-        echo "${green}✅ Code checks and formatting passed${color_off}\n"
+    # Check if directory exists
+    if [ ! -d "$full_path" ]; then
+        echo "${yellow}⚠️ Directory $full_path does not exist, skipping...${color_off}"
+        return 0
     fi
-fi
 
-# Go back to root of the repository
-cd ../../
+    cd "$full_path"
+
+    # Get staged files for this directory
+    staged_files=$(git diff --cached --name-only --diff-filter=d | grep -E "$full_path/.*\.(js|ts|jsx|tsx)$") || true
+    # Remove full path from each file path since we're already in that directory
+    staged_files=$(echo "$staged_files" | sed "s|$full_path/||g")
+
+    if [ -n "$staged_files" ]; then
+        echo "Files to format in $full_path:"
+        echo "$staged_files"
+
+        # Run Biome check on staged files
+        npx biome format --write --files-ignore-unknown=true $staged_files
+        check_status=$?
+
+        # Add formatted files back to staging
+        git add $staged_files
+
+        # If checks or formatting failed, exit with an error
+        if [ $check_status -ne 0 ]; then
+            echo "${red}❌ Code checks or formatting failed in $full_path${color_off}"
+            cd "$original_dir"
+            return 1
+        else
+            echo "${green}✅ Code checks and formatting passed in $full_path${color_off}\n"
+        fi
+    else
+        echo "No staged files to format in $full_path"
+    fi
+
+    cd "$original_dir"
+    return 0
+}
+
+
+# List of directories to check with explicit paths
+frontend_dirs="src/frontend src/react"
+
+# Check each frontend directory
+for dir in $frontend_dirs; do
+    printf "\n------------------- Checking $dir directory -------------------\n"
+    lint_frontend_directory "$dir"
+    if [ $? -ne 0 ]; then
+        exit 1
+    fi
+done
 
 echo "${green}✅ All pre-commit checks passed${color_off}\n"
 exit 0
